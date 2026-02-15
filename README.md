@@ -1,1 +1,1 @@
-# Digital_twin_brain-psychiatry-
+# Digital_twin_brain-psychiatry
