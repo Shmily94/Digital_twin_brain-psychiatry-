@@ -1,0 +1,158 @@
+1.7.%% which fcs contribute to the group difference
+clear;clc
+% cal STRATIFY FCS
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro2\A2_2_1_2_make_mask_across_single_v2.mat','oppo_nn_dimen_ind');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro\STRATIFY_MID_SST_same_id_FC.mat');
+for n=1:length(C)
+FC1_neg=SST_stop_suces(:,:,n);
+FC2_neg=SST_stop_failure(:,:,n);
+FC3_neg=MID_feedhit(:,:,n);
+FC4_neg=MID_antici_hit(:,:,n);
+FCS_neg(n,:)=[FC1_neg(oppo_nn_dimen_ind{1})',FC2_neg(oppo_nn_dimen_ind{2})',FC3_neg(oppo_nn_dimen_ind{3})',FC4_neg(oppo_nn_dimen_ind{4})'];
+end
+save FCS_neg_STRA FCS_neg
+% cal FU2 control FCS
+clear;clc
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro2\A2_2_1_2_make_mask_across_single_v2.mat','oppo_nn_dimen_ind');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Baseline\CPM_results\XIC_shen_results\FU2_Models\FU2_SST_CONN_Name_match.mat');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Baseline\CPM_results\XIC_shen_results\FU2_Models\FU2_Match_MID_CONN.mat');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro\idx_discard.mat');
+[C,ia,ib]=intersect(FU2_MID_subname,SST_subject);
+FU2_MID_antici_hit=FU2_MID_antici_hit(:,:,ia);
+FU2_MID_feed_hit=FU2_MID_feed_hit(:,:,ia);
+FU2_MID_feed_miss=FU2_MID_feed_miss(:,:,ia);
+FU2_SST_stop_sucess=FU2_SST_stop_sucess(:,:,ib);
+FU2_SST_stop_failure=FU2_SST_stop_failure(:,:,ib);
+FU2_SST_go_wrong=FU2_SST_go_wrong(:,:,ib);
+[FU2_control_id2,ia]=setdiff(C,idx_discard);%从FU2抽出的Control的id
+FU2_MID_antici_hit2=FU2_MID_antici_hit(:,:,ia);
+FU2_MID_feed_hit2=FU2_MID_feed_hit(:,:,ia);
+FU2_MID_feed_miss2=FU2_MID_feed_miss(:,:,ia);
+FU2_SST_stop_sucess2=FU2_SST_stop_sucess(:,:,ia);
+FU2_SST_stop_failure2=FU2_SST_stop_failure(:,:,ia);
+FU2_SST_go_wrong2=FU2_SST_go_wrong(:,:,ia);
+for n=1:length(FU2_control_id2)
+FC1_neg=FU2_SST_stop_sucess2(:,:,n);
+FC2_neg=FU2_SST_stop_failure2(:,:,n);
+FC3_neg=FU2_MID_feed_hit2(:,:,n);
+FC4_neg=FU2_MID_antici_hit2(:,:,n);
+%FCS_neg_fu2_control(n,:)=[FC1_neg(oppo_nn_dimen_ind{1})',FC2_neg(oppo_nn_dimen_ind{2})',FC3_neg(oppo_nn_dimen_ind{3})',FC4_neg(oppo_nn_dimen_ind{4})'];
+FCS_neg_fu2(n,:)=[FC1_neg(oppo_nn_dimen_ind{1})',FC2_neg(oppo_nn_dimen_ind{2})',FC3_neg(oppo_nn_dimen_ind{3})',FC4_neg(oppo_nn_dimen_ind{4})'];
+end
+save FCS_neg_fu2 FCS_neg_fu2
+% % cal FU3 control FCS
+clear;clc
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro2\A2_2_1_2_make_mask_across_single_v2.mat','oppo_nn_dimen_ind');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup3\CPM_results\Shen_results\CPM_results\FU3_SST_data_all.mat');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup3\CPM_results\Shen_results\CPM_results\FU3_MID_data_all.mat');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro2\FU3_control_id.mat');
+[C,ia,ib]=intersect(mid_subject,sst_subject);
+FU3_MID_antici_hit=mid_antici_hit(:,:,ia);
+FU3_MID_feed_hit=mid_feed_hit(:,:,ia);
+FU3_MID_feed_miss=mid_feed_miss(:,:,ia);
+FU3_SST_stop_sucess=sst_stop_suces(:,:,ib);
+FU3_SST_stop_failure=sst_stop_failure(:,:,ib);
+FU3_SST_go_wrong=sst_go_wrong(:,:,ib);
+
+[FU3_control_id2,ia,ib]=intersect(C,FU3_control_id);%从FU3抽出的Control的id
+FU3_MID_antici_hit2=FU3_MID_antici_hit(:,:,ia);
+FU3_MID_feed_hit2=FU3_MID_feed_hit(:,:,ia);
+FU3_MID_feed_miss2=FU3_MID_feed_miss(:,:,ia);
+FU3_SST_stop_sucess2=FU3_SST_stop_sucess(:,:,ia);
+FU3_SST_stop_failure2=FU3_SST_stop_failure(:,:,ia);
+FU3_SST_go_wrong2=FU3_SST_go_wrong(:,:,ia);
+
+for n=1:length(FU3_control_id2)
+FC1_neg=FU3_SST_stop_sucess2(:,:,n);
+FC2_neg=FU3_SST_stop_failure2(:,:,n);
+FC3_neg=FU3_MID_feed_hit2(:,:,n);
+FC4_neg=FU3_MID_antici_hit2(:,:,n);
+%FCS_neg_fu2_control(n,:)=[FC1_neg(oppo_nn_dimen_ind{1})',FC2_neg(oppo_nn_dimen_ind{2})',FC3_neg(oppo_nn_dimen_ind{3})',FC4_neg(oppo_nn_dimen_ind{4})'];
+FCS_neg_fu3_control(n,:)=[FC1_neg(oppo_nn_dimen_ind{1})',FC2_neg(oppo_nn_dimen_ind{2})',FC3_neg(oppo_nn_dimen_ind{3})',FC4_neg(oppo_nn_dimen_ind{4})'];
+end
+save FCS_neg_fu3_control FCS_neg_fu3_control
+
+%% two-sample t test NP between control and stratify
+clear;clc
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro2\diseased_label.mat');
+load('D:\postdoc\Work\Computer-Brain-Project\Results\Followup2\CPM_Models_discard_contro\compare_NP_stra\beha_compare_NP_whole_dis.mat');
+ID_cova=ID;
+ID_NP=[FU2_control_id2;FU3_control_id2;C];% C从load('STRATIFY_NP_factor.mat')里来是全部的STRATIFY的数据
+NP_data=[FCS_neg_fu2_control;FCS_neg_fu3_control;FCS_neg];
+save FCS_all_hc_dis ID_NP NP_data
+[C,ia,ib]=intersect(ID_cova,ID_NP); % resort cova and brain data
+NP_data2=NP_data(ib,:);
+cova2=cova(ia,:);
+X=cova2;
+Y=NP_data2;
+Y_resi = xic_cpm_regress(Y,X(:,2:end));
+for i = 1:size(Y,2)
+    
+    % [bb,dev,stats] = glmfit(X,Y_resi(:,i)); % group,site,sex and hd 
+    % results{i}.stats = stats;
+    [h,p,ci,stats] = ttest2(Y_resi(1:225,i),Y_resi(226:end,i)); 
+    glm_np_beha(i,1) = stats.tstat;
+    glm_np_beha(i,2) = p;
+
+end
+find(glm_np_beha(:,2)<(0.05./29))
+[pID,pN]=gretna_FDR(glm_np_beha(:,2),0.05);
+find(glm_np_beha(:,2)<pID)
+save compare_NP_whole_diseased  X Y_resi glm_np_beha
+
+% specific_disorder
+X=cova(diseased_label.AUD==1,:);
+Y_resi = xic_cpm_regress(Y(diseased_label.AUD==1,:),X(:,2:end));
+for i = 1:size(Y,2)
+    
+    % [bb,dev,stats] = glmfit(X,Y_resi(:,i)); % group,site,sex and hd 
+    % results{i}.stats = stats;
+    [h,p,ci,stats] = ttest2(Y_resi(1:225,i),Y_resi(226:end,i)); 
+    glm_np_beha(i,1) = stats.tstat;
+    glm_np_beha(i,2) = p;
+
+end
+find(glm_np_beha(:,2)<(0.05./29))
+[pID,pN]=gretna_FDR(glm_np_beha(:,2),0.05);
+find(glm_np_beha(:,2)<pID)
+save compare_NP_EAT  X Y_resi glm_np_beha 
+
+% identify group difference FC regions
+mask_id_all = tril(reshape(1:268*268,268,268),-1);
+idx=[oppo_nn_dimen_ind{1}' oppo_nn_dimen_ind{2}' oppo_nn_dimen_ind{3}' oppo_nn_dimen_ind{4}'];
+for i=1:length(idx)
+[row,col]=find(mask_id_all==idx(1,i));
+location(i,1)=row;
+location(i,2)=col;
+end
+
+for i=1:29
+    A=location(i,1);
+    B=location(i,2);
+    idx_A=find(cell2mat(ROI_name(:,1))==A);
+    A_name=ROI_name(idx_A,3);
+    idx_B=find(cell2mat(ROI_name(:,1))==B);
+    B_name=ROI_name(idx_B,3);
+    loca_name{i}=[A_name{1},'--',B_name{1}];
+end
+
+% compare different specific_disorder
+clear;clc
+diseased_label.AUD(1:225)=0;
+diseased_label.EAT(1:225)=0;
+diseased_label.MDD(1:225)=0;
+Y1_resi = Y_resi(diseased_label.MDD==1,:);
+Y2_resi = Y_resi(diseased_label.AUD==1,:);
+for i = 1:size(Y,2)
+    
+    % [bb,dev,stats] = glmfit(X,Y_resi(:,i)); % group,site,sex and hd 
+    % results{i}.stats = stats;
+    [h,p,ci,stats] = ttest2(Y1_resi(:,i),Y2_resi(:,i)); 
+    glm_np_beha(i,1) = stats.tstat;
+    glm_np_beha(i,2) = p;
+
+end
+find(glm_np_beha(:,2)<0.05)
+[pID,pN]=gretna_FDR(glm_np_beha(:,2),0.05);
+find(glm_np_beha(:,2)<pID)
+save compare_ED_MDD  X Y_resi glm_np_beha
