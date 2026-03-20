@@ -56,12 +56,12 @@ model rather than a direct pharmacodynamic simulation.
 
 ## Repository Structure
 
-    identify_np_factor
-    data_preparation_for_model/
-    model_data_process/
-    statistical_analysis/
-    visualize/
-    data/
+    Identify_np_factor
+    Data_preparation_for_model/
+    Simulated_post_process/
+    Statistical_analysis/
+    Visualization/
+    Data/
 
 
 ------------------------------------------------------------------------
