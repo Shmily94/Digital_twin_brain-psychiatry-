@@ -18,18 +18,15 @@ internalising and externalising psychopathology.
 
 The framework enables:
 
--   Identification of np factor
--   Construction of participant-specific neuronal-scale DTBs
--   In silico modulation of excitatory (AMPA) and inhibitory (GABA-A)
-    synaptic conductance
--   Simulation of task-evoked BOLD responses
--   Reconstruction and manipulation of the NP connectivity factor
+-   Identification of NP factor
+-   Construction of participant-specific neuronal-scale DTBs and simulation of task-evoked BOLD responses
+-   Reconstruction of the NP connectivity factor
+-   In silico modulation of excitatory (AMPA) and inhibitory (GABA-A) synaptic conductance in the DTBs
 -   Population-scale perturbational analysis
 -   Pharmacological validation mapping
 -   Longitudinal symptom prediction
 
-This repository provides the code required to reproduce the
-computational experiments described in the manuscript.
+This repository provides the code required to reproduce the computational experiments described in the manuscript.
 
 ------------------------------------------------------------------------
 
@@ -41,7 +38,7 @@ dynamics remains a central challenge in computational psychiatry.
 Using individualised DTBs grounded in structural and task-state
 functional MRI data, we:
 
-1.  Reconstructed a compact cortico--subcortical NP circuit phenotype\
+1.  Reconstructed a compact cortico-subcortical NP circuit phenotype\
 2.  Performed controlled AMPA- and GABA-A--mediated synaptic
     perturbations\
 3.  Quantified baseline-dependent, bidirectional network responses\
@@ -90,13 +87,12 @@ Parameters are constrained by:
 -   Network stability criteria
 -   Simulated BOLD amplitude limits
 
-These variables act as gain-control parameters governing circuit
-operating regimes.
+These variables act as gain-control parameters governing circuit operating regimes.
 
 ### 3. NP Factor Reconstruction
 
 The NP factor is defined as the summed strength of selected
-cortico--subcortical task-state functional connections derived using
+cortico-subcortical task-state functional connections derived using
 connectome-based predictive modelling.
 
 ### 4. Pharmacological Validation
@@ -127,6 +123,16 @@ midazolam-induced network changes.
 Voxel-wise large-scale simulations require high-performance computing
 resources.\
 Regional DTBs are suitable for workstation-level replication.
+
+------------------------------------------------------------------------
+
+## Computational Load / Runtime Estimates
+
+The computational requirements for running DTB simulations depend on model size, task length, and the number of repeated simulations. For large-scale models with 100 million neurons, a MID simulation typically requires 3 hours using 8 DCUs, and an SST simulation requires 5.5 hours using 8 DCUs, resulting in approximately 68 DCU-hours for baseline simulations. AMPA and GABA-A perturbations add additional runs (AMPA: 5 repetitions × 10 levels; GABA-A: 5 repetitions × 6 levels), while assimilation simulations are equivalent to 30 simulations, and resting-state parameter identification requires 5 additional runs. Taken together, a 100-million-neuron model for a single subject consumes roughly 7,820 DCU-hours. Scaling up to a model of 1 billion neurons yields an estimated 680 DCU-hours for a single simulation of MID and SST.
+
+For regional-scale models with 3 million neurons, a MID simulation consumes about 2 DCU-hours, and an SST simulation consumes 3.5 DCU-hours. Including baseline, AMPA, and GABA-A manipulation simulations, and assimilation (equivalent to 32 simulations), each individual requires approximately 258.5 DCU-hours.
+
+All simulations were performed on the SCINET high-performance computing platform (https://www.scnet.cn/ui/mall/#/mall/home￼). Multiple DCUs can be used in parallel to reduce wall-clock time. These estimates include all simulation and perturbational experiments required to reproduce the full computational analysis.
 
 ------------------------------------------------------------------------
 
