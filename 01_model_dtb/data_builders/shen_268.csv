@@ -1,0 +1,269 @@
+ROI	Hemisphere	Network	BA
+1	L	FPN	OrbFrontal
+2	L	Limbic	OrbFrontal
+3	L	DMN	OrbFrontal
+4	L	FPN	OrbFrontal
+5	L	DMN	AntPFC
+6	L	DMN	AntPFC
+7	L	FPN	AntPFC
+8	L	FPN	AntPFC
+9	L	FPN	AntPFC
+10	L	Limbic	dlPFC
+11	L	Limbic	dlPFC
+12	L	SMF	FrontEyeFilds
+13	L	DMN	FrontEyeFilds
+14	L	FPN	FrontEyeFilds
+15	L	Limbic	FrontEyeFilds
+16	L	SMF	ParsOrbitalis
+17	L	FPN	ParsOrbitalis
+18	L	Limbic	ParsOrbitalis
+19	L	FPN	dlPFC
+20	L	Limbic	Broca_Triang
+21	L	FPN	Broca-Operc
+22	L	FPN	Broca-Operc
+23	L	Motor	PrimMotor
+24	L	Motor	PreMot+SuppMot
+25	L	Motor	PreMot+SuppMot
+26	L	Motor	PreMot+SuppMot
+27	L	Motor	PreMot+SuppMot
+28	L	Limbic	PreMot+SuppMot
+29	L	Limbic	PreMot+SuppMot
+30	L	FPN	PreMot+SuppMot
+31	L	FPN	PreMot+SuppMot
+32	L	Limbic	PreMot+SuppMot
+33	L	Motor	PrimSensory
+34	L	Motor	Insula
+35	L	Motor	Insula
+36	L	Limbic	Insula
+37	L	Motor	Insula
+38	L	Motor	PrimSensory
+39	L	Motor	PrimSensory
+40	L	Motor	PrimSensory
+41	L	Visual Asso	VisMotor
+42	L	Visual Asso	VisMotor
+43	L	Visual Asso	VisMotor
+44	L	Limbic	VisMotor
+45	L	Motor	SupramargGyr
+46	L	Motor	SupramargGyr
+47	L	FPN	SupramargGyr
+48	L	FPN	AngGyrus
+49	L	DMN	AngGyrus
+50	L	DMN	AngGyrus
+51	L	Motor	Temporalpole
+52	L	SMF	Temporalpole
+53	L	SMF	Temporalpole
+54	L	SMF	MedTempGyrus
+55	L	FPN	MedTempGyrus
+56	L	SMF	InfTempGryus
+57	L	SMF	InfTempGryus
+58	L	Motor	InfTempGryus
+59	L	Visual Asso	InfTempGryus
+60	L	Motor	InfTempGryus
+61	L	Motor	PrimAuditory
+62	L	Motor	PrimAuditory
+63	L	Motor	SupTemGyrus
+64	L	SMF	SupTemGyrus
+65	L	SMF	SupTemGyrus
+66	L	Visual Asso	Fusiform
+67	L	Visual Asso	Fusiform
+68	L	Visual I	Fusiform
+69	L	Visual Asso	Fusiform
+70	L	FPN	Fusiform
+71	L	Visual Asso	Fusiform
+72	L	Visual I	Visual Assoc
+73	L	Visual Asso	Visual Assoc
+74	L	Visual Asso	Visual Assoc
+75	L	Visual I	Visual Assoc
+76	L	Visual II	SecVisual
+77	L	Visual I	SecVisual
+78	L	Visual II	SecVisual
+79	L	Visual I	SecVisual
+80	L	Visual I	SecVisual
+81	L	Visual II	SecVisual
+82	L	Visual I	PrimVisual
+83	L	Limbic	DorsalACC
+84	L	Motor	VentCing
+85	L	DMN	VenPostCing
+86	L	DMN	VenPostCing
+87	L	Visual I	VenPostCing
+88	L	Limbic	VenPostCing
+89	L	Motor	DorsalPCC
+90	L	DMN	DorsalPCC
+91	L	Limbic	DorsalPCC
+92	L	Motor	Amygdala
+93	L	Sub	Hippocampus
+94	L	Sub	Hippocampus
+95	L	DMN	ParaHip
+96	L	DMN	ParaHip
+97	L	Sub	ParaHip
+98	L	Visual I	SecVisual
+99	L	Cerebellum	BrainStem
+100	L	Visual II	Cerebellum
+101	L	Cerebellum	Cerebellum
+102	L	Visual II	Cerebellum
+103	L	Cerebellum	Cerebellum
+104	L	Cerebellum	Cerebellum
+105	L	Cerebellum	Cerebellum
+106	L	Cerebellum	Cerebellum
+107	L	Cerebellum	Cerebellum
+108	L	Cerebellum	Cerebellum
+109	L	Motor	Cerebellum
+110	L	Limbic	Cerebellum
+111	L	FPN	Cerebellum
+112	L	FPN	Cerebellum
+113	L	Cerebellum	Cerebellum
+114	L	Cerebellum	Cerebellum
+115	L	DMN	Cerebellum
+116	L	FPN	Cerebellum
+117	L	Cerebellum	Cerebellum
+118	L	Cerebellum	Cerebellum
+119	L	Limbic	Cerebellum
+120	L	Sub	n/a
+121	L	Sub	Caudate
+122	L	Sub	Caudate
+123	L	Sub	Caudate
+124	L	Sub	Putamen
+125	L	Sub	Nacc
+126	L	Sub	Thalamus
+127	L	Sub	Thalamus
+128	L	Sub	Thalamus
+129	L	Cerebellum	BrainStem
+130	L	Cerebellum	BrainStem
+131	L	Cerebellum	BrainStem
+132	L	Cerebellum	BrainStem
+133	L	Cerebellum	BrainStem
+134	R	DMN	OrbFrontal
+135	R	Limbic	OrbFrontal
+136	R	Limbic	OrbFrontal
+137	R	SSMF	OrbFrontal
+138	R	DMN	AntPFC
+139	R	FPN	AntPFC
+140	R	SMF	OrbFrontal
+141	R	DMN	AntPFC
+142	R	FPN	AntPFC
+143	R	FPN	AntPFC
+144	R	Limbic	AntPFC
+145	R	SMF	dlPFC
+146	R	Limbic	dlPFC
+147	R	FPN	dlPFC
+148	R	SMF	FrontEyeFilds
+149	R	SMF	FrontEyeFilds
+150	R	SMF	FrontEyeFilds
+151	R	SMF	ParsOrbitalis
+152	R	Limbic	ParsOrbitalis
+153	R	SMF	ParsOrbitalis
+154	R	FPN	dlPFC
+155	R	Limbic	Broca_Triang
+156	R	SMF	Broca-Operc
+157	R	FPN	PreMot+SuppMot
+158	R	Motor	PrimMotor
+159	R	Motor	PreMot+SuppMot
+160	R	Motor	PreMot+SuppMot
+161	R	Motor	PreMot+SuppMot
+162	R	SMF	PreMot+SuppMot
+163	R	Motor	PreMot+SuppMot
+164	R	FPN	PreMot+SuppMot
+165	R	SMF	PreMot+SuppMot
+166	R	Motor	PreMot+SuppMot
+167	R	Motor	PrimSensory
+168	R	Motor	Insula
+169	R	Limbic	Insula
+170	R	Motor	Insula
+171	R	Motor	PrimSensory
+172	R	Motor	PrimSensory
+173	R	Motor	PrimSensory
+174	R	Motor	VisMotor
+175	R	Visual Asso	VisMotor
+176	R	Visual I	VisMotor
+177	R	Visual Asso	VisMotor
+178	R	Limbic	VisMotor
+179	R	Motor	SupramargGyr
+180	R	Motor	SupramargGyr
+181	R	Motor	SupramargGyr
+182	R	FPN	AngGyrus
+183	R	SMF	AngGyrus
+184	R	FPN	AngGyrus
+185	R	SMF	Temporalpole
+186	R	SMF	Temporalpole
+187	R	SMF	Temporalpole
+188	R	Motor	Temporalpole
+189	R	Motor	Temporalpole
+190	R	SMF	MedTempGyrus
+191	R	Motor	MedTempGyrus
+192	R	SMF	MedTempGyrus
+193	R	FPN	MedTempGyrus
+194	R	SMF	InfTempGryus
+195	R	Motor	InfTempGryus
+196	R	FPN	InfTempGryus
+197	R	Motor	SupTemGyrus
+198	R	Visual I	Fusiform
+199	R	FPN	Fusiform
+200	R	Visual Asso	Fusiform
+201	R	Visual Asso	Fusiform
+202	R	DMN	ParaHip
+203	R	DMN	Visual Assoc
+204	R	Visual Asso	Visual Assoc
+205	R	Visual I	Visual Assoc
+206	R	Visual Asso	Visual Assoc
+207	R	Visual I	Visual Assoc
+208	R	Visual I	Visual Assoc
+209	R	Visual Asso	Visual Assoc
+210	R	Visual Asso	SecVisual
+211	R	Visual I	SecVisual
+212	R	Visual II	SecVisual
+213	R	Visual II	SecVisual
+214	R	Visual II	SecVisual
+215	R	Visual I	PrimVisual
+216	R	Visual I	PrimVisual
+217	R	Sub	n/a
+218	R	Motor	PreMot+SuppMot
+219	R	SMF	DorsalAcc
+220	R	Limbic	VentCing
+221	R	Limbic	VentCing
+222	R	DMN	VenPostCing
+223	R	DMN	VenPostCing
+224	R	Limbic	VenPostCing
+225	R	DMN	DorsalPCC
+226	R	Limbic	DorsalPCC
+227	R	DMN	AnrRetrolimb
+228	R	Sub	Amygdala
+229	R	Sub	Hippocampus
+230	R	Sub	Hippocampus
+231	R	Sub	Hippocampus
+232	R	Sub	Hippocampus
+233	R	DMN	ParaHipp
+234	R	DMN	ParaHipp
+235	R	DMN	ParaHipp
+236	R	Cerebellum	Cerebellum
+237	R	Cerebellum	Cerebellum
+238	R	Cerebellum	Cerebellum
+239	R	DMN	Cerebellum
+240	R	Visual Asso	Cerebellum
+241	R	Visual II	Cerebellum
+242	R	FPN	Cerebellum
+243	R	Cerebellum	Cerebellum
+244	R	Limbic	Cerebellum
+245	R	Limbic	Cerebellum
+246	R	FPN	Cerebellum
+247	R	FPN	Cerebellum
+248	R	Cerebellum	Cerebellum
+249	R	Cerebellum	Cerebellum
+250	R	Cerebellum	Cerebellum
+251	R	Limbic	Cerebellum
+252	R	Cerebellum	Cerebellum
+253	R	Cerebellum	Cerebellum
+254	R	Cerebellum	Cerebellum
+255	R	Cerebellum	Cerebellum
+256	R	Cerebellum	Cerebellum
+257	R	Sub	n/a
+258	R	Sub	Caudate
+259	R	Sub	Caudate
+260	R	Sub	Caudate
+261	R	Sub	Putamen
+262	R	Sub	Putamen
+263	R	Sub	Thalamus
+264	R	Sub	Thalamus
+265	R	BrainStem	BrainStem
+266	R	Cerebellum	BrainStem
+267	R	Cerebellum	BrainStem
+268	R	Cerebellum	BrainStem
