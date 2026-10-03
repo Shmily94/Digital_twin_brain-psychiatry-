@@ -1,0 +1,9 @@
+claim,manuscript,recomputed,verdict
+ΔR² of AMPA index over empirical NP (summed),"0.050, P=0.026","0.0502, P=0.0259",MATCH
+ΔR² of GABA_A index over empirical NP (summed),"0.043, P=0.040","0.0426, P=0.0405",MATCH
+same ΔR² described as increment over sym19 + empirical NP (Discussion),"0.050, P=0.026","0.0351, P=0.0517",DIFFERENT MODEL — not the reported number
+index is a monotone transform of simulated baseline (AMPA),not stated,"R²=0.8574, Spearman rho=-0.924",REVIEWER CORRECT
+simulated baseline alone (no perturbation) as substitute predictor,not reported,"ΔR²=0.0570, P=0.0172",EXCEEDS the index increment
+index adds variance over empirical NP + simulated baseline,implied,"ΔR²=0.0001, P=0.9377",NULL
+reviewer's counter: residualised index predicts age-23 symptoms,proposed,AMPA r=+0.0318 P=0.772; GABA r=-0.0798 P=0.468,COUNTER FAILS
+multiplicity correction across the two increments,none applied,"Holm adj P = 0.0517, 0.0517; BH adj P = 0.0405, 0.0405",neither survives Holm/Bonferroni; both survive BH

@@ -1,0 +1,168 @@
+column,description,source
+id,subject numeric ID,—
+sub_id,subject string ID (zero-padded),—
+group,High-symptom (n=72) / HC (n=13) — CORRECTED,"compare_simu_mani_..._all2.csv Group2; agrees with all.csv, headmotion290, covariates_288"
+cohort,IMAGEN FU2 high-symptom / IMAGEN FU2 control,derived from group
+timepoint_baseline,baseline timepoint (FU2 for all 85),compare_..._all2.csv TIMEPOINT
+sex,F / M,compare_..._all2.csv; 85/85 agree with covariates_288subjects.csv
+age_baseline,age at FU2 baseline scan (years),compare_..._all2.csv Age
+site,"IMAGEN recruitment site, 8 levels, quote-stripped",compare_..._all2.csv recruitmentSite; 85/85 agree with covariates_288
+headmotion,mean framewise head motion,compare_..._all2.csv; max|diff| 0 vs covariates_288
+beha19_item1,age-19 symptom item 1,"C_beha_data (.mat), ID-matched"
+beha19_item2,age-19 symptom item 2,"C_beha_data (.mat), ID-matched"
+beha19_item3,age-19 symptom item 3,"C_beha_data (.mat), ID-matched"
+beha19_item4,age-19 symptom item 4,"C_beha_data (.mat), ID-matched"
+beha19_sum,sum of the 4 age-19 items,derived
+beha23_item1,age-23 (FU3) symptom item 1,"C_fu3_beha_data (.mat), ID-matched"
+beha23_item2,age-23 (FU3) symptom item 2,"C_fu3_beha_data (.mat), ID-matched"
+beha23_item3,age-23 (FU3) symptom item 3,"C_fu3_beha_data (.mat), ID-matched"
+beha23_item4,age-23 (FU3) symptom item 4,"C_fu3_beha_data (.mat), ID-matched"
+beha23_sum,sum of the 4 age-23 items,derived
+beha_change_raw,beha23_sum - beha19_sum,derived
+beha_change_resi,change residualised on age-19 sum,derived
+emp_edge1,EMPIRICAL (real fMRI) NP edge 1,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge2,EMPIRICAL (real fMRI) NP edge 2,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge3,EMPIRICAL (real fMRI) NP edge 3,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge4,EMPIRICAL (real fMRI) NP edge 4,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge5,EMPIRICAL (real fMRI) NP edge 5,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge6,EMPIRICAL (real fMRI) NP edge 6,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge7,EMPIRICAL (real fMRI) NP edge 7,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge8,EMPIRICAL (real fMRI) NP edge 8,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge9,EMPIRICAL (real fMRI) NP edge 9,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge10,EMPIRICAL (real fMRI) NP edge 10,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge11,EMPIRICAL (real fMRI) NP edge 11,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_edge12,EMPIRICAL (real fMRI) NP edge 12,"empirical_np (.mat), ID-matched — verified max|diff| 5e-09"
+emp_sst_sum,empirical sum of edges 1-6 (SST),derived
+emp_mid_sum,empirical sum of edges 7-12 (MID),derived
+emp_np_sum,empirical sum of all 12 edges,derived
+simbase_edge1,SIMULATED baseline NP edge 1 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge2,SIMULATED baseline NP edge 2 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge3,SIMULATED baseline NP edge 3 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge4,SIMULATED baseline NP edge 4 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge5,SIMULATED baseline NP edge 5 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge6,SIMULATED baseline NP edge 6 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge7,SIMULATED baseline NP edge 7 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge8,SIMULATED baseline NP edge 8 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge9,SIMULATED baseline NP edge 9 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge10,SIMULATED baseline NP edge 10 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge11,SIMULATED baseline NP edge 11 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_edge12,SIMULATED baseline NP edge 12 (corrected MID),np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+simbase_sst_sum,simulated baseline sum edges 1-6,derived
+simbase_mid_sum,simulated baseline sum edges 7-12,derived
+simbase_np_sum,simulated baseline sum all 12 edges,derived
+mod_ampa_low_edge1,"MODULATED NP edge 1, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge2,"MODULATED NP edge 2, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge3,"MODULATED NP edge 3, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge4,"MODULATED NP edge 4, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge5,"MODULATED NP edge 5, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge6,"MODULATED NP edge 6, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge7,"MODULATED NP edge 7, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge8,"MODULATED NP edge 8, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge9,"MODULATED NP edge 9, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge10,"MODULATED NP edge 10, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge11,"MODULATED NP edge 11, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_low_edge12,"MODULATED NP edge 12, setting ampa_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_sst_sum__ampa_low,"modulated sum edges 1-6, ampa_low",derived
+mod_mid_sum__ampa_low,"modulated sum edges 7-12, ampa_low",derived
+mod_np_sum__ampa_low,"modulated sum all 12 edges, ampa_low",derived
+mod_ampa_edge1,"MODULATED NP edge 1, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge2,"MODULATED NP edge 2, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge3,"MODULATED NP edge 3, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge4,"MODULATED NP edge 4, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge5,"MODULATED NP edge 5, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge6,"MODULATED NP edge 6, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge7,"MODULATED NP edge 7, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge8,"MODULATED NP edge 8, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge9,"MODULATED NP edge 9, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge10,"MODULATED NP edge 10, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge11,"MODULATED NP edge 11, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_edge12,"MODULATED NP edge 12, setting ampa (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_sst_sum__ampa,"modulated sum edges 1-6, ampa",derived
+mod_mid_sum__ampa,"modulated sum edges 7-12, ampa",derived
+mod_np_sum__ampa,"modulated sum all 12 edges, ampa",derived
+mod_ampa_high_edge1,"MODULATED NP edge 1, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge2,"MODULATED NP edge 2, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge3,"MODULATED NP edge 3, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge4,"MODULATED NP edge 4, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge5,"MODULATED NP edge 5, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge6,"MODULATED NP edge 6, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge7,"MODULATED NP edge 7, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge8,"MODULATED NP edge 8, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge9,"MODULATED NP edge 9, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge10,"MODULATED NP edge 10, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge11,"MODULATED NP edge 11, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_ampa_high_edge12,"MODULATED NP edge 12, setting ampa_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_sst_sum__ampa_high,"modulated sum edges 1-6, ampa_high",derived
+mod_mid_sum__ampa_high,"modulated sum edges 7-12, ampa_high",derived
+mod_np_sum__ampa_high,"modulated sum all 12 edges, ampa_high",derived
+mod_gaba_low_edge1,"MODULATED NP edge 1, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge2,"MODULATED NP edge 2, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge3,"MODULATED NP edge 3, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge4,"MODULATED NP edge 4, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge5,"MODULATED NP edge 5, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge6,"MODULATED NP edge 6, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge7,"MODULATED NP edge 7, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge8,"MODULATED NP edge 8, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge9,"MODULATED NP edge 9, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge10,"MODULATED NP edge 10, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge11,"MODULATED NP edge 11, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_low_edge12,"MODULATED NP edge 12, setting gaba_low (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_sst_sum__gaba_low,"modulated sum edges 1-6, gaba_low",derived
+mod_mid_sum__gaba_low,"modulated sum edges 7-12, gaba_low",derived
+mod_np_sum__gaba_low,"modulated sum all 12 edges, gaba_low",derived
+mod_gaba_edge1,"MODULATED NP edge 1, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge2,"MODULATED NP edge 2, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge3,"MODULATED NP edge 3, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge4,"MODULATED NP edge 4, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge5,"MODULATED NP edge 5, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge6,"MODULATED NP edge 6, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge7,"MODULATED NP edge 7, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge8,"MODULATED NP edge 8, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge9,"MODULATED NP edge 9, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge10,"MODULATED NP edge 10, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge11,"MODULATED NP edge 11, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_edge12,"MODULATED NP edge 12, setting gaba (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_sst_sum__gaba,"modulated sum edges 1-6, gaba",derived
+mod_mid_sum__gaba,"modulated sum edges 7-12, gaba",derived
+mod_np_sum__gaba,"modulated sum all 12 edges, gaba",derived
+mod_gaba_high_edge1,"MODULATED NP edge 1, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge2,"MODULATED NP edge 2, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge3,"MODULATED NP edge 3, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge4,"MODULATED NP edge 4, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge5,"MODULATED NP edge 5, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge6,"MODULATED NP edge 6, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge7,"MODULATED NP edge 7, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge8,"MODULATED NP edge 8, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge9,"MODULATED NP edge 9, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge10,"MODULATED NP edge 10, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge11,"MODULATED NP edge 11, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_gaba_high_edge12,"MODULATED NP edge 12, setting gaba_high (corrected MID)",np_6settings_peredge_corrected_wide.csv — verified max|diff| 0
+mod_sst_sum__gaba_high,"modulated sum edges 1-6, gaba_high",derived
+mod_mid_sum__gaba_high,"modulated sum edges 7-12, gaba_high",derived
+mod_np_sum__gaba_high,"modulated sum all 12 edges, gaba_high",derived
+dnp_sst_sum__ampa_low,"modulated - baseline, edges 1-6, ampa_low",derived
+dnp_mid_sum__ampa_low,"modulated - baseline, edges 7-12, ampa_low",derived
+dnp_np_sum__ampa_low,"modulated - baseline, all 12 edges, ampa_low",derived
+dnp_sst_sum__ampa,"modulated - baseline, edges 1-6, ampa",derived
+dnp_mid_sum__ampa,"modulated - baseline, edges 7-12, ampa",derived
+dnp_np_sum__ampa,"modulated - baseline, all 12 edges, ampa",derived
+dnp_sst_sum__ampa_high,"modulated - baseline, edges 1-6, ampa_high",derived
+dnp_mid_sum__ampa_high,"modulated - baseline, edges 7-12, ampa_high",derived
+dnp_np_sum__ampa_high,"modulated - baseline, all 12 edges, ampa_high",derived
+dnp_sst_sum__gaba_low,"modulated - baseline, edges 1-6, gaba_low",derived
+dnp_mid_sum__gaba_low,"modulated - baseline, edges 7-12, gaba_low",derived
+dnp_np_sum__gaba_low,"modulated - baseline, all 12 edges, gaba_low",derived
+dnp_sst_sum__gaba,"modulated - baseline, edges 1-6, gaba",derived
+dnp_mid_sum__gaba,"modulated - baseline, edges 7-12, gaba",derived
+dnp_np_sum__gaba,"modulated - baseline, all 12 edges, gaba",derived
+dnp_sst_sum__gaba_high,"modulated - baseline, edges 1-6, gaba_high",derived
+dnp_mid_sum__gaba_high,"modulated - baseline, edges 7-12, gaba_high",derived
+dnp_np_sum__gaba_high,"modulated - baseline, all 12 edges, gaba_high",derived
+restoration_index__ampa_low,"restoration index, ampa_low, 12-edge beta projection",recomputed from corrected-MID values
+restoration_index__ampa,"restoration index, ampa, 12-edge beta projection",recomputed from corrected-MID values
+restoration_index__ampa_high,"restoration index, ampa_high, 12-edge beta projection",recomputed from corrected-MID values
+restoration_index__gaba_low,"restoration index, gaba_low, 12-edge beta projection",recomputed from corrected-MID values
+restoration_index__gaba,"restoration index, gaba, 12-edge beta projection",recomputed from corrected-MID values
+restoration_index__gaba_high,"restoration index, gaba_high, 12-edge beta projection",recomputed from corrected-MID values
+restoration_index_ampa_PUBLISHED,restoration index as published in the manuscript (ampa family),"archived index, pre-MID-correction"
+restoration_index_gaba_PUBLISHED,restoration index as published in the manuscript (gaba family),"archived index, pre-MID-correction"

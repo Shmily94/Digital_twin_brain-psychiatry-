@@ -1,0 +1,6 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_long_a,112,60,2150x900,488,long_correlations_n85.csv
+figS_long_b,96,60,2429x900,643,long_correlations_n85.csv
+figS_long_c,86,52,1401x815,414,long_full_model_coefficients_n85.csv
+figS_long_d,110,56,1892x875,437,long_nested_increments_n85.csv
+figS_long_e,86,52,1499x826,443,long_cv_repeats_n85.csv

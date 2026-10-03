@@ -1,0 +1,3 @@
+panel,quantity,old_run,new_run,used_in_figure,verdict
+Fig. 3a / Table S10 (NP-edge MSE),"3M/268 MSE, reference B",0.0851 (six_model_mse_12subs.csv),0.0649,NEW run,CORRECT
+Fig. 3b / Table S9 (whole-brain FC),"3M/268 whole-brain r, reference B",0.1511 ± 0.0372,0.3485 ± 0.0565,OLD run,MISMATCH

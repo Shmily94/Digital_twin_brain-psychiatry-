@@ -1,0 +1,23 @@
+panel,cohort,condition,group,n,test,value,stat,p
+b,healthy,Ketamine,increasers,19,one-sample t vs 0,0.2761,2.597,0.0182
+b,healthy,Ketamine,decreasers,8,one-sample t vs 0,-0.6558,-3.921,0.00574
+b,healthy,Ketamine,increasers vs decreasers,27,Welch t,0.932,4.703,0.000415
+b,healthy,Midazolam,increasers,19,one-sample t vs 0,0.3421,2.582,0.0188
+b,healthy,Midazolam,decreasers,8,one-sample t vs 0,-0.8125,-4.154,0.00427
+b,healthy,Midazolam,increasers vs decreasers,27,Welch t,1.1546,4.887,0.000252
+c,healthy,Placebo,increasers vs decreasers,27,Welch t,-0.6681,-4.015,0.00153
+d,pharmacology,Ketamine,MDD,22,one-sample t vs 0,0.8747,2.664,0.0145
+d,pharmacology,Ketamine,HC,14,one-sample t vs 0,-0.9304,-1.57,0.14
+d,pharmacology,Ketamine,MDD vs HC,36,"group x drug: OLS group coefficient, adjusted for age + sex + infusion order + placebo-session mean FD, df = 30",2.4251,3.429,0.00178
+e,pharmacology,Placebo,MDD vs HC,36,"OLS group coefficient, adjusted for age + sex + infusion order + placebo-session mean FD, df = 30",-1.3376,-2.766,0.00962
+f,pharmacology,Ketamine,MDD,22,"partial Pearson r, adjusted for baseline severity, age, infusion order and placebo-session mean FD (df = 16)",-0.558,-0.558,0.0162
+g,pharmacology,Ketamine,MDD,22,Spearman rho (residualised),-0.558,-0.558,0.00691
+h1,IMAGEN FU3,AMPA index,"partial, adjusted for 4 baseline scores",85,partial Pearson r,0.242,0.242,0.0257
+h2,IMAGEN FU3,AMPA index,added to baseline behaviour (4),85,"nested F(1, 79); 5000-permutation null P = 0.050",0.0477,4.912,0.0295
+h2,IMAGEN FU3,GABA-A index,added to baseline behaviour (4),85,"nested F(1, 79); 5000-permutation null P = 0.196",0.0206,2.054,0.156
+h2,IMAGEN FU3,AMPA index,added to baseline empirical NP (1),85,"nested F(1, 82); 5000-permutation null P = 0.039",0.0502,5.151,0.0259
+h2,IMAGEN FU3,GABA-A index,added to baseline empirical NP (1),85,"nested F(1, 82); 5000-permutation null P = 0.063",0.0426,4.335,0.0405
+fig5h3,IMAGEN FU3,AMPA index,"AMPA index vs FU3 symptom change, adjusted for baseline empirical NP",85,partial Pearson r,0.243,0.243,0.025
+fig5h4,IMAGEN FU3,AMPA index,"AMPA index vs FU3 symptom change, unadjusted",85,Pearson r,0.264,0.264,0.0148
+fig5h5,IMAGEN FU3,AMPA index,AMPA index vs baseline empirical NP connectivity,85,Pearson r,0.105,0.105,0.34
+fig5h6,IMAGEN FU3,AMPA index,AMPA index vs baseline symptoms,85,Pearson r,-0.156,-0.156,0.153

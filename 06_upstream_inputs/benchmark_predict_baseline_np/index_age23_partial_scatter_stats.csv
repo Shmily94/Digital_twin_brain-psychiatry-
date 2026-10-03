@@ -1,0 +1,11 @@
+index,covariate,outcome,partial_r,P,df,n
+AMPA restoration index,baseline NP (summed),age-23 symptoms,0.041854,0.705418,82,85
+AMPA restoration index,baseline behaviour,age-23 symptoms,0.222337,0.042079,82,85
+AMPA restoration index,baseline NP (read-out projection),age-23 symptoms,0.056484,0.609815,82,85
+AMPA restoration index,baseline NP (all 12 edges),age-23 symptoms,0.051496,0.665249,71,85
+AMPA restoration index,baseline NP (summed) + baseline behaviour,age-23 symptoms,0.214311,0.051712,81,85
+GABA_A restoration index,baseline NP (summed),age-23 symptoms,-0.051714,0.640374,82,85
+GABA_A restoration index,baseline behaviour,age-23 symptoms,0.162079,0.140757,82,85
+GABA_A restoration index,baseline NP (read-out projection),age-23 symptoms,-0.00511,0.963203,82,85
+GABA_A restoration index,baseline NP (all 12 edges),age-23 symptoms,-0.009664,0.935327,71,85
+GABA_A restoration index,baseline NP (summed) + baseline behaviour,age-23 symptoms,0.168692,0.127385,81,85

@@ -1,0 +1,384 @@
+"""Supplementary stratification figure, assembled as ONE A4 page.
+
+The five panels of stratify_supp.py, rebuilt from the same data and the same
+drawing grammar (supp_kit.boxes) under the frozen rules of figA4_kit:
+
+  a  Neg_NP     negative-profile score, HC vs MDD vs AUD
+  b  Pos_NP     positive-profile score, HC vs all patients
+  c  Pos_NP     positive-profile score, HC vs MDD vs AUD
+  d  NP factor  NP factor score, HC vs MDD vs AUD
+  e  sym6_sum   summed DAWBA band score, HC vs MDD vs AUD
+
+Layout: two rows (a b c / d e) on three FIXED columns, so a-d and b-e line up
+vertically; the third column of row 2 stays empty rather than stretching d and
+e out of their columns.  Every panel reserves a letter gutter, the visible gaps
+between columns are solved to GAPX, and one ink line per column is enforced
+with K.align_left_ink.  Panel titles are dropped and every exact statistic
+lives in the caption -- panels carry symbols only.
+
+    python figS_stratify_A4.py [--no-caption]
+"""
+import os, sys
+import numpy as np
+import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from scipy import stats
+
+FIGDIR = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures"
+HERE = os.path.join(FIGDIR, "supp_stratify")
+sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
+sys.path.insert(0, FIGDIR)
+from np_dtb_style import apply_np_style, panel, C, LW, enforce
+from fig_export import collect_text_records
+from supp_kit import boxes
+import figA4_kit as K
+from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT
+
+D = os.path.join(HERE, "data")
+DPI = 400
+WITH_CAP = "--no-caption" not in sys.argv
+STEM = "figS_stratify_A4" if WITH_CAP else "figS_stratify_A4_nocaption"
+SUPP_NO = "S9"                     # next free number in FIGURE_LEGENDS.md
+apply_np_style()
+K.apply_page_style()
+
+# ------------------------------------------------------------------- the data
+SUBJ = pd.read_csv(os.path.join(D, "stratify_subject_level_n434.csv"))
+TEST = pd.read_csv(os.path.join(D, "stratify_group_tests.csv"))
+SYM = pd.read_csv(os.path.join(D, "stratify_symptom_subject_level.csv"))
+SYMT = pd.read_csv(os.path.join(D, "stratify_symptom_tests.csv"))
+SYM["grp"] = np.where(SYM.panel_group == "HC", "HC", SYM.diagnosis)
+
+COL = {"HC": C("hc"), "MDD": C("mdd"), "AUD": C("aud"), "Patient": C("patient")}
+GLAB = {"Patient": "Patients"}      # on the axis; n goes in the caption
+S = {}                              # every caption number, dumped to CSV
+
+# the long-format table repeats each MDD/AUD subject under panel_group
+# 'Patient'; 'Other patient' (psychosis 6, ADHD 1) is in no panel at all
+S["n"] = {g: int((SUBJ.panel_group == g).sum())
+          for g in ("HC", "MDD", "AUD", "Patient", "Other patient")}
+S["n_sym"] = {g: int((SYM.grp == g).sum()) for g in ("HC", "MDD", "AUD")}
+
+# --------------------------------------------------------------- the grammar
+S_PT = 4.0                          # 225 points per box: small, outlined
+BOX_MM, JIT_REF, SPAN_REF = .58, .22, 3.24     # box width held constant in mm
+
+
+def mark(p):
+    return ("***" if p < .001 else "**" if p < .01 else "*" if p < .05
+            else "n.s.")
+
+
+def bracket(ax, j, y, dy, p):
+    """HC -> group j, symbol only; the test itself is in the caption."""
+    ax.plot([0, 0, j, j], [y, y + dy, y + dy, y], color="black", lw=LW,
+            clip_on=False, zorder=5)
+    ax.text(j / 2, y + dy * 1.15, mark(p), ha="center", va="bottom",
+            fontsize=ANNOT_PT, clip_on=False, zorder=5)
+
+
+def group_panel(ax, groups, vals, ylabel, contrasts, seed=0, levels=None):
+    """Box + every subject, HC first, one bracket per contrast."""
+    span = len(groups) + .24                      # x span in box units
+    k = span / SPAN_REF
+    boxes(ax, list(range(len(groups))), vals, [COL[g] for g in groups],
+          width=BOX_MM * k, jitter=JIT_REF * k, seed=seed, s=S_PT)
+    ax.set_xticks(range(len(groups)))
+    ax.set_xticklabels([GLAB.get(g, g) for g in groups], fontsize=CAT_PT)
+    ax.set_xlim(-span / 2 + (len(groups) - 1) / 2, span / 2 + (len(groups) - 1) / 2)
+    ax.set_ylabel(ylabel)
+    lo = min(v.min() for v in vals)
+    hi = max(v.max() for v in vals)
+    rng = hi - lo
+    for i, (g, p) in enumerate(contrasts):
+        bracket(ax, groups.index(g), hi + (.05 + .17 * i) * rng, .03 * rng, p)
+    lv = levels or len(contrasts)          # b keeps c's headroom, so the two
+    ax.set_ylim(lo - .05 * rng,            # panels of the SAME measure share
+                hi + (.05 + .17 * (lv - 1) + .19) * rng)   # one y scale
+
+
+def welch(x, y, k=3):
+    """Two-sided Welch t test, Bonferroni over the k contrasts of the measure.
+    Hedges' g keeps the pooled-SD definition -- an effect size, not a test."""
+    r = stats.ttest_ind(x, y, equal_var=False)
+    n1, n2 = len(x), len(y)
+    sp = np.sqrt(((n1 - 1) * x.var(ddof=1) + (n2 - 1) * y.var(ddof=1))
+                 / (n1 + n2 - 2))
+    g = (x.mean() - y.mean()) / sp * (1 - 3 / (4 * (n1 + n2) - 9))
+    v1, v2 = x.var(ddof=1), y.var(ddof=1)
+    return dict(t=float(r.statistic), df=float(r.df),
+                p_bonf=float(min(r.pvalue * k, 1.0)), g=float(g),
+                vr=float(max(v1, v2) / min(v1, v2)),
+                t_student=float(stats.ttest_ind(x, y, equal_var=True).statistic))
+
+
+def np_panel(ax, letter, measure, groups, ylabel, seed=0, levels=None):
+    vals = [SUBJ.loc[SUBJ.panel_group == g, measure].values for g in groups]
+    # the table says which contrasts this panel draws; the test is recomputed
+    tg = [r.group for _, r in TEST[TEST.panel == letter].iterrows()]
+    hc = SUBJ.loc[SUBJ.panel_group == "HC", measure].values
+    tests = [dict(group=g, **welch(hc, SUBJ.loc[SUBJ.panel_group == g,
+                                                measure].values)) for g in tg]
+    S[letter] = dict(
+        measure=measure,
+        n={g: int(len(v)) for g, v in zip(groups, vals)},
+        mean={g: round(float(v.mean()), 3) for g, v in zip(groups, vals)},
+        sd={g: round(float(v.std(ddof=1)), 3) for g, v in zip(groups, vals)},
+        tests=tests)
+    group_panel(ax, groups, vals, ylabel,
+                [(t["group"], t["p_bonf"]) for t in tests],
+                seed=seed, levels=levels)
+
+
+def p_a(ax):
+    np_panel(ax, "a", "Neg_NP", ["HC", "MDD", "AUD"],
+             "Negative-profile score\n(residual)", seed=1)
+
+
+def p_b(ax):
+    np_panel(ax, "b", "Pos_NP", ["HC", "Patient"],
+             "Positive-profile score\n(residual)", seed=2, levels=2)
+
+
+def p_c(ax):
+    np_panel(ax, "c", "Pos_NP", ["HC", "MDD", "AUD"],
+             "Positive-profile score\n(residual)", seed=3)
+
+
+def p_d(ax):
+    np_panel(ax, "d", "NP factor", ["HC", "MDD", "AUD"],
+             "NP factor score\n(residual)", seed=4)
+
+
+def p_e(ax):
+    groups = ["HC", "MDD", "AUD"]
+    vals = [SYM.loc[SYM.grp == g, "sym6_sum"].values for g in groups]
+    sub = [SYMT[SYMT.group == g].iloc[0] for g in ("MDD", "AUD")]
+    S["e"] = dict(
+        measure="sym6_sum",
+        n={g: int(len(v)) for g, v in zip(groups, vals)},
+        mean={g: round(float(v.mean()), 2) for g, v in zip(groups, vals)},
+        sd={g: round(float(v.std(ddof=1)), 2) for g, v in zip(groups, vals)},
+        tests=[dict(group=r.group, t=float(r.t), df=float(r.df),
+                    p_bonf=float(r.p_bonf3), g=float(r.g),
+                    var_ratio=float(r.var_ratio), levene_F=float(r.levene_F),
+                    levene_p=float(r.levene_p)) for r in sub])
+    group_panel(ax, groups, vals, "Summed DAWBA band score",
+                [(r.group, float(r.p_bonf3)) for r in sub], seed=5)
+
+
+# --------------------------------------------------------------- page geometry
+CAT_PT = LABEL_PT                  # group names are read as axis labels
+LAB_L = 17.0                       # provisional y label + y ticks
+GUT = K.LETTER_W + K.LETTER_PADX   # gutter that holds the panel letter
+GAPX = 8.5                         # visible gap between columns
+GAP, MB, LETTER_BAND = K.GAP, K.MB, K.LETTER_BAND
+XB = 7.2                           # one line of 10 pt group names
+MAX_H = 46.0                       # a box panel taller than this reads oddly
+
+ROWS = [[("a", p_a), ("b", p_b), ("c", p_c)], [("d", p_d), ("e", p_e)]]
+COLS = [["a", "d"], ["b", "e"], ["c"]]
+NCOL, NROW = len(COLS), len(ROWS)
+COLW = (PW - ML - MR - (NCOL - 1) * GAPX) / NCOL
+
+
+def col_geom(fig, panels):
+    """One x per COLUMN (so the frames of a column line up) with the visible
+    gaps between columns equal to GAPX.  The column's widest label block sets
+    its ink line; all columns get the same axes width."""
+    rend = fig.canvas.get_renderer()
+    mm = lambda px: px / fig.dpi * 25.4
+    by = {p["ch"]: p for p in panels}
+    L, R = [], []
+    for col in COLS:
+        ll, rr = [], []
+        for ch in col:
+            ax = by[ch]["axes"][0]
+            bb, pos = ax.get_tightbbox(rend), ax.get_position()
+            ll.append(max(pos.x0 * PW - mm(bb.x0), 0.0))
+            rr.append(max(mm(bb.x1) - (pos.x0 + pos.width) * PW, 0.0))
+        L.append(max(ll)); R.append(max(rr))
+    w = (PW - ML - MR - (NCOL - 1) * GAPX - NCOL * GUT - sum(L) - sum(R)) / NCOL
+    geom, x = {}, ML
+    for j, col in enumerate(COLS):
+        for ch in col:
+            geom[ch] = (x, x + GUT + L[j], w)     # slot, axes x, axes width
+        x += GUT + L[j] + w + R[j] + GAPX
+    return geom
+
+
+def build(plot_h, shift=None, geom=None):
+    shift = shift or {}
+    f = plt.figure(figsize=panel(PW, PH))
+    out, y = [], MT
+    for row in ROWS:
+        top = y + LETTER_BAND
+        for j, (ch, fn) in enumerate(row):
+            slot, ax_x, ax_w = (geom[ch] if geom else
+                                (ML + j * (COLW + GAPX),
+                                 ML + j * (COLW + GAPX) + LAB_L,
+                                 COLW - LAB_L))
+            ax = K.axes_mm(f, ax_x, top + shift.get(ch, 0.0), ax_w, plot_h)
+            fn(ax)
+            out.append(dict(ch=ch, x=slot, axes=[ax],
+                            txt=K.letter(f, slot, top - 1.2, ch)))
+        y = top + max(shift.get(ch, 0.0) for ch, _ in row) + plot_h + XB + GAP
+    enforce(f)
+    return f, out, y - GAP
+
+
+# ------------------------------------------------------------------- caption
+CAP_TITLE = (f"Supplementary Fig. {SUPP_NO} | Negative and positive profiles, "
+             "the NP factor and symptom severity by diagnosis in the STRATIFY "
+             "validation cohort.")
+
+
+def pf(p):
+    return (f"P = {p:.3g}" if p >= 1e-3 else
+            f"P = {p:.2g}" if p >= 1e-4 else f"P = {p:.1e}")
+
+
+def mf(x):
+    return "0.00" if abs(x) < .005 else f"{x:+.2f}"
+
+
+def line(letter, what):
+    d = S[letter]
+    t = d["tests"]
+    seg = f", {what}: controls {mf(d['mean']['HC'])}"
+    for r in t:
+        g = "all patients" if r["group"] == "Patient" else r["group"]
+        seg += (f" versus {mf(d['mean'][r['group']])} in {g} "
+                f"(t = {r['t']:.2f}, df = {r['df']:.1f}, {pf(r['p_bonf'])}, "
+                f"Hedges' g = {r['g']:.2f})")
+        seg += "," if r is not t[-1] else ". "
+    return seg
+
+
+def caption_runs():
+    n, ns, e = S["n"], S["n_sym"], S["e"]
+    ve = e["tests"]
+    vr = [t["vr"] for k in "abcd" for t in S[k]["tests"]]
+    dt = [abs(t["t"] - t["t_student"]) for k in "abcd" for t in S[k]["tests"]]
+    cap = [
+        ("", f"STRATIFY is an independent clinical cohort recruited at the "
+             f"IMAGEN sites. Of the 434 participants assessed, the "
+             f"{n['HC'] + n['Patient']} with no diagnosis, major depressive "
+             f"disorder (MDD) or alcohol use disorder (AUD) enter these panels "
+             f"(healthy controls n = {n['HC']}, MDD n = {n['MDD']}, AUD "
+             f"n = {n['AUD']}); the {n['Other patient']} patients with another "
+             f"diagnosis (psychosis 6, ADHD 1) are in no panel. The patient "
+             f"box of b is therefore exactly the union of the MDD and AUD "
+             f"boxes of c (n = {n['Patient']}). Fig. 2c,e pool the diagnoses "
+             f"this way for the negative profile and the NP factor; here those "
+             f"two measures are separated by diagnosis (a, d) and the pooled "
+             f"contrast is given for the positive profile (b). Profile "
+             f"and factor scores are residuals after regressing out sex, site "
+             f"and mean framewise displacement. Box plots show the median, "
+             f"25th-75th percentiles and 1.5 x IQR whiskers with every "
+             f"participant overplotted. Brackets test each patient group "
+             f"against the controls; *P < 0.05, **P < 0.01, ***P < 0.001; "
+             f"n.s., not significant. Every panel uses the two-sided Welch "
+             f"unequal-variance t test, because the patient groups are much "
+             f"smaller than the control group (MDD n = {n['MDD']} and AUD "
+             f"n = {n['AUD']} against n = {n['HC']} controls) and the "
+             f"equal-variance test is robust to unequal variances only when "
+             f"the groups are of comparable size. Every P below is "
+             f"Bonferroni-corrected over the three contrasts within "
+             f"that measure (controls versus MDD, versus AUD, and versus "
+             f"all patients -- the pooled contrast being the one drawn in b for "
+             f"the positive profile and in Fig. 2c,e for the other two "
+             f"measures). For the negative profile and the NP factor the "
+             f"pooled Welch contrast reproduces Fig. 2c,e exactly (t = 3.85, "
+             f"df = 425.0 and t = 3.40, df = 424.5; uncorrected there, as a "
+             f"single pre-specified comparison). "),
+        ("a", line("a", "negative-profile score")),
+        ("b", line("b", "positive-profile score")),
+        ("c", line("c", "positive-profile score by diagnosis")),
+        ("d", line("d", "NP factor score")),
+        ("e", f", summed DAWBA band score over six domains (ADHD, conduct, "
+              f"eating, depression, anxiety, phobia) in the subset with a "
+              f"symptom assessment (controls n = {ns['HC']}, MDD "
+              f"n = {ns['MDD']}, AUD n = {ns['AUD']}): "
+              f"{e['mean']['HC']:.1f} +/- {e['sd']['HC']:.1f} versus "
+              f"{e['mean']['MDD']:.1f} +/- {e['sd']['MDD']:.1f} in MDD "
+              f"(t = {ve[0]['t']:.2f}, df = {ve[0]['df']:.1f}, "
+              f"{pf(ve[0]['p_bonf'])}, Hedges' g = {ve[0]['g']:.2f}) and "
+              f"{e['mean']['AUD']:.1f} +/- {e['sd']['AUD']:.1f} in AUD "
+              f"(t = {ve[1]['t']:.2f}, df = {ve[1]['df']:.1f}, "
+              f"{pf(ve[1]['p_bonf'])}, g = {ve[1]['g']:.2f}), mean +/- s.d. "
+              f"Welch's test is required here in particular: the summed band "
+              f"score is a right-skewed count "
+              f"whose variance scales with its mean (variance ratio "
+              f"{min(r['var_ratio'] for r in ve):.1f}-"
+              f"{max(r['var_ratio'] for r in ve):.1f}; Levene "
+              f"F = {min(r['levene_F'] for r in ve):.0f}-"
+              f"{max(r['levene_F'] for r in ve):.0f}, both "
+              f"P < 1e-7), while in a-d it is {min(vr):.2f}-{max(vr):.2f} "
+              f"and the Welch and equal-variance t differ by "
+              f"{min(dt):.2f}-{max(dt):.2f}. "
+              f"Controls are scored at their own designated assessment wave "
+              f"only, with no substitution across waves. "),
+    ]
+    runs = [(CAP_TITLE + " ", True)]
+    for lab, seg in cap:
+        if lab:
+            runs.append((lab + ",", True))
+            seg = seg[1:] if seg.startswith(",") else seg
+        runs.append((seg, False))
+    return runs
+
+
+# pass 1 -- content overhang per panel and the caption height
+_f0, _p0, _ = build(30.0)
+_over = K.overhangs(_f0, _p0)
+_runs0 = caption_runs()
+_l0 = (K._wrap(_f0, _runs0, PW - ML - MR, CAP_PT,
+               _f0.canvas.get_renderer())[0] if WITH_CAP else [])
+plt.close(_f0)
+
+CAP_H = (K.CAP_GAP + len(_l0) * K.CAP_LH + 1.0) if WITH_CAP else 0.0
+FIXED = (MT + NROW * LETTER_BAND + NROW * XB + (NROW - 1) * GAP
+         + sum(max(_over[ch] for ch, _ in row) for row in ROWS))
+PLOT_H = min((PH - MB - CAP_H - FIXED) / NROW, MAX_H)
+
+# pass 2 -- solve the column geometry at the fitted height, then shift each row
+_f1, _p1, _ = build(PLOT_H)
+_geom = col_geom(_f1, _p1)
+plt.close(_f1)
+for _ in range(4):                          # the tick labels shift a little
+    _f2, _p2, _ = build(PLOT_H, geom=_geom)  # when the axes width changes
+    _geom = col_geom(_f2, _p2)
+    _o1 = K.overhangs(_f2, _p2)
+    plt.close(_f2)
+_over = {ch: max(_o1[c] for c, _ in row) for row in ROWS for ch, _ in row}
+fig, PANELS, BOTTOM = build(PLOT_H, _over, geom=_geom)
+K.align_left_ink(fig, PANELS, COLS)
+K.place_letters(fig, PANELS, rows=[[ch for ch, _ in row] for row in ROWS])
+
+runs = caption_runs()
+if WITH_CAP:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
+        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
+else:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
+
+assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
+print(f"[{STEM}] axes height {PLOT_H:.1f} mm; panels end at {BOTTOM:.1f} mm; "
+      f"caption {n_lines} lines -> {CAP_BOTTOM:.1f} mm of {PH:.0f} mm")
+
+# ----------------------------------------------------------------------- export
+png, pdf, ppt = (os.path.join(HERE, STEM + ext) for ext in (".png", ".pdf", ".pptx"))
+fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
+fig.savefig(pdf, bbox_inches=None, facecolor="white")
+K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
+              collect_text_records=collect_text_records)
+bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
+       if t.get_text().strip() and t.get_fontname() != "Arial"]
+print("non-Arial text:", bad[:5], "| files:",
+      [os.path.basename(p) for p in (png, pdf, ppt)])
+pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
+    os.path.join(HERE, "figS_stratify_A4_caption_values.csv"), index=False)
+plt.close(fig)

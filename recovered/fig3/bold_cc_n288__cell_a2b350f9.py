@@ -1,0 +1,25 @@
+# ===========================================================================
+# VERBATIM ARCHIVE -- execution-log cell source, exactly as it ran.
+# Nothing has been removed, added or reformatted below the header.
+#
+#   cell id       : a2b350f9-44e8-4d54-85fb-f2fd354b6ec8
+#   frame id      : c60c0dc4-003a-4667-bb4f-e50a2f4c1e5f
+#   ran           : 2026-09-27 07:03:44 UTC
+#   conda env     : python
+#   cell kind     : heredoc
+#   produced      : 04_figures/supp_boldcc/data/bold_cc_n288.csv
+# ===========================================================================
+
+cd "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures" && mkdir -p supp_boldcc/data && python - <<'PY'
+import pandas as pd
+cc = pd.read_csv('/Users/yunman/Desktop/submission/figures_v2/fig3/bold_cc_300subs.csv')
+cc.columns = [c.strip().lstrip('\ufeff') for c in cc.columns]
+keep = pd.read_csv('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/corr_hd_np/empirical_fc_headmotion_excl_fd05.csv')
+m = cc.merge(keep[['ID', 'Group', 'Group2']], on='ID', how='inner')
+m = m[['ID', 'Group', 'Group2', 'MID assimilated', 'MID whole',
+       'SST assimilated', 'SST whole']]
+m.columns = ['ID', 'group', 'group2', 'mid_assimilated', 'mid_whole',
+             'sst_assimilated', 'sst_whole']
+m.to_csv('supp_boldcc/data/bold_cc_n288.csv', index=False)
+print(m.shape, m.columns.tolist())
+PY

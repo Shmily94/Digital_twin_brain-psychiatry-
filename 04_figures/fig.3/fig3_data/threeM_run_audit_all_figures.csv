@@ -1,0 +1,11 @@
+figure,quantity,n,run,evidence
+Fig. 3a,NP-edge MSE,12,NEW,"0.06489 = new3m_direction_checks row ""3m_268 NEW / empirical_model_voxels""; n_repeats_averaged = 5"
+Fig. 3b / Table S9,whole-brain FC,12,NEW (fixed this turn),recomputed from Baseline_simulated_3m_task_FC.mat; 0.3485 +- 0.0565
+Fig. 3c / 3c_ampa / 3c_gaba,cross-build NP similarity,12,NEW,source code reads Baseline_simulated_NP_12edges_and_factor_3m_new_run.mat
+Fig. 3d,run-to-run s.d. of summed NP,12,NEW,"per-subject values reproduce the new run exactly, max |diff| = 0.00000"
+Fig. 3g,delta NP after perturbation,12,NEW,"source column: ""Mani_simulated_3m_NP_12edges_and_factor.mat (new run ...)"""
+Fig. 3i,assimilated-region BOLD r,12,NOT VERIFIABLE,"user-supplied summary table baseline BOLD_r; 5 repeats, r = 0.9132; no run marker in the file"
+Fig. 4 (all panels),simulated / AMPA / GABA-A NP,288,OLD,"fig4_subject_level_n288.csv ""simulated"" reproduces the OLD run exactly on the 11 shared participants (r = +1.0000, max |diff| = 0.0000); r vs NEW = -0.43"
+Fig. 5h + longitudinal supp.,restoration index (n = 85),85,OLD,derived from the same 288-participant 3M table
+Supp. depression-network / whole-brain drug / Oldham / motion,population perturbation,288,OLD,same source
+source of the 288 data,np_edges_3m_full_cohort.csv,301,OLD,baseline np_sum reproduces the OLD run exactly (r = +1.000) on the 11 shared participants; no new-run version of the full cohort exists in the tree

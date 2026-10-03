@@ -1,0 +1,97 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/fig.4/fig4_data/fig4j_baseline_change_stats.csv
+#
+# cell id      : a21cec10-f1a8-46d5-8aa0-553a33110bfc
+# frame id     : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp    : 2026-09-21 19:21:24 UTC
+# conda env    : python
+# language     : python
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/18_fig4j_baseline_change_stats.py
+##############################################################################
+p4='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig.4/fig4.py'
+s=open(p4).read()
+blk = '''
+# ------- j  baseline vs change: three views of the same AMPA response --------
+# Naive baseline-vs-change, Oldham (mean-vs-change) and the regression of the
+# perturbed value on baseline.  They answer DIFFERENT questions, which is why
+# they disagree; see fig4j_baseline_change_stats.csv for both perturbations.
+PDj = pd.read_csv(f'{D}/fig4_paired_np_mid_n288.csv')
+jrows = []
+for drug in ['ampa', 'gaba']:
+    pre = PDj.np_baseline.values; post = PDj[f'np_{drug}'].values
+    dlt = post - pre; mn = (pre + post) / 2
+    Xj = sm.add_constant(pre); mj = sm.OLS(post, Xj).fit()
+    b, se = float(mj.params[1]), float(mj.bse[1]); ci = mj.conf_int()[1]
+    t1 = (b - 1) / se; p1 = 2 * stats.t.sf(abs(t1), mj.df_resid)
+    r_n, p_n = stats.pearsonr(pre, dlt)
+    r_o, p_o = stats.pearsonr(mn, dlt)
+    r_pp, _ = stats.pearsonr(pre, post)
+    jrows.append(dict(perturbation=drug.upper(), n=len(pre),
+                      r_naive=round(float(r_n), 4), p_naive=float(f'{p_n:.3g}'),
+                      r_oldham=round(float(r_o), 4), p_oldham=float(f'{p_o:.3g}'),
+                      r_pre_post=round(float(r_pp), 4),
+                      slope_post_on_pre=round(b, 4), slope_se=round(se, 4),
+                      slope_ci_lo=round(float(ci[0]), 4), slope_ci_hi=round(float(ci[1]), 4),
+                      t_slope_vs_1=round(float(t1), 3), p_slope_vs_1=float(f'{p1:.3g}'),
+                      sd_baseline=round(float(pre.std(ddof=1)), 4),
+                      sd_perturbed=round(float(post.std(ddof=1)), 4),
+                      var_ratio=round(float(post.var(ddof=1) / pre.var(ddof=1)), 4)))
+J = pd.DataFrame(jrows)
+J.to_csv(f'{D}/fig4j_baseline_change_stats.csv', index=False)
+
+DRUGJ = 'ampa'
+pre = PDj.np_baseline.values; post = PDj[f'np_{DRUGJ}'].values
+dlt = post - pre; mn = (pre + post) / 2
+jc = C(DRUGJ)
+j0 = J[J.perturbation == DRUGJ.upper()].iloc[0]
+W, H = 170, 52
+fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=panel(W, H),
+                                 gridspec_kw=dict(wspace=.42))
+
+# (1) the interpretable view: perturbed value on baseline, against identity
+a1.scatter(pre, post, s=4, facecolor=jc, edgecolor='none', alpha=.8, zorder=3)
+lim = [min(pre.min(), post.min()) - .3, max(pre.max(), post.max()) + .3]
+a1.plot(lim, lim, color='0.6', lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
+xx = np.linspace(pre.min(), pre.max(), 50)
+a1.plot(xx, j0.slope_post_on_pre * xx + float(sm.OLS(post, sm.add_constant(pre)).fit().params[0]),
+        color='black', lw=LW, zorder=4)
+a1.set_xlim(*lim); a1.set_ylim(*lim)
+a1.set_xlabel('Baseline NP'); a1.set_ylabel('NP after AMPA')
+a1.text(.04, .96, f'slope = {j0.slope_post_on_pre:.2f}\\n'
+        f'(95% CI {j0.slope_ci_lo:.2f}–{j0.slope_ci_hi:.2f})\\n'
+        f'vs 1: $P$ = {j0.p_slope_vs_1:.0e}', transform=a1.transAxes, ha='left',
+        va='top', fontsize=ANNOT_PT, color='0.35')
+panel_title(a1, 'Perturbed value vs baseline')
+
+# (2) what was asked for: baseline vs change
+a2.scatter(pre, dlt, s=4, facecolor=jc, edgecolor='none', alpha=.8, zorder=3)
+a2.axhline(0, color='0.6', lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
+sl2 = np.polyfit(pre, dlt, 1)
+a2.plot(xx, np.polyval(sl2, xx), color='black', lw=LW, zorder=4)
+a2.set_xlabel('Baseline NP'); a2.set_ylabel('Δ NP (AMPA − baseline)')
+a2.text(.04, .96, f'$r$ = {j0.r_naive:.2f}, $P$ = {j0.p_naive:.0e}\\n'
+        '(same $P$ as slope vs 1)', transform=a2.transAxes, ha='left', va='top',
+        fontsize=ANNOT_PT, color='0.35')
+panel_title(a2, 'Baseline vs change (naive)')
+
+# (3) Oldham / Pitman-Morgan: mean vs change = a paired variance test
+a3.scatter(mn, dlt, s=4, facecolor=jc, edgecolor='none', alpha=.8, zorder=3)
+a3.axhline(0, color='0.6', lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
+xm = np.linspace(mn.min(), mn.max(), 50)
+a3.plot(xm, np.polyval(np.polyfit(mn, dlt, 1), xm), color='black', lw=LW, zorder=4)
+a3.set_xlabel('Mean of baseline and AMPA'); a3.set_ylabel('Δ NP (AMPA − baseline)')
+a3.text(.04, .96, f'$r$ = {j0.r_oldham:.2f}, $P$ = {j0.p_oldham:.0e}\\n'
+        f's.d. {j0.sd_baseline:.2f} → {j0.sd_perturbed:.2f}\\n'
+        f'(variance ratio {j0.var_ratio:.2f})', transform=a3.transAxes, ha='left',
+        va='top', fontsize=ANNOT_PT, color='0.35')
+panel_title(a3, 'Oldham: mean vs change')
+enforce(fig); save(fig, 'fig4j', W, H, 'fig4_paired_np_mid_n288.csv')
+print(J.to_string(index=False))
+
+'''
+s=s.replace("import statsmodels.formula.api as smf","import statsmodels.formula.api as smf\nimport statsmodels.api as sm")
+k=s.index("mf = pd.DataFrame(manifest)")
+open(p4,'w').write(s[:k]+blk+s[k:]); print('patched')

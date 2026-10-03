@@ -1,0 +1,13 @@
+model,family,n_nodes,source,empirical_reference,is_designated,mse_mean,mse_sd,mse_median
+3m_268,regional,268,"all_data_12subs.xlsx simu_3m (= 3m_repeats mean, verified identical)",empirical_original_3m,TRUE,0.0888,0.0491,0.0836
+3m_268,regional,268,"all_data_12subs.xlsx simu_3m (= 3m_repeats mean, verified identical)",empirical_model_voxels,FALSE,0.0851,0.0857,0.0515
+10m_268,regional,268,"NP_12edges_10m_1000_10m_268_regional_modu.csv (regional, 5 baseline runs)",empirical_original_3m,TRUE,0.1031,0.0744,0.1001
+10m_268,regional,268,"NP_12edges_10m_1000_10m_268_regional_modu.csv (regional, 5 baseline runs)",empirical_model_voxels,FALSE,0.0718,0.0334,0.0571
+10m_1000,regional,1000,NP_12edges_...newflow.csv scale=10m_reg (5 runs),empirical_original_3m,TRUE,0.0965,0.0354,0.1023
+10m_1000,regional,1000,NP_12edges_...newflow.csv scale=10m_reg (5 runs),empirical_model_voxels,FALSE,0.0975,0.0772,0.0883
+10m,voxel,voxel,newflow (5 runs),empirical_original_3m,FALSE,0.0997,0.0901,0.0812
+10m,voxel,voxel,newflow (5 runs),empirical_model_voxels,TRUE,0.0498,0.0302,0.0429
+100m,voxel,voxel,newflow (5 runs),empirical_original_3m,FALSE,0.1018,0.0756,0.0911
+100m,voxel,voxel,newflow (5 runs),empirical_model_voxels,TRUE,0.0589,0.0311,0.0577
+1b,voxel,voxel,newflow (5 runs),empirical_original_3m,FALSE,0.1058,0.0703,0.104
+1b,voxel,voxel,newflow (5 runs),empirical_model_voxels,TRUE,0.0655,0.0365,0.0653

@@ -1,0 +1,3 @@
+task,n_prior,n_act,n_overlap,dice_region,jaccard_region,vox_prior,vox_act,vox_overlap,dice_voxel,jaccard_voxel,pct_prior_covered,pct_act_covered
+MID,51,40,7,0.1538,0.0833,2022,2013,352,0.1745,0.0956,13.7255,17.5
+SST,47,35,1,0.0244,0.0123,1959,2185,30,0.0145,0.0073,2.1277,2.8571

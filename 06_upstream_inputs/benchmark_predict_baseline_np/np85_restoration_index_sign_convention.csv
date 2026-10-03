@@ -1,0 +1,4 @@
+quantity,definition,script_comment,sign_meaning,mean,frac_negative
+C_Delta_Behav_mod / restoration_index_ampa_PUBLISHED,"predict(mdl_base, X_mod) - predict(mdl_base, X_sim)",负值代表症状改善 (negative = symptom improvement),NEGATIVE = modulation predicted FEWER symptoms = restoration; POSITIVE = predicted MORE symptoms,-1.1841130929411765,0.6235294117647059
+Delta_Behav_real / y_final / beha_change_raw,sum(FU3 eat+dep+gad+sp) - sum(FU2 eat+dep+gad+sp),—,NEGATIVE = symptoms DECREASED (improved); POSITIVE = symptoms INCREASED (worsened),-4.3882352941176475,0.6941176470588235
+beha19_sum / beha23_sum,"DAWBA band counts, eat+dep+gad+sp",—,HIGHER = MORE symptoms,19.235294117647058,0.0

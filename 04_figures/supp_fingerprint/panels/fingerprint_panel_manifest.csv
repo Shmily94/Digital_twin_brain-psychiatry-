@@ -1,0 +1,4 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_finger_a,58,84,1156x1316,506,figS_finger_a.csv
+figS_finger_b,58,84,1156x1316,506,figS_finger_b.csv
+figS_finger_c,62,52,949x749,389,fingerprint_margins.csv

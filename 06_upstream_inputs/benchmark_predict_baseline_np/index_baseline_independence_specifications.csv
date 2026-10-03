@@ -1,0 +1,6 @@
+label,kind,b,lo,hi,P,short
+age-19 symptoms (primary),primary,0.231877,0.008502,0.455251,0.042079,Age-19 symptoms (primary)
+"age-19 symptoms, 4 items",alt,0.254703,0.025959,0.483446,0.029545,"Age-19 symptoms, item-wise"
+age-19 symptoms + empirical NP,alt,0.213047,-0.001619,0.427713,0.051712,+ empirical NP connectivity
+age-19 symptoms + 12 NP edges,alt,0.211121,-0.034242,0.456485,0.090566,+ all 12 NP edges
+"age-19 symptoms, out-of-sample index",alt,0.219842,-0.002201,0.441886,0.052261,Out-of-sample index

@@ -1,0 +1,4 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_oldham_mid6_a,56,52,805x742,365,oldham_tests_mid6.csv / oldham_subject_level_mid6.csv
+figS_oldham_mid6_b,56,52,845x742,383,oldham_tests_mid6.csv / oldham_subject_level_mid6.csv
+figS_oldham_mid6_c,80,46,1238x648,393,oldham_tests_mid6.csv

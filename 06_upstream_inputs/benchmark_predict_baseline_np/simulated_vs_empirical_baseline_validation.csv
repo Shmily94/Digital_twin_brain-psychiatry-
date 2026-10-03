@@ -1,0 +1,8 @@
+test,n,r,P
+"summed 12 edges, between-subject",287,0.112202,0.057627
+"SST subtotal, between-subject",287,0.070324,0.234974
+"MID subtotal, between-subject",287,0.129478,0.028296
+within-subject profile (mean r),287,0.020247,0.226411
+edge-level group means,12,-0.278948,0.379941
+"HC only, summed",153,0.052573,0.518663
+"patients only, summed",125,0.119044,0.186071

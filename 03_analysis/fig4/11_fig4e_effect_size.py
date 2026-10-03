@@ -1,0 +1,227 @@
+"""fig4e_effect_size  -  Panel e
+
+Computes
+    Panel e: the HC-minus-patient effect size in each of the four conditions
+    (empirical, simulated baseline, after AMPA, after GABA-A).
+
+Inputs
+    04_figures/fig.4  (staged read-only into the scratch mirror)
+
+Output
+    $FIG4_OUT/figures/fig.4/fig4_data/fig4e_effect_size.csv  (default $FIG4_OUT = 03_analysis/fig4/_scratch)
+    reference copy: 04_figures/fig.4/fig4_data/fig4e_effect_size.csv
+
+Statistical tests
+    Cohen's d with a 95% CI from the Hedges-Olkin standard error, and Welch's
+    two-sample t test.
+
+Cohort
+    n = 288 (HC 69 vs patient 130).
+
+Runs on a laptop
+    yes - seconds on a laptop.
+
+seed
+    no random component
+
+Rebuilt from execution-log cell
+    70a0f9b2-3826-489b-9f8a-59838d95dee2 (frame fe47a03f-2d43-4fe0-a1c3-e0544839d822, 2026-09-21 19:05:33 UTC, conda env python, exit ok)
+    the computation itself lives in 04_figures/fig.4/fig4.py; this cell authored it
+    verbatim archive: recovered/fig4/fig4e_effect_size__cell_70a0f9b2.py
+"""
+# --- paths (added when the cell was reorganised; the analysis below is verbatim)
+import os as _os, shutil as _shutil, sys as _sys
+_sys.dont_write_bytecode = True   # never leave caches in the read-only figure tree
+
+PKG      = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", ".."))
+FIGREF   = _os.path.join(PKG, "04_figures")        # reference figure tree: READ ONLY
+UPSTREAM = _os.path.join(PKG, "06_upstream_inputs")
+AUTHOR_REV = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs"          # author's working tree
+AUTHOR_SUB = "/Users/yunman/Desktop/submission"
+OUTROOT  = _os.path.abspath(_os.environ.get("FIG4_OUT", _os.path.join(PKG, "03_analysis", "fig4", "_scratch")))
+FIGROOT  = _os.path.join(OUTROOT, "figures")       # every write of this script lands here
+
+
+def _figpath(rel):
+    """Path inside the scratch mirror of the figure tree; data inputs are copied
+    in from the read-only reference on first use, so nothing writes into
+    04_figures."""
+    dst = _os.path.join(FIGROOT, rel)
+    src = _os.path.join(FIGREF, rel)
+    if _os.path.isdir(src):
+        for root, _dirs, files in _os.walk(src):
+            for f in files:
+                if _os.path.splitext(f)[1].lower() in (".csv", ".xlsx", ".xls", ".mat", ".json", ".txt", ".tsv"):
+                    s = _os.path.join(root, f)
+                    d = _os.path.join(dst, _os.path.relpath(s, src))
+                    _os.makedirs(_os.path.dirname(d), exist_ok=True)
+                    if not _os.path.exists(d):
+                        _shutil.copyfile(s, d)
+        _os.makedirs(dst, exist_ok=True)
+    else:
+        _os.makedirs(_os.path.dirname(dst) or dst, exist_ok=True)
+        if _os.path.exists(src) and not _os.path.exists(dst):
+            _shutil.copyfile(src, dst)
+    return dst
+
+
+def _upstream(rel):
+    """Upstream analysis input: the package copy if it has been shipped, else the
+    author's working tree (the path recorded in the header)."""
+    for base in (UPSTREAM, AUTHOR_REV):
+        p = _os.path.join(base, rel)
+        if _os.path.exists(p):
+            return p
+    raise FileNotFoundError("upstream input not available: " + rel)
+
+
+def _sub(rel):
+    """Input that sits outside revision/ in the author's tree."""
+    p = _os.path.join(AUTHOR_SUB, rel)
+    if not _os.path.exists(p):
+        raise FileNotFoundError("input not available: " + p)
+    return p
+
+
+ARTIFACT_INPUTS = {
+    "025c7b13-ece7-4589-af4e-8c4e6f87d905": "empirical_simul_np_fcs_300subs/np_residualized_290subs.csv",
+    "24326e31-3946-449a-b811-adc1579b5e98": "baseline_predict_change/dtb_np_n288_baseline_post.csv",
+    "3825bfc5-ca4c-4fe5-8041-681d3930ebd1": "corr_hd_np/increased_responder_proportions_n288_corrected.csv",
+    "7eddba98-b1cd-403d-ab4f-a8bc7c93eaff": "benchmark_predict_baseline_np/empirical_np_edges_288subjects.csv",
+    "c39c8ccc-6410-47df-a102-00903507ebcd": "empirical_simul_np_fcs_300subs/np_all_subs_3m_wide_corrected.csv",
+    "c4723113-4cde-4ada-aa70-10d3e8a1a900": ""
+}
+
+
+def _art(vid):
+    """Resolve an input the original cell read through the platform artifact
+    store to its file in this package or in the author's tree."""
+    rel = ARTIFACT_INPUTS.get(vid)
+    if rel:
+        for base in (UPSTREAM, AUTHOR_REV):
+            p = _os.path.join(base, rel)
+            if _os.path.exists(p):
+                return p
+    try:                                    # inside the analysis platform only
+        return host.artifact_path(vid)      # noqa: F821
+    except Exception:
+        raise FileNotFoundError("artifact input not available: %s (%s)" % (vid, rel))
+
+
+_os.makedirs(FIGROOT, exist_ok=True)
+
+
+def _byname(fn):
+    """An input the original cell looked up by filename in the platform artifact
+    store; resolve it by name under the package or the author's tree."""
+    for base in (UPSTREAM, AUTHOR_REV):
+        for root, _d, files in _os.walk(base):
+            if fn in files:
+                return _os.path.join(root, fn)
+    raise FileNotFoundError("upstream input not available: " + fn)
+
+
+class _Prefix(str):
+    """A directory prefix the original cell built by string concatenation.
+    Adding a relative path resolves it against the package copy first, then the
+    author's working tree."""
+
+    def __new__(cls, rel):
+        o = str.__new__(cls, _os.path.join(AUTHOR_REV, rel) + _os.sep)
+        o._rel = rel
+        return o
+
+    def __add__(self, rest):
+        for base in (UPSTREAM, AUTHOR_REV):
+            p = _os.path.join(base, self._rel, str(rest).lstrip("/"))
+            if _os.path.exists(p):
+                return p
+        return _os.path.join(AUTHOR_REV, self._rel, str(rest).lstrip("/"))
+
+# --- write guard: this script must never write outside its scratch directory --
+def _assert_out(path):
+    p = _os.path.abspath(path)
+    root = _os.path.abspath(OUTROOT)
+    if not (p == root or p.startswith(root + _os.sep)):
+        raise RuntimeError("refusing to write outside $FIG4_OUT: " + p)
+    _os.makedirs(_os.path.dirname(p), exist_ok=True)
+    return p
+
+
+import pandas as _pd_guard
+import matplotlib.figure as _mplfig
+
+def _wrap_writer(fn):
+    def w(self, path_or_buf=None, *a, **k):
+        if isinstance(path_or_buf, str):
+            path_or_buf = _assert_out(path_or_buf)
+        return fn(self, path_or_buf, *a, **k)
+    return w
+
+_pd_guard.DataFrame.to_csv = _wrap_writer(_pd_guard.DataFrame.to_csv)
+_pd_guard.Series.to_csv = _wrap_writer(_pd_guard.Series.to_csv)
+_pd_guard.DataFrame.to_excel = _wrap_writer(_pd_guard.DataFrame.to_excel)
+_orig_xlw = _pd_guard.ExcelWriter
+def _ExcelWriter(path, *a, **k):
+    return _orig_xlw(_assert_out(path) if isinstance(path, str) else path, *a, **k)
+_pd_guard.ExcelWriter = _ExcelWriter
+_orig_savefig = _mplfig.Figure.savefig
+def _savefig(self, fname, *a, **k):
+    return _orig_savefig(self, _assert_out(fname) if isinstance(fname, str) else fname, *a, **k)
+_mplfig.Figure.savefig = _savefig
+
+
+# --- recovered analysis (verbatim; only paths and imports were made explicit)
+_sys.path.insert(0, _os.path.join(FIGREF, 'fig_color'))
+_sys.path.insert(0, FIGREF)
+import matplotlib as _mpl; _mpl.use('Agg')
+# imports hoisted to the top when the cells were merged
+import os, sys
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
+import statsmodels.formula.api as smf
+from np_dtb_style import (apply_np_style, panel, C, LW, TICK_PT, ANNOT_PT,
+                          LABEL_PT, panel_title, enforce)
+HERE = _figpath('fig.4')
+D = os.path.join(HERE, 'fig4_data')
+T = pd.read_csv(f'{D}/fig4_subject_level_n288.csv')
+for c in ['empirical', 'simulated', 'ampa', 'gaba']:
+    # NB: C() here would be the palette helper, so let patsy treat the
+    # string columns as categorical on their own
+    # residual + that condition's own mean: covariates are removed but the
+    # condition stays on its real NP scale (OLS residuals alone are all
+    # forced to mean zero, which would hide the perturbation shift)
+    T[c + '_r'] = (smf.ols(f'{c} ~ sex + site + headmotion', data=T).fit().resid
+                   + T[c].mean())
+EM = [('empirical', 'Empirical', C('baseline'), True),
+      ('simulated', 'Simulated\nbaseline', C('baseline'), False),
+      ('ampa', 'After\nAMPA', C('ampa'), False),
+      ('gaba', 'After\nGABA-A', C('gaba'), False)]
+W, H = 66, 50
+fig, ax = plt.subplots(figsize=panel(W, H))
+erows = []
+for i, (c_, lab, col, open_) in enumerate(EM):
+    hc = T.loc[T.Group == 'HC', c_ + '_r'].values
+    pt = T.loc[T.Group == 'Patient', c_ + '_r'].values
+    n1, n2 = len(hc), len(pt)
+    sp_ = np.sqrt(((n1 - 1) * hc.var(ddof=1) + (n2 - 1) * pt.var(ddof=1)) / (n1 + n2 - 2))
+    dd = (hc.mean() - pt.mean()) / sp_
+    se = np.sqrt((n1 + n2) / (n1 * n2) + dd ** 2 / (2 * (n1 + n2)))
+    t_, p_ = stats.ttest_ind(hc, pt, equal_var=False)
+    erows.append(dict(condition=lab.replace('\n', ' '), n_hc=n1, n_patient=n2,
+                      cohens_d=round(float(dd), 3),
+                      ci_lo=round(float(dd - 1.96 * se), 3),
+                      ci_hi=round(float(dd + 1.96 * se), 3),
+                      t=round(float(t_), 3), p=float(f'{p_:.3g}')))
+    ax.vlines(i, dd - 1.96 * se, dd + 1.96 * se, color=col, lw=LW, zorder=2)
+    ax.plot([i - .13, i + .13], [dd - 1.96 * se] * 2, color=col, lw=LW, zorder=2)
+    ax.plot([i - .13, i + .13], [dd + 1.96 * se] * 2, color=col, lw=LW, zorder=2)
+    ax.scatter([i], [dd], s=13, facecolor='white' if open_ else col,
+               edgecolor=col, linewidth=LW, zorder=4)
+    ax.text(i - .32 if i == 0 else i, dd + 1.96 * se + .05,   # keep the first
+            f'$P$ = {p_:.2g}', ha='left' if i == 0 else 'center',  # label inside
+            va='bottom', fontsize=ANNOT_PT, color='0.35')
+E4 = pd.DataFrame(erows)
+E4.to_csv(f'{D}/fig4e_effect_size.csv', index=False)

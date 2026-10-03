@@ -1,0 +1,10 @@
+analysis,block,adj,metric,value,perm_p
+"PLS-DA (2 comp), SDQ only",26 SDQ items,none,CV AUC,0.542,
+"PLS-DA (2 comp), SDQ+DAWBA",26 SDQ + 6 DAWBA,none,CV AUC,0.583,0.068
+"PLS-DA (2 comp), SDQ+DAWBA",26 SDQ + 6 DAWBA,sex+site+FD,CV AUC,0.555,0.17
+"CCA r1, behaviour vs brain","32 behaviour vs baseline NP, dAMPA, dGABA",none,canonical r,0.459,0.02
+"CCA r1, behaviour vs brain","32 behaviour vs baseline NP, dAMPA, dGABA",sex+site+FD,canonical r,0.419,0.178
+sex vs pattern (chi2),—,none,chi2 (1 df),5.53,0.0187
+sex vs pattern (logistic LR),—,site+FD+group,chi2 (1 df),4.76,0.0291
+site vs pattern (chi2),—,none,chi2 (7 df),10.49,0.162
+site vs pattern (logistic LR),—,sex+FD+group,chi2 (7 df),11.28,0.127

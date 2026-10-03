@@ -1,0 +1,15 @@
+index,variable,r,P,rho,P_spearman,n
+AMPA restoration index,Empirical baseline NP (summed strength),0.104831,0.339669,0.140141,0.200817,85
+AMPA restoration index,Age-19 symptoms,-0.156275,0.153221,-0.14721,0.178803,85
+AMPA restoration index,Age-23 symptoms,0.040175,0.715068,0.066548,0.545095,85
+AMPA restoration index,Simulated baseline NP (summed strength),0.718844,0.0,0.717256,0.0,85
+AMPA restoration index,Simulated modulated NP (summed strength),-0.169829,0.120213,-0.107368,0.328047,85
+AMPA restoration index,Empirical baseline NP (read-out projection),-0.061598,0.575459,-0.090991,0.407561,85
+AMPA restoration index,Simulated baseline NP (read-out projection),-0.925967,0.0,-0.924174,0.0,85
+GABA_A restoration index,Empirical baseline NP (summed strength),0.07306,0.506373,0.050225,0.648044,85
+GABA_A restoration index,Age-19 symptoms,-0.225629,0.037871,-0.212119,0.051305,85
+GABA_A restoration index,Age-23 symptoms,-0.052577,0.632726,-0.010545,0.923692,85
+GABA_A restoration index,Simulated baseline NP (summed strength),0.317776,0.003041,0.300684,0.005172,85
+GABA_A restoration index,Simulated modulated NP (summed strength),-0.36234,0.000655,-0.358296,0.00076,85
+GABA_A restoration index,Empirical baseline NP (read-out projection),-0.20136,0.064611,-0.230115,0.034119,85
+GABA_A restoration index,Simulated baseline NP (read-out projection),-0.517219,0.0,-0.49357,2e-06,85

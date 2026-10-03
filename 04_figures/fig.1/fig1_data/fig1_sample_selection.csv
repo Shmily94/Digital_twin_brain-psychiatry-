@@ -1,0 +1,8 @@
+stage,cohort,screened,analysed,excluded,reason,source,reason_short
+1,IMAGEN discovery,1050,1050,0,,fig2a_cpm_rho.csv (edge selection cohort),
+1,STRATIFY validation,513,427,86,eating disorder 79; psychosis 6; ADHD 1,fig2f_sensitivity_cohort_covariates.csv (513 / 434 / 427),"eating disorder 79, psychosis 6, ADHD 1"
+2,Cross-scale twins,12,12,0,,fig3a_mse_per_subject.csv,
+3,Population twins,290,288,2,mean framewise displacement > 0.5 mm,group_empir_simu_manipu_np_Resi3.csv (290) → fig4_subject_level_n288.csv,mean framewise displacement > 0.5 mm
+4,Healthy crossover,27,27,0,,summed_MID_FCs_3conditions.csv (27 × 3 conditions),
+4,Clinical ketamine,41,36,5,"incomplete placebo + ketamine session pair (MDD 3, HC 2)",age_demographics_placebo_np_n41.csv → age_demographics_n36.csv,"incomplete session pair (MDD 3, HC 2)"
+5,IMAGEN follow-up,288,85,203,no usable four-year follow-up symptom data,fig5h_longitudinal_n85.csv,no four-year follow-up symptoms

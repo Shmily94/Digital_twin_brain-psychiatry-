@@ -1,0 +1,4 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_assim_a,74,52,1328x790,456,assim5_edges_mid.csv
+figS_assim_b,52,52,773x804,378,assim5_edges_mid.csv
+figS_assim_c,46,52,706x790,390,assim5_edges_mid.csv

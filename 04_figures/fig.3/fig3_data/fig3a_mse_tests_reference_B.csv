@@ -1,0 +1,7 @@
+contrast,n,df,mse_a,mse_b,diff,ci95,t,p,n_lower
+100M-hyper voxel family vs regional family,12,11,0.0581,0.0683,-0.0103,-0.0337 to 0.0131,-0.967,0.355,7/12
+100M-hyper voxel family vs 10M/1000,12,11,0.0581,0.0975,-0.0394,-0.0904 to 0.0116,-1.702,0.117,9/12
+100M-hyper voxel family vs 10M voxel own hyper,12,11,0.0581,0.0958,-0.0378,-0.0770 to 0.0015,-2.117,0.0579,9/12
+10M voxel: 100M hyper vs own 10M hyper,12,11,0.0498,0.0958,-0.0461,-0.0861 to -0.0060,-2.529,0.028,10/12
+100M-hyper voxel family vs SAR,12,11,0.0581,0.0698,-0.0117,-0.0414 to 0.0179,-0.873,0.401,6/12
+100M-hyper voxel family vs rWW,12,11,0.0581,0.1010,-0.0429,-0.0720 to -0.0137,-3.239,0.00789,11/12

@@ -1,0 +1,34 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/_recovered_session_b194cd74/tableS24_main_completeness.csv
+# cell id       : dda374a2-76ad-44f6-bbf2-c3f8eee52589
+# frame id      : b194cd74-5255-435a-9c1e-206638f9adae
+# cell_index    : 600
+# executed at   : 2026-09-29 11:50 UTC
+# language      : python    conda env: python
+# organised as  : 03_analysis/fig5/39_tableS24_main_completeness.py
+# This is the terminal cell exactly as it ran, with nothing removed and nothing
+# reformatted. It is a fragment of an interactive session and is not standalone;
+# the organised script carries the full dependency chain from the same session.
+# ---------------------------------------------------------------------------
+
+MSTXT=[t for t in alltext('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/290926NatMed_Manuscript_reviewed_tracked.docx','accept')]
+S=ck['Table S24']
+rowsS=[]
+cur=''
+for r in range(3,S.max_row+1):
+    f=str(S.cell(row=r,column=1).value or '').strip()
+    if f: cur=f
+    rowsS.append(dict(row=r, fig=cur, panel=str(S.cell(row=r,column=2).value or ''),
+                      quantity=str(S.cell(row=r,column=3).value or ''),
+                      stat=str(S.cell(row=r,column=11).value or ''), p=str(S.cell(row=r,column=13).value or ''),
+                      q=str(S.cell(row=r,column=14).value or ''), eff=str(S.cell(row=r,column=15).value or ''),
+                      ci=str(S.cell(row=r,column=16).value or '')))
+T=pd.DataFrame(rowsS)
+main=T[T.fig.str.match(r'^(Fig(ure)?\.? ?\d|Figure \d)')]
+print('S24 rows total %d | main-figure rows %d | figures: %s'%(len(T), len(main), sorted(main.fig.unique())))
+print('\nmain-figure rows lacking an effect size: %d'%((main.eff.str.strip()=='').sum()))
+print('main-figure rows lacking a CI: %d'%((main.ci.str.strip()=='').sum()))
+print('main-figure rows lacking an exact P: %d'%((main.p.str.strip()=='').sum()))
+gap=main[(main.eff.str.strip()=='')|(main.ci.str.strip()=='')][['row','fig','panel','quantity','stat','p','eff','ci']]
+gap.to_csv('tableS24_main_completeness.csv',index=False)
+print('\n', gap.head(20).to_string(max_colwidth=42))

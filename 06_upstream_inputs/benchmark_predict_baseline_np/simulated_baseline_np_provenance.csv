@@ -1,0 +1,4 @@
+quantity,variable,file,n_rows_in_file,derivation,row64_deleted_by,traced
+empirical baseline NP (12-edge sum),C_C_C_empirical_np,virtual_modu_predict_fu3_beha_changes.mat,85,empirical_np -> 4 nested intersect() on subject ids (lines 3-31) -> row 64 deleted by script (line 72) -> sum across 12 edges,script,yes
+simulated baseline NP (12-edge sum),C_C_C_C_simulate_np,virtual_modu_predict_fu3_beha_changes.mat,86,simulate_np (292x12) -> same 4 intersect() chain (lines 3-29) -> sum across 12 edges; r=1.0000 with sum of raw simulate_np rows,ME (script does not delete it),yes
+simulated baseline NP (n288 table),baseline_np,cal_np_3m_model/individual_response_n288.csv,288,NOT TRACED: no script in the revision tree writes this file; the unperturbed simulation it summarises is in neither simulate_FC.mat nor simulate_FC_new.mat (both hold only perturbed settings),n/a (id-matched),no

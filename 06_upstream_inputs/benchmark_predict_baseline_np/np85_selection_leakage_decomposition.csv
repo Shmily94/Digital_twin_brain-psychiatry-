@@ -1,0 +1,3 @@
+pathway,quantity,r_with_age19,r_age19_with_change,mediated_component,total_r,partial_given_age19
+edge selection -> age-19 symptoms -> outcome baseline,empirical NP sum,-0.3033,-0.3957,0.1198,0.3893,0.3079
+edge selection -> age-19 symptoms -> outcome baseline,AMPA restoration index (published),-0.1563,-0.3957,0.0618,0.2635,0.2223

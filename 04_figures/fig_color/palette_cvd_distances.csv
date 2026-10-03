@@ -1,0 +1,106 @@
+colour_1,hex_1,colour_2,hex_2,dE_normal,dE_deuteranopia,dE_protanopia,dE_greyscale,dE_worst_case_colour_vision
+GABA-A / midazolam,#96B9AD,Response: increased  (former),#D9A5B3,35.6,2.0,8.8,0.7,2.0
+Response: increased  (former),#D9A5B3,Non-NP edges,#BFBFBF,21.7,4.2,8.2,4.4,4.2
+GABA-A / midazolam,#96B9AD,Non-NP edges,#BFBFBF,15.3,5.9,5.6,5.1,5.6
+Non-NP edges,#BFBFBF,Response: decreased  (in use),#E8C4D2,16.0,5.9,6.3,5.1,5.9
+Response: decreased  (former),#8DA0B4,"Positive profile, 34 edges",#C878A0,39.4,7.2,11.4,4.9,7.2
+Response: increased  (former),#D9A5B3,Response: decreased  (former),#8DA0B4,27.9,17.2,8.7,7.8,8.7
+"Negative profile, 29 edges",#6BAED6,Model family: regional,#8E7CC3,35.7,9.9,18.5,11.8,9.9
+Response: increased  (former),#D9A5B3,Response: decreased  (in use),#E8C4D2,11.8,10.0,10.9,9.5,10.0
+HC / placebo / baseline / reference,#7F7F7F,"Positive profile, 34 edges",#C878A0,38.1,10.4,17.0,7.0,10.4
+GABA-A / midazolam,#96B9AD,Response: decreased  (in use),#E8C4D2,31.3,11.8,11.9,10.2,11.8
+"NP factor, 12 edges",#0072B2,Model family: regional,#8E7CC3,27.9,27.6,11.9,10.3,11.9
+Response: decreased  (former),#8DA0B4,"Negative profile, 29 edges",#6BAED6,16.7,18.4,14.2,3.0,14.2
+"NP factor, 12 edges",#0072B2,Model family: voxel,#4C3F8C,32.1,15.5,14.4,14.1,14.4
+GABA-A / midazolam,#96B9AD,"Positive profile, 34 edges",#C878A0,53.3,14.4,27.1,12.0,14.4
+HC / placebo / baseline / reference,#7F7F7F,Response: increased  (in use),#8C4A6B,35.3,14.8,22.3,12.9,14.8
+GABA-A / midazolam,#96B9AD,Response: decreased  (former),#8DA0B4,20.4,15.8,17.3,7.1,15.8
+Response: increased  (former),#D9A5B3,"Positive profile, 34 edges",#C878A0,21.6,16.3,19.2,12.8,16.3
+Response: decreased  (former),#8DA0B4,Non-NP edges,#BFBFBF,17.7,18.7,16.4,12.2,16.4
+"Negative profile, 29 edges",#6BAED6,"Positive profile, 34 edges",#C878A0,51.2,24.5,16.7,7.9,16.7
+Response: decreased  (former),#8DA0B4,Response: decreased  (in use),#E8C4D2,26.7,22.4,16.9,17.3,16.9
+HC / placebo / baseline / reference,#7F7F7F,Response: decreased  (former),#8DA0B4,17.4,17.7,17.4,11.9,17.4
+HC / placebo / baseline / reference,#7F7F7F,Response: increased  (former),#D9A5B3,28.9,20.2,17.8,19.8,17.8
+HC / placebo / baseline / reference,#7F7F7F,GABA-A / midazolam,#96B9AD,24.0,18.3,20.5,19.0,18.3
+"Positive profile, 34 edges",#C878A0,Non-NP edges,#BFBFBF,41.2,19.2,27.4,17.2,19.2
+"Positive profile, 34 edges",#C878A0,Response: increased  (in use),#8C4A6B,20.2,19.9,19.6,19.9,19.6
+Response: increased  (former),#D9A5B3,"Negative profile, 29 edges",#6BAED6,41.9,34.0,21.0,4.8,21.0
+"Positive profile, 34 edges",#C878A0,Model family: regional,#8E7CC3,30.4,27.4,21.2,3.9,21.2
+Response: decreased  (former),#8DA0B4,Model family: regional,#8E7CC3,34.2,23.2,27.9,8.8,23.2
+"Negative profile, 29 edges",#6BAED6,Response: decreased  (in use),#E8C4D2,38.1,35.5,23.5,14.3,23.5
+HC / placebo / baseline / reference,#7F7F7F,Non-NP edges,#BFBFBF,24.1,24.1,24.1,24.1,24.1
+"Positive profile, 34 edges",#C878A0,Response: decreased  (in use),#E8C4D2,31.7,24.2,28.2,22.2,24.2
+High-symptom,#E69F00,Patient / MDD / AUD,#D55E00,33.4,25.0,29.0,16.4,25.0
+Model family: regional,#8E7CC3,Model family: voxel,#4C3F8C,25.6,25.8,25.4,24.4,25.4
+Response: decreased  (former),#8DA0B4,Response: increased  (in use),#8C4A6B,42.7,25.4,29.8,24.8,25.4
+"Negative profile, 29 edges",#6BAED6,Non-NP edges,#BFBFBF,30.1,34.1,26.5,9.2,26.5
+AMPA / ketamine,#E1D09A,GABA-A / midazolam,#96B9AD,31.6,31.8,27.0,11.6,27.0
+"NP factor, 12 edges",#0072B2,"Negative profile, 29 edges",#6BAED6,27.6,36.4,30.3,22.1,27.6
+HC / placebo / baseline / reference,#7F7F7F,Response: decreased  (in use),#E8C4D2,33.0,29.9,28.6,29.2,28.6
+"NP factor, 12 edges",#0072B2,"Positive profile, 34 edges",#C878A0,53.5,52.6,29.3,14.1,29.3
+GABA-A / midazolam,#96B9AD,"Negative profile, 29 edges",#6BAED6,29.5,33.0,29.5,4.1,29.5
+AMPA / ketamine,#E1D09A,Non-NP edges,#BFBFBF,29.8,30.4,29.6,6.5,29.6
+HC / placebo / baseline / reference,#7F7F7F,"Negative profile, 29 edges",#6BAED6,32.4,34.2,30.5,14.9,30.5
+AMPA / ketamine,#E1D09A,Response: increased  (former),#D9A5B3,38.6,30.5,35.7,10.9,30.5
+AMPA / ketamine,#E1D09A,Response: decreased  (in use),#E8C4D2,35.6,30.7,34.0,1.4,30.7
+Model family: regional,#8E7CC3,Response: increased  (in use),#8C4A6B,33.6,32.6,31.0,16.0,31.0
+Model family: voxel,#4C3F8C,Response: increased  (in use),#8C4A6B,36.2,36.8,31.4,8.4,31.4
+"NP factor, 12 edges",#0072B2,Response: increased  (in use),#8C4A6B,49.6,49.4,31.9,5.7,31.9
+GABA-A / midazolam,#96B9AD,Response: increased  (in use),#8C4A6B,57.0,32.3,41.3,31.9,32.3
+Response: increased  (former),#D9A5B3,Response: increased  (in use),#8C4A6B,34.9,34.3,35.6,32.6,34.3
+Response: decreased  (former),#8DA0B4,"NP factor, 12 edges",#0072B2,34.5,50.0,38.1,19.1,34.5
+HC / placebo / baseline / reference,#7F7F7F,Model family: regional,#8E7CC3,41.3,35.2,38.1,3.1,35.2
+"Negative profile, 29 edges",#6BAED6,Response: increased  (in use),#8C4A6B,54.7,35.7,35.5,27.8,35.5
+"Negative profile, 29 edges",#6BAED6,Model family: voxel,#4C3F8C,53.5,35.7,42.7,36.2,35.7
+Response: increased  (former),#D9A5B3,Model family: regional,#8E7CC3,38.6,40.1,36.3,16.6,36.3
+"Positive profile, 34 edges",#C878A0,Model family: voxel,#4C3F8C,44.9,44.7,37.1,28.3,37.1
+Non-NP edges,#BFBFBF,Response: increased  (in use),#8C4A6B,49.4,38.0,43.5,37.0,38.0
+GABA-A / midazolam,#96B9AD,Model family: regional,#8E7CC3,54.4,38.8,45.1,15.9,38.8
+Non-NP edges,#BFBFBF,Model family: regional,#8E7CC3,46.3,41.1,43.3,21.0,41.1
+HC / placebo / baseline / reference,#7F7F7F,AMPA / ketamine,#E1D09A,42.1,42.9,41.4,30.6,41.4
+Model family: regional,#8E7CC3,Response: decreased  (in use),#E8C4D2,42.4,43.5,41.4,26.1,41.4
+HC / placebo / baseline / reference,#7F7F7F,"NP factor, 12 edges",#0072B2,42.1,57.9,45.0,7.2,42.1
+Patient / MDD / AUD,#D55E00,AMPA / ketamine,#E1D09A,64.0,43.2,45.3,29.5,43.2
+Response: increased  (in use),#8C4A6B,Response: decreased  (in use),#E8C4D2,45.7,43.5,46.1,42.1,43.5
+Response: decreased  (former),#8DA0B4,Model family: voxel,#4C3F8C,52.2,44.0,47.6,33.2,44.0
+AMPA / ketamine,#E1D09A,Response: decreased  (former),#8DA0B4,45.6,47.5,44.2,18.7,44.2
+AMPA / ketamine,#E1D09A,"Positive profile, 34 edges",#C878A0,58.5,44.8,53.2,23.7,44.8
+High-symptom,#E69F00,AMPA / ketamine,#E1D09A,51.0,47.9,45.4,13.1,45.4
+Response: increased  (former),#D9A5B3,"NP factor, 12 edges",#0072B2,55.0,66.7,46.6,26.9,46.6
+HC / placebo / baseline / reference,#7F7F7F,Model family: voxel,#4C3F8C,53.2,47.7,49.9,21.3,47.7
+"NP factor, 12 edges",#0072B2,Non-NP edges,#BFBFBF,52.0,68.0,54.0,31.3,52.0
+HC / placebo / baseline / reference,#7F7F7F,Patient / MDD / AUD,#D55E00,76.7,59.1,52.1,1.2,52.1
+GABA-A / midazolam,#96B9AD,"NP factor, 12 edges",#0072B2,52.2,65.3,55.2,26.2,52.2
+"NP factor, 12 edges",#0072B2,Response: decreased  (in use),#E8C4D2,56.4,70.6,52.7,36.4,52.7
+AMPA / ketamine,#E1D09A,"Negative profile, 29 edges",#6BAED6,58.5,64.1,55.9,15.7,55.9
+Response: increased  (former),#D9A5B3,Model family: voxel,#4C3F8C,58.5,60.4,55.9,41.1,55.9
+Patient / MDD / AUD,#D55E00,GABA-A / midazolam,#96B9AD,85.9,61.3,56.0,17.8,56.0
+AMPA / ketamine,#E1D09A,Response: increased  (in use),#8C4A6B,65.7,57.3,63.6,43.5,57.3
+GABA-A / midazolam,#96B9AD,Model family: voxel,#4C3F8C,71.8,58.7,63.9,40.3,58.7
+Patient / MDD / AUD,#D55E00,Response: increased  (former),#D9A5B3,69.3,61.2,61.6,18.6,61.2
+Patient / MDD / AUD,#D55E00,Non-NP edges,#BFBFBF,80.1,63.7,61.3,23.0,61.3
+Non-NP edges,#BFBFBF,Model family: voxel,#4C3F8C,66.7,62.5,63.8,45.5,62.5
+Model family: voxel,#4C3F8C,Response: decreased  (in use),#E8C4D2,64.9,66.2,63.5,50.5,63.5
+Patient / MDD / AUD,#D55E00,Response: increased  (in use),#8C4A6B,72.1,67.0,65.6,14.1,65.6
+Patient / MDD / AUD,#D55E00,Response: decreased  (former),#8DA0B4,89.1,73.2,66.6,10.7,66.6
+Patient / MDD / AUD,#D55E00,Response: decreased  (in use),#E8C4D2,76.8,67.0,67.5,28.0,67.0
+High-symptom,#E69F00,GABA-A / midazolam,#96B9AD,78.8,74.9,67.0,1.5,67.0
+Patient / MDD / AUD,#D55E00,"Positive profile, 34 edges",#C878A0,71.9,67.2,68.6,5.8,67.2
+AMPA / ketamine,#E1D09A,Model family: regional,#8E7CC3,73.5,70.3,71.8,27.5,70.3
+High-symptom,#E69F00,Non-NP edges,#BFBFBF,76.8,75.5,71.2,6.6,71.2
+HC / placebo / baseline / reference,#7F7F7F,High-symptom,#E69F00,78.4,77.8,71.3,17.5,71.3
+High-symptom,#E69F00,Response: increased  (former),#D9A5B3,74.6,74.2,74.6,2.2,74.2
+High-symptom,#E69F00,Response: decreased  (in use),#E8C4D2,77.8,77.2,76.6,11.7,76.6
+AMPA / ketamine,#E1D09A,"NP factor, 12 edges",#0072B2,79.8,96.2,81.5,37.8,79.8
+Patient / MDD / AUD,#D55E00,"Negative profile, 29 edges",#6BAED6,105.8,90.7,80.3,13.8,80.3
+High-symptom,#E69F00,Response: decreased  (former),#8DA0B4,89.4,88.9,81.7,5.6,81.7
+High-symptom,#E69F00,"Positive profile, 34 edges",#C878A0,85.8,84.1,87.0,10.6,84.1
+High-symptom,#E69F00,Response: increased  (in use),#8C4A6B,88.1,88.1,89.1,30.4,88.1
+Patient / MDD / AUD,#D55E00,Model family: regional,#8E7CC3,100.1,93.0,88.7,1.9,88.7
+AMPA / ketamine,#E1D09A,Model family: voxel,#4C3F8C,91.7,88.8,89.2,52.0,88.8
+Patient / MDD / AUD,#D55E00,"NP factor, 12 edges",#0072B2,114.6,113.2,93.7,8.3,93.7
+Patient / MDD / AUD,#D55E00,Model family: voxel,#4C3F8C,108.2,101.7,94.7,22.5,94.7
+High-symptom,#E69F00,"Negative profile, 29 edges",#6BAED6,105.0,106.3,94.8,2.6,94.8
+High-symptom,#E69F00,Model family: regional,#8E7CC3,110.4,110.3,106.8,14.4,106.8
+High-symptom,#E69F00,"NP factor, 12 edges",#0072B2,120.2,132.4,113.8,24.7,113.8
+High-symptom,#E69F00,Model family: voxel,#4C3F8C,122.6,122.4,117.3,38.8,117.3

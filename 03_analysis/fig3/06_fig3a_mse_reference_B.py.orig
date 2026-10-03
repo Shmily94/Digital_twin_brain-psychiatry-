@@ -1,0 +1,134 @@
+"""fig3a_mse_reference_B.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code builds a per-model summary table of simulation accuracy from
+    a per-subject MSE table. For each of nine models (spanning different
+    simulation scales, data resolutions, and assimilation scales, plus SAR
+    and rWW baselines), it pulls that model's column of per-subject MSE
+    values, computes the mean and standard deviation (combined into a
+    formatted "NP-edge MSE" string) and the median across the 12 subjects,
+    and records which empirical FC reference was used for comparison. One
+    row of the output table therefore represents a single model
+    configuration, showing its labeled scale and resolution settings
+    alongside the sample size, the empirical reference description, and
+    the summary MSE statistics (mean-plus-std string and median)
+    aggregated over the 12 subjects for that model.
+
+INPUT FILES
+    fig3a_mse_per_subject.csv
+
+OUTPUT FILE
+    fig3a_mse_reference_B.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3a_mse_reference_B.csv
+
+STATISTICAL TESTS
+    descriptive summary only (no inferential test in the recovered cell)
+
+RUNNABLE ON A LAPTOP
+    conditional on the input files above being present on this machine
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 10783ea6-d4d3-4b01-812e-cd27be3faa14
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-23 15:22:10 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3a_mse_reference_B__cell_10783ea6.py
+    candidates found   : 1
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+import pandas as pd
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 1dbf78d8, 457de626, 49894910, 706899db, bb45f593, ed561527)
+R='/Users/yunman/Desktop/submission/revision/text/'
+FIG=R+'figures/'
+D3=FIG+'fig.3/fig3_data/'
+def ms(m,s,p=4): return f'{m:.{p}f} ± {s:.{p}f}'
+A=pd.read_csv(D3+'fig3a_mse_per_subject.csv')
+SRC={'3 M / 268':('3m','268-nodes','3m-268'),'10 M / 268':('10m','268-nodes','3m-268'),
+     '10 M / 1000':('10m','1000-parcellation','10m-1000'),'10 M voxel, 10 M hyper':('10m','voxel-wise','10m-voxel'),
+     '10 M voxel, 100 M hyper':('10m','voxel-wise','100m-voxel'),'100 M voxel':('100m','voxel-wise','100m-voxel'),
+     '1 B voxel':('1b_voxel','voxel-wise','100m-voxel'),'SAR':('SAR','-','-'),'rWW':('rWW','-','-')}
+
+# ---- computation: recovered from execution-log cell 10783ea6
+MP=A.pivot_table(index='subject_id',columns='model',values='mse')
+M2L={'3m_268':'3 M / 268','10m_268':'10 M / 268','10m_1000':'10 M / 1000','10m_own':'10 M voxel, 10 M hyper',
+     '10m':'10 M voxel, 100 M hyper','100m':'100 M voxel','1b':'1 B voxel','SAR':'SAR','RWW':'rWW'}
+rows=[]
+for k in ['3m_268','10m_268','10m_1000','10m_own','10m','100m','1b','SAR','RWW']:
+    s,dr,asc=SRC[M2L[k]]
+    rows.append({'simulation scale':s,'data resolution':dr,'assimilation scale':asc,'n':12,
+        'empirical reference':('B: 268-parcel FC from the voxels the DTB simulates' if k not in ('SAR','RWW')
+                               else 'native Shen-268 regional FC'),
+        'NP-edge MSE':ms(MP[k].mean(),MP[k].std(ddof=1)),'median':f'{MP[k].median():.4f}'})
+S10B=pd.DataFrame(rows)
+S10B.to_csv(D3+'fig3a_mse_reference_B.csv',index=False)

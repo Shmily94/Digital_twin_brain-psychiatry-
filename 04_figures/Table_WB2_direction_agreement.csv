@@ -1,0 +1,5 @@
+Drug,DTB prediction,Task correspondence,Edges,"Direction match, n","Direction match, %",Binomial P,Sign-flip P
+Ketamine,AMPA,Task-matched (MID),56,38,67.9,0.01,0.005
+Ketamine,AMPA,Task-mismatched (SST),56,25,44.6,0.5,0.782
+Midazolam,GABA-A,Task-matched (MID),102,73,71.6,1.60E-05,<0.001
+Midazolam,GABA-A,Task-mismatched (SST),102,66,64.7,0.0039,0.003

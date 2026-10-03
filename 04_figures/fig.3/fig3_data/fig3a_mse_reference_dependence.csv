@@ -1,0 +1,7 @@
+build,mse_under_empirical_model_voxels,mse_under_empirical_original_3m,designated_reference,TableS10_value,note
+3m_268,0.0851,0.0888,empirical_original_3m,0.0888,Table S10 takes the designated reference for each build; the designation is not constant across builds
+10m_268,0.0718,0.1031,empirical_original_3m,0.1031,Table S10 takes the designated reference for each build; the designation is not constant across builds
+10m_1000,0.0975,0.0965,empirical_original_3m,0.0965,Table S10 takes the designated reference for each build; the designation is not constant across builds
+10m,0.0498,0.0997,empirical_model_voxels,0.0498,Table S10 takes the designated reference for each build; the designation is not constant across builds
+100m,0.0589,0.1018,empirical_model_voxels,0.0589,Table S10 takes the designated reference for each build; the designation is not constant across builds
+1b,0.0655,0.1058,empirical_model_voxels,0.0655,Table S10 takes the designated reference for each build; the designation is not constant across builds

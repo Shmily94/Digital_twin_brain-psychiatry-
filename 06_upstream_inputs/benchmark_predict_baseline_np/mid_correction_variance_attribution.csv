@@ -1,0 +1,5 @@
+quantity,SD_SST,SD_MID,MID_share_of_total_variance_pct
+archived baseline,0.587,0.457,38.2
+corrected baseline,0.587,0.611,45.7
+archived manipulated,0.211,0.378,73.2
+corrected manipulated (ampa),0.211,0.508,84.2

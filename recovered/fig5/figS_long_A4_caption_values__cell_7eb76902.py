@@ -1,0 +1,45 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/supp_longitudinal/figS_long_A4_caption_values.csv
+# cell id       : 7eb76902-edbb-49ff-8ef4-d7df135e5c00
+# frame id      : 8d001885-f89b-4ca4-9e30-9866f1015ee6
+# cell_index    : 560
+# executed at   : 2026-09-24 22:57 UTC
+# language      : bash
+# organised as  : 03_analysis/fig5/61_figS_long_A4_caption_values.py
+# This data file is a render-time by-product of 04_figures/supp_longitudinal/figS_long_A4.py.
+# The cell below is the execution-log cell that produced the packaged copy
+# (it runs, or last edits and runs, that figure script). The derivation itself
+# is the figure script, which is already in the package.
+# ---------------------------------------------------------------------------
+cd /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_longitudinal && python3 - <<'PY'
+p="figS_long_A4.py"; s=open(p).read()
+E=[("from matplotlib.lines import Line2D\n",
+    "from matplotlib.lines import Line2D\nfrom scipy import stats\n"),
+   ('''    amp = co["AMPA restoration index"]''',
+    '''    amp = co["AMPA restoration index"]
+    # the full model's own F test, from its R2 and the residual df of the
+    # nested table -- never typed in, so a re-render cannot go stale
+    k_full, r2_full = len(S["b"]), float(INC.R2_full.iloc[0])
+    df2_full = int(INC.df2.iloc[0])
+    F_full = (r2_full / k_full) / ((1 - r2_full) / df2_full)
+    p_full = float(stats.f.sf(F_full, k_full, df2_full))
+    S["full_model"] = dict(k=k_full, r2=round(r2_full, 4), df2=df2_full,
+                           F=round(F_full, 3), p=float(f"{p_full:.3g}"))'''),
+   ('''              f"restoration index and the four internalising items: R2 = "
+              f"{float(INC.R2_full.iloc[0]):.3f}, F(5, "
+              f"{int(INC.df2.iloc[0])}) = 4.80, P = 7.0 x 10^-4. The index "''',
+    '''              f"restoration index and the four internalising items: R2 = "
+              f"{r2_full:.3f}, F({k_full}, {df2_full}) = {F_full:.2f}, "
+              f"{pf(p_full)}. The index "''')]
+for old,new in E:
+    assert s.count(old)==1, old[:45]; s=s.replace(old,new)
+open(p,"w").write(s)
+PY
+python3 figS_long_A4.py 2>&1|tail -2 && python3 figS_long_A4.py --no-caption 2>&1|head -1 && python3 -c "
+import pandas as pd
+d=pd.read_csv('figS_long_A4_caption_values.csv').set_index('key')
+print(d.loc['full_model','value'])
+from pptx import Presentation
+t=max((sh.text_frame.text for sh in Presentation('figS_long_A4.pptx').slides[0].shapes if sh.has_text_frame), key=len)
+i=t.index('the full model of'); print(t[i:i+200])"
+cp figS_long_A4.png figS_long_A4.pdf figS_long_A4.pptx figS_long_A4_nocaption.png figS_long_A4_nocaption.pdf figS_long_A4_nocaption.pptx figS_long_A4.py figS_long_A4_caption_values.csv "$OLDPWD"/ && echo staged

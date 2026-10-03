@@ -1,0 +1,15 @@
+column,meaning,source_variable,note
+id,subject id,C6 (86) with MATLAB row 64 removed,-
+emp_baseline_np_sum,"empirical baseline NP, sum of 12 edges",C_C_C_empirical_np (85x12),row 64 deleted by script line 72
+emp_baseline_beha_sum,"empirical baseline behaviour, age 19","sum(C_C_beha_data(:,3:6))",row 64 deleted by script line 73
+emp_baseline_beha_col3..col6,the four subscales entering that sum,C_C_beha_data columns 3-6,"script comment lists adhd,cd,eat,dep,gad,sp for the 6 columns; per-column mapping NOT verified"
+sim_baseline_np_sum,"simulated baseline NP, sum of 12 edges",C_C_C_C_simulate_np (86x12),row 64 removed by me; VERIFIED correct (index reproduces to 1e-14)
+sim_baseline_np_n288,"simulated baseline NP, canonical","individual_response_n288.csv baseline_np, id-matched",generating script not located; r=+0.75 with sim_baseline_np_sum
+mod_np_ampa_sum,"NP after AMPA modulation, sum of 12 edges",C_C_C_C_ampa_np (86x12),row 64 removed by me; verified
+mod_np_gaba_sum,"NP after GABA-A modulation, sum of 12 edges",C_C_C_C_gaba_np (86x12),row 64 removed by me; verified
+dNP_ampa_sum / dNP_gaba_sum,modulated minus simulated baseline,derived,contains -baseline by construction
+restoration_index_ampa,AMPA restoration index,(ampa_np - simulate_np) @ beta,"beta from fitlm(C_C_empirical_np, sum(C_beha_data(:,3:6))) on n=100; negative = predicted improvement"
+restoration_index_gaba,GABA-A restoration index,(gaba_np - simulate_np) @ beta,same beta
+fu3_beha_sum,age-23 behaviour,"sum(C_fu3_beha_data(:,3:6))","86 rows, row 64 removed by me"
+beha_change_raw,age23 - age19,derived,-
+beha_change_resi,age-23 residualised on age-19,derived,r=+0.98 with the manuscript symptom_change_resi column

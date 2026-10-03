@@ -1,0 +1,405 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/supp_motion/figS_motion_A4_caption_values.csv
+#
+# cell id      : 1296b65f-8ffb-4818-b483-c86562441896
+# frame id     : c60c0dc4-003a-4667-bb4f-e50a2f4c1e5f
+# timestamp    : 2026-09-25 00:15:31 UTC
+# conda env    : python
+# language     : diff
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/39_figS_motion_A4_caption_values.py
+##############################################################################
+# [edit_file] created /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_motion/figS_motion_A4.py
++++ /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_motion/figS_motion_A4.py
++"""Supplementary figure: head motion, diagnostic group and the NP outcomes,
++all four panels on ONE A4 page.
++
++  a  mean framewise displacement (FD) by diagnostic group
++  b  correlation of FD with each of the six NP outcomes, with 95% CI
++  c  the same test edge by edge, for the 12 empirical NP edges
++  d  the group effect (partial eta-squared) with and without FD as a covariate
++
++n = 288 twins retained after the mean-FD < 0.5 mm inclusion threshold (HC 69,
++high-symptom 89, patients 130).  Panels carry only the significance symbol
++(*** P < 0.001, ** P < 0.01, * P < 0.05, n.s.); every coefficient, interval
++and P value is in the caption.  P values in b and d are Bonferroni-corrected
++across the six measures, in c across the 12 edges.  Associations are reported
++as computed, not asserted to be absent.
++
++Rebuilt from motion_supp.py under the frozen rules of figA4_kit.
++
++    python figS_motion_A4.py [--no-caption]
++"""
++import os, sys
++import numpy as np
++import pandas as pd
++import matplotlib
++matplotlib.use("Agg")
++import matplotlib.pyplot as plt
++from matplotlib.lines import Line2D
++
++FIGDIR = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures"
++HERE = os.path.join(FIGDIR, "supp_motion")
++sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
++sys.path.insert(0, FIGDIR)
++from np_dtb_style import apply_np_style, panel, C, LW, enforce
++from fig_export import collect_text_records
++from supp_kit import boxes, forest, fill, pt_edge
++import figA4_kit as K
++from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT
++
++DPI = 400
++WITH_CAP = "--no-caption" not in sys.argv
++STEM = "figS_motion_A4" if WITH_CAP else "figS_motion_A4_nocaption"
++SUPP_NO = "S5"                     # this figure already IS S5 in
++                                   # FIGURE_LEGENDS.md
++apply_np_style()
++K.apply_page_style()
++
++D = os.path.join(HERE, "data")
++M = pd.read_csv(os.path.join(D, "motion_subject_level_n288.csv"))
++GT = pd.read_csv(os.path.join(D, "motion_group_tests.csv"))
++CR = pd.read_csv(os.path.join(
++    D, "TableS25_motion_np_correlations_corrected_n288.csv"))
++PE = pd.read_csv(os.path.join(D, "motion_per_edge_correlations.csv"))
++GR = pd.read_csv(os.path.join(
++    D, "TableS26_group_effect_motion_adjustment_corrected_n288.csv"))
++
++GRP = ["HC", "High-symptom", "Patient"]
++GCOL = {"HC": C("hc"), "High-symptom": C("high_symptom"),
++        "Patient": C("patient")}
++SHORT = lambda m: m.replace(" (GABA-A on high AMPA)", " (GABA-A)")
++MCOL = lambda m: (C("ampa") if ("AMPA" in m and "GABA" not in m)
++                  else C("gaba") if "GABA" in m else C("reference"))
++S = {}                             # every caption number
++
++
++def mark(p):
++    """Significance symbol; every number goes in the caption. Fig. 4 convention."""
++    return ("***" if p < .001 else "**" if p < .01 else "*" if p < .05
++            else "n.s.")
++
++
++def p_a(ax):
++    vals = [M.loc[M.Group == g, "headmotion"].values for g in GRP]
++    boxes(ax, [0, 1, 2], vals, [GCOL[g] for g in GRP], seed=0, s=8)
++    r = GT[GT.test.str.startswith("one-way")].iloc[0]
++    hi = max(v.max() for v in vals)
++    lo = min(v.min() for v in vals)
++    span = hi - lo
++    ax.plot([0, 2], [hi + span * .07] * 2, color="0.45", zorder=3)
++    ax.text(1, hi + span * .09, mark(float(r.p)), ha="center", va="bottom",
++            fontsize=TICK_PT, color="0.35")
++    ax.set_ylim(lo - span * .05, hi + span * .22)
++    ax.set_xticks([0, 1, 2])
++    ax.set_xticklabels([f"HC\n(n = {len(vals[0])})",
++                        f"High-\nsymptom\n(n = {len(vals[1])})",
++                        f"Patient\n(n = {len(vals[2])})"], fontsize=TICK_PT)
++    for t_, g in zip(ax.get_xticklabels(), GRP):
++        t_.set_color(GCOL[g])
++    ax.set_xlim(-.7, 2.7)
++    ax.set_ylabel("Mean framewise\ndisplacement (mm)", fontsize=LABEL_PT)
++    ax.tick_params(axis="both", labelsize=TICK_PT)
++    for g, v in zip(GRP, vals):
++        S[f"a|{g}"] = dict(n=len(v), mean=float(v.mean()),
++                           sd=float(v.std(ddof=1)), median=float(np.median(v)))
++
++
++def p_b(ax):
++    lohi = np.array([[float(v) for v in c.split(" to ")] for c in CR.CI95])
++    yy = forest(ax, [SHORT(m) for m in CR.Measure], CR.r.values,
++                lohi[:, 0], lohi[:, 1], [MCOL(m) for m in CR.Measure],
++                "Pearson $r$ with mean FD")
++    for y, r in zip(yy, CR.itertuples()):
++        i = len(CR) - 1 - int(y)
++        ax.text(lohi[i, 1] + .02, y, mark(float(r.P_Bonferroni)), ha="left",
++                va="center", fontsize=TICK_PT,
++                color="black" if r.P_Bonferroni < .05 else "0.5")
++        S[f"b|{r.Measure}"] = dict(
++            r=float(r.r), lo=float(lohi[i, 0]), hi=float(lohi[i, 1]),
++            p=float(r.P_raw), pb=float(r.P_Bonferroni),
++            ve=float(r.variance_explained), rho=float(r.spearman_rho),
++            p_rho=float(r.P_spearman))
++    ax.set_ylim(-.7, len(CR) - .3)
++    ax.set_xlim(-.22, .50)
++    ax.xaxis.label.set_fontsize(LABEL_PT)
++    ax.tick_params(axis="both", labelsize=TICK_PT)
++
++
++def p_c(ax):
++    x = np.arange(len(PE))
++    ax.bar(x, PE.r.values, width=.66, facecolor=fill(C("np12")),
++           edgecolor="black", zorder=2)
++    ax.axhline(0, color="0.6", zorder=1)
++    npr = CR[CR.Measure == "Empirical NP factor"].iloc[0]
++    ax.axhline(float(npr.r), color=C("np12"), lw=LW * 1.3, ls=(0, (2.4, 1.6)),
++               zorder=3)
++    ax.text(len(PE) - .4, float(npr.r) + .006, "12-edge sum",
++            ha="right", va="bottom", fontsize=TICK_PT, color=C("np12"))
++    ax.set_xticks(x)
++    ax.set_xticklabels([v.replace("empirical_fc", "e") for v in PE.variable],
++                       fontsize=TICK_PT)
++    ax.set_xlabel("Empirical NP edge", fontsize=LABEL_PT)
++    ax.set_ylabel("Pearson $r$ with mean FD", fontsize=LABEL_PT)
++    ax.set_ylim(PE.r.min() - .05, max(PE.r.max(), float(npr.r)) + .075)
++    ax.tick_params(axis="both", labelsize=TICK_PT)
++    ax.text(.03, .03, "no edge survives\nBonferroni (12 edges)",
++            transform=ax.transAxes, ha="left", va="bottom", fontsize=TICK_PT,
++            color="0.35")
++    S["c"] = dict(n=int(PE.n.iloc[0]), max_abs_r=float(PE.r.abs().max()),
++                  min_p=float(PE.p.min()),
++                  min_pb=float(PE.p_bonferroni.min()),
++                  worst=str(PE.loc[PE.p.idxmin(), "variable"]),
++                  sum_r=float(npr.r), sum_pb=float(npr.P_Bonferroni))
++
++
++def p_d(ax):
++    yy = np.arange(len(GR))[::-1]
++    for y, r in zip(yy, GR.itertuples()):
++        c = MCOL(r.Measure)
++        ax.plot([r.eta2_group_no_FD, r.eta2_group_with_FD], [y, y], color=c,
++                lw=LW * 1.8, solid_capstyle="round", zorder=2)
++        ax.scatter([r.eta2_group_no_FD], [y], s=24, facecolor="white",
++                   edgecolor=c, linewidth=LW * 1.2, zorder=3)
++        ax.scatter([r.eta2_group_with_FD], [y], s=24, facecolor=c,
++                   edgecolor=pt_edge(c), linewidth=LW * .55, zorder=4)
++        xr = max(r.eta2_group_no_FD, r.eta2_group_with_FD)
++        ax.text(xr + .45, y, mark(float(r.P_with_FD_bonf)), ha="left",
++                va="center", fontsize=TICK_PT,
++                color="black" if r.P_with_FD_bonf < .05 else "0.5")
++        S[f"d|{r.Measure}"] = dict(
++            no_fd=float(r.eta2_group_no_FD), with_fd=float(r.eta2_group_with_FD),
++            p_no=float(r.P_no_FD_bonf), p_with=float(r.P_with_FD_bonf),
++            f_no=float(r.F_no_FD), f_with=float(r.F_with_FD))
++    ax.set_yticks(yy)
++    ax.set_yticklabels([SHORT(m) for m in GR.Measure], fontsize=TICK_PT)
++    ax.set_ylim(-.7, len(GR) - .3)
++    ax.set_xlim(0, 13.0)
++    ax.set_xlabel("Group effect, partial $\\eta^2$ (%)", fontsize=LABEL_PT)
++    ax.spines["left"].set_visible(False)
++    ax.tick_params(axis="y", length=0)
++    ax.tick_params(axis="x", labelsize=TICK_PT)
++    ax.legend([Line2D([], [], marker="o", linestyle="none", markersize=3.2,
++                      markerfacecolor="white", markeredgecolor="0.45",
++                      markeredgewidth=LW),
++               Line2D([], [], marker="o", linestyle="none", markersize=3.4,
++                      markerfacecolor="0.45", markeredgecolor="none")],
++              ["group only", "+ mean FD as covariate"], loc="lower right",
++              fontsize=TICK_PT, frameon=False, borderaxespad=.2,
++              handletextpad=.4, labelspacing=.25)
++    S["d_shift"] = float((GR.eta2_group_with_FD
++                          - GR.eta2_group_no_FD).abs().max())
++
++
++PANEL_FN = {"a": p_a, "b": p_b, "c": p_c, "d": p_d}
++
++# --------------------------------------------------------------- page geometry
++GUT = K.LETTER_W + K.LETTER_PADX
++GAPX, GAP = 6.0, K.GAP
++LETTER_BAND, MB = K.LETTER_BAND, K.MB
++MAX_H = 46.0
++ROWS = [(["a", "b"], 11.0), (["c", "d"], 8.0)]
++BLOCK = {"a": 58.0, "b": 116.0, "c": 86.0, "d": 88.0}
++LMAX = {"a": 15.0, "b": 44.0, "c": 15.0, "d": 44.0}   # b and d label their rows
++
++
++def col_geom(fig, panels):
++    rend = fig.canvas.get_renderer()
++    mm = lambda px: px / fig.dpi * 25.4
++    by = {p["ch"]: p for p in panels}
++    geom = {}
++    for row, _xb in ROWS:
++        x = ML
++        for ch in row:
++            ax = by[ch]["axes"][0]
++            bb, pos = ax.get_tightbbox(rend), ax.get_position()
++            L = min(max(pos.x0 * PW - mm(bb.x0), 0.0), LMAX[ch])
++            R_ = min(max(mm(bb.x1) - (pos.x0 + pos.width) * PW, 0.0), 5.0)
++            geom[ch] = (x, x + GUT + L,
++                        max(BLOCK[ch] - GUT - L - R_, BLOCK[ch] * .4))
++            x += BLOCK[ch] + GAPX
++    return geom
++
++
++def build(plot_h, geom=None):
++    f = plt.figure(figsize=panel(PW, PH))
++    out, y = [], MT
++    for row, xb in ROWS:
++        top = y + LETTER_BAND
++        x = ML
++        for ch in row:
++            slot, ax_x, ax_w = (geom[ch] if geom else
++                                (x, x + GUT + 15.0, BLOCK[ch] - GUT - 17.0))
++            ax = K.axes_mm(f, ax_x, top, ax_w, plot_h)
++            PANEL_FN[ch](ax)
++            out.append(dict(ch=ch, x=slot, axes=[ax],
++                            txt=K.letter(f, slot, top - 1.2, ch)))
++            x += BLOCK[ch] + GAPX
++        y = top + plot_h + xb + GAP
++    enforce(f)
++    return f, out, y - GAP
++
++
++# ------------------------------------------------------------------- caption
++CAP_TITLE = (f"Supplementary Fig. {SUPP_NO} | Head motion does not differ "
++             "across diagnostic groups and does not account for the group "
++             "effects, but it is weakly associated with some of the NP "
++             "measures.")
++
++
++def pf(p):
++    return ("P < 0.001" if p < 1e-3 else f"P = {p:.3f}" if p >= .01
++            else f"P = {p:.2g}")
++
++
++def gt(name):
++    r = GT[GT.test == name].iloc[0]
++    return r
++
++
++def corr_line(measure):
++    d = S[f"b|{measure}"]
++    pb = ("P_Bonferroni < 0.001" if d["pb"] < 1e-3
++          else f"P_Bonferroni = {d['pb']:.3f}")
++    return (f"{SHORT(measure).lower()} r = {d['r']:+.3f} (95% CI "
++            f"{d['lo']:+.3f} to {d['hi']:+.3f}, {pf(d['p'])}, {pb}, "
++            f"{100 * d['ve']:.1f}% of variance)")
++
++
++def eta_line(measure):
++    d = S[f"d|{measure}"]
++    return (f"{SHORT(measure).lower()} {d['no_fd']:.2f}% to "
++            f"{d['with_fd']:.2f}%")
++
++
++def caption_runs():
++    c = S["c"]
++    an = gt("one-way ANOVA (3 groups)")
++    kw = gt("Kruskal-Wallis (3 groups)")
++    lev = gt("Levene (variance)")
++    welch = gt("HC vs all others, Welch t")
++    mw = gt("HC vs all others, Mann-Whitney U")
++    cap = [
++        ("", "All panels use the n = 288 twins retained by the mean-FD < 0.5 mm "
++             "inclusion threshold (69 healthy controls, 89 high-symptom "
++             "participants, 130 patients). Motion is summarised as mean "
++             "framewise displacement (FD, mm) over the run, and the unit of "
++             "observation is one subject. Panels carry only the significance "
++             "symbol (*** P < 0.001, ** P < 0.01, * P < 0.05, n.s. not "
++             "significant); every coefficient, interval and P value is given "
++             "below. All tests are two-sided; P values are Bonferroni-corrected "
++             "across the six NP measures in b and d and across the 12 edges "
++             "in c. "),
++        ("a", f", FD by diagnostic group, box with all individual subjects: "
++              f"healthy controls {S['a|HC']['mean']:.3f} \u00b1 "
++              f"{S['a|HC']['sd']:.3f} mm (median "
++              f"{S['a|HC']['median']:.3f}), high-symptom "
++              f"{S['a|High-symptom']['mean']:.3f} \u00b1 "
++              f"{S['a|High-symptom']['sd']:.3f} "
++              f"({S['a|High-symptom']['median']:.3f}), patients "
++              f"{S['a|Patient']['mean']:.3f} \u00b1 "
++              f"{S['a|Patient']['sd']:.3f} "
++              f"({S['a|Patient']['median']:.3f}). One-way ANOVA "
++              f"F(2, 285) = {float(an.statistic):.3f}, P = {float(an.p):.3f}; "
++              f"Kruskal-Wallis chi-squared(2) = {float(kw.statistic):.3f}, "
++              f"P = {float(kw.p):.3f}; Levene's test of equal variances "
++              f"F(2, 285) = {float(lev.statistic):.3f}, "
++              f"P = {float(lev.p):.3f}; healthy controls against all others "
++              f"Welch t = {float(welch.statistic):.3f}, "
++              f"P = {float(welch.p):.3f} ({welch.df}), Mann-Whitney "
++              f"P = {float(mw.p):.3f}. Motion does not differ across groups "
++              f"on any of these tests. "),
++        ("b", ", Pearson correlation of FD with each of the six NP outcomes, "
++              "point estimate with 95% confidence interval: "
++              + "; ".join(corr_line(m) for m in CR.Measure) + ". Two of the "
++              "six survive correction. The measure behind the main inferences "
++              "- the AMPA-induced change in NP - is the one with no motion "
++              "association at all, whereas the measured NP factor is weakly "
++              "but detectably motion-associated and sits just below the "
++              "corrected threshold, so that conclusion is sensitive to how "
++              "the correction family is defined and is reported here as such. "),
++        ("c", f", the same test edge by edge for the 12 empirical NP edges "
++              f"(n = {c['n']}), with the 12-edge sum marked by the dashed "
++              f"line (r = {c['sum_r']:+.3f}). No single edge is "
++              f"motion-related: the largest absolute correlation is "
++              f"{c['max_abs_r']:.3f}, the smallest uncorrected P is "
++              f"{c['min_p']:.3f} ({c['worst'].replace('empirical_fc', 'edge ')}) "
++              f"and the smallest Bonferroni-corrected P is {c['min_pb']:.2f}. "
++              f"Only the sum reaches significance, and only marginally (b). "),
++        ("d", f", the group effect on each NP measure as partial eta-squared, "
++              f"in a one-way model (open marker, df = 2, 285) and in the same "
++              f"model with FD added as a covariate (filled marker, "
++              f"df = 2, 284): " + "; ".join(eta_line(m) for m in GR.Measure)
++              + f". The largest shift is {S['d_shift']:.2f} percentage points "
++                f"and no effect changes its significance status, so adjusting "
++                f"for motion leaves the group effects as they were. "),
++        ("", "Taken together, motion is balanced across the diagnostic groups "
++             "(a) and adjusting for it does not change the group effects (d), "
++             "while the cross-sectional association between motion and the NP "
++             "measures is small but not uniformly zero (b, c). Source values "
++             "are in motion_subject_level_n288.csv, motion_group_tests.csv, "
++             "TableS25_motion_np_correlations_corrected_n288.csv, "
++             "motion_per_edge_correlations.csv and "
++             "TableS26_group_effect_motion_adjustment_corrected_n288.csv. "),
++    ]
++    runs = [(CAP_TITLE + " ", True)]
++    for lab, seg in cap:
++        if lab:
++            runs.append((lab + ",", True))
++            seg = seg[1:] if seg.startswith(",") else seg
++        runs.append((seg, False))
++    return runs
++
++
++# pass 1 -- caption height at a provisional plot height
++_f0, _p0, _ = build(34.0)
++_runs0 = caption_runs()
++_l0 = (K._wrap(_f0, _runs0, PW - ML - MR, CAP_PT,
++               _f0.canvas.get_renderer())[0] if WITH_CAP else [])
++plt.close(_f0)
++
++CAP_H = (K.CAP_GAP + len(_l0) * K.CAP_LH + 1.0) if WITH_CAP else 0.0
++NROW = len(ROWS)
++FIXED = (MT + NROW * LETTER_BAND + sum(xb for _r, xb in ROWS)
++         + (NROW - 1) * GAP)
++PLOT_H = min((PH - MB - CAP_H - FIXED) / NROW, MAX_H)
++assert PLOT_H > 20.0, f"no room for the panels: {PLOT_H:.1f} mm"
++
++# pass 2 -- solve the column geometry at the fitted height
++_f1, _p1, _ = build(PLOT_H)
++_geom = col_geom(_f1, _p1)
++plt.close(_f1)
++for _ in range(3):
++    _f2, _p2, _ = build(PLOT_H, geom=_geom)
++    _geom = col_geom(_f2, _p2)
++    plt.close(_f2)
++fig, PANELS, BOTTOM = build(PLOT_H, geom=_geom)
++K.place_letters(fig, PANELS, rows=[r for r, _xb in ROWS])
++
++runs = caption_runs()
++if WITH_CAP:
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
++        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
++else:
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
++
++assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
++print(f"[{STEM}] axes height {PLOT_H:.1f} mm; panels end at {BOTTOM:.1f} mm; "
++      f"caption {n_lines} lines -> {CAP_BOTTOM:.1f} mm of {PH:.0f} mm")
++
++# ----------------------------------------------------------------------- export
++png, pdf, ppt = (os.path.join(HERE, STEM + ext) for ext in (".png", ".pdf", ".pptx"))
++fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
++fig.savefig(pdf, bbox_inches=None, facecolor="white")
++K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
++              collect_text_records=collect_text_records)
++bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
++       if t.get_text().strip() and t.get_fontname() != "Arial"]
++print("non-Arial text:", bad[:5], "| files:",
++      [os.path.basename(p) for p in (png, pdf, ppt)])
++pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
++    os.path.join(HERE, "figS_motion_A4_caption_values.csv"), index=False)
++plt.close(fig)
++

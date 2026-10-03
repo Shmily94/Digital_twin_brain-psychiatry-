@@ -1,0 +1,10 @@
+predictor,VIF
+age19,1.328
+emp_NP,1.208
+sim_NP,2.333
+idx_ampa,7.987
+idx_gaba,10.46
+idx_ampa_low,3.856
+idx_ampa_high,2.914
+idx_gaba_low,9.035
+idx_gaba_high,5.099

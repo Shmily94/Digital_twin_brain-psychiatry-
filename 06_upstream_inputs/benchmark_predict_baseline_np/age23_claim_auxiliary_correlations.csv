@@ -1,0 +1,8 @@
+quantity,r,P
+AMPA index vs summed 12 empirical NP edges at 19,0.105,0.34
+AMPA index vs FC-predicted baseline symptom score,-0.0616,0.5755
+AMPA index vs age-19 symptoms,-0.156,0.153
+GABA_A index vs age-19 symptoms,-0.226,0.038
+summed empirical NP FC vs age-19 symptoms,-0.303,0.005
+age-19 vs age-23 symptoms,0.719,8.955836076396307e-15
+"partial r(AMPA index, age-23 | age-19)",0.2223,0.0408

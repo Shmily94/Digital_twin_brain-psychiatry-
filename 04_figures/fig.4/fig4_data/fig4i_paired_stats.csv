@@ -1,0 +1,5 @@
+measure,perturbation,n,mean_baseline,mean_modulated,mean_diff,sd_diff,n_increased,pct_increased,t,df,p_paired_t,wilcoxon_p,cohens_dz
+NP factor (12 edges),AMPA,288,-0.2752,0.5019,0.7771,0.9328,234,81.2,14.138,287,8.43e-35,1.19e-28,0.833
+NP factor (12 edges),GABA-A,288,-0.2752,2.4603,2.7355,1.7126,282,97.9,27.107,287,4.04e-81,1.52e-48,1.597
+MID summed FC (6 edges),AMPA,288,-0.2033,0.3528,0.556,0.6092,239,83.0,15.491,287,9.39e-40,4.29e-33,0.913
+MID summed FC (6 edges),GABA-A,288,-0.2033,0.8187,1.022,1.0377,243,84.4,16.714,287,2.91e-44,1.69e-35,0.985

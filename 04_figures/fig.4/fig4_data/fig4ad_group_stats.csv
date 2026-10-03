@@ -1,0 +1,5 @@
+panel,measure,F,p_anova,HC_vs_High-symptom_p,HC_vs_Patient_p,High-symptom_vs_Patient_p,HC_vs_High-symptom_q,HC_vs_Patient_q,High-symptom_vs_Patient_q
+fig4a,empirical,8.203,0.000344,0.016,6.8e-05,0.147,0.0239,0.000204,0.147
+fig4b,simulated,9.223,0.000131,0.944,0.00104,0.00034,0.944,0.00157,0.00102
+fig4c,ampa,0.952,0.387,0.761,0.235,0.293,0.761,0.44,0.44
+fig4d,gaba,0.851,0.428,0.387,0.742,0.183,0.581,0.742,0.548

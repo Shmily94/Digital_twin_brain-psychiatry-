@@ -1,0 +1,3 @@
+comparison,n,mean_diff,sd_diff,n_increased,pct_increased,raw_t,raw_df,raw_p,adj_t,adj_df,adj_p
+Simulated vs AMPA,141,0.3589,1.4041,94,66.7,3.035,140,0.00287,2.339,137,0.0208
+Simulated vs GABA-A,141,2.8729,2.6394,124,87.9,12.925,140,1.21e-25,5.235,137,6.05e-07

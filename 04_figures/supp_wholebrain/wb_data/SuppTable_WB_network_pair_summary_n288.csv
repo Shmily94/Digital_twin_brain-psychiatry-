@@ -1,0 +1,541 @@
+condition,contrast,net_pair,n_total,n_sig,n_increase,n_decrease,net_signed_pct
+sst_stop_suces,AMPA vs baseline,DMN (within),253,162,36,126,-35.57
+sst_stop_suces,AMPA vs baseline,DMN – FPN,644,397,147,250,-15.99
+sst_stop_suces,AMPA vs baseline,DMN – Limbic,598,365,190,175,2.51
+sst_stop_suces,AMPA vs baseline,DMN – Motor,1035,667,378,289,8.6
+sst_stop_suces,AMPA vs baseline,DMN – SMF,644,428,206,222,-2.48
+sst_stop_suces,AMPA vs baseline,DMN – Sub,598,402,239,163,12.71
+sst_stop_suces,AMPA vs baseline,DMN – Visual Asso,414,334,64,270,-49.76
+sst_stop_suces,AMPA vs baseline,DMN – Visual I,391,326,128,198,-17.9
+sst_stop_suces,AMPA vs baseline,DMN – Visual II,138,117,41,76,-25.36
+sst_stop_suces,AMPA vs baseline,FPN (within),378,222,63,159,-25.4
+sst_stop_suces,AMPA vs baseline,FPN – Limbic,728,483,301,182,16.35
+sst_stop_suces,AMPA vs baseline,FPN – Motor,1260,899,625,274,27.86
+sst_stop_suces,AMPA vs baseline,FPN – SMF,784,511,276,235,5.23
+sst_stop_suces,AMPA vs baseline,FPN – Sub,728,572,449,123,44.78
+sst_stop_suces,AMPA vs baseline,FPN – Visual Asso,504,318,59,259,-39.68
+sst_stop_suces,AMPA vs baseline,FPN – Visual I,476,331,176,155,4.41
+sst_stop_suces,AMPA vs baseline,FPN – Visual II,168,124,77,47,17.86
+sst_stop_suces,AMPA vs baseline,Limbic (within),325,232,157,75,25.23
+sst_stop_suces,AMPA vs baseline,Limbic – Motor,1170,754,582,172,35.04
+sst_stop_suces,AMPA vs baseline,Limbic – SMF,728,485,359,126,32.01
+sst_stop_suces,AMPA vs baseline,Limbic – Sub,676,507,405,102,44.82
+sst_stop_suces,AMPA vs baseline,Limbic – Visual Asso,468,285,112,173,-13.03
+sst_stop_suces,AMPA vs baseline,Limbic – Visual I,442,301,161,140,4.75
+sst_stop_suces,AMPA vs baseline,Limbic – Visual II,156,118,59,59,0.0
+sst_stop_suces,AMPA vs baseline,Motor (within),990,730,374,356,1.82
+sst_stop_suces,AMPA vs baseline,Motor – SMF,1260,927,566,361,16.27
+sst_stop_suces,AMPA vs baseline,Motor – Sub,1170,885,689,196,42.14
+sst_stop_suces,AMPA vs baseline,Motor – Visual Asso,810,635,273,362,-10.99
+sst_stop_suces,AMPA vs baseline,Motor – Visual I,765,547,171,376,-26.8
+sst_stop_suces,AMPA vs baseline,Motor – Visual II,270,213,67,146,-29.26
+sst_stop_suces,AMPA vs baseline,SMF (within),378,286,134,152,-4.76
+sst_stop_suces,AMPA vs baseline,SMF – Sub,728,520,346,174,23.63
+sst_stop_suces,AMPA vs baseline,SMF – Visual Asso,504,370,105,265,-31.75
+sst_stop_suces,AMPA vs baseline,SMF – Visual I,476,302,133,169,-7.56
+sst_stop_suces,AMPA vs baseline,SMF – Visual II,168,106,49,57,-4.76
+sst_stop_suces,AMPA vs baseline,Sub (within),325,230,49,181,-40.62
+sst_stop_suces,AMPA vs baseline,Sub – Visual Asso,468,313,132,181,-10.47
+sst_stop_suces,AMPA vs baseline,Sub – Visual I,442,319,179,140,8.82
+sst_stop_suces,AMPA vs baseline,Sub – Visual II,156,109,55,54,0.64
+sst_stop_suces,AMPA vs baseline,Visual Asso (within),153,140,2,138,-88.89
+sst_stop_suces,AMPA vs baseline,Visual Asso – Visual I,306,274,61,213,-49.67
+sst_stop_suces,AMPA vs baseline,Visual Asso – Visual II,108,87,19,68,-45.37
+sst_stop_suces,AMPA vs baseline,Visual I (within),136,125,45,80,-25.74
+sst_stop_suces,AMPA vs baseline,Visual I – Visual II,102,87,38,49,-10.78
+sst_stop_suces,AMPA vs baseline,Visual II (within),15,13,7,6,6.67
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN (within),253,243,224,19,81.03
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – FPN,644,509,421,88,51.71
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – Limbic,598,573,543,30,85.79
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – Motor,1035,984,960,24,90.43
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – SMF,644,619,597,22,89.29
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – Sub,598,515,463,52,68.73
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – Visual Asso,414,397,358,39,77.05
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – Visual I,391,348,282,66,55.24
+sst_stop_suces,AMPA+GABA-A vs baseline,DMN – Visual II,138,126,121,5,84.06
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN (within),378,300,197,103,24.87
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN – Limbic,728,596,476,120,48.9
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN – Motor,1260,1056,866,190,53.65
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN – SMF,784,651,521,130,49.87
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN – Sub,728,526,432,94,46.43
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN – Visual Asso,504,408,328,80,49.21
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN – Visual I,476,380,352,28,68.07
+sst_stop_suces,AMPA+GABA-A vs baseline,FPN – Visual II,168,145,140,5,80.36
+sst_stop_suces,AMPA+GABA-A vs baseline,Limbic (within),325,305,288,17,83.38
+sst_stop_suces,AMPA+GABA-A vs baseline,Limbic – Motor,1170,1086,1037,49,84.44
+sst_stop_suces,AMPA+GABA-A vs baseline,Limbic – SMF,728,688,644,44,82.42
+sst_stop_suces,AMPA+GABA-A vs baseline,Limbic – Sub,676,582,532,50,71.3
+sst_stop_suces,AMPA+GABA-A vs baseline,Limbic – Visual Asso,468,454,447,7,94.02
+sst_stop_suces,AMPA+GABA-A vs baseline,Limbic – Visual I,442,412,391,21,83.71
+sst_stop_suces,AMPA+GABA-A vs baseline,Limbic – Visual II,156,153,151,2,95.51
+sst_stop_suces,AMPA+GABA-A vs baseline,Motor (within),990,887,752,135,62.32
+sst_stop_suces,AMPA+GABA-A vs baseline,Motor – SMF,1260,1161,1064,97,76.75
+sst_stop_suces,AMPA+GABA-A vs baseline,Motor – Sub,1170,1064,1023,41,83.93
+sst_stop_suces,AMPA+GABA-A vs baseline,Motor – Visual Asso,810,771,746,25,89.01
+sst_stop_suces,AMPA+GABA-A vs baseline,Motor – Visual I,765,693,666,27,83.53
+sst_stop_suces,AMPA+GABA-A vs baseline,Motor – Visual II,270,261,261,0,96.67
+sst_stop_suces,AMPA+GABA-A vs baseline,SMF (within),378,354,306,48,68.25
+sst_stop_suces,AMPA+GABA-A vs baseline,SMF – Sub,728,624,575,49,72.25
+sst_stop_suces,AMPA+GABA-A vs baseline,SMF – Visual Asso,504,485,465,20,88.29
+sst_stop_suces,AMPA+GABA-A vs baseline,SMF – Visual I,476,436,433,3,90.34
+sst_stop_suces,AMPA+GABA-A vs baseline,SMF – Visual II,168,165,165,0,98.21
+sst_stop_suces,AMPA+GABA-A vs baseline,Sub (within),325,268,184,84,30.77
+sst_stop_suces,AMPA+GABA-A vs baseline,Sub – Visual Asso,468,378,350,28,68.8
+sst_stop_suces,AMPA+GABA-A vs baseline,Sub – Visual I,442,398,374,24,79.19
+sst_stop_suces,AMPA+GABA-A vs baseline,Sub – Visual II,156,145,141,4,87.82
+sst_stop_suces,AMPA+GABA-A vs baseline,Visual Asso (within),153,145,126,19,69.93
+sst_stop_suces,AMPA+GABA-A vs baseline,Visual Asso – Visual I,306,262,215,47,54.9
+sst_stop_suces,AMPA+GABA-A vs baseline,Visual Asso – Visual II,108,99,91,8,76.85
+sst_stop_suces,AMPA+GABA-A vs baseline,Visual I (within),136,110,78,32,33.82
+sst_stop_suces,AMPA+GABA-A vs baseline,Visual I – Visual II,102,88,78,10,66.67
+sst_stop_suces,AMPA+GABA-A vs baseline,Visual II (within),15,13,12,1,73.33
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN (within),253,249,246,3,96.05
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – FPN,644,539,454,85,57.3
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – Limbic,598,577,557,20,89.8
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – Motor,1035,992,975,17,92.56
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – SMF,644,618,601,17,90.68
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – Sub,598,524,436,88,58.19
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – Visual Asso,414,410,405,5,96.62
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – Visual I,391,344,297,47,63.94
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),DMN – Visual II,138,124,122,2,86.96
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN (within),378,289,221,68,40.48
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN – Limbic,728,603,458,145,42.99
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN – Motor,1260,1038,782,256,41.75
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN – SMF,784,667,507,160,44.26
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN – Sub,728,570,308,262,6.32
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN – Visual Asso,504,445,376,69,60.91
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN – Visual I,476,381,324,57,56.09
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),FPN – Visual II,168,147,128,19,64.88
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Limbic (within),325,293,271,22,76.62
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Limbic – Motor,1170,1069,978,91,75.81
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Limbic – SMF,728,677,614,63,75.69
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Limbic – Sub,676,583,423,160,38.91
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual Asso,468,461,459,2,97.65
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual I,442,411,387,24,82.13
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual II,156,146,144,2,91.03
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Motor (within),990,895,765,130,64.14
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Motor – SMF,1260,1148,1023,125,71.27
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Motor – Sub,1170,1014,887,127,64.96
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Motor – Visual Asso,810,786,771,15,93.33
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Motor – Visual I,765,715,693,22,87.71
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Motor – Visual II,270,259,259,0,95.93
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),SMF (within),378,349,306,43,69.58
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),SMF – Sub,728,613,489,124,50.14
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),SMF – Visual Asso,504,487,481,6,94.25
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),SMF – Visual I,476,433,422,11,86.34
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),SMF – Visual II,168,160,160,0,95.24
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Sub (within),325,285,231,54,54.46
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Sub – Visual Asso,468,392,357,35,68.8
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Sub – Visual I,442,392,346,46,67.87
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Sub – Visual II,156,137,132,5,81.41
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Visual Asso (within),153,152,152,0,99.35
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual I,306,283,255,28,74.18
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual II,108,99,96,3,86.11
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Visual I (within),136,123,97,26,52.21
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Visual I – Visual II,102,95,87,8,77.45
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),Visual II (within),15,15,15,0,100.0
+sst_stop_failure,AMPA vs baseline,DMN (within),253,165,43,122,-31.23
+sst_stop_failure,AMPA vs baseline,DMN – FPN,644,390,139,251,-17.39
+sst_stop_failure,AMPA vs baseline,DMN – Limbic,598,372,205,167,6.35
+sst_stop_failure,AMPA vs baseline,DMN – Motor,1035,658,391,267,11.98
+sst_stop_failure,AMPA vs baseline,DMN – SMF,644,418,204,214,-1.55
+sst_stop_failure,AMPA vs baseline,DMN – Sub,598,405,262,143,19.9
+sst_stop_failure,AMPA vs baseline,DMN – Visual Asso,414,337,72,265,-46.62
+sst_stop_failure,AMPA vs baseline,DMN – Visual I,391,332,133,199,-16.88
+sst_stop_failure,AMPA vs baseline,DMN – Visual II,138,118,41,77,-26.09
+sst_stop_failure,AMPA vs baseline,FPN (within),378,229,72,157,-22.49
+sst_stop_failure,AMPA vs baseline,FPN – Limbic,728,472,300,172,17.58
+sst_stop_failure,AMPA vs baseline,FPN – Motor,1260,908,645,263,30.32
+sst_stop_failure,AMPA vs baseline,FPN – SMF,784,512,286,226,7.65
+sst_stop_failure,AMPA vs baseline,FPN – Sub,728,551,442,109,45.74
+sst_stop_failure,AMPA vs baseline,FPN – Visual Asso,504,315,61,254,-38.29
+sst_stop_failure,AMPA vs baseline,FPN – Visual I,476,311,164,147,3.57
+sst_stop_failure,AMPA vs baseline,FPN – Visual II,168,122,76,46,17.86
+sst_stop_failure,AMPA vs baseline,Limbic (within),325,232,152,80,22.15
+sst_stop_failure,AMPA vs baseline,Limbic – Motor,1170,726,565,161,34.53
+sst_stop_failure,AMPA vs baseline,Limbic – SMF,728,469,351,118,32.01
+sst_stop_failure,AMPA vs baseline,Limbic – Sub,676,504,416,88,48.52
+sst_stop_failure,AMPA vs baseline,Limbic – Visual Asso,468,267,108,159,-10.9
+sst_stop_failure,AMPA vs baseline,Limbic – Visual I,442,304,173,131,9.5
+sst_stop_failure,AMPA vs baseline,Limbic – Visual II,156,121,63,58,3.21
+sst_stop_failure,AMPA vs baseline,Motor (within),990,709,381,328,5.35
+sst_stop_failure,AMPA vs baseline,Motor – SMF,1260,918,582,336,19.52
+sst_stop_failure,AMPA vs baseline,Motor – Sub,1170,878,702,176,44.96
+sst_stop_failure,AMPA vs baseline,Motor – Visual Asso,810,638,291,347,-6.91
+sst_stop_failure,AMPA vs baseline,Motor – Visual I,765,526,170,356,-24.31
+sst_stop_failure,AMPA vs baseline,Motor – Visual II,270,206,65,141,-28.15
+sst_stop_failure,AMPA vs baseline,SMF (within),378,271,130,141,-2.91
+sst_stop_failure,AMPA vs baseline,SMF – Sub,728,493,341,152,25.96
+sst_stop_failure,AMPA vs baseline,SMF – Visual Asso,504,367,112,255,-28.37
+sst_stop_failure,AMPA vs baseline,SMF – Visual I,476,297,136,161,-5.25
+sst_stop_failure,AMPA vs baseline,SMF – Visual II,168,106,49,57,-4.76
+sst_stop_failure,AMPA vs baseline,Sub (within),325,217,57,160,-31.69
+sst_stop_failure,AMPA vs baseline,Sub – Visual Asso,468,285,148,137,2.35
+sst_stop_failure,AMPA vs baseline,Sub – Visual I,442,314,196,118,17.65
+sst_stop_failure,AMPA vs baseline,Sub – Visual II,156,112,67,45,14.1
+sst_stop_failure,AMPA vs baseline,Visual Asso (within),153,140,3,137,-87.58
+sst_stop_failure,AMPA vs baseline,Visual Asso – Visual I,306,269,59,210,-49.35
+sst_stop_failure,AMPA vs baseline,Visual Asso – Visual II,108,85,18,67,-45.37
+sst_stop_failure,AMPA vs baseline,Visual I (within),136,120,44,76,-23.53
+sst_stop_failure,AMPA vs baseline,Visual I – Visual II,102,82,39,43,-3.92
+sst_stop_failure,AMPA vs baseline,Visual II (within),15,13,7,6,6.67
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN (within),253,246,226,20,81.42
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – FPN,644,512,439,73,56.83
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – Limbic,598,577,549,28,87.12
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – Motor,1035,992,971,21,91.79
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – SMF,644,621,602,19,90.53
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – Sub,598,520,483,37,74.58
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – Visual Asso,414,397,359,38,77.54
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – Visual I,391,350,287,63,57.29
+sst_stop_failure,AMPA+GABA-A vs baseline,DMN – Visual II,138,129,124,5,86.23
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN (within),378,312,206,106,26.46
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN – Limbic,728,597,484,113,50.96
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN – Motor,1260,1080,905,175,57.94
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN – SMF,784,667,540,127,52.68
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN – Sub,728,555,460,95,50.14
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN – Visual Asso,504,405,341,64,54.96
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN – Visual I,476,381,351,30,67.44
+sst_stop_failure,AMPA+GABA-A vs baseline,FPN – Visual II,168,137,134,3,77.98
+sst_stop_failure,AMPA+GABA-A vs baseline,Limbic (within),325,306,289,17,83.69
+sst_stop_failure,AMPA+GABA-A vs baseline,Limbic – Motor,1170,1094,1045,49,85.13
+sst_stop_failure,AMPA+GABA-A vs baseline,Limbic – SMF,728,694,649,45,82.97
+sst_stop_failure,AMPA+GABA-A vs baseline,Limbic – Sub,676,582,546,36,75.44
+sst_stop_failure,AMPA+GABA-A vs baseline,Limbic – Visual Asso,468,455,448,7,94.23
+sst_stop_failure,AMPA+GABA-A vs baseline,Limbic – Visual I,442,412,391,21,83.71
+sst_stop_failure,AMPA+GABA-A vs baseline,Limbic – Visual II,156,152,151,1,96.15
+sst_stop_failure,AMPA+GABA-A vs baseline,Motor (within),990,896,771,125,65.25
+sst_stop_failure,AMPA+GABA-A vs baseline,Motor – SMF,1260,1182,1089,93,79.05
+sst_stop_failure,AMPA+GABA-A vs baseline,Motor – Sub,1170,1063,1028,35,84.87
+sst_stop_failure,AMPA+GABA-A vs baseline,Motor – Visual Asso,810,773,751,22,90.0
+sst_stop_failure,AMPA+GABA-A vs baseline,Motor – Visual I,765,689,660,29,82.48
+sst_stop_failure,AMPA+GABA-A vs baseline,Motor – Visual II,270,259,259,0,95.93
+sst_stop_failure,AMPA+GABA-A vs baseline,SMF (within),378,356,311,45,70.37
+sst_stop_failure,AMPA+GABA-A vs baseline,SMF – Sub,728,628,590,38,75.82
+sst_stop_failure,AMPA+GABA-A vs baseline,SMF – Visual Asso,504,486,467,19,88.89
+sst_stop_failure,AMPA+GABA-A vs baseline,SMF – Visual I,476,438,431,7,89.08
+sst_stop_failure,AMPA+GABA-A vs baseline,SMF – Visual II,168,165,165,0,98.21
+sst_stop_failure,AMPA+GABA-A vs baseline,Sub (within),325,254,184,70,35.08
+sst_stop_failure,AMPA+GABA-A vs baseline,Sub – Visual Asso,468,397,376,21,75.85
+sst_stop_failure,AMPA+GABA-A vs baseline,Sub – Visual I,442,401,376,25,79.41
+sst_stop_failure,AMPA+GABA-A vs baseline,Sub – Visual II,156,147,143,4,89.1
+sst_stop_failure,AMPA+GABA-A vs baseline,Visual Asso (within),153,145,126,19,69.93
+sst_stop_failure,AMPA+GABA-A vs baseline,Visual Asso – Visual I,306,265,216,49,54.58
+sst_stop_failure,AMPA+GABA-A vs baseline,Visual Asso – Visual II,108,98,91,7,77.78
+sst_stop_failure,AMPA+GABA-A vs baseline,Visual I (within),136,111,78,33,33.09
+sst_stop_failure,AMPA+GABA-A vs baseline,Visual I – Visual II,102,89,80,9,69.61
+sst_stop_failure,AMPA+GABA-A vs baseline,Visual II (within),15,13,12,1,73.33
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN (within),253,251,248,3,96.84
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – FPN,644,542,468,74,61.18
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – Limbic,598,578,561,17,90.97
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – Motor,1035,995,980,15,93.24
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – SMF,644,619,601,18,90.53
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – Sub,598,524,444,80,60.87
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – Visual Asso,414,409,404,5,96.38
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – Visual I,391,345,292,53,61.13
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),DMN – Visual II,138,124,122,2,86.96
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN (within),378,298,228,70,41.8
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN – Limbic,728,599,461,138,44.37
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN – Motor,1260,1023,785,238,43.41
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN – SMF,784,679,519,160,45.79
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN – Sub,728,566,302,264,5.22
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN – Visual Asso,504,433,378,55,64.09
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN – Visual I,476,367,319,48,56.93
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),FPN – Visual II,168,146,131,15,69.05
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Limbic (within),325,296,275,21,78.15
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Limbic – Motor,1170,1073,987,86,77.01
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Limbic – SMF,728,671,611,60,75.69
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Limbic – Sub,676,577,419,158,38.61
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual Asso,468,459,457,2,97.22
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual I,442,400,378,22,80.54
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual II,156,145,144,1,91.67
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Motor (within),990,892,762,130,63.84
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Motor – SMF,1260,1146,1028,118,72.22
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Motor – Sub,1170,997,870,127,63.5
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Motor – Visual Asso,810,780,765,15,92.59
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Motor – Visual I,765,709,687,22,86.93
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Motor – Visual II,270,257,257,0,95.19
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),SMF (within),378,355,311,44,70.63
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),SMF – Sub,728,616,487,129,49.18
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),SMF – Visual Asso,504,485,479,6,93.85
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),SMF – Visual I,476,421,410,11,83.82
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),SMF – Visual II,168,160,160,0,95.24
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Sub (within),325,279,225,54,52.62
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Sub – Visual Asso,468,389,363,26,72.01
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Sub – Visual I,442,384,339,45,66.52
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Sub – Visual II,156,138,133,5,82.05
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Visual Asso (within),153,152,152,0,99.35
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual I,306,281,253,28,73.53
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual II,108,100,98,2,88.89
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Visual I (within),136,121,97,24,53.68
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Visual I – Visual II,102,97,88,9,77.45
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),Visual II (within),15,15,15,0,100.0
+mid_feed_hit,AMPA vs baseline,DMN (within),253,199,152,47,41.5
+mid_feed_hit,AMPA vs baseline,DMN – FPN,644,578,539,39,77.64
+mid_feed_hit,AMPA vs baseline,DMN – Limbic,598,488,437,51,64.55
+mid_feed_hit,AMPA vs baseline,DMN – Motor,1035,883,833,50,75.65
+mid_feed_hit,AMPA vs baseline,DMN – SMF,644,571,538,33,78.42
+mid_feed_hit,AMPA vs baseline,DMN – Sub,598,409,327,82,40.97
+mid_feed_hit,AMPA vs baseline,DMN – Visual Asso,414,350,279,71,50.24
+mid_feed_hit,AMPA vs baseline,DMN – Visual I,391,351,294,57,60.61
+mid_feed_hit,AMPA vs baseline,DMN – Visual II,138,123,121,2,86.23
+mid_feed_hit,AMPA vs baseline,FPN (within),378,326,280,46,61.9
+mid_feed_hit,AMPA vs baseline,FPN – Limbic,728,629,566,63,69.09
+mid_feed_hit,AMPA vs baseline,FPN – Motor,1260,1125,1021,104,72.78
+mid_feed_hit,AMPA vs baseline,FPN – SMF,784,677,579,98,61.35
+mid_feed_hit,AMPA vs baseline,FPN – Sub,728,580,544,36,69.78
+mid_feed_hit,AMPA vs baseline,FPN – Visual Asso,504,405,352,53,59.33
+mid_feed_hit,AMPA vs baseline,FPN – Visual I,476,422,393,29,76.47
+mid_feed_hit,AMPA vs baseline,FPN – Visual II,168,141,129,12,69.64
+mid_feed_hit,AMPA vs baseline,Limbic (within),325,258,219,39,55.38
+mid_feed_hit,AMPA vs baseline,Limbic – Motor,1170,977,883,94,67.44
+mid_feed_hit,AMPA vs baseline,Limbic – SMF,728,606,552,54,68.41
+mid_feed_hit,AMPA vs baseline,Limbic – Sub,676,531,482,49,64.05
+mid_feed_hit,AMPA vs baseline,Limbic – Visual Asso,468,377,347,30,67.74
+mid_feed_hit,AMPA vs baseline,Limbic – Visual I,442,381,363,18,78.05
+mid_feed_hit,AMPA vs baseline,Limbic – Visual II,156,120,120,0,76.92
+mid_feed_hit,AMPA vs baseline,Motor (within),990,873,693,180,51.82
+mid_feed_hit,AMPA vs baseline,Motor – SMF,1260,1076,948,128,65.08
+mid_feed_hit,AMPA vs baseline,Motor – Sub,1170,897,806,91,61.11
+mid_feed_hit,AMPA vs baseline,Motor – Visual Asso,810,682,611,71,66.67
+mid_feed_hit,AMPA vs baseline,Motor – Visual I,765,651,547,104,57.91
+mid_feed_hit,AMPA vs baseline,Motor – Visual II,270,174,143,31,41.48
+mid_feed_hit,AMPA vs baseline,SMF (within),378,334,283,51,61.38
+mid_feed_hit,AMPA vs baseline,SMF – Sub,728,562,517,45,64.84
+mid_feed_hit,AMPA vs baseline,SMF – Visual Asso,504,442,406,36,73.41
+mid_feed_hit,AMPA vs baseline,SMF – Visual I,476,409,387,22,76.68
+mid_feed_hit,AMPA vs baseline,SMF – Visual II,168,134,126,8,70.24
+mid_feed_hit,AMPA vs baseline,Sub (within),325,222,95,127,-9.85
+mid_feed_hit,AMPA vs baseline,Sub – Visual Asso,468,315,264,51,45.51
+mid_feed_hit,AMPA vs baseline,Sub – Visual I,442,328,274,54,49.77
+mid_feed_hit,AMPA vs baseline,Sub – Visual II,156,117,107,10,62.18
+mid_feed_hit,AMPA vs baseline,Visual Asso (within),153,143,107,36,46.41
+mid_feed_hit,AMPA vs baseline,Visual Asso – Visual I,306,289,239,50,61.76
+mid_feed_hit,AMPA vs baseline,Visual Asso – Visual II,108,105,88,17,65.74
+mid_feed_hit,AMPA vs baseline,Visual I (within),136,127,96,31,47.79
+mid_feed_hit,AMPA vs baseline,Visual I – Visual II,102,98,86,12,72.55
+mid_feed_hit,AMPA vs baseline,Visual II (within),15,14,10,4,40.0
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN (within),253,211,181,30,59.68
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – FPN,644,546,527,19,78.88
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – Limbic,598,474,433,41,65.55
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – Motor,1035,895,870,25,81.64
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – SMF,644,563,540,23,80.28
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – Sub,598,427,329,98,38.63
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – Visual Asso,414,341,323,18,73.67
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – Visual I,391,325,263,62,51.41
+mid_feed_hit,AMPA+GABA-A vs baseline,DMN – Visual II,138,127,126,1,90.58
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN (within),378,310,272,38,61.9
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN – Limbic,728,582,531,51,65.93
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN – Motor,1260,1097,958,139,65.0
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN – SMF,784,686,607,79,67.35
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN – Sub,728,528,441,87,48.63
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN – Visual Asso,504,415,400,15,76.39
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN – Visual I,476,417,384,33,73.74
+mid_feed_hit,AMPA+GABA-A vs baseline,FPN – Visual II,168,150,144,6,82.14
+mid_feed_hit,AMPA+GABA-A vs baseline,Limbic (within),325,254,217,37,55.38
+mid_feed_hit,AMPA+GABA-A vs baseline,Limbic – Motor,1170,926,841,85,64.62
+mid_feed_hit,AMPA+GABA-A vs baseline,Limbic – SMF,728,616,562,54,69.78
+mid_feed_hit,AMPA+GABA-A vs baseline,Limbic – Sub,676,471,396,75,47.49
+mid_feed_hit,AMPA+GABA-A vs baseline,Limbic – Visual Asso,468,371,346,25,68.59
+mid_feed_hit,AMPA+GABA-A vs baseline,Limbic – Visual I,442,362,322,40,63.8
+mid_feed_hit,AMPA+GABA-A vs baseline,Limbic – Visual II,156,131,127,4,78.85
+mid_feed_hit,AMPA+GABA-A vs baseline,Motor (within),990,857,652,205,45.15
+mid_feed_hit,AMPA+GABA-A vs baseline,Motor – SMF,1260,1115,984,131,67.7
+mid_feed_hit,AMPA+GABA-A vs baseline,Motor – Sub,1170,915,829,86,63.5
+mid_feed_hit,AMPA+GABA-A vs baseline,Motor – Visual Asso,810,737,692,45,79.88
+mid_feed_hit,AMPA+GABA-A vs baseline,Motor – Visual I,765,670,606,64,70.85
+mid_feed_hit,AMPA+GABA-A vs baseline,Motor – Visual II,270,242,232,10,82.22
+mid_feed_hit,AMPA+GABA-A vs baseline,SMF (within),378,353,315,38,73.28
+mid_feed_hit,AMPA+GABA-A vs baseline,SMF – Sub,728,511,428,83,47.39
+mid_feed_hit,AMPA+GABA-A vs baseline,SMF – Visual Asso,504,453,426,27,79.17
+mid_feed_hit,AMPA+GABA-A vs baseline,SMF – Visual I,476,425,388,37,73.74
+mid_feed_hit,AMPA+GABA-A vs baseline,SMF – Visual II,168,157,152,5,87.5
+mid_feed_hit,AMPA+GABA-A vs baseline,Sub (within),325,195,110,85,7.69
+mid_feed_hit,AMPA+GABA-A vs baseline,Sub – Visual Asso,468,334,283,51,49.57
+mid_feed_hit,AMPA+GABA-A vs baseline,Sub – Visual I,442,365,320,45,62.22
+mid_feed_hit,AMPA+GABA-A vs baseline,Sub – Visual II,156,122,118,4,73.08
+mid_feed_hit,AMPA+GABA-A vs baseline,Visual Asso (within),153,130,121,9,73.2
+mid_feed_hit,AMPA+GABA-A vs baseline,Visual Asso – Visual I,306,264,241,23,71.24
+mid_feed_hit,AMPA+GABA-A vs baseline,Visual Asso – Visual II,108,106,105,1,96.3
+mid_feed_hit,AMPA+GABA-A vs baseline,Visual I (within),136,112,78,34,32.35
+mid_feed_hit,AMPA+GABA-A vs baseline,Visual I – Visual II,102,96,90,6,82.35
+mid_feed_hit,AMPA+GABA-A vs baseline,Visual II (within),15,14,14,0,93.33
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN (within),253,177,144,33,43.87
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – FPN,644,455,391,64,50.78
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Limbic,598,410,313,97,36.12
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Motor,1035,683,574,109,44.93
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – SMF,644,482,413,69,53.42
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Sub,598,359,221,138,13.88
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Visual Asso,414,300,251,49,48.79
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Visual I,391,269,169,100,17.65
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Visual II,138,102,88,14,53.62
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN (within),378,296,219,77,37.57
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Limbic,728,503,378,125,34.75
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Motor,1260,965,674,291,30.4
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN – SMF,784,631,518,113,51.66
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Sub,728,444,223,221,0.27
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Visual Asso,504,382,330,52,55.16
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Visual I,476,320,253,67,39.08
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Visual II,168,135,122,13,64.88
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Limbic (within),325,233,163,70,28.62
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Motor,1170,797,553,244,26.41
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – SMF,728,561,441,120,44.09
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Sub,676,402,182,220,-5.62
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual Asso,468,351,270,81,40.38
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual I,442,279,185,94,20.59
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual II,156,121,101,20,51.92
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Motor (within),990,818,529,289,24.24
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Motor – SMF,1260,1015,802,213,46.75
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Sub,1170,745,471,274,16.84
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Visual Asso,810,658,550,108,54.57
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Visual I,765,563,482,81,52.42
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Visual II,270,243,228,15,78.89
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),SMF (within),378,333,298,35,69.58
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Sub,728,440,247,193,7.42
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Visual Asso,504,407,361,46,62.5
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Visual I,476,338,263,75,39.5
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Visual II,168,151,143,8,80.36
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Sub (within),325,209,134,75,18.15
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Sub – Visual Asso,468,299,207,92,24.57
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Sub – Visual I,442,302,213,89,28.05
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Sub – Visual II,156,114,89,25,41.03
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Visual Asso (within),153,122,102,20,53.59
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual I,306,228,153,75,25.49
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual II,108,87,82,5,71.3
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Visual I (within),136,103,40,63,-16.91
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Visual I – Visual II,102,78,56,22,33.33
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),Visual II (within),15,12,12,0,80.0
+mid_antici_hit,AMPA vs baseline,DMN (within),253,203,156,47,43.08
+mid_antici_hit,AMPA vs baseline,DMN – FPN,644,575,535,40,76.86
+mid_antici_hit,AMPA vs baseline,DMN – Limbic,598,483,433,50,64.05
+mid_antici_hit,AMPA vs baseline,DMN – Motor,1035,892,843,49,76.71
+mid_antici_hit,AMPA vs baseline,DMN – SMF,644,559,528,31,77.17
+mid_antici_hit,AMPA vs baseline,DMN – Sub,598,410,327,83,40.8
+mid_antici_hit,AMPA vs baseline,DMN – Visual Asso,414,353,279,74,49.52
+mid_antici_hit,AMPA vs baseline,DMN – Visual I,391,352,294,58,60.36
+mid_antici_hit,AMPA vs baseline,DMN – Visual II,138,123,119,4,83.33
+mid_antici_hit,AMPA vs baseline,FPN (within),378,323,275,48,60.05
+mid_antici_hit,AMPA vs baseline,FPN – Limbic,728,631,566,65,68.82
+mid_antici_hit,AMPA vs baseline,FPN – Motor,1260,1111,1007,104,71.67
+mid_antici_hit,AMPA vs baseline,FPN – SMF,784,676,568,108,58.67
+mid_antici_hit,AMPA vs baseline,FPN – Sub,728,582,542,40,68.96
+mid_antici_hit,AMPA vs baseline,FPN – Visual Asso,504,401,344,57,56.94
+mid_antici_hit,AMPA vs baseline,FPN – Visual I,476,417,387,30,75.0
+mid_antici_hit,AMPA vs baseline,FPN – Visual II,168,137,125,12,67.26
+mid_antici_hit,AMPA vs baseline,Limbic (within),325,255,218,37,55.69
+mid_antici_hit,AMPA vs baseline,Limbic – Motor,1170,960,870,90,66.67
+mid_antici_hit,AMPA vs baseline,Limbic – SMF,728,605,553,52,68.82
+mid_antici_hit,AMPA vs baseline,Limbic – Sub,676,534,483,51,63.91
+mid_antici_hit,AMPA vs baseline,Limbic – Visual Asso,468,374,344,30,67.09
+mid_antici_hit,AMPA vs baseline,Limbic – Visual I,442,380,363,17,78.28
+mid_antici_hit,AMPA vs baseline,Limbic – Visual II,156,122,122,0,78.21
+mid_antici_hit,AMPA vs baseline,Motor (within),990,868,688,180,51.31
+mid_antici_hit,AMPA vs baseline,Motor – SMF,1260,1070,940,130,64.29
+mid_antici_hit,AMPA vs baseline,Motor – Sub,1170,904,805,99,60.34
+mid_antici_hit,AMPA vs baseline,Motor – Visual Asso,810,684,611,73,66.42
+mid_antici_hit,AMPA vs baseline,Motor – Visual I,765,651,546,105,57.65
+mid_antici_hit,AMPA vs baseline,Motor – Visual II,270,180,145,35,40.74
+mid_antici_hit,AMPA vs baseline,SMF (within),378,333,282,51,61.11
+mid_antici_hit,AMPA vs baseline,SMF – Sub,728,560,512,48,63.74
+mid_antici_hit,AMPA vs baseline,SMF – Visual Asso,504,437,401,36,72.42
+mid_antici_hit,AMPA vs baseline,SMF – Visual I,476,414,391,23,77.31
+mid_antici_hit,AMPA vs baseline,SMF – Visual II,168,137,128,9,70.83
+mid_antici_hit,AMPA vs baseline,Sub (within),325,222,96,126,-9.23
+mid_antici_hit,AMPA vs baseline,Sub – Visual Asso,468,323,269,54,45.94
+mid_antici_hit,AMPA vs baseline,Sub – Visual I,442,334,277,57,49.77
+mid_antici_hit,AMPA vs baseline,Sub – Visual II,156,115,105,10,60.9
+mid_antici_hit,AMPA vs baseline,Visual Asso (within),153,141,106,35,46.41
+mid_antici_hit,AMPA vs baseline,Visual Asso – Visual I,306,290,238,52,60.78
+mid_antici_hit,AMPA vs baseline,Visual Asso – Visual II,108,102,86,16,64.81
+mid_antici_hit,AMPA vs baseline,Visual I (within),136,127,95,32,46.32
+mid_antici_hit,AMPA vs baseline,Visual I – Visual II,102,97,85,12,71.57
+mid_antici_hit,AMPA vs baseline,Visual II (within),15,13,10,3,46.67
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN (within),253,208,178,30,58.5
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – FPN,644,532,513,19,76.71
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – Limbic,598,474,429,45,64.21
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – Motor,1035,893,867,26,81.26
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – SMF,644,565,538,27,79.35
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – Sub,598,428,333,95,39.8
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – Visual Asso,414,342,322,20,72.95
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – Visual I,391,332,269,63,52.69
+mid_antici_hit,AMPA+GABA-A vs baseline,DMN – Visual II,138,127,126,1,90.58
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN (within),378,311,270,41,60.58
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN – Limbic,728,576,522,54,64.29
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN – Motor,1260,1109,967,142,65.48
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN – SMF,784,676,594,82,65.31
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN – Sub,728,526,428,98,45.33
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN – Visual Asso,504,417,397,20,74.8
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN – Visual I,476,415,382,33,73.32
+mid_antici_hit,AMPA+GABA-A vs baseline,FPN – Visual II,168,146,142,4,82.14
+mid_antici_hit,AMPA+GABA-A vs baseline,Limbic (within),325,255,216,39,54.46
+mid_antici_hit,AMPA+GABA-A vs baseline,Limbic – Motor,1170,941,847,94,64.36
+mid_antici_hit,AMPA+GABA-A vs baseline,Limbic – SMF,728,615,561,54,69.64
+mid_antici_hit,AMPA+GABA-A vs baseline,Limbic – Sub,676,471,385,86,44.23
+mid_antici_hit,AMPA+GABA-A vs baseline,Limbic – Visual Asso,468,375,347,28,68.16
+mid_antici_hit,AMPA+GABA-A vs baseline,Limbic – Visual I,442,354,316,38,62.9
+mid_antici_hit,AMPA+GABA-A vs baseline,Limbic – Visual II,156,131,127,4,78.85
+mid_antici_hit,AMPA+GABA-A vs baseline,Motor (within),990,858,652,206,45.05
+mid_antici_hit,AMPA+GABA-A vs baseline,Motor – SMF,1260,1119,983,136,67.22
+mid_antici_hit,AMPA+GABA-A vs baseline,Motor – Sub,1170,913,819,94,61.97
+mid_antici_hit,AMPA+GABA-A vs baseline,Motor – Visual Asso,810,738,691,47,79.51
+mid_antici_hit,AMPA+GABA-A vs baseline,Motor – Visual I,765,673,610,63,71.5
+mid_antici_hit,AMPA+GABA-A vs baseline,Motor – Visual II,270,244,234,10,82.96
+mid_antici_hit,AMPA+GABA-A vs baseline,SMF (within),378,352,314,38,73.02
+mid_antici_hit,AMPA+GABA-A vs baseline,SMF – Sub,728,519,427,92,46.02
+mid_antici_hit,AMPA+GABA-A vs baseline,SMF – Visual Asso,504,454,424,30,78.17
+mid_antici_hit,AMPA+GABA-A vs baseline,SMF – Visual I,476,427,389,38,73.74
+mid_antici_hit,AMPA+GABA-A vs baseline,SMF – Visual II,168,158,153,5,88.1
+mid_antici_hit,AMPA+GABA-A vs baseline,Sub (within),325,199,110,89,6.46
+mid_antici_hit,AMPA+GABA-A vs baseline,Sub – Visual Asso,468,331,274,57,46.37
+mid_antici_hit,AMPA+GABA-A vs baseline,Sub – Visual I,442,368,323,45,62.9
+mid_antici_hit,AMPA+GABA-A vs baseline,Sub – Visual II,156,127,119,8,71.15
+mid_antici_hit,AMPA+GABA-A vs baseline,Visual Asso (within),153,131,120,11,71.24
+mid_antici_hit,AMPA+GABA-A vs baseline,Visual Asso – Visual I,306,258,235,23,69.28
+mid_antici_hit,AMPA+GABA-A vs baseline,Visual Asso – Visual II,108,106,105,1,96.3
+mid_antici_hit,AMPA+GABA-A vs baseline,Visual I (within),136,109,76,33,31.62
+mid_antici_hit,AMPA+GABA-A vs baseline,Visual I – Visual II,102,95,89,6,81.37
+mid_antici_hit,AMPA+GABA-A vs baseline,Visual II (within),15,14,14,0,93.33
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN (within),253,179,145,34,43.87
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – FPN,644,454,384,70,48.76
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Limbic,598,426,323,103,36.79
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Motor,1035,691,579,112,45.12
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – SMF,644,487,413,74,52.64
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Sub,598,376,226,150,12.71
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Visual Asso,414,298,249,49,48.31
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Visual I,391,264,164,100,16.37
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),DMN – Visual II,138,101,86,15,51.45
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN (within),378,286,212,74,36.51
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Limbic,728,512,384,128,35.16
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Motor,1260,971,685,286,31.67
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN – SMF,784,634,517,117,51.02
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Sub,728,453,216,237,-2.88
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Visual Asso,504,375,322,53,53.37
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Visual I,476,309,249,60,39.71
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),FPN – Visual II,168,133,122,11,66.07
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Limbic (within),325,233,162,71,28.0
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Motor,1170,810,559,251,26.32
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – SMF,728,555,432,123,42.45
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Sub,676,402,184,218,-5.03
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual Asso,468,351,271,80,40.81
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual I,442,285,191,94,21.95
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Limbic – Visual II,156,127,102,25,49.36
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Motor (within),990,818,528,290,24.04
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Motor – SMF,1260,1007,794,213,46.11
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Sub,1170,757,467,290,15.13
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Visual Asso,810,667,553,114,54.2
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Visual I,765,563,483,80,52.68
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Motor – Visual II,270,244,228,16,78.52
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),SMF (within),378,331,295,36,68.52
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Sub,728,446,243,203,5.49
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Visual Asso,504,408,359,49,61.51
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Visual I,476,338,265,73,40.34
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),SMF – Visual II,168,151,143,8,80.36
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Sub (within),325,209,131,78,16.31
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Sub – Visual Asso,468,298,201,97,22.22
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Sub – Visual I,442,294,205,89,26.24
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Sub – Visual II,156,118,88,30,37.18
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Visual Asso (within),153,122,101,21,52.29
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual I,306,230,155,75,26.14
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Visual Asso – Visual II,108,87,81,6,69.44
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Visual I (within),136,101,39,62,-16.91
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Visual I – Visual II,102,76,55,21,33.33
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),Visual II (within),15,12,12,0,80.0

@@ -1,0 +1,4 @@
+para,label,value,context
+188,two-sided Welch t,-14.70,"i, simulated baseline NP factor by response group: both-up, n = 229, -0.57; any-down, n = 59, 0.88; two-sided Welch t = -14.70, P <0.0001. A lower baseline in the both-up group is expect"
+190,P,0.0069,"d for age, sex, infusion order and placebo-session mean framewise displacement: Spearman ρ = -0.56, P = 0.0069; Pperm = 0.0068. h, Leave-one-out predicted versus observed"
+190,P,0.0072,"edicted versus observed four-year symptom change from the 12 simulated NP edges (n = 85): r = 0.29, P = 0.0072; in-sample R² = 0.29, F(12,72) = 2.43, P = 0.01. Negative v"

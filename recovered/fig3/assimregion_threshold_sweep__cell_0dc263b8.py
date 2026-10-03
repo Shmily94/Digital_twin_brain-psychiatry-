@@ -1,0 +1,447 @@
+# ===========================================================================
+# VERBATIM ARCHIVE -- execution-log cell source, exactly as it ran.
+# Nothing has been removed, added or reformatted below the header.
+#
+#   cell id       : 0dc263b8-7352-4320-840a-a5d86070b421
+#   frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+#   ran           : 2026-09-25 00:15:33 UTC
+#   conda env     : (not recorded)
+#   cell kind     : edit_file
+#   produced      : 04_figures/supp_assimregion/data/assimregion_threshold_sweep.csv
+# ===========================================================================
+
+# [edit_file] created /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_assimregion/figS_assimregion_A4.py
++++ /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_assimregion/figS_assimregion_A4.py
++"""Supplementary figure | meta-analytic versus activation-defined assimilation regions.
++
++Design, as run: ONE activation-defined assimilation set per task (reward/MID and
++inhibition/SST), each matched to the meta-analytic set on assimilated voxel count,
++in one participant's 100-million-neuron voxel-wise DTB.  The meta-analytic set was
++assimilated five independent times on the reward task, which supplies the run-to-run
++envelope; no meta-analytic 100 M inhibition run exists for this participant, so the
++inhibition arm is compared against the 10-million-neuron cohort model instead and is
++confounded with neuronal scale.  Four task conditions, whole-brain FC over all
++23,436 edges of the 217-region model.
++
++Sources (revision/sensitivity_analysis/assimilated_region/):
++  assimilation_set_comparison_summary.csv  - set size / subcortical composition (cohort space)
++  region_set_overlap_and_accuracy.csv      - overlap of the simulated sets (participant space)
++  prior_activation_overlap_threshold_sweep.csv - agreement vs activation threshold
++  np_wholematrix_accuracy_by_condition.csv - whole-brain accuracy, 4 conditions
++  task_fc_raw_217x217_7runs.mat            - the seven simulated connectomes (panel e)
++  baseline_100M_prior_FC_accuracy_by_class.csv - accuracy by assimilation status
++  np_edges_7runs_stats.csv                 - the 12 NP edges, run by run
++
++    cd revision/text/figures/supp_assimregion && python figS_assimregion_A4.py [--no-caption]
++"""
++import os, sys, itertools
++import numpy as np
++import pandas as pd
++import matplotlib
++matplotlib.use("Agg")
++import matplotlib.pyplot as plt
++import scipy.io as sio
++from matplotlib.lines import Line2D
++from matplotlib.patches import Patch
++
++FIGDIR = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures"
++HERE = os.path.join(FIGDIR, "supp_assimregion")
++SRC = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/sensitivity_analysis/assimilated_region"
++sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
++sys.path.insert(0, FIGDIR)
++from np_dtb_style import apply_np_style, C, LW, enforce              # noqa: E402
++from supp_kit import fill                                            # noqa: E402
++from fig_export import collect_text_records                          # noqa: E402
++import figA4_kit as K                                                # noqa: E402
++from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, PW, PH, ML, MR, MT  # noqa: E402
++
++DPI = 400
++WITH_CAP = "--no-caption" not in sys.argv
++STEM = "figS_assimregion_A4" if WITH_CAP else "figS_assimregion_A4_nocaption"
++apply_np_style()
++K.apply_page_style()
++S = {}
++
++
++def dark(c, k=0.55):
++    r, g, b = (int(c[i:i + 2], 16) for i in (1, 3, 5))
++    return "#%02X%02X%02X" % (int(r * k), int(g * k), int(b * k))
++
++
++# colour = region definition (meta-analytic reference vs activation-defined);
++# task rides on marker shape / line style; the 10 M comparator is low-weight grey.
++C_META, C_ACT, C_10M = C("baseline"), C("model_voxel"), "#BFBFBF"
++MK = {"MID": "o", "SST": "s"}
++TASKLAB = {"MID": "Reward (MID)", "SST": "Inhibition (SST)"}
++
++CS = pd.read_csv(os.path.join(HERE, "data", "assimregion_set_summary.csv"))
++OV = pd.read_csv(os.path.join(HERE, "data", "assimregion_overlap_simulated_sets.csv"))
++AC = pd.read_csv(os.path.join(SRC, "np_wholematrix_accuracy_by_condition.csv"))
++EC = pd.read_csv(os.path.join(SRC, "baseline_100M_prior_FC_accuracy_by_class.csv"))
++TS = pd.read_csv(os.path.join(SRC, "prior_activation_overlap_threshold_sweep.csv"))
++E7 = pd.read_csv(os.path.join(SRC, "np_edges_7runs_stats.csv"))
++VOX = CS[CS.set.isin(["prior", "act_voxmatched"])].set_index(["task", "set"])
++
++# ---- panel e: similarity between the simulated connectomes ------------------
++M7 = sio.loadmat(os.path.join(SRC, "task_fc_raw_217x217_7runs.mat"),
++                 squeeze_me=True, struct_as_record=False)["task_fc_112288"]
++IU = np.triu_indices(217, 1)
++S["n_edges_wb"] = len(IU[0])
++GRP = {"feed": ["Feedback_Hit_BIG_WIN", "Feedback_Hit_SMALL_WIN", "Feedback_Hit_NO_WIN"],
++       "anti": ["Anti_Hit_BIG_WIN", "Anti_Hit_SMALL_WIN", "Anti_Hit_NO_WIN"]}
++REPS = [f"MID_assim_{i}" for i in range(1, 6)]
++
++
++def cvec(run, which):
++    r = getattr(M7, run)
++    with np.errstate(invalid="ignore"):
++        m = np.nanmean(np.dstack([getattr(r, k) for k in GRP[which]]), axis=2)
++    return m[IU]
++
++
++def rr(a, b):
++    m = np.isfinite(a) & np.isfinite(b)
++    return float(np.corrcoef(a[m], b[m])[0, 1])
++
++
++sim = []
++for which, clab in [("feed", "feedback-hit"), ("anti", "anticipation-hit")]:
++    V = {r: cvec(r, which) for r in REPS}
++    Va = cvec("MID_act", which)
++    sim += [dict(condition=clab, pair_type="repeat", pair=f"{a[-1]}-{b[-1]}", r=rr(V[a], V[b]))
++            for a, b in itertools.combinations(REPS, 2)]
++    sim += [dict(condition=clab, pair_type="region", pair=f"act-{a[-1]}", r=rr(Va, V[a]))
++            for a in REPS]
++SIM = pd.DataFrame(sim)
++S["sim_repeat"] = "%.4f-%.4f" % (SIM[SIM.pair_type == "repeat"].r.min(),
++                                 SIM[SIM.pair_type == "repeat"].r.max())
++S["sim_region"] = "%.4f-%.4f" % (SIM[SIM.pair_type == "region"].r.min(),
++                                 SIM[SIM.pair_type == "region"].r.max())
++S["sim_ratio"] = "%.1f" % ((1 - SIM[SIM.pair_type == "region"].r.mean()) /
++                           (1 - SIM[SIM.pair_type == "repeat"].r.mean()))
++
++# ---- page ------------------------------------------------------------------
++fig = K.page()
++COLW, GAPX = 79.0, 12.0
++X1, X2 = ML + 12.0, ML + 12.0 + COLW + GAPX
++AXH = 37.0
++R1 = MT + K.LETTER_BAND
++R2 = R1 + AXH + 9.0 + K.LETTER_BAND
++R3 = R2 + AXH + 9.0 + K.LETTER_BAND
++R4 = R3 + AXH + 9.0 + K.LETTER_BAND
++AXH4 = 34.0
++
++
++def style(ax):
++    for s in ax.spines.values():
++        s.set_linewidth(LW)
++    ax.tick_params(length=1.8, width=LW, labelsize=TICK_PT)
++    return ax
++
++
++def title(ax, t):
++    ax.set_title(t, fontsize=LABEL_PT, loc="left", pad=3)
++
++
++# ---- a  overlap of the two simulated sets ----------------------------------
++ax_a = style(K.axes_mm(fig, X1, R1, COLW, AXH))
++for i, tk in enumerate(["MID", "SST"]):
++    o = OV[OV.task == tk].iloc[0]
++    only_m, sh, only_a = o.n_prior - o.n_overlap, o.n_overlap, o.n_act - o.n_overlap
++    left = 0.0
++    for v, col, ec in [(only_m, fill(C_META), C_META), (sh, dark(C_ACT, .8), dark(C_ACT, .8)),
++                       (only_a, fill(C_ACT), C_ACT)]:
++        ax_a.barh(i, v, left=left, height=.52, facecolor=col, edgecolor=ec,
++                  linewidth=LW, zorder=2)
++        if v >= 4:
++            ax_a.text(left + v / 2, i, f"{int(v)}", ha="center", va="center",
++                      fontsize=TICK_PT, color="black", zorder=3)
++        left += v
++    ax_a.text(left + 1.5, i, f"Dice {100 * o.dice_region:.1f}% (parcels), "
++                             f"{100 * o.dice_voxel:.1f}% (voxels)",
++              ha="left", va="center", fontsize=ANNOT_PT, color="0.3")
++    S[f"dice_{tk}"] = f"{100 * o.dice_region:.1f}"
++    S[f"dice_vox_{tk}"] = f"{100 * o.dice_voxel:.1f}"
++    S[f"shared_{tk}"] = f"{int(sh)} of {int(o.n_prior)}"
++ax_a.set_yticks([0, 1]); ax_a.set_yticklabels([TASKLAB["MID"], TASKLAB["SST"]], fontsize=TICK_PT)
++ax_a.set_ylim(-.6, 1.6); ax_a.set_xlim(0, 155)
++ax_a.set_xlabel("Assimilated parcels", fontsize=LABEL_PT)
++ax_a.legend(handles=[Patch(facecolor=fill(C_META), edgecolor=C_META, lw=LW, label="meta-analytic only"),
++                     Patch(facecolor=dark(C_ACT, .8), edgecolor=dark(C_ACT, .8), lw=LW, label="shared"),
++                     Patch(facecolor=fill(C_ACT), edgecolor=C_ACT, lw=LW, label="activation-defined only")],
++            fontsize=ANNOT_PT, frameon=False, loc="lower center", bbox_to_anchor=(.5, 1.02),
++            ncol=3, handlelength=1.3, columnspacing=1.0)
++title(ax_a, "Overlap of the simulated region sets")
++
++# ---- b  subcortical composition --------------------------------------------
++ax_b = style(K.axes_mm(fig, X2, R1, COLW, AXH))
++xb = np.arange(2)
++for k, (st, col, lab) in enumerate([("prior", C_META, "meta-analytic"),
++                                    ("act_voxmatched", C_ACT, "activation, voxel-matched")]):
++    n_sub = [VOX.loc[(t, st)].n_subcortical for t in ["MID", "SST"]]
++    n_tot = [VOX.loc[(t, st)].n_regions for t in ["MID", "SST"]]
++    pct = [100 * a / b for a, b in zip(n_sub, n_tot)]
++    ax_b.bar(xb + (k - .5) * .36, pct, width=.34, facecolor=fill(col), edgecolor=col,
++             linewidth=LW, zorder=2, label=lab)
++    for x, p, a, b in zip(xb + (k - .5) * .36, pct, n_sub, n_tot):
++        ax_b.text(x, p + 1.2, f"{int(a)}/{int(b)}", ha="center", va="bottom",
++                  fontsize=TICK_PT, color=dark(col) if col != C_META else "0.3")
++    for t, a, b in zip(["MID", "SST"], n_sub, n_tot):
++        S[f"sub_{st}_{t}"] = f"{int(a)} of {int(b)}"
++ax_b.set_xticks(xb); ax_b.set_xticklabels([TASKLAB["MID"], TASKLAB["SST"]], fontsize=TICK_PT)
++ax_b.set_ylabel("Subcortical share of the set (%)", fontsize=LABEL_PT)
++ax_b.set_ylim(0, 62)
++ax_b.legend(fontsize=ANNOT_PT, frameon=False, loc="upper right", handlelength=1.3)
++title(ax_b, "Subcortical coverage is lost")
++
++# ---- c  agreement as a function of activation threshold --------------------
++ax_c = style(K.axes_mm(fig, X1, R2, COLW, AXH))
++for tk, ls in [("MID", "-"), ("SST", (0, (3.4, 1.8)))]:
++    t = TS[TS.task == tk].sort_values("thresh")
++    ax_c.plot(t.thresh, 100 * t.recov_any, ls=ls, color=C_ACT, lw=LW * 1.6,
++              marker=MK[tk], ms=2.4, mfc=C_ACT, mec=C_ACT, zorder=3,
++              label=f"{TASKLAB[tk]}, any voxel")
++    ax_c.plot(t.thresh, 100 * t.recov_mean, ls=ls, color=C_10M, lw=LW * 1.4, zorder=2,
++              label=f"{TASKLAB[tk]}, region mean")
++    for th in (0.0, 5.0):
++        v = 100 * float(t[np.isclose(t.thresh, th)].recov_any.iloc[0])
++        S[f"recov_{tk}_T{int(th)}"] = f"{v:.0f}"
++ax_c.axvline(5, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
++ax_c.text(5.3, 96, "T $\\geq$ 5", fontsize=ANNOT_PT, color="0.35", va="top")
++ax_c.set_xlabel("Group-level activation threshold (T)", fontsize=LABEL_PT)
++ax_c.set_ylabel("Meta-analytic parcels that are\nalso activated (%)", fontsize=LABEL_PT)
++ax_c.set_ylim(0, 100); ax_c.set_xlim(-.4, 16.4)
++ax_c.legend(fontsize=ANNOT_PT, frameon=False, loc="upper right", handlelength=1.8,
++            labelspacing=.3)
++title(ax_c, "The two definitions agree only at liberal thresholds")
++
++# ---- d  whole-brain accuracy, four conditions ------------------------------
++ax_d = style(K.axes_mm(fig, X2, R2, COLW, AXH))
++AC = AC.reset_index(drop=True)
++for i, r in AC.iterrows():
++    tk = "MID" if r.condition.startswith("reward") else "SST"
++    if np.isfinite(r.meta_analytic_mean_r):
++        ax_d.errorbar(i - .18, r.meta_analytic_mean_r,
++                      yerr=[[r.meta_analytic_mean_r - r.meta_analytic_min_r],
++                            [r.meta_analytic_max_r - r.meta_analytic_mean_r]],
++                      fmt=MK[tk], ms=3.6, color=C_META, mfc="white", mec=C_META,
++                      mew=LW * 1.3, elinewidth=LW, capsize=1.8, capthick=LW, zorder=3)
++    else:
++        ax_d.text(i - .18, .60, "no 100 M\nmeta-analytic\nrun", ha="center", va="bottom",
++                  fontsize=ANNOT_PT, color="0.45", linespacing=1.15)
++    ax_d.plot(i + .02, r.activation_r, MK[tk], ms=3.6, mfc=C_ACT, mec=dark(C_ACT),
++              mew=LW * 1.3, zorder=3)
++    ax_d.plot(i + .22, r.prior_10m_cohort_r, MK[tk], ms=3.0, mfc="white", mec=C_10M,
++              mew=LW * 1.3, zorder=3)
++    if np.isfinite(r.meta_analytic_mean_r):
++        ax_d.text(i - .08, max(r.meta_analytic_max_r, r.activation_r) + .012,
++                  f"$\\Delta r$ = {r.activation_r - r.meta_analytic_mean_r:+.4f}",
++                  ha="center", va="bottom", fontsize=ANNOT_PT, color="0.3")
++    S[f"acc_{r.condition}"] = (f"act {r.activation_r:.4f}, meta "
++                               f"{r.meta_analytic_mean_r:.4f}+/-{r.meta_analytic_sd_r:.4f}"
++                               if np.isfinite(r.meta_analytic_mean_r)
++                               else f"act {r.activation_r:.4f}, 10M {r.prior_10m_cohort_r:.4f}")
++ax_d.set_xticks(range(len(AC)))
++ax_d.set_xticklabels([c.replace(" ", "\n") for c in AC.condition], fontsize=TICK_PT)
++ax_d.set_ylabel("Whole-brain accuracy\n(Pearson $r$ vs empirical task FC)", fontsize=LABEL_PT)
++ax_d.set_ylim(.55, .90); ax_d.set_xlim(-.55, len(AC) - .40)
++ax_d.legend(handles=[Line2D([], [], marker="o", ls="none", ms=3.6, mfc="white", mec=C_META,
++                            mew=LW * 1.3, label="meta-analytic, 100 M (5 runs, mean and range)"),
++                     Line2D([], [], marker="o", ls="none", ms=3.6, mfc=C_ACT,
++                            mec=dark(C_ACT), mew=LW * 1.3, label="activation-defined, 100 M (1 run)"),
++                     Line2D([], [], marker="o", ls="none", ms=3.0, mfc="white", mec=C_10M,
++                            mew=LW * 1.3, label="meta-analytic, 10 M cohort model")],
++            fontsize=ANNOT_PT, frameon=False, loc="upper left", handlelength=1.0,
++            labelspacing=.3, borderpad=.1)
++title(ax_d, "Accuracy does not improve")
++
++# ---- e  the region swap moves the connectome more than a rerun -------------
++ax_e = style(K.axes_mm(fig, X1, R3, COLW, AXH))
++rng = np.random.default_rng(1)
++pos = {("repeat", "feedback-hit"): 0, ("repeat", "anticipation-hit"): 1,
++       ("region", "feedback-hit"): 2.4, ("region", "anticipation-hit"): 3.4}
++for (pt, cd), x in pos.items():
++    v = SIM[(SIM.pair_type == pt) & (SIM.condition == cd)].r.values
++    col = C_META if pt == "repeat" else C_ACT
++    ax_e.scatter(x + rng.uniform(-.13, .13, len(v)), v, s=14, facecolor=fill(col),
++                 edgecolor=dark(col) if pt == "region" else col, linewidth=LW, zorder=3)
++    ax_e.plot([x - .28, x + .28], [np.median(v)] * 2, color="black", lw=LW * 1.4, zorder=4)
++    ax_e.text(x, 0.9985, f"n = {len(v)}", ha="center", va="bottom", fontsize=TICK_PT,
++              color="0.35")
++ax_e.set_xticks(list(pos.values()))
++ax_e.set_xticklabels(["feedback\n-hit", "anticip.\n-hit"] * 2, fontsize=TICK_PT)
++ax_e.set_xlim(-.6, 4.0); ax_e.set_ylim(.960, 1.0005)
++ax_e.set_ylabel("Agreement between two simulated\nconnectomes (Pearson $r$)", fontsize=LABEL_PT)
++ax_e.text(0.5, .9615, "repeated assimilation,\nsame meta-analytic set", ha="center",
++          va="bottom", fontsize=ANNOT_PT, color=dark(C_META, .8), linespacing=1.15)
++ax_e.text(2.9, .9615, "activation-defined set\nvs meta-analytic set", ha="center",
++          va="bottom", fontsize=ANNOT_PT, color=dark(C_ACT), linespacing=1.15)
++title(ax_e, "The region swap does move the model")
++
++# ---- f  accuracy by assimilation status of the edge ------------------------
++ax_f = style(K.axes_mm(fig, X2, R3, COLW, AXH))
++EC = EC.set_index("edge_class").loc[["both", "one", "neither", "all"]].reset_index()
++cols = [C("np12"), C("model_regional"), C("non_np"), C_META]
++ax_f.bar(np.arange(len(EC)), EC.r_emp_sim, width=.6,
++         facecolor=[fill(c) for c in cols], edgecolor=cols, linewidth=LW, zorder=2)
++for i, (v, n, ms) in enumerate(zip(EC.r_emp_sim, EC.n_edges, EC.mse)):
++    ax_f.text(i, v + .02, f"{v:.3f}\nn = {n:,}\nMSE {ms:.4f}", ha="center", va="bottom",
++              fontsize=TICK_PT, color=dark(cols[i]) if i < 3 else "0.3", linespacing=1.2)
++    S[f"class_{EC.edge_class[i]}"] = f"r = {v:.4f}, n = {n}, MSE = {ms:.5f}"
++ax_f.set_xticks(range(len(EC)))
++ax_f.set_xticklabels(["both\nendpoints", "one\nendpoint", "neither", "all\nedges"],
++                     fontsize=TICK_PT)
++ax_f.set_xlabel("Assimilation status of the edge", fontsize=LABEL_PT)
++ax_f.set_ylabel("Simulated vs empirical FC ($r$)", fontsize=LABEL_PT)
++ax_f.set_ylim(0, 1.32)
++title(ax_f, "Accuracy follows assimilation status")
++
++# ---- g  the 12 NP edges ----------------------------------------------------
++ax_g = style(K.axes_mm(fig, X1, R4, COLW * 2 + GAPX, AXH4))
++E7 = E7.sort_values("edge", key=lambda s: s.str.replace("edge", "").astype(int)).reset_index(drop=True)
++xg = np.arange(len(E7))
++ax_g.axvspan(-.5, 5.5, facecolor="#F6F6F6", edgecolor="none", zorder=0)
++ax_g.axhline(0, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
++for i, r in E7.iterrows():
++    tk = "SST" if r.condition.startswith("SST") else "MID"
++    if np.isfinite(r.mean_repeat):
++        ax_g.errorbar(i - .16, r.mean_repeat,
++                      yerr=[[r.mean_repeat - r.min_repeat], [r.max_repeat - r.mean_repeat]],
++                      fmt=MK[tk], ms=3.4, color=C_META, mfc="white", mec=C_META,
++                      mew=LW * 1.3, elinewidth=LW, capsize=1.6, capthick=LW, zorder=3)
++    ax_g.plot(i + .02, r.act, MK[tk], ms=3.4, mfc=C_ACT, mec=dark(C_ACT), mew=LW * 1.3, zorder=3)
++    ax_g.plot(i + .20, r.empirical, MK[tk], ms=3.4, mfc="black", mec="black", zorder=3)
++    if r.act_outside_repeat_range:
++        ax_g.text(i, max(r.act, r.empirical, r.max_repeat) + .045,
++                  f"z = {r.z_act:.1f}", ha="center", va="bottom", fontsize=ANNOT_PT,
++                  color=dark(C_ACT))
++        S[f"z_edge{i + 1}"] = f"{r.z_act:.1f}"
++ax_g.set_xticks(xg)
++ax_g.set_xticklabels([f"{i + 1}\n{r.pair}" for i, r in E7.iterrows()], fontsize=TICK_PT)
++ax_g.set_xlim(-.6, len(E7) - .3); ax_g.set_ylim(-.52, .58)
++ax_g.set_xlabel("NP edge (region pair in the 217-region model)", fontsize=LABEL_PT)
++ax_g.set_ylabel("Task FC of the edge", fontsize=LABEL_PT)
++ax_g.text(2.5, .53, "inhibition task (edges 1-6):\nno meta-analytic 100 M run", ha="center",
++          va="top", fontsize=ANNOT_PT, color="0.45", linespacing=1.15)
++ax_g.text(8.5, .53, "reward task (edges 7-12)", ha="center", va="top",
++          fontsize=ANNOT_PT, color="0.45")
++ax_g.legend(handles=[Line2D([], [], marker="o", ls="none", ms=3.4, mfc="white", mec=C_META,
++                            mew=LW * 1.3, label="meta-analytic, 5 runs (mean and range)"),
++                     Line2D([], [], marker="o", ls="none", ms=3.4, mfc=C_ACT, mec=dark(C_ACT),
++                            mew=LW * 1.3, label="activation-defined"),
++                     Line2D([], [], marker="o", ls="none", ms=3.4, mfc="black", mec="black",
++                            label="empirical"),
++                     Line2D([], [], marker="s", ls="none", ms=3.4, mfc="0.75", mec="0.4",
++                            label="circle, reward task; square, inhibition task")],
++            fontsize=ANNOT_PT, frameon=False, loc="lower center", bbox_to_anchor=(.5, -.60),
++            ncol=4, handlelength=1.0, columnspacing=1.4)
++title(ax_g, "Only the two edges whose endpoints changed assimilation status move")
++
++PANELS = [dict(ch=c, x=x - 8.0, axes=[a], txt=K.letter(fig, x - 8.0, y, c))
++          for c, x, y, a in [("a", X1, R1, ax_a), ("b", X2, R1, ax_b),
++                             ("c", X1, R2, ax_c), ("d", X2, R2, ax_d),
++                             ("e", X1, R3, ax_e), ("f", X2, R3, ax_f),
++                             ("g", X1, R4, ax_g)]]
++enforce(fig)
++BOTTOM = R4 + AXH4 + 17.0
++
++
++def caption_runs():
++    def R(s, bold=False):
++        return [(w, bold) for w in s.split(" ")]
++    r = []
++    r += R("Supplementary Fig. S22 |", True)
++    r += R("Meta-analytic versus activation-defined assimilation regions. One "
++           "activation-defined region set was built per task from the cohort's "
++           "group-level task T maps and matched to the meta-analytic set on assimilated "
++           "voxel count (reward set, 2,013 versus 2,022 voxels; inhibition set, 2,185 "
++           "versus 1,959). Both were then assimilated and simulated in one participant's "
++           "100-million-neuron voxel-wise digital twin brain and scored against that "
++           f"participant's empirical task functional connectivity over all "
++           f"{S['n_edges_wb']:,} edges of the 217-region model. The meta-analytic set was "
++           "assimilated five independent times on the reward task, which provides the "
++           "run-to-run envelope against which the region swap is judged; no "
++           "100-million-neuron meta-analytic assimilation of the inhibition task exists "
++           "for this participant, so its only comparator is the 10-million-neuron cohort "
++           "model, which differs in neuronal scale as well as in region definition and is "
++           "therefore shown as context, not as a matched comparison. One participant with "
++           "repeated assimilations is a set of repeated measurements rather than a sample, "
++           "so every panel is descriptive: no error indicator other than the observed "
++           "run-to-run range, and no inferential test. ")
++    r += R(" a,", True)
++    r += R(f"Parcel composition of the two simulated sets in the participant's own voxel "
++           f"space: the sets share {S['shared_MID']} meta-analytic parcels on the reward "
++           f"task and {S['shared_SST']} on the inhibition task. ")
++    r += R(" b,", True)
++    r += R(f"Subcortical share of each set in the 217-region model space "
++           f"(reward, {S['sub_prior_MID']} regions subcortical for the meta-analytic set "
++           f"versus {S['sub_act_voxmatched_MID']} for the activation-defined set; "
++           f"inhibition, {S['sub_prior_SST']} versus {S['sub_act_voxmatched_SST']}); the "
++           "activation-defined sets load onto visual and motor cortex instead. ")
++    r += R(" c,", True)
++    r += R("Percentage of meta-analytic parcels that also show positive group-level "
++           "activation, as the activation threshold is raised (solid line and circles, "
++           "reward; dashed, inhibition; the pale lines apply the threshold to the region "
++           f"mean rather than to any voxel). The definitions agree at liberal thresholds "
++           f"({S['recov_MID_T0']}% of reward and {S['recov_SST_T0']}% of inhibition "
++           f"parcels at T > 0) and diverge as the threshold rises "
++           f"({S['recov_MID_T5']}% and {S['recov_SST_T5']}% at T >= 5). ")
++    r += R(" d,", True)
++    r += R("Whole-brain accuracy for the four task conditions. Replacing the "
++           "meta-analytic regions did not improve it: reward feedback-hit r = 0.7059 "
++           "versus 0.7129 +/- 0.0007 (range 0.7120-0.7138) over the five meta-analytic "
++           "runs, a change of -0.0070, about ten between-run standard deviations but "
++           "-1.0% of r; reward anticipation-hit 0.7011 versus 0.7007 +/- 0.0006 (+0.0004, "
++           "+0.1%). The inhibition conditions reach 0.8255 and 0.7926 with the "
++           "activation-defined set at 100 million neurons against 0.6502 and 0.6050 for "
++           "the 10-million-neuron meta-analytic cohort model, a difference that cannot be "
++           "attributed to the region definition because the two runs differ in scale. ")
++    r += R(" e,", True)
++    r += R("Agreement between pairs of simulated connectomes, one point per pair and the "
++           "bar at the median: the five repeats of the meta-analytic set reproduce each "
++           f"other at r = {S['sim_repeat']} (10 pairs per condition) whereas the "
++           f"activation-defined run reproduces them at r = {S['sim_region']} (5 pairs per "
++           f"condition), so the region swap perturbs the connectome about "
++           f"{S['sim_ratio']} times more than rerunning the same assimilation - and "
++           "accuracy still did not improve. ")
++    r += R(" f,", True)
++    r += R("Simulated-empirical agreement for all edges of the meta-analytic 100-million "
++           "neuron baseline, grouped by how many of the edge's two endpoints were "
++           f"assimilated ({S['class_both']}; {S['class_one']}; {S['class_neither']}; "
++           f"{S['class_all']}). ")
++    r += R(" g,", True)
++    r += R("The twelve NP edges. Only edges 7 and 11 fall outside the five-run "
++           f"meta-analytic range (z = {S['z_edge7']} and {S['z_edge11']} in units of the "
++           "between-run standard deviation), and both are edges whose endpoints the "
++           "meta-analytic set assimilated and the activation-defined set dropped - the "
++           "same pattern as f. Edges 1-6 belong to the inhibition task and have no "
++           "meta-analytic 100-million-neuron comparator.")
++    return r
++
++
++runs = caption_runs()
++if WITH_CAP:
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
++        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
++else:
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
++assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
++
++png, pdf, ppt = (os.path.join(HERE, STEM + e) for e in (".png", ".pdf", ".pptx"))
++fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
++fig.savefig(pdf, bbox_inches=None, facecolor="white")
++K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
++              collect_text_records=collect_text_records)
++SIM.to_csv(os.path.join(HERE, "data", "assimregion_connectome_similarity_pairs.csv"), index=False)
++AC.to_csv(os.path.join(HERE, "data", "assimregion_wholebrain_accuracy_4conditions.csv"), index=False)
++TS.to_csv(os.path.join(HERE, "data", "assimregion_threshold_sweep.csv"), index=False)
++E7.to_csv(os.path.join(HERE, "data", "assimregion_np_edges_runwise.csv"), index=False)
++pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
++    os.path.join(HERE, "figS_assimregion_caption_values.csv"), index=False)
++bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
++       if t.get_text().strip() and t.get_fontname() != "Arial"]
++print(f"[{STEM}] panels end at {BOTTOM:.1f} mm, caption {n_lines} lines -> "
++      f"{CAP_BOTTOM:.1f} of {PH:.0f} mm | non-Arial: {bad[:3]}")
++print(f"similarity repeat {S['sim_repeat']} vs region {S['sim_region']} "
++      f"({S['sim_ratio']}x); dice MID {S['dice_MID']}% SST {S['dice_SST']}%")
++

@@ -1,0 +1,4 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_eft_a,62,54,1009x814,413,eft_3subs.csv
+figS_eft_b,62,54,962x814,394,np_task_3subs.csv
+figS_eft_c,52,54,776x826,379,eft_3subs.csv + np_task_3subs.csv

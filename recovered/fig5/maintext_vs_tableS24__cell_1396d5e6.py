@@ -1,0 +1,50 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/_recovered_session_b194cd74/maintext_vs_tableS24.csv
+# cell id       : 1396d5e6-e22d-4fed-9490-f9d2070b3c27
+# frame id      : b194cd74-5255-435a-9c1e-206638f9adae
+# cell_index    : 627
+# executed at   : 2026-09-29 11:57 UTC
+# language      : python    conda env: python
+# organised as  : 03_analysis/fig5/35_maintext_vs_tableS24.py
+# This is the terminal cell exactly as it ran, with nothing removed and nothing
+# reformatted. It is a fragment of an interactive session and is not standalone;
+# the organised script carries the full dependency chain from the same session.
+# ---------------------------------------------------------------------------
+
+for r in (19,20,21):
+    v=s24.cell(row=r,column=16).value
+    s24.cell(row=r,column=16,value=re.sub(r'([\d.+-]+),\s*([\d.+-]+)',r'\1 to \2',v))
+def findrow(sub, col=3):
+    hits=[r for r in range(3,s24.max_row+1) if sub in str(s24.cell(row=r,column=col).value or '')]
+    assert len(hits)==1,(sub,hits); return hits[0]
+r21=findrow('simulated baseline NP factor: HC vs Patient'); r22=findrow('simulated baseline NP factor: High-symptom')
+for r,(dofw,tw,g_,q_,ci_) in {r21:(118.1,-3.36,-0.53,0.0016,(-0.83,-0.23)), r22:(168.4,-3.66,-0.52,0.001,(-0.79,-0.24))}.items():
+    setrow(r, c7='two-sided Welch unequal-variance t test on NP scores residualised for sex, site and mean FD',
+           c10='Benjamini-Hochberg FDR across the three group contrasts',
+           c11='Welch t(%.1f) = %.2f'%(dofw,tw), c12='%.1f'%dofw, c14='q = %s'%fmt_p2(q_),
+           c15="Hedges' g = %.2f"%g_, c16="%.2f to %.2f (Hedges' g)"%ci_,
+           c17='fig.4/fig4_data/fig4_subject_level_n288.csv; the values reported in the main text (Results, population-scale simulations)')
+r5f=findrow('link np-connectivity changes with symptom')
+s24.insert_rows(r5f, amount=1)
+for c,v in enumerate(['','d-f (clinical sample)','Change in depressive severity from the drug-free session in patients and in controls',
+   '22 patients, 14 controls','participant','none drawn (descriptive panel)',
+   'two-sided paired t test on the change in depressive severity within each group',
+   'two-sided','paired (same participants)','none (two pre-specified within-group tests)',
+   'patients t = -4.22; controls not significant','21 (patients)','0.0006 (patients); 0.21 (controls)',None,
+   'as reported in the Methods and main text','not reported in the source summary',
+   'clinical pharmacological dataset (ds005917), Methods; the subject-level file for this test is not in the figure data folders, so the values are carried from the Methods'],1):
+    if v!='': s24.cell(row=r5f,column=c,value=v)
+wb.save(TOUT2); shutil.copy(TOUT2,'/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/'+TOUT2)
+ck=openpyxl.load_workbook('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/'+TOUT2); S=ck['Table S24']
+S24TXT=' '.join(str(S.cell(row=r,column=c).value or '') for r in range(1,S.max_row+1) for c in range(1,18))
+miss2=[]
+for i,t in enumerate(MSTXT):
+    for m in LABV.finditer(t):
+        val=m.group(2)
+        if '.' not in val or val in S24TXT: continue
+        miss2.append(dict(para=i,label=re.sub(r'\s+',' ',m.group(1)).strip(' ,.('),value=val,context=t[max(0,m.start()-100):m.end()+60].replace('\n',' ')))
+CC=pd.DataFrame(miss2).drop_duplicates(subset=['label','value'])
+CC.to_csv('maintext_vs_tableS24.csv',index=False)
+print('remaining main-text statistics not in Table S24: %d'%len(CC))
+print(CC.to_string(max_colwidth=100))
+print('\nS24 data rows:', sum(1 for r in range(3,S.max_row+1) if S.cell(row=r,column=1).value or S.cell(row=r,column=2).value))

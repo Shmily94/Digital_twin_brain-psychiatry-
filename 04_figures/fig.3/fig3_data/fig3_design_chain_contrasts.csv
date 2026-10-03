@@ -1,0 +1,10 @@
+step,build_from,build_to,factor_changed,metric,mean_from,mean_to,mean_diff,ci_lo,ci_hi,dz,t_p,wilcoxon_p,direction,n
+1  assimilation scale,10m_own,10m,assimilation 10 M voxel → 100 M,assimilated BOLD r,0.774,0.8916,0.1175,0.0962,0.1389,2.325,6.228821987300458e-11,1.1920928955078125e-07,higher,24
+1  assimilation scale,10m_own,10m,assimilation 10 M voxel → 100 M,NP-edge MSE,0.0958,0.0498,-0.0461,-0.0861,-0.006,-0.73,0.0280129495192766,0.02099609375,lower,12
+1  assimilation scale,10m_own,10m,assimilation 10 M voxel → 100 M,whole-brain FC r,0.0763,0.6134,0.5371,0.5082,0.566,11.807,2.2667681533953904e-13,0.00048828125,higher,12
+2  drop to 1000 regions,10m_own,10m_1000,voxel → 1000 regions,assimilated BOLD r,0.774,0.6858,-0.0882,-0.1122,-0.0642,-1.554,9.972833380558022e-08,8.344650268554688e-07,higher,24
+2  drop to 1000 regions,10m_own,10m_1000,voxel → 1000 regions,NP-edge MSE,0.0958,0.0975,0.0016,-0.0322,0.0354,0.031,0.9173991401990603,0.9697265625,lower,12
+3  drop to 268 regions,10m_1000,10m_268,1000 → 268 regions,assimilated BOLD r,0.6858,0.9134,0.2275,0.2099,0.2452,5.453,8.123692126059669e-19,1.1920928955078125e-07,higher,24
+3  drop to 268 regions,10m_1000,10m_268,1000 → 268 regions,NP-edge MSE,0.0975,0.0718,-0.0257,-0.0779,0.0266,-0.312,0.3030491120431211,0.423828125,lower,12
+4  cheaper neurons,10m_268,3m_268,10 M → 3 M neurons,assimilated BOLD r,0.9134,0.9132,-0.0002,-0.0003,-0.0001,-0.966,9.109101664474782e-05,1.1920928955078125e-07,higher,24
+4  cheaper neurons,10m_268,3m_268,10 M → 3 M neurons,NP-edge MSE,0.0718,0.0649,-0.0069,-0.0221,0.0083,-0.289,0.3380851525210529,0.17626953125,lower,12

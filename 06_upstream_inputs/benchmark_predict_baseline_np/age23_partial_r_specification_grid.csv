@@ -1,0 +1,21 @@
+index,covariates,b,std_beta,partial_r,t,df,P
+AMPA full-sample,age-19 symptom SUM,0.231877,0.156393,0.222337,2.065036,82,0.042079
+AMPA full-sample,age-19 symptom 4 ITEMS,0.254703,0.171789,0.241949,2.216337,79,0.029545
+AMPA full-sample,age-19 symptoms + empirical FC sum,0.213047,0.143693,0.214311,1.97468,81,0.051712
+AMPA full-sample,age-19 symptoms + 12 empirical edges,0.211121,0.142395,0.20093,1.716103,70,0.090566
+AMPA full-sample,empirical FC sum only,0.062393,0.042082,0.041854,0.379337,82,0.705418
+AMPA out-of-sample,age-19 symptom SUM,0.219842,0.14931,0.212536,1.969596,82,0.052261
+AMPA out-of-sample,age-19 symptom 4 ITEMS,0.241581,0.164075,0.231183,2.112017,79,0.037845
+AMPA out-of-sample,age-19 symptoms + empirical FC sum,0.197509,0.134142,0.200152,1.838576,81,0.069643
+AMPA out-of-sample,age-19 symptoms + 12 empirical edges,0.194914,0.132379,0.186943,1.59215,70,0.115857
+AMPA out-of-sample,empirical FC sum only,0.061253,0.041601,0.041333,0.374608,82,0.708919
+GABA_A full-sample,age-19 symptom SUM,0.112229,0.115587,0.162079,1.487354,82,0.140757
+GABA_A full-sample,age-19 symptom 4 ITEMS,0.111126,0.114452,0.159202,1.433295,79,0.155719
+GABA_A full-sample,age-19 symptoms + empirical FC sum,0.111134,0.11446,0.168692,1.540298,81,0.127385
+GABA_A full-sample,age-19 symptoms + 12 empirical edges,0.132169,0.136125,0.191549,1.632849,70,0.106991
+GABA_A full-sample,empirical FC sum only,-0.050341,-0.051847,-0.051714,-0.468916,82,0.640374
+GABA_A out-of-sample,age-19 symptom SUM,0.104464,0.107774,0.151037,1.38357,82,0.170245
+GABA_A out-of-sample,age-19 symptom 4 ITEMS,0.103155,0.106424,0.148649,1.336062,79,0.185365
+GABA_A out-of-sample,age-19 symptoms + empirical FC sum,0.101996,0.105228,0.154987,1.411948,81,0.161796
+GABA_A out-of-sample,age-19 symptoms + 12 empirical edges,0.120726,0.124552,0.176125,1.496965,70,0.138898
+GABA_A out-of-sample,empirical FC sum only,-0.059243,-0.06112,-0.060931,-0.552778,82,0.581919

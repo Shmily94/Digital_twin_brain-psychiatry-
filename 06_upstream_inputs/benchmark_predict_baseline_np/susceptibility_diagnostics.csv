@@ -1,0 +1,7 @@
+diagnostic,value,P,n
+"AMPA slope vs GABA_A slope, same subject",0.059299,0.589823,85
+AMPA curvature vs GABA_A curvature,-0.0653,0.552673,85
+AMPA slope group difference (one-way ANOVA F),0.132679,0.940561,288
+|mean|/sd of AMPA slope,0.137423,,85
+fraction non-monotone 3-point curves,0.541176,,85
+g* within 2x tested range,0.458824,,85

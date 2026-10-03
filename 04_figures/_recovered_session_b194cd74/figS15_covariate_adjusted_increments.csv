@@ -1,0 +1,11 @@
+,dR2,F,df1,df2,P,q_BH
+summed simulated NP beyond covariates,0.059948,5.175119,1.0,74.0,0.02581,0.051621
+summed empirical NP beyond covariates,0.139477,13.271847,1.0,74.0,0.000497,0.004714
+summed simulated beyond summed empirical,0.040489,4.009403,1.0,73.0,0.048962,0.070701
+summed empirical beyond summed simulated,0.120017,11.884657,1.0,73.0,0.000943,0.004714
+12 simulated edges beyond covariates,0.334708,3.016938,12.0,63.0,0.002151,0.007169
+12 empirical edges beyond covariates,0.212258,1.580871,12.0,63.0,0.120391,0.150489
+12 simulated edges beyond the 12 empirical edges,0.221813,1.951415,12.0,51.0,0.049491,0.070701
+12 empirical edges beyond the 12 simulated edges,0.099363,0.874154,12.0,51.0,0.577375,0.577375
+12 simulated edges beyond symptoms,0.250606,2.531177,12.0,62.0,0.008782,0.021954
+12 empirical edges beyond symptoms,0.122465,0.98914,12.0,62.0,0.46939,0.521544

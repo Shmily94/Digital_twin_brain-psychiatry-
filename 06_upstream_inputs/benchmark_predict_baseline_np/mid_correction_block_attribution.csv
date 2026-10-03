@@ -1,0 +1,7 @@
+quantity,block,r_archived_vs_corrected,max_abs_diff,r_sorted,verdict
+baseline (simulated),SST (edges 1-6),1.0,0.037,1.0,unchanged
+baseline (simulated),MID (edges 7-12),0.2811,3.2,0.996,CHANGED
+baseline (simulated),TOTAL 12 edges,0.7023,3.2,0.9925,CHANGED via MID
+manipulated (vs corrected ampa),SST (edges 1-6),0.9997,0.084,1.0,unchanged
+manipulated (vs corrected ampa),MID (edges 7-12),0.5052,1.504,0.9984,CHANGED
+manipulated (vs corrected ampa),TOTAL 12 edges,0.603,1.504,0.9981,CHANGED via MID

@@ -1,0 +1,49 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/supp_oldham_mid6/data/oldham_subject_level_mid6.csv
+#
+# cell id      : df496b3b-8da3-41a2-b4a9-dffbbf6c0ecd
+# frame id     : 25343478-9a78-4867-bcc3-f40b07365f59
+# timestamp    : 2026-09-27 05:27:39 UTC
+# conda env    : python
+# language     : python
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/46_oldham_subject_level_mid6.py
+##############################################################################
+
+def oldham(pre, post, label, dataset, contrast, drug):
+    m = (pre+post)/2; d = post-pre; n = len(pre)
+    r, p = stats.pearsonr(m, d); df = n-2
+    t = r*np.sqrt(df/(1-r**2))
+    z = np.arctanh(r); lo, hi = np.tanh(z-1.96/np.sqrt(n-3)), np.tanh(z+1.96/np.sqrt(n-3))
+    rn, pn = stats.pearsonr(pre, d)
+    f = sm.OLS(post, sm.add_constant(pre)).fit(); ci = f.conf_int()[1]; tv = (f.params[1]-1)/f.bse[1]
+    return dict(series=label, dataset=dataset, contrast=contrast, drug_or_perturbation=drug, n=n,
+                pre_mean=pre.mean(), post_mean=post.mean(), pre_sd=pre.std(ddof=1), post_sd=post.std(ddof=1),
+                variance_ratio_post_pre=post.var(ddof=1)/pre.var(ddof=1),
+                oldham_r=r, oldham_ci95_lo=lo, oldham_ci95_hi=hi, oldham_t=t, df=df, oldham_p=p,
+                naive_baseline_change_r=rn, naive_p=pn, slope_post_on_pre=f.params[1],
+                slope_ci95_lo=ci[0], slope_ci95_hi=ci[1], slope_vs1_t=tv,
+                slope_vs1_p=2*(1-stats.t.cdf(abs(tv), f.df_resid)))
+DS = 'DTB model (IMAGEN, n = 288)'
+TESTS = pd.DataFrame([
+ oldham(bm, am, 'mid6_ampa', DS, 'baseline \u2192 AMPA', 'AMPA up-regulation'),
+ oldham(bm, gm, 'mid6_gaba', DS, 'baseline \u2192 GABA-A', 'GABA-A up-regulation'),
+ oldham(b12s:=S[['baseline_%s'%e for e in ALL12]].to_numpy(float).sum(1), S[['ampa__mod_%s'%e for e in ALL12]].to_numpy(float).sum(1), 'np12_ampa', DS, 'baseline \u2192 AMPA', 'AMPA up-regulation'),
+ oldham(b12s, S[['gaba__mod_%s'%e for e in ALL12]].to_numpy(float).sum(1), 'np12_gaba', DS, 'baseline \u2192 GABA-A', 'GABA-A up-regulation'),
+])
+TESTS['note'] = ['six MID-specific NP edges','six MID-specific NP edges','full 12-edge NP factor (published)','full 12-edge NP factor (published)']
+print(TESTS[['series','n','pre_sd','post_sd','variance_ratio_post_pre','oldham_r','oldham_ci95_lo','oldham_ci95_hi','oldham_t','oldham_p','naive_baseline_change_r','slope_post_on_pre']].round(4).to_string(index=False))
+pub = pd.read_csv('/Users/yunman/Desktop/submission/revision/text/figures/supp_oldham/data/oldham_tests.csv')
+print('\ncross-check full-NP against the published table:')
+for k, s in [('np12_ampa','model_ampa'), ('np12_gaba','model_gaba')]:
+    a = TESTS[TESTS.series==k].iloc[0]; b = pub[pub.series==s].iloc[0]
+    print('   %-10s oldham r %.4f vs %.4f | t %.3f vs %.3f | var ratio %.4f vs %.4f' % (k, a.oldham_r, b.oldham_r, a.oldham_t, b.oldham_t, a.variance_ratio_post_pre, b.variance_ratio_post_pre))
+SUBJ = pd.concat([pd.DataFrame(dict(series=nm, subject=ids288, pre=bm, post=v, mean_pre_post=(bm+v)/2, difference=v-bm))
+                  for nm, v in [('mid6_ampa', am), ('mid6_gaba', gm)]], ignore_index=True)
+OUT = '/Users/yunman/Desktop/submission/revision/text/figures/supp_oldham_mid6'
+os.makedirs(os.path.join(OUT,'data'), exist_ok=True); os.makedirs(os.path.join(OUT,'panels'), exist_ok=True)
+TESTS.round(6).to_csv(os.path.join(OUT,'data','oldham_tests_mid6.csv'), index=False)
+SUBJ.round(6).to_csv(os.path.join(OUT,'data','oldham_subject_level_mid6.csv'), index=False)
+print('\nwritten to %s/data' % OUT)

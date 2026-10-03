@@ -1,0 +1,23 @@
+model,term,b,SE,beta,t,P,VIF
+A. baseline symptoms (sum) + index,baseline_symptoms_sum,-0.269894,0.074352,-0.363394,-3.62996,0.000492,1.025033
+A. baseline symptoms (sum) + index,ampa_index,0.231877,0.112287,0.20673,2.065036,0.042079,1.025033
+A2. baseline symptoms (4 bands) + index,baseline_band1,0.067248,0.335433,0.020504,0.200481,0.841619,1.077434
+A2. baseline symptoms (4 bands) + index,baseline_band2,-0.023841,0.257489,-0.011612,-0.092592,0.926462,1.61985
+A2. baseline symptoms (4 bands) + index,baseline_band3,-0.376988,0.350174,-0.143172,-1.076575,0.284947,1.821682
+A2. baseline symptoms (4 bands) + index,baseline_band4,-0.420633,0.149028,-0.318472,-2.822514,0.006026,1.311332
+A2. baseline symptoms (4 bands) + index,ampa_index,0.254703,0.114921,0.22708,2.216337,0.029545,1.081262
+B. baseline NP connectivity (12-edge sum) + index,baseline_NP_sum,2.481044,0.673218,0.365647,3.68535,0.000409,1.011112
+B. baseline NP connectivity (12-edge sum) + index,ampa_index,0.25258,0.111285,0.225188,2.269665,0.025853,1.011112
+B2. baseline NP connectivity (12 edges) + index,emp_edge1,2.041275,3.456047,0.068056,0.590639,0.556638,1.250804
+B2. baseline NP connectivity (12 edges) + index,emp_edge2,6.264876,3.674544,0.183476,1.70494,0.092578,1.091032
+B2. baseline NP connectivity (12 edges) + index,emp_edge3,2.327041,3.643935,0.075419,0.638607,0.525134,1.31398
+B2. baseline NP connectivity (12 edges) + index,emp_edge4,2.465814,3.020943,0.091253,0.81624,0.417093,1.177493
+B2. baseline NP connectivity (12 edges) + index,emp_edge5,1.230224,3.025595,0.046877,0.406606,0.685521,1.252209
+B2. baseline NP connectivity (12 edges) + index,emp_edge6,4.448915,4.052251,0.12356,1.097887,0.275963,1.193273
+B2. baseline NP connectivity (12 edges) + index,emp_edge7,4.974569,2.899373,0.204492,1.71574,0.090571,1.338283
+B2. baseline NP connectivity (12 edges) + index,emp_edge8,2.08535,3.071739,0.073444,0.678882,0.499419,1.102599
+B2. baseline NP connectivity (12 edges) + index,emp_edge9,-3.369241,5.462558,-0.133984,-0.616788,0.539347,4.445654
+B2. baseline NP connectivity (12 edges) + index,emp_edge10,0.566272,2.473529,0.024785,0.228933,0.819579,1.104224
+B2. baseline NP connectivity (12 edges) + index,emp_edge11,1.755099,2.960552,0.068192,0.592828,0.55518,1.246558
+B2. baseline NP connectivity (12 edges) + index,emp_edge12,7.581166,5.641444,0.286876,1.343834,0.183281,4.293337
+B2. baseline NP connectivity (12 edges) + index,ampa_index,0.243247,0.125496,0.216867,1.938287,0.056565,1.179368

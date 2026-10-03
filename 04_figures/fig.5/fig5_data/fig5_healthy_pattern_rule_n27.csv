@@ -1,0 +1,25 @@
+rule,group,n,measure,mean,sd,test,stat,p
+both-up / any-down,both up,8,change under ketamine,0.5858,0.2051,one-sample t vs 0,8.079,8.56e-05
+both-up / any-down,both up,8,change under midazolam,0.718,0.6609,one-sample t vs 0,3.073,0.018
+both-up / any-down,both up,8,placebo level,-0.3151,0.3098,one-sample t vs 0,-2.877,0.0238
+both-up / any-down,any down,19,change under ketamine,-0.2467,0.5834,one-sample t vs 0,-1.843,0.0819
+both-up / any-down,any down,19,change under midazolam,-0.3023,0.6115,one-sample t vs 0,-2.155,0.045
+both-up / any-down,any down,19,placebo level,0.1327,0.4985,one-sample t vs 0,1.16,0.261
+both-up / any-down,both up vs any down,27,change under ketamine,0.8325,1.643,Welch t (sd column = Hedges g); Mann-Whitney P in notes,5.469,1.17e-05
+both-up / any-down,both up vs any down,27,change under ketamine,0.8325,,Mann-Whitney U,,0.000549
+both-up / any-down,both up vs any down,27,change under midazolam,1.0203,1.631,Welch t (sd column = Hedges g); Mann-Whitney P in notes,3.744,0.00268
+both-up / any-down,both up vs any down,27,change under midazolam,1.0203,,Mann-Whitney U,,0.000716
+both-up / any-down,both up vs any down,27,placebo level,-0.4477,-0.987,Welch t (sd column = Hedges g); Mann-Whitney P in notes,-2.827,0.0101
+both-up / any-down,both up vs any down,27,placebo level,-0.4477,,Mann-Whitney U,,0.0293
+four-way breakdown,both down,7,change under ketamine,-0.7861,0.3207,descriptive,,
+four-way breakdown,both down,7,change under midazolam,-0.7055,0.5003,descriptive,,
+four-way breakdown,both down,7,placebo level,0.4749,0.4315,descriptive,,
+four-way breakdown,both up,8,change under ketamine,0.5858,0.2051,descriptive,,
+four-way breakdown,both up,8,change under midazolam,0.718,0.6609,descriptive,,
+four-way breakdown,both up,8,placebo level,-0.3151,0.3098,descriptive,,
+four-way breakdown,ketamine up only,6,change under ketamine,0.4309,0.2861,descriptive,,
+four-way breakdown,ketamine up only,6,change under midazolam,-0.441,0.5858,descriptive,,
+four-way breakdown,ketamine up only,6,placebo level,0.0872,0.5307,descriptive,,
+four-way breakdown,midazolam up only,6,change under ketamine,-0.295,0.2428,descriptive,,
+four-way breakdown,midazolam up only,6,change under midazolam,0.3068,0.083,descriptive,,
+four-way breakdown,midazolam up only,6,placebo level,-0.2212,0.2701,descriptive,,

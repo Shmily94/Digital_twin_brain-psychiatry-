@@ -1,0 +1,7 @@
+variant,r_vs_change,P,beta_adj_b19,P_adj_b19,weights_fitted_on,inputs,weight_sample_overlaps_test_sample
+in-sample weights (all 100),0.168667,0.122809,0.09187,0.400125,all 100 (contains the 85),corrected MID,True
+leave-one-out refit,0.162178,0.138099,0.086604,0.425814,99 (LOO),corrected MID,True
+weights from the 15 non-overlapping subjects,0.417428,7.1e-05,0.119797,0.002383,15 non-overlapping,corrected MID,False
+"PUB inputs, in-sample weights",0.263519,0.014818,0.231877,0.042079,all 100 (contains the 85),as published,True
+"PUB inputs, leave-one-out refit",0.251653,0.020163,0.219842,0.052261,99 (LOO),as published,True
+"PUB inputs, non-overlap weights",0.408472,0.000104,0.118148,0.001879,15 non-overlapping,as published,False

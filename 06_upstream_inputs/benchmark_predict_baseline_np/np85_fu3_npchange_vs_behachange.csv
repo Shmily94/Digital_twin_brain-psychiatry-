@@ -1,0 +1,21 @@
+analysis,n,r,P,note,P_FDR
+NP change vs symptom change (raw),76,-0.1056,0.364,primary test,
+NP change vs symptom change (z-scored per timepoint),76,-0.2236,0.052,artefact of -FU2 term; see weight sweep,
+NP change vs symptom change (both residualised on own baseline),76,0.0236,0.84,regression-to-mean removed,
+"NP change vs symptom change (+sex,age,site,headmotion)",76,,0.576,"partial beta -0.285, t = -0.563",
+SST-block NP change vs symptom change,76,-0.1433,0.217,,
+MID-block NP change vs symptom change,76,-0.0516,0.658,,
+FU2 NP vs symptom change,76,0.3672,0.001,the real effect; manuscript claim,
+FU3 NP vs symptom change,76,0.1026,0.378,,
+per-edge change vs symptom change: edge1,76,0.030227,0.795475,,0.86779
+per-edge change vs symptom change: edge2,76,-0.151331,0.191914,,0.780167
+per-edge change vs symptom change: edge3,76,-0.033294,0.775249,,0.86779
+per-edge change vs symptom change: edge4,76,-0.005881,0.959785,,0.959785
+per-edge change vs symptom change: edge5,76,-0.094159,0.418482,,0.780167
+per-edge change vs symptom change: edge6,76,-0.113551,0.32873,,0.780167
+per-edge change vs symptom change: edge7,76,-0.274202,0.016532,,0.198381
+per-edge change vs symptom change: edge8,76,0.063611,0.585125,,0.780167
+per-edge change vs symptom change: edge9,76,0.066518,0.568057,,0.780167
+per-edge change vs symptom change: edge10,76,0.067216,0.563996,,0.780167
+per-edge change vs symptom change: edge11,76,-0.0645,0.579884,,0.780167
+per-edge change vs symptom change: edge12,76,-0.089717,0.44087,,0.780167

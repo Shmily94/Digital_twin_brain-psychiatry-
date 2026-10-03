@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+"""depnet_subject_level_n141.csv
+
+Computes
+    Subject-level source data for the depression-specific network (n = 141; 72
+    MDD, 69 HC): summed depression-network FC in the empirical, simulated,
+    AMPA-perturbed and GABA-A-perturbed conditions, with group, sex,
+    recruitment site and mean head motion.
+
+Inputs
+    - /Users/yunman/Desktop/submission/revision/dep_specific_network
+    - /Users/yunman/Desktop/submission/revision/dep_specific_network/figures/depnet_edge_source_data.csv
+    - /Users/yunman/Desktop/submission/revision/dep_specific_network/figures/depnet_group_and_modulation_stats.csv
+    - /Users/yunman/Desktop/submission/revision/text/figures/supp_depnet
+    - (path built in the chain) f'{B}/mani_dep_network_ampa_gaba.csv'
+    - (path built in the chain) f'{B}/compare_mani_dep_network.xlsx'
+    - (path built in the chain) f'{B}/{f}'
+    - (path built in the chain) f'{B}/figures/depnet_edge_source_data.csv'
+    - (path built in the chain) f'{OD}/depnet_data/depnet_subject_level_n141.csv'
+
+Output
+    04_figures/supp_depnet/depnet_data/depnet_subject_level_n141.csv
+
+Statistical tests
+      - none in this script's own computation: it assembles a source-data /
+        audit table, and the tests that use it are named in the scripts of
+        the tables downstream
+    in the recovered chain that prepares its inputs:
+      - ordinary least squares GLM with covariates
+
+Local runnability
+    no (local_runnable = no).  Verification: not_run.
+    re-run stops inside the GLM: the recovered chain builds its model frame
+    from an upstream table that no longer carries the column the formula
+    names. The derivation is documented; the script is not re-runnable against
+    the current upstream files
+Recovered from
+    execution-log cell df00501f-3ac4-4158-ba7d-705937fd65e8
+    frame fe47a03f-2d43-4fe0-a1c3-e0544839d822, cell_index 390, 2026-09-21 19:23 UTC, conda env "python"
+    dependency chain recovered from the same session, in order:
+    8aeb5609, 89fa8e8a, 7aee8ac1, a3f49720, 5c1bf1d7, 42711582, df00501f
+
+Random seed
+    not applicable - nothing in this script is stochastic.
+
+Notes
+    Rebuilt by the statistics-layer recovery (docs/RECOVERY_PROTOCOL.md).  The
+    computation is the recovered cell chain unchanged: same tests, same
+    covariates, same corrections, same seeds.  Only the header, the explicit
+    output path and the suppression of the original session's side outputs were
+    added.  Lines marked "[recovery: side output suppressed]" wrote files other
+    than this script's one deliverable into the author's working tree; they are
+    commented out so that running this script cannot modify anything outside
+    OUT_DIR.  The verbatim terminal cell is archived at
+    recovered/fig5/depnet_subject_level_n141__cell_df00501f.py
+"""
+import os
+import sys
+
+OUT_DIR = os.environ.get(
+    "RECOVERY_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "_scratch"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+# ---------------------------------------------------------------- cell 8aeb5609 (cell_index 381)
+import pandas as pd
+d1=pd.read_csv('/Users/yunman/Desktop/submission/revision/dep_specific_network/figures/depnet_group_and_modulation_stats.csv')
+d2=pd.read_csv('/Users/yunman/Desktop/submission/revision/dep_specific_network/figures/depnet_edge_source_data.csv')
+print('stats',d1.shape); print(d1.to_string(index=False))
+print('\nsource',d2.shape, d2.columns.tolist()); print(d2.head(3).to_string(index=False))
+
+# ---------------------------------------------------------------- cell 89fa8e8a (cell_index 384)
+B='/Users/yunman/Desktop/submission/revision/dep_specific_network'
+m=pd.read_csv(f'{B}/mani_dep_network_ampa_gaba.csv')
+print(m.shape, [c for c in m.columns if 'dep' in c.lower() or c in ('ID','Group','Group2','sex','headmotion','recruitmentSite')])
+print(m[[c for c in m.columns if 'dep' in c.lower()]].describe().round(3).to_string())
+x=pd.ExcelFile(f'{B}/compare_mani_dep_network.xlsx'); print('\nsheets', x.sheet_names)
+print(x.parse('P2_paired_summary').to_string(index=False)[:1500])
+
+# ---------------------------------------------------------------- cell 7aee8ac1 (cell_index 385)
+import scipy.io as sio, numpy as np
+for f in ['empirical_dep_network.mat','simulated_dep_network.mat','mani_ampa_dep_network.mat','mani_gaba_dep_network.mat']:
+    M=sio.loadmat(f'{B}/{f}')
+    ks={k:(np.asarray(v).shape if not isinstance(v,(str,bytes)) else v) for k,v in M.items() if not k.startswith('__')}
+    print(f, ks)
+
+# ---------------------------------------------------------------- cell a3f49720 (cell_index 386)
+# [recovery] this cell raised in the original session at its line 11; only the
+# statements that had already executed are carried over
+def ids_v1(M,key='unique_name'):
+    raw=M[key]; return np.array([str(raw[i,0].flat[0]).strip().lstrip("'").lstrip('0') or '0' for i in range(raw.shape[0])])
+def ids_v2(M,key='unique_name'):
+    raw=M[key]; return np.array([str(raw[0,i][0]).strip().lstrip("'").split('_')[-1].lstrip('0') or '0' for i in range(raw.shape[1])])
+S={}
+for nm,f,mode in [('empirical','empirical_dep_network.mat','v2'),('simulated','simulated_dep_network.mat','v1'),
+                  ('ampa','mani_ampa_dep_network.mat','v1'),('gaba','mani_gaba_dep_network.mat','v1')]:
+    M=sio.loadmat(f'{B}/{f}')
+    ids=(ids_v2 if mode=='v2' else ids_v1)(M)
+    val=np.asarray(M['sum_dep_fc_results']).ravel()
+
+# ---------------------------------------------------------------- cell 5c1bf1d7 (cell_index 388)
+info=m[['ID','Group','Group2','sex','headmotion','recruitmentSite']].copy()
+T4=pd.DataFrame(S).dropna().join(info.set_index('ID'),how='inner')
+print(T4.shape, T4.Group.value_counts().to_dict(), T4.Group2.value_counts().to_dict())
+
+# ---------------------------------------------------------------- cell 42711582 (cell_index 389)
+import statsmodels.formula.api as smf
+DN=T4[T4.Group2.isin(['HC','MDD'])].copy()
+DN['MDD']=(DN.Group2=='MDD').astype(int)
+print('n =', len(DN), DN.Group2.value_counts().to_dict())
+chk=[]
+for c in ['empirical','simulated','ampa','gaba']:
+    mod=smf.ols(f'{c} ~ MDD + sex + C(recruitmentSite) + headmotion',data=DN).fit()
+    chk.append((c, round(float(mod.params['MDD']),4), round(float(mod.tvalues['MDD']),3),
+                float(f"{mod.pvalues['MDD']:.3g}"), int(mod.df_resid)))
+for r in chk: print(r)
+print('\nSI reports: empirical t=-4.98, simulated t=-5.13, AMPA t=-0.97, GABA t=-2.78 (df 136)')
+
+# ---------------------------------------------------------------- cell df00501f (cell_index 390)
+import os
+OD='/Users/yunman/Desktop/submission/revision/text/figures/supp_depnet'
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+DN.reset_index().rename(columns={'index': 'ID', 'recruitmentSite': 'site'})[['ID', 'Group2', 'sex', 'site', 'headmotion', 'empirical', 'simulated', 'ampa', 'gaba']].rename(columns={'Group2': 'group'}).to_csv(os.path.join(OUT_DIR, 'depnet_subject_level_n141.csv'), index=False)
+ed=pd.read_csv(f'{B}/figures/depnet_edge_source_data.csv')
+pass  # [recovery: side output suppressed] ed.to_csv(f'{OD}/depnet_data/depnet_edge_source_data.csv',index=False)
+print(pd.read_csv(f'{OD}/depnet_data/depnet_subject_level_n141.csv').head(2).to_string(index=False))
+print('\nedge file cols used:', [c for c in ed.columns if c.startswith(('d_','p_','dlt_','dp_'))])
+print('FDR-relevant: n p_Empirical<0.05 =', int((ed.p_Empirical<0.05).sum()), '; p_Simulated<0.05 =', int((ed.p_Simulated<0.05).sum()))

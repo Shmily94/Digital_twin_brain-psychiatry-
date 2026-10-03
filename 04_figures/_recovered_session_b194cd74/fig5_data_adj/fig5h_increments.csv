@@ -1,0 +1,5 @@
+index,covariates,n,R2_reduced,R2_full,delta_R2,F_change,df2,p_change,p_perm_deltaR2,partial_r,null_p95,p_full_predictors
+AMPA,baseline behaviour (4),85,0.1853,0.233,0.0477,4.912,79,0.0295,0.0504,0.242,0.0477,5
+GABA-A,baseline behaviour (4),85,0.1853,0.206,0.0206,2.054,79,0.156,0.196,0.159,0.0468,5
+AMPA,baseline empirical NP (1),85,0.1515,0.2017,0.0502,5.151,82,0.0259,0.039,0.243,0.0464,2
+GABA-A,baseline empirical NP (1),85,0.1515,0.1941,0.0426,4.335,82,0.0405,0.0626,0.224,0.0464,2

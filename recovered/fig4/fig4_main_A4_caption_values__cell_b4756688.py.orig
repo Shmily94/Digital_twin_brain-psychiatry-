@@ -1,0 +1,358 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/fig.4/fig4_main_A4_caption_values.csv
+#
+# cell id      : b4756688-a365-4784-a4ea-d0fb2cf3ad17
+# frame id     : 8d001885-f89b-4ca4-9e30-9866f1015ee6
+# timestamp    : 2026-09-23 21:48:57 UTC
+# conda env    : python
+# language     : diff
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/19_fig4_main_A4_caption_values.py
+##############################################################################
+# [edit_file] created /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/8d001885-f89b-4ca4-9e30-9866f1015ee6/fig4_main_A4.py
++++ /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/8d001885-f89b-4ca4-9e30-9866f1015ee6/fig4_main_A4.py
++"""Figure 4 (panels a-g), assembled as ONE Nature-Medicine main figure on A4.
++
++Panels are rebuilt from fig4.py's own code and fig4_data/, so the graphics and
++the text layer are in register (see figA4_kit for the savefig.bbox trap that
++breaks the per-panel .pptx files).  Declarative panel titles are dropped, type
++sizes are the manuscript's three-size scheme raised two steps (8/9/10 pt,
++letters 11 pt, caption 8 pt), and every legend sits in the white band above its
++axes.  a-d share one y axis, which is what makes the four conditions comparable
++by eye and removes three redundant label columns.
++
++Every number in the caption is computed here, not copied from FIGURE_LEGENDS.md.
++
++    python fig4_main_A4.py [--no-caption]
++"""
++import os, sys
++import numpy as np
++import pandas as pd
++import matplotlib
++matplotlib.use("Agg")
++import matplotlib.pyplot as plt
++from matplotlib.lines import Line2D
++from scipy import stats
++from statsmodels.stats.multitest import multipletests
++import statsmodels.formula.api as smf
++
++FIGDIR = "/Users/yunman/Desktop/submission/revision/text/figures"
++HERE = os.path.join(FIGDIR, "fig.4")
++sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
++sys.path.insert(0, FIGDIR)
++from np_dtb_style import apply_np_style, C, LW, enforce
++from fig_export import collect_text_records
++import figA4_kit as K
++from figA4_kit import (TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT)
++
++D = os.path.join(HERE, "fig4_data")
++DPI = 400
++WITH_CAP = "--no-caption" not in sys.argv
++STEM = "fig4_main_A4" if WITH_CAP else "fig4_main_A4_nocaption"
++apply_np_style()
++K.apply_page_style()
++
++GRP = ["HC", "High-symptom", "Patient"]
++GLAB = ["HC", "High-\nsymptom", "Patient"]
++GCOL = {"HC": C("hc"), "High-symptom": C("high_symptom"), "Patient": C("patient")}
++PAT = ["both up", "any down"]
++PCOL = {"both up": C("increased"), "any down": C("decreased")}
++
++T = pd.read_csv(f"{D}/fig4_subject_level_n288.csv")
++assert len(T) == 288 and set(T.Group) == set(GRP), (len(T), set(T.Group))
++for c in ["empirical", "simulated", "ampa", "gaba"]:      # refit on these 288
++    T[c + "_r"] = (smf.ols(f"{c} ~ sex + site + headmotion", data=T).fit().resid
++                   + T[c].mean())
++NGRP = {g: int((T.Group == g).sum()) for g in GRP}
++S = {}                                                    # every caption number
++
++
++def box_points(ax, values, colours, width=.55, jitter=.14, seed=0, s=3.2):
++    bp = ax.boxplot(values, positions=np.arange(len(values)), widths=width,
++                    showfliers=False, patch_artist=True)
++    for el in ("boxes", "whiskers", "caps", "medians"):
++        for art in bp[el]:
++            art.set_linewidth(LW); art.set_color("black")
++            if el == "boxes":
++                art.set_facecolor("white"); art.set_edgecolor("black")
++    rng = np.random.default_rng(seed)
++    for i, v in enumerate(values):
++        ax.scatter(i + rng.uniform(-jitter, jitter, len(v)), v, s=s,
++                   facecolor=colours[i], edgecolor="none", alpha=.75, zorder=3)
++
++
++def star(q):
++    return "***" if q < .001 else "**" if q < .01 else "*" if q < .05 else None
++
++
++# ---------------------------------------------------------------- a-d statistics
++AD = [("a", "empirical_r", "empirical"), ("b", "simulated_r", "simulated"),
++      ("c", "ampa_r", "ampa"), ("d", "gaba_r", "gaba")]
++PAIRS = [(0, 1), (0, 2), (1, 2)]
++advals, adstat = {}, {}
++for ch, col, key in AD:
++    vals = [T.loc[T.Group == g, col].values for g in GRP]
++    F, pF = stats.f_oneway(*vals)
++    ps = [stats.ttest_ind(vals[i], vals[j], equal_var=False).pvalue for i, j in PAIRS]
++    qs = multipletests(ps, method="fdr_bh")[1]
++    advals[ch], adstat[ch] = vals, dict(F=float(F), p=float(pF), q=list(map(float, qs)))
++    S[f"{ch}_F"], S[f"{ch}_p"], S[f"{ch}_q"] = float(F), float(pF), list(map(float, qs))
++_lo = min(v.min() for vs in advals.values() for v in vs)
++_hi = max(v.max() for vs in advals.values() for v in vs)
++_step = (_hi - _lo) * .10
++AD_YLIM = (_lo - _step * .5, _hi + _step * 3.0)            # room for two brackets
++
++
++def panel_ad(ax, ch, first):
++    vals, st = advals[ch], adstat[ch]
++    box_points(ax, vals, [GCOL[g] for g in GRP])
++    y = _hi + _step * .6
++    for k, (i, j) in enumerate(PAIRS):
++        sg = star(st["q"][k])
++        if sg is None:
++            continue
++        ax.plot([i, i, j, j], [y, y + _step * .22, y + _step * .22, y],
++                color="black", lw=LW, clip_on=False)
++        ax.text((i + j) / 2, y + _step * .26, sg, ha="center", va="bottom",
++                fontsize=ANNOT_PT)
++        y += _step * 1.05
++    ax.set_ylim(*AD_YLIM)
++    ax.set_xticks(range(len(GRP)))
++    ax.set_xticklabels(GLAB, fontsize=TICK_PT)
++    ax.set_xlim(-.6, len(GRP) - .4)
++    if first:
++        ax.set_ylabel("NP factor (residualised)")
++    else:
++        ax.tick_params(labelleft=False)
++        for sp in ("left",):
++            ax.spines[sp].set_visible(True)
++
++
++# ------------------------------------------------------------------- e  effect size
++EM = [("empirical", "Measured", C("baseline"), True),
++      ("simulated", "Simulated\nbaseline", C("baseline"), False),
++      ("ampa", "After\nAMPA", C("ampa"), False),
++      ("gaba", "After\nGABA-A", C("gaba"), False)]
++
++
++def panel_e(ax):
++    rows = []
++    for i, (c_, lab, col, open_) in enumerate(EM):
++        hc = T.loc[T.Group == "HC", c_ + "_r"].values
++        pt = T.loc[T.Group == "Patient", c_ + "_r"].values
++        n1, n2 = len(hc), len(pt)
++        sp_ = np.sqrt(((n1 - 1) * hc.var(ddof=1) + (n2 - 1) * pt.var(ddof=1)) / (n1 + n2 - 2))
++        dd = (hc.mean() - pt.mean()) / sp_
++        se = np.sqrt((n1 + n2) / (n1 * n2) + dd ** 2 / (2 * (n1 + n2)))
++        t_, p_ = stats.ttest_ind(hc, pt, equal_var=False)
++        rows.append(dict(condition=lab.replace("\n", " "), d=dd, lo=dd - 1.96 * se,
++                         hi=dd + 1.96 * se, t=float(t_), p=float(p_)))
++        ax.vlines(i, dd - 1.96 * se, dd + 1.96 * se, color=col, lw=LW, zorder=2)
++        for yy in (dd - 1.96 * se, dd + 1.96 * se):
++            ax.plot([i - .11, i + .11], [yy] * 2, color=col, lw=LW, zorder=2)
++        ax.scatter([i], [dd], s=15, facecolor="white" if open_ else col,
++                   edgecolor=col, linewidth=LW, zorder=4)
++        ax.text(i, dd + 1.96 * se + .04, f"$P$ = {p_:.2g}", ha="center", va="bottom",
++                fontsize=ANNOT_PT, color="0.35")
++    E = pd.DataFrame(rows)
++    S["e"] = E.to_dict("records")
++    S["e_n"] = (len(T.loc[T.Group == "HC"]), len(T.loc[T.Group == "Patient"]))
++    ax.plot(range(len(EM)), E.d, color="0.6", lw=LW, zorder=1)
++    ax.axhline(0, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
++    ax.set_xticks(range(len(EM)))
++    ax.set_xticklabels([e[1] for e in EM], fontsize=TICK_PT)
++    ax.set_xlim(-.5, len(EM) - .5)
++    ax.set_ylim(E.lo.min() - .10, E.hi.max() + .30)
++    ax.set_ylabel("Cohen's $d$ (HC − patient)")
++    h = [Line2D([], [], marker="o", linestyle="none", markersize=3.4,
++                markerfacecolor=fc, markeredgecolor=C("baseline"), markeredgewidth=LW)
++         for fc in ("white", C("baseline"))]
++    K.legend_above(ax, h, ["measured", "simulated"])
++
++
++# ------------------------------------------------------- f  per-twin response plane
++def panel_f(ax):
++    ax.axhline(0, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
++    ax.axvline(0, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
++    hs = []
++    for pat in PAT:
++        sub = T[T.pattern == pat]
++        ax.scatter(sub.d_ampa, sub.d_gaba, s=11, facecolor=PCOL[pat],
++                   edgecolor="#6E3A54" if pat == "any down" else "none",
++                   linewidth=LW * .55, alpha=.9, zorder=3)
++        hs.append(Line2D([], [], marker="o", linestyle="none", markersize=3.4,
++                         markerfacecolor=PCOL[pat], markeredgecolor="none"))
++    def lims(v, pad=.08):
++        lo, hi = float(v.min()), float(v.max()); r = hi - lo
++        return min(lo - pad * r, 0), max(hi + pad * r, 0)
++    ax.set_xlim(*lims(T.d_ampa)); ax.set_ylim(*lims(T.d_gaba))
++    ax.set_xlabel("Δ NP after AMPA"); ax.set_ylabel("Δ NP after GABA-A")
++    n_up = int((T.pattern == "both up").sum()); n_dn = int((T.pattern == "any down").sum())
++    S["f"] = dict(both_up=n_up, any_down=n_dn, n=len(T),
++                  ampa_up=int((T.d_ampa > 0).sum()), gaba_up=int((T.d_gaba > 0).sum()))
++    K.legend_above(ax, hs, [f"both up ({n_up})", f"any down ({n_dn})"])
++
++
++# ------------------------------------------- g  who responds, and where they start
++def panel_g(ax1, ax2):
++    ct = pd.crosstab(T.Group, T.pattern).loc[GRP, PAT]
++    frac = ct.div(ct.sum(1), axis=0) * 100
++    bottom = np.zeros(len(GRP))
++    for pat in PAT:
++        ax1.bar(np.arange(len(GRP)), frac[pat].values, bottom=bottom, width=.62,
++                facecolor=PCOL[pat], edgecolor="black", linewidth=LW, zorder=2)
++        bottom += frac[pat].values
++    for i, g in enumerate(GRP):
++        ax1.text(i, 103, f'{ct.loc[g, "both up"]}/{ct.loc[g].sum()}', ha="center",
++                 fontsize=ANNOT_PT, color="0.35")
++    chi2, pchi, dof, _ = stats.chi2_contingency(ct.values)
++    ax1.set_xticks(range(len(GRP)))
++    ax1.set_xticklabels(GLAB, fontsize=TICK_PT)
++    ax1.set_xlim(-.6, len(GRP) + .5); ax1.set_ylim(0, 118)
++    ax1.set_yticks([0, 50, 100])
++    ax1.set_ylabel("Twins (%)")
++    h = frac.loc["Patient"]
++    ax1.text(2.42, h["both up"] / 2, "both up", ha="left", va="center",
++             fontsize=ANNOT_PT, color=PCOL["both up"])
++    ax1.text(2.42, h["both up"] + h["any down"] / 2, "any down", ha="left",
++             va="center", fontsize=ANNOT_PT, color=PCOL["any down"])
++    ax1.text(1.0, 110, f"$\\chi^2$({dof}) = {chi2:.1f}, $P$ = {pchi:.1e}",
++             ha="center", fontsize=ANNOT_PT, color="0.35")
++
++    vals = [T.loc[T.pattern == p, "simulated"].values for p in PAT]
++    box_points(ax2, vals, [PCOL[p] for p in PAT], s=8.0, seed=1)
++    tb, pb = stats.ttest_ind(*vals, equal_var=False)
++    ax2.set_xticks(range(len(PAT)))
++    ax2.set_xticklabels(["both\nup", "any\ndown"], fontsize=TICK_PT)
++    ax2.set_xlim(-.6, len(PAT) - .4)
++    ax2.set_ylabel("Simulated baseline NP")
++    hi = max(v.max() for v in vals); lo = min(v.min() for v in vals)
++    rng_ = hi - lo
++    ax2.plot([0, 0, 1, 1], [hi + .06 * rng_, hi + .11 * rng_, hi + .11 * rng_,
++                            hi + .06 * rng_], color="black", lw=LW)
++    ax2.text(.5, hi + .12 * rng_, f"$P$ = {pb:.0e}", ha="center", va="bottom",
++             fontsize=ANNOT_PT)
++    ax2.set_ylim(lo - .05 * rng_, hi + .26 * rng_)
++    S["g"] = dict(chi2=float(chi2), dof=int(dof), p=float(pchi),
++                  counts={g: (int(ct.loc[g, "both up"]), int(ct.loc[g].sum())) for g in GRP},
++                  pct={g: float(frac.loc[g, "both up"]) for g in GRP},
++                  base_up=float(vals[0].mean()), base_dn=float(vals[1].mean()),
++                  base_t=float(tb), base_p=float(pb),
++                  n_up=len(vals[0]), n_dn=len(vals[1]))
++
++
++# ------------------------------------------------------------------ page geometry
++LETTER_BAND = 5.0
++PLOT_H = 50.0 if WITH_CAP else 58.0
++XB_AD, XB_E, XB_F, XB_G = 8.5, 9.5, 9.5, 8.5     # space under the axes per row
++GAP = 3.0
++COL2_X, COL_L_W, COL_R_W = 128.0, 105.0, 67.0    # rows 2-3: 105 / 67 mm split
++LAB_L = 17.0                                     # y label + y ticks
++LAB_SHARED = 2.0                                 # a-d: b,c,d only need tick room
++
++fig = K.page()
++y = MT
++
++# row 1: a-d, one shared y axis
++top = y + LETTER_BAND
++w_ad = (PW - ML - MR - 3 * GAP - LAB_L - 3 * LAB_SHARED) / 4
++x = ML
++ax_first = None
++for k, (ch, col, key) in enumerate(AD):
++    pad = LAB_L if k == 0 else LAB_SHARED
++    ax = K.axes_mm(fig, x + pad, top, w_ad, PLOT_H)
++    if ax_first is None:
++        ax_first = ax
++    panel_ad(ax, ch, first=(k == 0))
++    K.letter(fig, x, top - 1.2, ch)
++    x += pad + w_ad + GAP
++y = top + PLOT_H + XB_AD + GAP
++
++# row 2: e | f
++top = y + LETTER_BAND
++ax_e = K.axes_mm(fig, ML + LAB_L, top, COL_L_W - LAB_L, PLOT_H)
++panel_e(ax_e); K.letter(fig, ML, top - 1.2, "e")
++ax_f = K.axes_mm(fig, COL2_X + LAB_L, top, COL_R_W - LAB_L, PLOT_H)
++panel_f(ax_f); K.letter(fig, COL2_X, top - 1.2, "f")
++y = top + PLOT_H + max(XB_E, XB_F) + GAP
++
++# row 3: g (two sub-axes)
++top = y + LETTER_BAND
++ax_g1 = K.axes_mm(fig, ML + LAB_L, top, COL_L_W - LAB_L, PLOT_H)
++ax_g2 = K.axes_mm(fig, COL2_X + LAB_L, top, COL_R_W - LAB_L, PLOT_H)
++panel_g(ax_g1, ax_g2); K.letter(fig, ML, top - 1.2, "g")
++y = top + PLOT_H + XB_G
++enforce(fig)
++BOTTOM = y
++
++# ---------------------------------------------------------------------- caption
++e = {r["condition"]: r for r in S["e"]}
++g = S["g"]
++f = S["f"]
++q = lambda ch: S[f"{ch}_q"]
++runs = [("Fig. 4 | Virtual perturbation stratifies individuals. ", True)]
++if WITH_CAP:
++    runs += [
++        ("", f"Cohort: n = {len(T)} digital twins (HC {NGRP['HC']}, high-symptom "
++             f"{NGRP['High-symptom']}, patients {NGRP['Patient']}) after excluding two "
++             "subjects with mean framewise displacement > 0.5 mm. GABA-A perturbation is "
++             "always applied on top of the AMPA perturbation. "),
++        ("a–d", f", NP factor by group in four conditions — measured (a), simulated "
++                f"baseline (b), after AMPA (c), after AMPA + GABA-A (d) — on one shared "
++                f"axis. NP is residualised on sex, site and mean head motion, refit on "
++                f"these {len(T)}. Box plots show the median, 25th–75th percentiles and "
++                f"1.5 × IQR whiskers with all subjects overplotted; unit of observation, "
++                f"one subject. One-way ANOVA, F(2, {len(T) - 3}): a F = {S['a_F']:.2f}, "
++                f"P = {S['a_p']:.2g}; b F = {S['b_F']:.2f}, P = {S['b_p']:.2g}; "
++                f"c F = {S['c_F']:.2f}, P = {S['c_p']:.2g}; d F = {S['d_F']:.2f}, "
++                f"P = {S['d_p']:.2g}. Brackets are pairwise two-sided Welch t tests "
++                f"corrected within each panel by Benjamini–Hochberg FDR "
++                f"(*q < 0.05, **q < 0.01, ***q < 0.001); no pair survives in c or d "
++                f"(q ≥ {min(min(q('c')), min(q('d'))):.2f}). "),
++        ("e", f", HC − patient separation across the same four conditions: Cohen's d with "
++              f"95% CI, n = {S['e_n'][0]} HC versus {S['e_n'][1]} patients (the "
++              f"high-symptom group is excluded from this contrast by design); two-sided "
++              f"independent t tests, df = {S['e_n'][0] + S['e_n'][1] - 2}, uncorrected. "
++              f"d falls from {e['Measured']['d']:.2f} (measured) and "
++              f"{e['Simulated baseline']['d']:.2f} (simulated baseline) to "
++              f"{e['After AMPA']['d']:.2f} after AMPA and {e['After GABA-A']['d']:.2f} "
++              f"after GABA-A. "),
++        ("f", f", each twin's change in NP factor under AMPA against the change under "
++              f"GABA-A; {f['both_up']} of {f['n']} ({100 * f['both_up'] / f['n']:.1f}%) "
++              f"increase under both, {f['any_down']} have at least one decrease "
++              f"({f['ampa_up']}/{f['n']} increase under AMPA, {f['gaba_up']}/{f['n']} "
++              f"under GABA-A). Descriptive classification; no test is applied to this "
++              f"split, because the grouping is defined by the sign of the plotted "
++              f"quantity. "),
++        ("g", f", left, the response pattern by clinical group (both-up fraction above "
++              f"each bar; χ²({g['dof']}) = {g['chi2']:.1f}, P = {g['p']:.1e}): "
++              f"{g['pct']['Patient']:.0f}% of patients versus "
++              f"{g['pct']['HC']:.0f}% of HC show the both-up pattern. Right, simulated "
++              f"baseline NP in the two response groups (both up n = {g['n_up']}, any down "
++              f"n = {g['n_dn']}): {g['base_up']:.2f} versus {g['base_dn']:.2f}, two-sided "
++              f"Welch t = {g['base_t']:.1f}, P = {g['base_p']:.0e}. The grouping is "
++              f"defined on the perturbation response and the plotted quantity is the "
++              f"unperturbed baseline, so this contrast is not circular."),
++    ]
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
++        fig, runs, ML, BOTTOM + 2.0, PW - ML - MR)
++else:
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
++
++print(f"[{STEM}] panels end at {BOTTOM:.1f} mm; caption {n_lines} lines -> "
++      f"{CAP_BOTTOM:.1f} mm of {PH:.0f} mm")
++
++png, pdf, ppt = (os.path.join(HERE, STEM + ext) for ext in (".png", ".pdf", ".pptx"))
++fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
++fig.savefig(pdf, bbox_inches=None, facecolor="white")
++K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
++              collect_text_records=collect_text_records)
++bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
++       if t.get_text().strip() and t.get_fontname() != "Arial"]
++print("non-Arial text:", bad[:5], "| files:", [os.path.basename(p) for p in (png, pdf, ppt)])
++pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
++    os.path.join(HERE, "fig4_main_A4_caption_values.csv"), index=False)
++plt.close(fig)
++

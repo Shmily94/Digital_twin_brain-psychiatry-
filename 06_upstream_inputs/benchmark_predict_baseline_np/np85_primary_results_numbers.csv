@@ -1,0 +1,9 @@
+model,covariates,dR2,F_change,df,P,permutation_P,boot_dR2_lo,boot_dR2_hi,index_b,index_P,R2_reduced,R2_full,index_version
+index alone,none,0.16685,16.621867,"1,83",0.000104,0.0,0.052899,0.326048,-0.150428,0.000104,-0.0,0.16685,independent weights (n=15 non-overlapping)
+index + baseline symptoms,age-19 symptom load,0.094302,10.32253,"1,82",0.001879,0.003,0.014694,0.224644,-0.118148,0.001879,0.156579,0.250881,independent weights (n=15 non-overlapping)
+index + baseline connectivity,age-19 empirical NP sum,0.093505,10.155824,"1,82",0.002036,0.001,0.012944,0.227572,-0.118048,0.002036,0.151519,0.245024,independent weights (n=15 non-overlapping)
+index + both,age-19 symptoms + age-19 empirical NP,0.061541,7.101635,"1,81",0.009292,0.0095,0.00318,0.171796,-0.09814,0.009292,0.236534,0.298075,independent weights (n=15 non-overlapping)
+index alone,none,0.0694,,,0.0148,,,,,,,,"published weights (all 100, contains the 85)"
+index + baseline symptoms,age-19 symptom load,0.0417,,,0.0421,,,,,,,,"published weights (all 100, contains the 85)"
+index + baseline connectivity,age-19 empirical NP sum,0.0502,,,0.0259,,,,,,,,"published weights (all 100, contains the 85)"
+index + both,age-19 symptoms + age-19 empirical NP,0.0351,,,0.0517,,,,,,,,"published weights (all 100, contains the 85)"

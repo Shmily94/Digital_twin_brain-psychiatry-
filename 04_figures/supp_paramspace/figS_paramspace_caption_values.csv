@@ -1,0 +1,19 @@
+key,value
+n_cells,80
+ampa_grid,0.0004-0.0040
+gaba_grid,0.0005-0.0040
+n_async,38
+n_sync,34
+n_excess,8
+fr_range,0.93-138.81
+co_floor,0.0629-0.0654
+co_sync,0.348-0.763
+fr_async_max,3.42
+fr_excess_min,69.67
+fr_sync_range,5.28-39.86
+baseline_fr,1.54
+baseline_co,0.0636
+baseline,"g_AMPA = 0.0008, g_GABA-A = 0.0015"
+n_regions,217
+d_iqr_async,0.0028
+d_iqr_sync,0.010

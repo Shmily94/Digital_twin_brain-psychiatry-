@@ -1,0 +1,8 @@
+model,R2_reduced,R2_full,dR2,k,df_resid,F,P
+3 dose points -> change (vs intercept),-0.0,0.042512,0.042512,3,81,1.198797,0.315564
+3 dose points beyond simulated baseline NP,0.050911,0.094334,0.043424,3,80,1.278583,0.287414
+slope+curvature beyond baseline NP,0.050911,0.074243,0.023333,2,81,1.020766,0.364906
+low+high beyond mid dose,0.022887,0.042512,0.019625,2,81,0.830112,0.439675
+3 dose points beyond age-19 symptoms,0.156579,0.195798,0.039219,3,80,1.300469,0.280088
+3 dose points beyond age-19 sym -> age-23 sym,0.517302,0.539747,0.022445,3,80,1.300469,0.280088
+3 dose points beyond baseline NP + age-19 sym,0.191929,0.256106,0.064177,3,79,2.271825,0.086627

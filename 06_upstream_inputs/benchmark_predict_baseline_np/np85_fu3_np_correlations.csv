@@ -1,0 +1,16 @@
+comparison,n,pearson_r,pearson_P,spearman_rho,spearman_P,note
+FU3 NP sum vs FU3 symptoms (beha23_sum),76,0.078542,0.500054,0.018297,0.875342,
+FU3 NP sum vs symptom change 19->23,76,0.102623,0.377697,0.076482,0.511393,
+FU3 NP sum vs baseline symptoms (beha19),76,-0.000714,0.995119,-0.010118,0.930873,
+FU3 SST sum vs FU3 symptoms (beha23_sum),76,0.129236,0.265857,0.235628,0.040457,
+FU3 SST sum vs symptom change 19->23,76,0.120083,0.301486,0.163073,0.159275,
+FU3 SST sum vs baseline symptoms (beha19),76,0.036187,0.7563,0.120485,0.29986,
+FU3 MID sum vs FU3 symptoms (beha23_sum),76,0.03317,0.776063,-0.070587,0.544567,
+FU3 MID sum vs symptom change 19->23,76,0.067202,0.564077,0.008369,0.942802,
+FU3 MID sum vs baseline symptoms (beha19),76,-0.018579,0.873438,-0.047906,0.681108,
+FU3-FU2 NP change vs FU3 symptoms (beha23_sum),76,0.055909,0.631443,-0.028177,0.809074,
+FU3-FU2 NP change vs symptom change 19->23,76,-0.105572,0.364069,-0.125325,0.280718,
+FU3-FU2 NP change vs baseline symptoms (beha19),76,0.136307,0.240357,0.109271,0.347405,
+FU3 NP sum vs FU2 empirical NP sum,76,0.29954,0.008571,0.192016,0.096569,"test-retest, 4-year"
+FU3 NP sum vs simulated baseline NP,76,0.187771,0.104311,0.010062,0.931258,
+FU3 NP sum vs published restoration index (ampa),76,-0.018748,0.872292,-0.12946,0.265022,

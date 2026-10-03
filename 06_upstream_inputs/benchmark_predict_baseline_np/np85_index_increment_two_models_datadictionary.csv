@@ -1,0 +1,16 @@
+column,description,unit
+model,which covariate block the index was added to (A/A2 = baseline symptoms; B/B2 = baseline NP connectivity),—
+R2_covariates_only,R2 of the covariate block alone,—
+R2_with_index,R2 after adding the AMPA index,—
+adjR2_with_index,adjusted R2 of the full two-block model,—
+model_F / model_P,whole-model F test for the model including the index,—
+index_dR2,incremental variance explained by the index,—
+index_F_change / index_df / index_P,nested F test for that increment,—
+index_permutation_P,"P from permuting the index 10,000 times with covariates held fixed",—
+index_dR2_CI_lo / index_dR2_CI_hi,"percentile bootstrap 95% CI for index_dR2 (5,000 resamples)",—
+index_b / index_b_CI_lo / index_b_CI_hi,index coefficient and its bootstrap 95% CI,symptom points per index unit
+index_semipartial_r,signed sqrt(index_dR2),—
+max_VIF,largest variance inflation factor in the model,—
+term / b / SE / beta / t / P / VIF,per-predictor coefficients in the companion coefficients file,—
+SIGN NOTE,"ampa_index = stored C_Delta_Behav_mod, NEGATIVE = predicted symptom reduction; outcome = age23 minus age19 symptoms, NEGATIVE = improvement. A POSITIVE coefficient means greater predicted restoration goes with greater symptom reduction.",—
+CAUTION,"the index weights were fitted on a 100-subject sample that contains all 85 of these participants, so every value here is in-sample.",—

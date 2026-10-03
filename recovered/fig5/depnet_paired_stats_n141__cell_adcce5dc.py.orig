@@ -1,0 +1,14 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/supp_depnet/depnet_data/depnet_paired_stats_n141.csv
+# cell id       : adcce5dc-2e45-4519-8c26-1e0adea79e59
+# frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# cell_index    : 400
+# executed at   : 2026-09-21 19:27 UTC
+# language      : bash
+# organised as  : 03_analysis/fig5/47_depnet_paired_stats_n141.py
+# This data file is a render-time by-product of 04_figures/supp_depnet/depnet_supp.py.
+# The cell below is the execution-log cell that produced the packaged copy
+# (it runs, or last edits and runs, that figure script). The derivation itself
+# is the figure script, which is already in the package.
+# ---------------------------------------------------------------------------
+W=/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/fe47a03f-2d43-4fe0-a1c3-e0544839d822; S=/Users/yunman/Desktop/submission/revision/text/figures/supp_depnet; cp $S/panels/figS_depnet_*.png $S/panels/figS_depnet_*.pdf $S/panels/figS_depnet_*.pptx $S/panels/depnet_panel_manifest.csv $S/depnet_supp.py $S/depnet_data/*.csv $W/ 2>/dev/null; ls $W | grep -c depnet

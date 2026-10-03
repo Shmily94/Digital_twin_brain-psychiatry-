@@ -1,0 +1,9 @@
+quantity,value
+"corr(out-of-sample index, in-sample index), AMPA",0.996575
+"corr(out-of-sample index, in-sample index), GABA_A",0.995969
+AMPA out-of-sample index vs symptom change r,0.251653
+AMPA out-of-sample index vs symptom change P,0.020163
+GABA_A out-of-sample index vs symptom change r,0.225283
+GABA_A out-of-sample index vs symptom change P,0.038174
+stage-1 n (baseline symptom model),100.0
+stage-2 n (symptom change model),85.0

@@ -1,0 +1,7 @@
+test,n,r,P
+"individual, 12-edge sum, raw",288,0.109417,0.063688
+"individual, 12-edge sum, group-mean removed",288,0.099383,0.092293
+"individual, clinical only, group-mean removed",199,0.038545,0.588838
+"within-subject 12-edge profile, group-mean removed",288,0.037772,0.037771
+"group-mean pattern, 4 groups",4,0.3225,0.6775
+"group-mean pattern, clinical only (3 groups)",3,0.9999,

@@ -1,0 +1,6 @@
+test,R2_reduced,R2_full,dR2,F_change,P_change,beta_added,P_beta
+FU3 NP added to FU2 NP (outcome: symptom change),0.134865,0.134925,6e-05,0.00505,0.943544,-0.032392,0.943544
+NP change added to FU2 NP (outcome: symptom change),0.134865,0.134925,6e-05,0.00505,0.943544,-0.032392,0.943544
+NP change added to baseline symptoms,0.155045,0.157789,0.002745,0.237891,0.627195,-0.213391,0.627195
+NP change added to baseline symptoms + FU2 NP,0.23388,0.234154,0.000274,0.025753,0.872953,0.069512,0.872953
+FU3 NP added to baseline symptoms + FU2 NP (outcome: FU3 symptoms),0.542986,0.543149,0.000163,0.025753,0.872953,0.069512,0.872953

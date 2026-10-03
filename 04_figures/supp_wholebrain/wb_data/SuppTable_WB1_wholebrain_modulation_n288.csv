@@ -1,0 +1,13 @@
+condition,contrast,n_subj,n_edges,n_sig_FDR,pct_sig_FDR,n_up,n_down,pct_up_of_sig,median_absdz_sig,pct_absdz_gt0p5,pct_absdz_gt0p8
+sst_stop_suces,AMPA vs baseline,288,23436,16558,70.7,8784,7774,53.0,0.321,17.3,6.9
+sst_stop_suces,AMPA+GABA-A vs baseline,288,23436,20863,89.0,18876,1987,90.5,0.592,52.7,28.8
+sst_stop_suces,AMPA+GABA-A vs AMPA (incremental),288,23436,20989,89.6,18497,2492,88.1,0.666,56.5,36.6
+sst_stop_failure,AMPA vs baseline,288,23436,16284,69.5,8961,7323,55.0,0.315,15.9,6.5
+sst_stop_failure,AMPA+GABA-A vs baseline,288,23436,21028,89.7,19184,1844,91.2,0.589,52.4,29.0
+sst_stop_failure,AMPA+GABA-A vs AMPA (incremental),288,23436,20893,89.1,18493,2400,88.5,0.657,55.2,36.1
+mid_feed_hit,AMPA vs baseline,288,23436,19499,83.2,17183,2316,88.1,0.399,30.9,12.0
+mid_feed_hit,AMPA+GABA-A vs baseline,288,23436,19398,82.8,17324,2074,89.3,0.455,37.2,16.0
+mid_feed_hit,AMPA+GABA-A vs AMPA (incremental),288,23436,16922,72.2,12638,4284,74.7,0.359,23.9,10.3
+mid_antici_hit,AMPA vs baseline,288,23436,19460,83.0,17097,2363,87.9,0.402,31.2,12.3
+mid_antici_hit,AMPA+GABA-A vs baseline,288,23436,19412,82.8,17237,2175,88.8,0.454,37.0,16.0
+mid_antici_hit,AMPA+GABA-A vs AMPA (incremental),288,23436,16989,72.5,12603,4386,74.2,0.362,24.2,10.5

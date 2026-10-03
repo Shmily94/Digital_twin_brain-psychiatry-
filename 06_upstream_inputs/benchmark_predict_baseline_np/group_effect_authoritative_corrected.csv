@@ -1,0 +1,33 @@
+quantity,model,n,F,P
+empirical baseline,unadjusted,288,6.591705,0.000254
+empirical baseline,+sex,288,5.780937,0.000755
+empirical baseline,+sex+hd,288,6.70492,0.000219
+empirical baseline,+sex+hd+site,288,6.083092,0.000507
+simulated baseline (corrected),unadjusted,288,9.683865,4e-06
+simulated baseline (corrected),+sex,288,9.015305,1e-05
+simulated baseline (corrected),+sex+hd,288,8.983879,1.1e-05
+simulated baseline (corrected),+sex+hd+site,288,9.541297,5e-06
+modulated: ampa_low,unadjusted,288,26.705218,0.0
+modulated: ampa_low,+sex,288,26.63492,0.0
+modulated: ampa_low,+sex+hd,288,26.539379,0.0
+modulated: ampa_low,+sex+hd+site,288,23.841116,0.0
+modulated: ampa,unadjusted,288,1.507699,0.212707
+modulated: ampa,+sex,288,1.693963,0.168483
+modulated: ampa,+sex+hd,288,1.691698,0.168974
+modulated: ampa,+sex+hd+site,288,0.894501,0.444434
+modulated: ampa_high,unadjusted,288,28.128025,0.0
+modulated: ampa_high,+sex,288,28.138577,0.0
+modulated: ampa_high,+sex+hd,288,28.0868,0.0
+modulated: ampa_high,+sex+hd+site,288,24.236808,0.0
+modulated: gaba_low,unadjusted,288,2.875701,0.036509
+modulated: gaba_low,+sex,288,2.989405,0.03143
+modulated: gaba_low,+sex+hd,288,2.91535,0.034663
+modulated: gaba_low,+sex+hd+site,288,3.011719,0.030567
+modulated: gaba,unadjusted,288,4.500539,0.004197
+modulated: gaba,+sex,288,4.641842,0.003475
+modulated: gaba,+sex+hd,288,4.50021,0.004202
+modulated: gaba,+sex+hd+site,288,5.171653,0.001717
+modulated: gaba_high,unadjusted,288,2.687924,0.046733
+modulated: gaba_high,+sex,288,2.787658,0.041002
+modulated: gaba_high,+sex+hd,288,2.559971,0.055276
+modulated: gaba_high,+sex+hd+site,288,3.228526,0.02295

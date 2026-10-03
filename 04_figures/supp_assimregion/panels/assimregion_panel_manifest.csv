@@ -1,0 +1,5 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_assimreg_a,124,54,2078x814,426,assimregion_set_summary.csv
+figS_assimreg_b,124,54,2212x814,453,assimregion_set_summary.csv
+figS_assimreg_c,84,54,1495x814,452,assimregion_simulation_accuracy.csv
+figS_assimreg_d,74,52,1662x790,570,assimregion_accuracy_by_edge_class.csv

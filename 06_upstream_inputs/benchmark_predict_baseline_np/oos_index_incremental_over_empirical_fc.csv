@@ -1,0 +1,5 @@
+index,spec,r_alone,P_alone,R2_alone,adjR2_alone,deltaR2_over_FC,F_change,df1,df2,P_Fchange,R2_FC_plus_index,adjR2_FC_plus_index
+AMPA,full-sample stage-1 (original),0.263519,0.014818,0.069442,0.058231,0.050152,5.151377,1,82,0.025853,0.201671,0.1822
+AMPA,out-of-sample stage-1 (nested),0.251653,0.020163,0.063329,0.052044,0.043517,4.432988,1,82,0.03831,0.195036,0.175402
+GABA_A,full-sample stage-1 (original),0.234293,0.03091,0.054893,0.043506,0.042603,4.334989,1,82,0.040455,0.194122,0.174466
+GABA_A,out-of-sample stage-1 (nested),0.225283,0.038174,0.050752,0.039316,0.03796,3.840409,1,82,0.053429,0.189479,0.16971

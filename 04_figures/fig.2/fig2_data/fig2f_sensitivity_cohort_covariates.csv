@@ -1,0 +1,7 @@
+cohort,covariates,n,n_patients,n_edges_FDR,n_edges_p05,edges_FDR
+427 HC+MDD+AUD (current),sex + site + meanFD,427,202,5,7,E1 E2 E3 E7 E10
+427 HC+MDD+AUD (current),none (raw edges),427,202,6,6,E1 E2 E3 E5 E10 E12
+"434 all patients, no ED",sex + site + meanFD,434,209,6,8,E1 E2 E3 E7 E10 E11
+"434 all patients, no ED",none (raw edges),434,209,6,6,E1 E2 E3 E5 E10 E12
+513 all incl. ED,sex + site + meanFD,513,288,7,7,E1 E2 E3 E5 E7 E10 E11
+513 all incl. ED,none (raw edges),513,288,4,6,E1 E2 E5 E10

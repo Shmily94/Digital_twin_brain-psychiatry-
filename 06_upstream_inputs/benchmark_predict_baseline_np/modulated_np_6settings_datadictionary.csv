@@ -1,0 +1,6 @@
+column,meaning,construction,note
+modNP_<setting>,modulated NP at that conductance,baseline_np + dNP_<setting>,"scalar NP factor, new pipeline"
+dNP_<setting>,change in NP from perturbation,individual_response_per_subject.csv columns,verified against sensitivity paragraph means
+index_<setting>,recomputed restoration index,beta_scalar * dNP_<setting>,"beta = -2.1738 from fitlm(sum(C_C_empirical_np,2), sum(C_beha_data(:,3:6),2)) on n=100, P = 0.016"
+baseline_np,unperturbed simulated NP,individual_response_per_subject.csv,new pipeline (extract_np_factor.m)
+CAVEAT,stored manuscript index is NOT single-NP,(ampa_np - simulate_np) @ beta_12edge,reproduces C_Delta_Behav_mod to 3e-14; single-NP version correlates only r = +0.71

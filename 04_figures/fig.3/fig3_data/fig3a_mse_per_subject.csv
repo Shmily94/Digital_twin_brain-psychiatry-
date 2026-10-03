@@ -1,0 +1,109 @@
+subject_id,model,family,sim_neurons,assimilation_hyperparams,resolution,n_repeats_averaged,empirical_reference,mse,reference_note
+112288,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.03992,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+16275727,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.08454,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+44576096,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.09234,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+63218063,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.0494,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67342911,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.06615,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67844279,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.07545,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+111086310,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.10948,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112517217,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.08607,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+113174215,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.05038,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+168370463,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.0402,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+182136619,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.04423,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+191996808,3m_268,regional,3 M,3 M,268 regions,5.0,empirical_model_voxels,0.04047,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112288,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.0522,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+16275727,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.10709,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+44576096,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.13912,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+63218063,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.04927,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67342911,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.07175,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67844279,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.11195,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+111086310,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.06015,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112517217,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.0947,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+113174215,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.0473,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+168370463,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.03331,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+182136619,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.05402,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+191996808,10m_268,regional,10 M,3 M,268 regions,5.0,empirical_model_voxels,0.04079,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112288,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.05257,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+16275727,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.105,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+44576096,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.10376,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+63218063,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.08115,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67342911,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.10075,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67844279,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.04561,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+111086310,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.32633,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112517217,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.10997,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+113174215,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.03381,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+168370463,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.07676,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+182136619,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.0954,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+191996808,10m_1000,regional,10 M,10 M / 1000,1000 regions,5.0,empirical_model_voxels,0.03852,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112288,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.06187,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+16275727,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.11147,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+44576096,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.07993,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+63218063,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.09266,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67342911,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.07491,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67844279,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.05885,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+111086310,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.21603,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112517217,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.05292,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+113174215,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.10862,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+168370463,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.07524,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+182136619,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.08741,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+191996808,10m_own,voxel,10 M,10 M voxel,voxel,1.0,empirical_model_voxels,0.13017,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112288,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.02241,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+16275727,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.04781,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+44576096,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.01694,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+63218063,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.06017,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67342911,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.06865,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67844279,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.05435,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+111086310,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.03045,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112517217,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.12458,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+113174215,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.02662,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+168370463,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.07622,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+182136619,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.03799,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+191996808,10m,voxel,10 M,100 M,voxel,5.0,empirical_model_voxels,0.03118,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112288,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.02341,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+16275727,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.05261,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+44576096,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.02906,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+63218063,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.06428,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67342911,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.08585,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67844279,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.07981,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+111086310,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.06967,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112517217,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.13178,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+113174215,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.02339,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+168370463,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.06269,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+182136619,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.04089,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+191996808,100m,voxel,100 M,100 M,voxel,5.0,empirical_model_voxels,0.04381,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112288,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.02463,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+16275727,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.07774,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+44576096,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.02932,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+63218063,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.07475,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67342911,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.09541,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+67844279,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.08124,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+111086310,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.05582,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112517217,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.15112,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+113174215,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.02487,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+168370463,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.08223,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+182136619,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.04155,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+191996808,1b,voxel,1 B,100 M,voxel,5.0,empirical_model_voxels,0.04717,empirical FC recomputed from the voxels the DTB simulates (= emp_edge1-12 = real_fc_dtb_voxels)
+112288,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0490253583333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+16275727,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.05032239,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+44576096,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.091896025,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+63218063,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0639546625,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+67342911,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0581963566667,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+67844279,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0421762375,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+111086310,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.155951499167,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+112517217,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0666578166667,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+113174215,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0378616708333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+168370463,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0637837433333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+182136619,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0796835516667,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+191996808,SAR,benchmark,—,—,—,,empirical_shen268_regional,0.0783045833333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+112288,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.0907766508333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+16275727,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.0723875833333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+44576096,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.105627865833,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+63218063,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.0774975108333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+67342911,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.112590331667,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+67844279,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.0852611508333,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+111086310,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.18477433,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+112517217,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.0919684466667,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+113174215,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.05994924,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+168370463,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.100845745833,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+182136619,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.126278040833,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"
+191996808,RWW,benchmark,—,—,—,,empirical_shen268_regional,0.1035656225,"Shen-268 regional empirical task FC (<subj>_{MID,SST}_taskFC.mat + np_location.mat); the reference the benchmark was fitted and scored against"

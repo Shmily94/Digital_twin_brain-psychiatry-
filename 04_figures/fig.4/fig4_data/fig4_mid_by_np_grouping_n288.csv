@@ -1,0 +1,10 @@
+grouping,group,measure,n,mean,sd,test,stat,p
+NP-based both-up / any-down,both up,simulated baseline MID FC,229,-0.3132,0.5837,one-sample t vs 0,-8.119,2.93e-14
+NP-based both-up / any-down,any down,simulated baseline MID FC,59,0.2233,0.5137,one-sample t vs 0,3.339,0.00147
+NP-based both-up / any-down,both up vs any down,simulated baseline MID FC,288,-0.5365,-0.941,Welch t (sd col = Hedges g); Mann-Whitney P = 5.64e-09,-6.949,3.78e-10
+NP-based both-up / any-down,both up,MID change after AMPA,229,0.698,0.5657,one-sample t vs 0,18.673,7.74e-48
+NP-based both-up / any-down,any down,MID change after AMPA,59,0.0051,0.436,one-sample t vs 0,0.09,0.929
+NP-based both-up / any-down,both up vs any down,MID change after AMPA,288,0.6929,1.279,Welch t (sd col = Hedges g); Mann-Whitney P = 3.37e-15,10.194,9.96e-18
+NP-based both-up / any-down,both up,MID change after GABA-A,229,1.1193,1.0138,one-sample t vs 0,16.708,1.86e-41
+NP-based both-up / any-down,any down,MID change after GABA-A,59,0.6443,1.0515,one-sample t vs 0,4.706,1.61e-05
+NP-based both-up / any-down,both up vs any down,MID change after GABA-A,288,0.475,0.465,Welch t (sd col = Hedges g); Mann-Whitney P = 0.00321,3.117,0.00247

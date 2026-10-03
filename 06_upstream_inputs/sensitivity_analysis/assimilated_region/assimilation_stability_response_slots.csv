@@ -1,0 +1,11 @@
+slot,value,basis
+[N] independent assimilation runs,5,MID_assim_1..5 in task_fc_raw_217x217_7runs.mat
+[N] participants,1,sub-000000112288 only; no other subject has repeated runs
+participant spans baseline NP range?,"NO — single subject at 67th percentile of the n=6 10M cohort (NP 0.547; cohort mean 0.440, range -0.031..0.764)",mid_data_x10m_MID.mat
+[scale]-neuron resolution,10 million,whole-matrix r=0.81/0.80 vs mid_data_x10m_MID.mat for this subject; absent from 100M and 1B files
+"ICC, 12-edge NP profile","NOT AVAILABLE as 12-edge — only the 6 reward edges have repeats. ICC(3,1)=0.995 [0.984, 0.999]; ICC(2,1)=0.994",6 edges x 5 runs
+"r, perturbational response pattern",NOT AVAILABLE — no perturbation/stimulation output exists for any of the 5 repeated runs,directory search of revision/ and figures_v2/
+(supporting) whole-matrix ICC,"0.9953 [0.9952,0.9954] feedback-hit; 0.9951 [0.9950,0.9952] anticipation-hit","23,436 edges x 5 runs"
+(supporting) run-pair whole-matrix r,0.995-0.996 (10 pairs),same
+(supporting) run-pair 6-edge profile r,mean 0.996 (range 0.990-0.998),same
+(supporting) between/within variance ratio,171:1 (between-edge 0.0287 vs within-edge across-run 0.000167),6 edges x 5 runs

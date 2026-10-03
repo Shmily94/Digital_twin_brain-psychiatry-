@@ -1,0 +1,29 @@
+outcome,predictor,covariates,b,t,P,df
+age-23 symptoms,AMPA index,none,0.059565,0.366308,0.715068,83
+age-23 symptoms,AMPA index,empNP sum,0.062393,0.379337,0.705418,82
+age-23 symptoms,AMPA index,empNP read-out proj,0.081516,0.512305,0.609815,82
+age-23 symptoms,AMPA index,empNP 12 edges,0.078226,0.434492,0.665249,71
+age-23 symptoms,AMPA index,sym19,0.231877,2.065036,0.042079,82
+age-23 symptoms,AMPA index,sym19 + empNP sum,0.213047,1.97468,0.051712,81
+age-23 symptoms,AMPA index,sym19 + empNP 12 edges,0.211121,1.716103,0.090566,70
+age-23 symptoms,GABA_A index,none,-0.05105,-0.479667,0.632726,83
+age-23 symptoms,GABA_A index,empNP sum,-0.050341,-0.468916,0.640374,82
+age-23 symptoms,GABA_A index,empNP read-out proj,-0.004921,-0.046276,0.963203,82
+age-23 symptoms,GABA_A index,empNP 12 edges,-0.009529,-0.081433,0.935327,71
+age-23 symptoms,GABA_A index,sym19,0.112229,1.487354,0.140757,82
+age-23 symptoms,GABA_A index,sym19 + empNP sum,0.111134,1.540298,0.127385,81
+age-23 symptoms,GABA_A index,sym19 + empNP 12 edges,0.132169,1.632849,0.106991,70
+symptom change,AMPA index,none,0.295574,2.488741,0.014818,83
+symptom change,AMPA index,empNP sum,0.25258,2.269665,0.025853,82
+symptom change,AMPA index,empNP read-out proj,0.273667,2.419946,0.017733,82
+symptom change,AMPA index,empNP 12 edges,0.243247,1.938287,0.056565,71
+symptom change,AMPA index,sym19,0.231877,2.065036,0.042079,82
+symptom change,AMPA index,sym19 + empNP sum,0.213047,1.97468,0.051712,81
+symptom change,AMPA index,sym19 + empNP 12 edges,0.211121,1.716103,0.090566,70
+symptom change,GABA_A index,none,0.172095,2.195624,0.03091,83
+symptom change,GABA_A index,empNP sum,0.152017,2.082064,0.040455,82
+symptom change,GABA_A index,empNP read-out proj,0.128172,1.668512,0.099028,82
+symptom change,GABA_A index,empNP 12 edges,0.164261,2.020832,0.04707,71
+symptom change,GABA_A index,sym19,0.112229,1.487354,0.140757,82
+symptom change,GABA_A index,sym19 + empNP sum,0.111134,1.540298,0.127385,81
+symptom change,GABA_A index,sym19 + empNP 12 edges,0.132169,1.632849,0.106991,70

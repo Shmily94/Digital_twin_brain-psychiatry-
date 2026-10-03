@@ -1,0 +1,11 @@
+,DMN,FPN,Limbic,Motor,SMF,Sub,Visual Asso,Visual I,Visual II,Cerebellum
+DMN,0,1,1,0,2,0,0,0,0,0
+FPN,0,0,0,0,0,0,0,2,0,0
+Limbic,0,2,1,1,0,0,1,0,0,1
+Motor,3,2,0,0,0,0,0,0,0,0
+SMF,5,0,0,1,1,0,1,0,0,0
+Sub,0,0,0,0,0,0,0,0,0,0
+Visual Asso,0,0,0,0,0,1,0,0,0,0
+Visual I,1,1,0,0,0,0,0,0,1,0
+Visual II,0,0,0,0,0,0,0,0,0,0
+Cerebellum,0,1,0,0,2,0,0,0,0,2

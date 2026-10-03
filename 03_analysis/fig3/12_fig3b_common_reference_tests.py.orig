@@ -1,0 +1,175 @@
+"""fig3b_common_reference_tests.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code builds a per-subject table of functional-connectivity
+    similarity scores across several modeling conditions (different
+    voxel/parcel scales, hyperparameter sources, and two additional model
+    variants labeled SAR and rWW), pulling values from a simulation
+    results CSV and a MATLAB file and averaging across a fixed set of task
+    contrasts for each subject. It then runs a series of paired
+    comparisons between specific pairs of these conditions, computing for
+    each pair a paired t-test on the per-subject differences along with
+    the sample size, mean difference, a 95 percent confidence interval,
+    the t-statistic and degrees of freedom, the p-value, an effect size
+    (Cohen's dz), and the count of subjects with a positive difference.
+    Each row of the output table corresponds to one such pairwise contrast
+    between two named conditions, summarizing how that pair's per-subject
+    values differ across the group. Note that the code references two
+    variables, P_SAR and P_rWW, that are
+
+INPUT FILES
+    revision/10m_voxel_population_simulation/analysis_results/fc_similarity_four_runs_per_subject.csv
+    simu_real_FC_across_scales_12subs.mat
+
+OUTPUT FILE
+    fig3b_common_reference_tests.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3b_common_reference_tests.csv
+
+STATISTICAL TESTS
+    paired two-sided t test
+    Cohen's d_z effect size
+
+RUNNABLE ON A LAPTOP
+    no -- a name inherited from the session could not be recovered; see the NOT RECOVERED block
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 336a609c-71ef-4ba4-891b-3222c790e962
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-23 16:14:27 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3b_common_reference_tests__cell_336a609c.py
+    candidates found   : 5
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+from scipy import stats as st
+import h5py
+import numpy as np
+import pandas as pd
+
+# -------------------------------------------------------------------------
+# NOT RECOVERED.  This script needs the name(s)
+#     P_SAR, P_rWW
+# which the interactive session inherited from a cell that is not present in
+# the execution log (or, for `host`, from the platform session object).  The
+# script therefore cannot run as shipped.  They are used below as:
+#     PB['SAR']=P_SAR.reindex(PB.index).values
+#     PB['rWW']=P_rWW.reindex(PB.index).values
+# Supply them before running.  Nothing has been invented in their place.
+# -------------------------------------------------------------------------
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 01a726d6, 02dc1778, 191d53bb, 457de626, 49894910, 706899db, 719a706b, 82075a87, 821bf2cd, 9008c0ab, 9cf668d1, bf658b00, f12ffd15, ffbb91c0)
+import scipy.io as sio, numpy as np, pandas as pd, statsmodels.formula.api as smf
+def matload(p):
+    try: return sio.loadmat(p, simplify_cells=True)
+    except NotImplementedError:
+        import h5py; return h5py.File(p,'r')
+R='/Users/yunman/Desktop/submission/revision/text/'
+FIG=R+'figures/'
+SUB='/Users/yunman/Desktop/submission/'
+D3=FIG+'fig.3/fig3_data/'
+FR=pd.read_csv(SUB+'revision/10m_voxel_population_simulation/analysis_results/fc_similarity_four_runs_per_subject.csv')
+ES=SUB+'revision/model_scale_consistent/add_new_subjects/empirical_fc_voxel_used_model/'
+MT=matload(ES+'simu_real_FC_across_scales_12subs.mat')
+cn=[str(x) for x in np.atleast_1d(MT['condition_names']).ravel()]
+FB=np.asarray(MT['fc_corr_dtb_voxels'])
+CORD=['SST_stop_success','SST_stop_failure','MID_antici_hit','MID_feed_hit']
+ci=[cn.index(c) for c in CORD]
+K6=['3m_268','10m_268','10m_1000','10m_voxel','100m_voxel','1b_voxel']
+LAB6={'3m_268':'3 M / 268','10m_268':'10 M / 268','10m_1000':'10 M / 1000',
+      '10m_voxel':'10 M voxel, 100 M hyper','100m_voxel':'100 M voxel','1b_voxel':'1 B voxel'}
+subj=[int(x) for x in np.atleast_1d(MT['subject_ids']).ravel()]
+PB=pd.DataFrame({LAB6[s]:np.nanmean(FB[:,ci,si],axis=1) for si,s in enumerate(K6)}, index=subj)
+PB['10 M voxel, 10 M hyper']=FR.set_index('sub_id')['r_dtb_voxels__10m_own_params'].reindex(PB.index).values
+PB['SAR']=P_SAR.reindex(PB.index).values
+PB['rWW']=P_rWW.reindex(PB.index).values
+def pair(a,b,la,lb):
+    s=pd.DataFrame({'a':PB[a].values,'b':PB[b].values}).dropna()
+    d=s.a-s.b; n=len(s); t,p=st.ttest_rel(s.a,s.b); se=d.std(ddof=1)/np.sqrt(n)
+    ci=st.t.ppf(.975,n-1)*se
+    return dict(contrast=f'{la} vs {lb}',n=n,mean_diff=round(d.mean(),4),
+        ci95=f'[{d.mean()-ci:+.4f}, {d.mean()+ci:+.4f}]',t=round(t,3),df=n-1,
+        p=float(f'{p:.3g}'),dz=round(d.mean()/d.std(ddof=1),2),n_pos=int((d>0).sum()))
+CON=[('10 M voxel, 100 M hyper','3 M / 268','10M voxel (100M hyper)','3M/268'),
+     ('10 M / 268','3 M / 268','10M/268','3M/268'),
+     ('10 M / 1000','3 M / 268','10M/1000','3M/268'),
+     ('3 M / 268','SAR','3M/268','SAR'),
+     ('3 M / 268','rWW','3M/268','rWW'),
+     ('10 M / 268','SAR','10M/268','SAR'),
+     ('10 M voxel, 100 M hyper','10 M voxel, 10 M hyper','10M voxel (100M hyper)','10M voxel (own 10M hyper)'),
+     ('10 M voxel, 100 M hyper','1 B voxel','10M voxel','1B'),('SAR','rWW','SAR','rWW')]
+T=pd.DataFrame([pair(*c) for c in CON])
+
+# ---- computation: recovered from execution-log cell 336a609c
+r=pair('10 M voxel, 100 M hyper','10 M / 1000','10M voxel (100M hyper)','10M/1000')
+T=pd.concat([T,pd.DataFrame([r])],ignore_index=True)
+T.to_csv(D3+'fig3b_common_reference_tests.csv',index=False)

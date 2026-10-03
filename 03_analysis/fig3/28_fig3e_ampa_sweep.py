@@ -1,0 +1,341 @@
+"""fig3e_ampa_sweep.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code builds subject level functional connectivity edge values for
+    a fixed set of 12 regions of interest, drawn from combinations of SST
+    task conditions (stop success, stop failure) and MID task conditions
+    (feed hit, anticipation hit), using ROI index mappings derived from a
+    location2 file that can be resolved under either a "correct" or
+    "buggy" definition of the MID row range, and further remapped onto a
+    217 region atlas ordering. It cross references subject identifiers
+    across the SST baseline, MID baseline, and a 12 subject simulation
+    workbook (matched by numeric ID extracted from subject fields) to
+    align the same individuals across data sources. One row of the
+    resulting fig3e_ampa_sweep.csv table corresponds to one subject, with
+    a baseline value alongside a series of values at successive parameter
+    settings (the listed decimal-labeled columns), representing that
+    subject's measurement or extracted edge based summary at each point
+    along the sweep.
+
+INPUT FILES
+    /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent/check_variables_simulations/sc_fc_coupling/edge_index/np_without_cerebellum_location2.mat
+    /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/whole_brain_fc_compare/model_data/remain_id_217.xlsx
+    figures_v2/fig3/manipulated_fcs_4subs/plot_mani_AMPA.csv
+    l_{nm}.txt
+    {dest}/NP_12edges_all_subjects_scales_conditions_newflow.csv
+    {msc}/3m_repeats/3m_np_edges_repeats_all_conditions_tidy.csv
+    {msc}/NP_12edges_10m_1000_10m_268_regional_modu.csv
+    {msc}/all_data_12subs.xlsx
+    {wb}/mid_data_baseline_217.mat
+    {wb}/sst_data_baseline_217.mat
+
+OUTPUT FILE
+    fig3e_ampa_sweep.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3e_ampa_sweep.csv
+
+STATISTICAL TESTS
+    descriptive summary only (no inferential test in the recovered cell)
+
+RUNNABLE ON A LAPTOP
+    no -- a name inherited from the session could not be recovered; see the NOT RECOVERED block
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : a7adaae2-30a2-4b07-bd07-3ce69a594847
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-21 14:02:59 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3e_ampa_sweep__cell_a7adaae2.py
+    candidates found   : 1
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+from scipy.optimize import linear_sum_assignment
+import h5py
+import numpy as np
+import pandas as pd
+import scipy.io as sio
+
+# -------------------------------------------------------------------------
+# NOT RECOVERED.  This script needs the name(s)
+#     IDXB
+# which the interactive session inherited from a cell that is not present in
+# the execution log (or, for `host`, from the platform session object).  The
+# script therefore cannot run as shipped.  They are used below as:
+#     CAND={'axis217_correctMID':IDX,'axis217_buggyMID':IDXB,
+#     'shen_correctMID':idx_shen(IDX+1),'shen_buggyMID':idx_shen(IDXB+1)}
+# Supply them before running.  Nothing has been invented in their place.
+# -------------------------------------------------------------------------
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 1d55ecd0, 1d665145, 2b9c5959, 600c4373, 69d0e06c, 7a5b1ad4, 7df936f9, 9161f1d8, 94889abf, 994c17d9, aaadc71b, b480b3c9, bef7ab36, d563b6b4)
+import re, os, tempfile, pathlib, shutil
+def normalize_subject_id(raw, width=12):
+    s = re.sub(r'\s','',str(raw)); s = re.sub(r'^sub[-_]?','',s,flags=re.I)
+    if not s: return []
+    if not re.fullmatch(r'\d+', s): return [s]
+    st = s.lstrip('0') or '0'
+    pad = st.rjust(width,'0') if len(st)<width else st
+    return [pad] if st==pad else [st,pad]
+def load_source_index(lists):
+    idx={}
+    for src,f in lists.items():
+        if not f: continue
+        for tok in [t for t in re.split(r'[\s,;]+', open(f).read().lstrip('\ufeff')) if t]:
+            vs=normalize_subject_id(tok)
+            if not vs: continue
+            if vs[-1] in idx and idx[vs[-1]]!=src: raise RuntimeError(f'{tok} in 2 lists')
+            for v in vs: idx[v]=src
+    return idx
+tmp=tempfile.mkdtemp()
+HC_ST,HC_F2,HC_F3,HC_ORPH = '000141089876','000198600924','000195166026','000999999999'
+lists={}
+for nm,body in [('stratify',HC_ST+'\n'),('followup2',HC_F2+'\r\n'),('followup3','195166026\n')]:
+    lists[nm]=os.path.join(tmp,f'l_{nm}.txt'); open(lists[nm],'w').write(body)
+sidx=load_source_index(lists)
+sst=[('s1','c1'),          ('s2','c1'),('s3','c1')]
+base='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent'
+dest=f'{base}/manuscript_numbers_newflow'
+import numpy as np
+NP_SST_CONDITIONS = ("sst_stop_suces", "sst_stop_failure")
+NP_MID_CONDITIONS = ("mid_feed_hit", "mid_antici_hit")
+def extract_12_edges(arrs, ij, subject_index):
+    """Pull the 12 edge values for one subject from task-condition FC arrays.
+
+    arrs          : {condition_name -> region x region x subject array}. Missing
+                    conditions yield NaN for their edges.
+    ij            : 12x2 0-based index array from np_edge_index().
+    subject_index : {condition_name -> slice index} or a single int used for all.
+    """
+    v = np.full(12, np.nan)
+    def sidx(c):
+        return subject_index[c] if isinstance(subject_index, dict) else subject_index
+    for e in range(12):
+        if e < 3:
+            c = NP_SST_CONDITIONS[0]
+        elif e < 6:
+            c = NP_SST_CONDITIONS[1]
+        elif e < 11:
+            c = NP_MID_CONDITIONS[0]
+        else:
+            c = NP_MID_CONDITIONS[1]
+        A = arrs.get(c)
+        if A is None:
+            continue
+        k = sidx(c)
+        if k is None:
+            continue
+        v[e] = np.asarray(A)[ij[e, 0], ij[e, 1], k]
+    return v
+import numpy as np
+def np_edge_index(loc2, mid_rows=None):
+    """12x2 array of 0-based ROI indices for the 12 NP edges.
+
+    loc2      : the `location2` variable, any orientation; first two columns
+                (or rows) are the 1-based MATLAB ROI indices.
+    mid_rows  : (first, last) 1-based location2 rows for the MID edges.
+                None -> (7, 12), the CORRECT definition.
+                (1, 6) reproduces the cal_NP_across_para.m bug.
+    """
+    a = np.asarray(loc2)
+    if a.shape[0] < a.shape[1]:
+        a = a.T
+    a = a[:, :2].astype(int)
+    if mid_rows is None:
+        mid_rows = (7, 12)
+    lo, hi = int(mid_rows[0]), int(mid_rows[1])
+    if hi - lo != 5:
+        raise ValueError("mid_rows must span exactly 6 rows, got %r" % (mid_rows,))
+    ij = np.vstack([a[0:6], a[lo - 1:hi]]) - 1
+    if ij.shape != (12, 2):
+        raise ValueError("location2 too small: got %r" % (a.shape,))
+    return ij
+def load_mat_any(path):
+    """Load a MATLAB file of either format. Returns (kind, obj).
+
+    kind 'v7'  -> obj is the dict from scipy.io.loadmat
+    kind 'v73' -> obj is an open h5py.File (caller must close it)
+    """
+    import scipy.io as sio
+    try:
+        return "v7", sio.loadmat(path)
+    except NotImplementedError:
+        import h5py
+        return "v73", h5py.File(path, "r")
+loc=load_mat_any('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent/check_variables_simulations/sc_fc_coupling/edge_index/np_without_cerebellum_location2.mat')
+kind,obj=loc
+L2=np.asarray(obj['location2']).T if kind=='v73' else np.asarray(obj['location2'])
+IDX=np_edge_index(L2)
+kind,obj=loc
+L2=np.asarray(obj['location2']).T if kind=='v73' else np.asarray(obj['location2'])
+msc='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent'
+ec=[f'edge{i}' for i in range(1,13)]
+xls=pd.ExcelFile(f'{msc}/all_data_12subs.xlsx')
+def sheet(s):
+    d=pd.read_excel(xls,s); d['idn']=pd.to_numeric(d['id'].astype(str).str.extract(r'(\d{6,})')[0]).astype(int)
+    return d.set_index('idn')[ec]
+WBK={s:sheet(s) for s in ['simu_3m','simu_10m','simu_100m','simu_1b']}
+msc='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent'
+ec=[f'edge{i}' for i in range(1,13)]
+xls=pd.ExcelFile(f'{msc}/all_data_12subs.xlsx')
+def sheet(s):
+    d=pd.read_excel(xls,s); d['idn']=pd.to_numeric(d['id'].astype(str).str.extract(r'(\d{6,})')[0]).astype(int)
+    return d.set_index('idn')[ec]
+WBK={s:sheet(s) for s in ['simu_3m','simu_10m','simu_100m','simu_1b']}
+subs12=list(WBK['simu_3m'].index)
+ec=[f'edge{i}' for i in range(1,13)]
+msc='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent'
+import scipy.io as sio, re, os
+wb='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/whole_brain_fc_compare/model_data/wholebrain_results'
+M=sio.loadmat(f'{wb}/mid_data_baseline_217.mat',squeeze_me=True,struct_as_record=False)
+S=sio.loadmat(f'{wb}/sst_data_baseline_217.mat',squeeze_me=True,struct_as_record=False)
+arrs={'sst_stop_suces':np.asarray(S['sst_stop_suces'],float),'sst_stop_failure':np.asarray(S['sst_stop_failure'],float),
+      'mid_feed_hit':np.asarray(M['mid_feed_hit'],float),'mid_antici_hit':np.asarray(M['mid_antici_hit'],float)}
+import scipy.io as sio, re, os
+wb='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/whole_brain_fc_compare/model_data/wholebrain_results'
+M=sio.loadmat(f'{wb}/mid_data_baseline_217.mat',squeeze_me=True,struct_as_record=False)
+norm=lambda x: str(int(float(re.search(r'(\d+)',str(x)).group(1))))
+mid_ids=[norm(x) for x in np.atleast_1d(M['mid_subject']).ravel()]
+import scipy.io as sio, re, os
+norm=lambda x: str(int(float(re.search(r'(\d+)',str(x)).group(1))))
+import scipy.io as sio, re, os
+wb='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/whole_brain_fc_compare/model_data/wholebrain_results'
+S=sio.loadmat(f'{wb}/sst_data_baseline_217.mat',squeeze_me=True,struct_as_record=False)
+norm=lambda x: str(int(float(re.search(r'(\d+)',str(x)).group(1))))
+sst_ids=[norm(x) for x in np.atleast_1d(S['sst_subject']).ravel()]
+rid=pd.read_excel('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/whole_brain_fc_compare/model_data/remain_id_217.xlsx',header=None)
+ids217=pd.to_numeric(rid.iloc[:,0],errors='coerce').dropna().astype(int).values
+vals=sorted(set(L2[:,:2].astype(int).ravel()))
+pos={v:int(np.where(ids217==v)[0][0])+1 for v in vals if v in set(ids217)}
+def idx_shen(A):
+    out=A.copy()
+    for i in range(A.shape[0]):
+        for j in range(2): out[i,j]=pos[int(L2[i,j])]-1
+    return out.astype(int)
+CAND={'axis217_correctMID':IDX,'axis217_buggyMID':IDXB,
+      'shen_correctMID':idx_shen(IDX+1),'shen_buggyMID':idx_shen(IDXB+1)}
+def extract(ij):
+    out={}
+    for s in subs12:
+        n=norm(s); mi,si=mid_ids.index(n),sst_ids.index(n)
+        a={'sst_stop_suces':arrs['sst_stop_suces'][:,:,si:si+1],'sst_stop_failure':arrs['sst_stop_failure'][:,:,si:si+1],
+           'mid_feed_hit':arrs['mid_feed_hit'][:,:,mi:mi+1],'mid_antici_hit':arrs['mid_antici_hit'][:,:,mi:mi+1]}
+        out[s]=np.asarray(extract_12_edges(a,ij,0),float)
+    return pd.DataFrame(out).T[list(range(12))].set_axis(ec,axis=1)
+T3=pd.read_csv(f'{msc}/3m_repeats/3m_np_edges_repeats_all_conditions_tidy.csv')
+T3=T3[T3.condition=='baseline'].copy()
+T3['idn']=pd.to_numeric(T3.sub_id.astype(str).str.extract(r'(\d{6,})')[0]).astype(int)
+W=pd.read_csv(f'{dest}/NP_12edges_all_subjects_scales_conditions_newflow.csv')
+N=pd.read_csv(f'{msc}/NP_12edges_10m_1000_10m_268_regional_modu.csv')
+def cube_reps(df,repcol):
+    out=[]
+    for k in sorted(df[repcol].dropna().unique()):
+        d=df[df[repcol]==k].set_index('idn')
+        if not set(subs12)<=set(d.index): continue
+        out.append(d.loc[subs12][ec].values.astype(float))
+    return np.array(out)
+REP={}
+REP['3m_268']=np.array([T3[T3.replicate==k].pivot_table(index='idn',columns='edge_num',values='fc').reindex(subs12).values
+                        for k in sorted(T3.replicate.unique())],dtype=float)
+REP['10m_268']=cube_reps(N[(N.model=='regional')&(N.condition=='baseline')],'repeat' if 'repeat' in N.columns else 'pair_id')
+for lab,sc in [('10m_1000','10m_reg'),('10m','10m'),('100m','100m'),('1b','1b')]:
+    REP[lab]=cube_reps(W[(W.scale==sc)&(W.condition=='baseline')],'run_idx')
+BASE={'3m_268':WBK['simu_3m'].loc[subs12].values.astype(float),
+      '10m_268':np.nanmean(REP['10m_268'],axis=0),'10m_1000':np.nanmean(REP['10m_1000'],axis=0),
+      '10m':WBK['simu_10m'].loc[subs12].values.astype(float),
+      '100m':WBK['simu_100m'].loc[subs12].values.astype(float),'1b':WBK['simu_1b'].loc[subs12].values.astype(float)}
+def parts(A,B):
+    ep=np.corrcoef(A.mean(0),B.mean(0))[0,1]
+    ra=A-A.mean(0)-A.mean(1,keepdims=True)+A.mean(); rb=B-B.mean(0)-B.mean(1,keepdims=True)+B.mean()
+    return np.corrcoef(A.ravel(),B.ravel())[0,1],ep,np.corrcoef(ra.ravel(),rb.ravel())[0,1]
+six=['3m_268','10m_268','10m_1000','10m','100m','1b']
+E_bug=extract(CAND['axis217_buggyMID']).loc[subs12].values.astype(float)
+E_ok=extract(CAND['axis217_correctMID']).loc[subs12].values.astype(float)
+mid=slice(6,12)
+def match(A,B):
+    C=np.array([[np.corrcoef(A[i],B[j])[0,1] for j in range(12)] for i in range(12)])
+    ri,ci=linear_sum_assignment(-C); return np.diag(C).mean(),C[ri,ci].mean(),ci
+rows=[]
+for m in six[1:]:
+    t,e,i=parts(BASE['3m_268'],BASE[m])
+    rows.append(dict(comparison=f'3m_268 vs {m}',r_144units=t,r_edge_profile=e,r_individual_diff=i,
+                     r_sst_half=np.corrcoef(E_ok[:,sst].ravel(),BASE[m][:,sst].ravel())[0,1],
+                     r_mid_half=np.corrcoef(E_ok[:,mid].ravel(),BASE[m][:,mid].ravel())[0,1],
+                     r_mid_half_if_3m_buggy=np.corrcoef(E_bug[:,mid].ravel(),BASE[m][:,mid].ravel())[0,1],
+                     identity_mean_r=match(BASE['3m_268'],BASE[m])[0],
+                     best_assignment_mean_r=match(BASE['3m_268'],BASE[m])[1]))
+D3=pd.DataFrame(rows)
+SUB="/Users/yunman/Desktop/submission/"
+
+# ---- computation: recovered from execution-log cell a7adaae2
+amp=pd.read_csv(SUB+"figures_v2/fig3/manipulated_fcs_4subs/plot_mani_AMPA.csv")
+amp.columns=['subject']+[str(c) for c in amp.columns[1:]]
+amp=amp[amp.subject!='HC02']
+amp.to_csv(D3+"fig3d_ampa_sweep.csv", index=False, float_format='%.12g')

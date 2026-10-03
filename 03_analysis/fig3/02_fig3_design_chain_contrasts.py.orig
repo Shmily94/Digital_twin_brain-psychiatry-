@@ -1,0 +1,227 @@
+"""fig3_design_chain_contrasts.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code takes an already-assembled DataFrame CH, holding a chain of
+    pairwise design contrasts, and writes it out unchanged to a CSV file
+    in the figure 3 data directory. No computation of means, differences,
+    confidence intervals, or p values happens in this snippet itself;
+    those values must have been produced earlier in the analysis and are
+    simply being saved here. One row of the output table represents a
+    single step in a build-up design chain, comparing one model or
+    condition configuration to the next, isolating a specific factor that
+    changed between them, and reporting the associated summary statistics
+    and test results for one metric. With nine rows, the table captures
+    nine such successive one-factor comparisons along the chain.
+
+INPUT FILES
+    /Users/yunman/Desktop/submission/revision/model_scale_consistent/manuscript_numbers_newflow/3m_model_new_run/baseline同化区域BOLD_r总表.xlsx
+    {B}/revision/10m_voxel_population_simulation/simulate_FC_edges.csv
+    {B}/revision/model_scale_consistent/NP_12edges_10m_1000_10m_268_regional_modu.csv
+    {B}/revision/model_scale_consistent/simulation_results_wide_12subs.csv
+    {MN}/NP_12edges_all_subjects_scales_conditions_newflow.csv
+    {R3}/Baseline_simulated_NP_12edges_and_factor_3m_new_run.mat
+    {VX}/fc_similarity_four_runs_per_subject.csv
+    {VX}/new10m_simulated_FC_12subs_with_empirical.mat
+
+OUTPUT FILE
+    fig3_design_chain_contrasts.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3_design_chain_contrasts.csv
+
+STATISTICAL TESTS
+    paired two-sided t test
+    Wilcoxon signed-rank test
+    Cohen's d_z effect size
+    standard error of the mean
+
+RUNNABLE ON A LAPTOP
+    conditional on the input files above being present on this machine
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 49d8cb03-f5d2-4cc7-969f-4c3dfedc30cc
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-22 18:01:41 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3_design_chain_contrasts__cell_49d8cb03.py
+    candidates found   : 2
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+from scipy import stats
+import numpy as np
+import pandas as pd
+import scipy.io as sio
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 1b4a7685, 1deb5307, 2303b194, 292420c0, 2cbadd0f, 39431a70, 3d91af14, 5233e78b, 6f69dd7b, 83117ae5, c8b0f4ed, ccc98e5f)
+B='/Users/yunman/Desktop/submission'
+FD3=f'{B}/revision/text/figures/fig.3/fig3_data'
+import scipy.io as sio, pandas as pd, numpy as np, os
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+NEW=sio.loadmat(f'{VX}/new10m_simulated_FC_12subs_with_empirical.mat', squeeze_me=True)
+sub_ids=[str(s) for s in NEW['subject_ids']]
+sw=pd.read_csv(f'{B}/revision/model_scale_consistent/simulation_results_wide_12subs.csv')
+sw['sid']=sw.sub_id.astype(str).str.replace('sub-0*','',regex=True)
+sw=sw.set_index('sid').loc[sub_ids]
+import scipy.io as sio, pandas as pd, numpy as np, os
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+NEW=sio.loadmat(f'{VX}/new10m_simulated_FC_12subs_with_empirical.mat', squeeze_me=True)
+ED=pd.read_csv(f'{B}/revision/10m_voxel_population_simulation/simulate_FC_edges.csv')
+CONDMAP={'sst_stop_success':0,'sst_stop_failure':1,'mid_antici_hit':2,'mid_feedback_hit':3}
+def edges_from_mat(a):
+    return np.column_stack([a[i-1,j-1,:,CONDMAP[c]] for i,j,c in zip(ED.roi_i,ED.roi_j,ED.condition)])
+MAT={'10m':edges_from_mat(NEW['simu_fc_10m_100m_params']),'100m':edges_from_mat(NEW['simu_fc_100m']),
+     '1b':edges_from_mat(NEW['simu_fc_1b']),'10m_own':edges_from_mat(NEW['simu_fc_10m_own_params'])}
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+import scipy.io as sio, pandas as pd, numpy as np, os
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+NEW=sio.loadmat(f'{VX}/new10m_simulated_FC_12subs_with_empirical.mat', squeeze_me=True)
+sub_ids=[str(s) for s in NEW['subject_ids']]
+B='/Users/yunman/Desktop/submission'
+MN=f'{B}/revision/model_scale_consistent/manuscript_numbers_newflow'
+B='/Users/yunman/Desktop/submission'
+R3=f'{B}/revision/model_scale_consistent/manuscript_numbers_newflow/3m_model_new_run'
+EMPW=sw[[f'emp_edge{k}' for k in range(1,13)]].values.astype(float)
+mse=lambda s,e: ((s-e)**2).mean(1)
+m3=sio.loadmat(f'{R3}/Baseline_simulated_NP_12edges_and_factor_3m_new_run.mat', squeeze_me=True)
+sid=[s for s in sub_ids]
+EDC=[f'edge{k}' for k in range(1,13)]
+NF=pd.read_csv(f'{MN}/NP_12edges_all_subjects_scales_conditions_newflow.csv')
+NFB=NF[NF.condition=='baseline']
+REG=pd.read_csv(f'{B}/revision/model_scale_consistent/NP_12edges_10m_1000_10m_268_regional_modu.csv')
+NP3=np.asarray(m3['NP12edges'],float)
+ORDER=['3m_268','10m_268','10m_1000','10m_own','10m','100m','1b']
+def reps_from_nf(sc):
+    out=[]
+    for r,sub in NFB[NFB.scale==sc].groupby('run_idx'):
+        g=sub.groupby('subID')[EDC].mean(); g.index=[s.replace('sub-','').lstrip('0') for s in g.index]
+        if set(sid)<=set(g.index): out.append(np.array([g.loc[s].values for s in sid]))
+    return np.stack(out,1)
+RB2=REG[REG.condition=='baseline'].copy()
+RB2['rep']=RB2.repeat.astype(str)
+r268=[]
+for r,sub in RB2.groupby('rep'):
+    g=sub.groupby('subject')[EDC].mean(); g.index=[s.replace('sub-','').lstrip('0') for s in g.index]
+    if set(sid)<=set(g.index): r268.append(np.array([g.loc[s].values for s in sid]))
+REPS={'3m_268': NP3, '10m_268': np.stack(r268,1), '10m_1000': reps_from_nf('10m_reg'),
+      '10m': reps_from_nf('10m'), '100m': reps_from_nf('100m'), '1b': reps_from_nf('1b')}
+PROF={k: np.nanmean(v,1) for k,v in REPS.items()}
+PROF['10m_own']=MAT['10m_own']
+M={k: mse(PROF[k],EMPW) for k in ORDER}
+XL='/Users/yunman/Desktop/submission/revision/model_scale_consistent/manuscript_numbers_newflow/3m_model_new_run/baseline同化区域BOLD_r总表.xlsx'
+xf=pd.ExcelFile(XL)
+raw=xf.parse('总表', header=None)
+hi=raw.index[raw[0].astype(str).str.contains('被试',na=False)][0]
+T=raw.iloc[hi+1:].copy()
+T.columns=[str(x).replace('\n','') for x in raw.iloc[hi]]
+T=T[T['被试'].astype(str).str.startswith('sub-')].reset_index(drop=True)
+BCOL=[c for c in T.columns if '模拟' in c]
+raw=xf.parse('总表', header=None)
+hi=raw.index[raw[0].astype(str).str.contains('被试',na=False)][0]
+T=raw.iloc[hi+1:].copy()
+T.columns=[str(x).replace('\n','') for x in raw.iloc[hi]]
+T=T[T['被试'].astype(str).str.startswith('sub-')].reset_index(drop=True)
+BCOL=[c for c in T.columns if '模拟' in c]
+T[BCOL]=T[BCOL].apply(pd.to_numeric, errors='coerce')
+XLMAP={'3m同化+3m模拟':'3m_268','3m同化+10m268模拟':'10m_268','10m1000同化+模拟':'10m_1000',
+       '10m同化+模拟':'10m_own','100m同化+10m模拟':'10m','100m同化+模拟':'100m','100m同化+1b模拟':'1b'}
+V={XLMAP[c]: T[c].values.astype(float) for c in BCOL}
+PS=pd.read_csv(f'{VX}/fc_similarity_four_runs_per_subject.csv')
+PS=PS.set_index(PS.sub_id.astype(str)).loc[sid]
+WBPS={'10m_own':PS.r_dtb_voxels__10m_own_params.values,'10m':PS.r_dtb_voxels__10m_100m_params.values,
+      '100m':PS.r_dtb_voxels__100m.values,'1b':PS.r_dtb_voxels__1b.values}
+def contrast(nm, a, b, vals, metric, factor, better):
+    x,y=vals[a],vals[b]; d=y-x
+    dz=d.mean()/d.std(ddof=1); t=stats.ttest_rel(y,x)
+    ci=stats.t.interval(.95, len(d)-1, d.mean(), stats.sem(d))
+    return dict(step=nm, build_from=a, build_to=b, factor_changed=factor, metric=metric,
+                mean_from=round(float(x.mean()),4), mean_to=round(float(y.mean()),4),
+                mean_diff=round(float(d.mean()),4), ci_lo=round(float(ci[0]),4), ci_hi=round(float(ci[1]),4),
+                dz=round(float(dz),3), t_p=float(t.pvalue),
+                wilcoxon_p=float(stats.wilcoxon(y,x).pvalue), direction=better)
+
+# ---- computation: recovered from execution-log cell 49d8cb03
+STEPS=[('1  assimilation scale','10m_own','10m','assimilation 10 M voxel → 100 M'),
+       ('2  drop to 1000 regions','10m_own','10m_1000','voxel → 1000 regions'),
+       ('3  drop to 268 regions','10m_1000','10m_268','1000 → 268 regions'),
+       ('4  cheaper neurons','10m_268','3m_268','10 M → 3 M neurons')]
+allrows=[]
+for nm,a,bq,fac in STEPS:
+    for metric,vals,better in [('assimilated BOLD r',V,'higher'),('NP-edge MSE',M,'lower'),
+                               ('whole-brain FC r',WBPS,'higher')]:
+        if a not in vals or bq not in vals: continue
+        allrows.append(contrast(nm,a,bq,vals,metric,fac,better))
+CH2=pd.DataFrame(allrows)
+CH2['n']=CH2.metric.map({'assimilated BOLD r':24,'NP-edge MSE':12,'whole-brain FC r':12})
+CH2.to_csv(f'{FD3}/fig3_design_chain_contrasts.csv', index=False)

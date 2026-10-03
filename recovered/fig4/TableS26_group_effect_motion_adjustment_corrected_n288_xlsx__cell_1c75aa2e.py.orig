@@ -1,0 +1,26 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/supp_motion/data/TableS26_group_effect_motion_adjustment_corrected_n288.xlsx
+#
+# cell id      : 1c75aa2e-28a8-487e-999c-fc7fca6bf6a9
+# frame id     : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp    : 2026-09-21 21:53:03 UTC
+# conda env    : python
+# language     : bash
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/34_TableS26_group_effect_motion_adjustment_corrected_n288_xlsx.py
+##############################################################################
+FIG=/Users/yunman/Desktop/submission/revision/text/figures
+cd "$FIG/supp_motion" && sed -i '' 's/ax.set_xlim(0, 15.5)/ax.set_xlim(0, 14.2)/' motion_supp.py && python motion_supp.py >/dev/null
+W=~/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/fe47a03f-2d43-4fe0-a1c3-e0544839d822
+cp panels/figS_motion_d.png panels/figS_motion_d.pdf motion_supp.py panels/motion_panel_manifest.csv $W/
+cp data/TableS26_group_effect_motion_adjustment_corrected_n288.csv $W/
+python - <<'PY'
+import pandas as pd
+d=pd.read_csv('data/TableS26_group_effect_motion_adjustment_corrected_n288.csv')
+with pd.ExcelWriter('data/TableS26_group_effect_motion_adjustment_corrected_n288.xlsx') as w:
+    d.to_excel(w, sheet_name='Table S26 (corrected)', index=False)
+print(d[['Measure','eta2_group_no_FD','eta2_group_with_FD','P_no_FD','P_with_FD','P_with_FD_bonf']].to_string(index=False))
+PY
+cp data/TableS26_group_effect_motion_adjustment_corrected_n288.xlsx $W/

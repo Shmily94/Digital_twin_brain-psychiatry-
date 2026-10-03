@@ -1,0 +1,17 @@
+drug,receptor,pairing,level,n_edges,n_same,pct_same,p_binomial,p_signflip
+Ketamine,AMPA,matched,mid_antici_hit,30,18.0,60.0,0.36,0.281
+Ketamine,AMPA,matched,mid_feed_hit,26,20.0,76.9,0.0094,0.035
+Ketamine,AMPA,matched,pooled (both MID conditions),56,38.0,67.9,0.01,0.085
+Ketamine,GABA,cross-receptor,mid_antici_hit,30,19.0,63.3,0.2,—
+Ketamine,GABA,cross-receptor,mid_feed_hit,26,23.0,88.5,8.8e-05,—
+Ketamine,GABA,cross-receptor,pooled (both MID conditions),56,42.0,75.0,0.00023,—
+Midazolam,AMPA,cross-receptor,mid_antici_hit,52,28.0,53.8,0.68,—
+Midazolam,AMPA,cross-receptor,mid_feed_hit,50,35.0,70.0,0.0066,—
+Midazolam,AMPA,cross-receptor,pooled (both MID conditions),102,63.0,61.8,0.022,—
+Midazolam,GABA,matched,mid_antici_hit,52,36.0,69.2,0.0078,0.095
+Midazolam,GABA,matched,mid_feed_hit,50,39.0,78.0,9e-05,0.032
+Midazolam,GABA,matched,pooled (both MID conditions),102,75.0,73.5,2.1e-06,0.024
+Ketamine,AMPA,task-mismatch control (SST predictions),pooled (both MID conditions),56,25.0,44.6,0.5,—
+Ketamine,GABA,task-mismatch control (SST predictions),pooled (both MID conditions),56,42.0,75.0,0.00023,—
+Midazolam,AMPA,task-mismatch control (SST predictions),pooled (both MID conditions),102,46.0,45.1,0.37,—
+Midazolam,GABA,task-mismatch control (SST predictions),pooled (both MID conditions),102,68.0,66.7,0.00099,—

@@ -1,0 +1,4 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_empsim_legend,64,28,789x347,313,legend for figS_empsim
+figS_empsim_a,108,56,1427x875,336,empsim_paired_tests_n288.csv
+figS_empsim_b,108,56,1427x875,336,empsim_paired_tests_n288.csv

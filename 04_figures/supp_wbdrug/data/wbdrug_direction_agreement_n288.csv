@@ -1,0 +1,25 @@
+drug,dtb_contrast,pairing,task_match,level,n_edges,n_same,pct_same,p_binomial,p_signflip_node,null_sd_pct
+Ketamine,AMPA vs baseline,matched,matched(MID),mid_antici_hit,30,18,60.0,0.3615946080535651,0.1898101898101898,9.0
+Ketamine,AMPA vs baseline,matched,mismatched(SST),mid_antici_hit,30,14,46.7,0.8555355519056321,0.6843156843156843,9.2
+Ketamine,AMPA vs baseline,matched,matched(MID),mid_feed_hit,26,20,76.9,0.0093553066253662,0.0089910089910089,9.9
+Ketamine,AMPA vs baseline,matched,mismatched(SST),mid_feed_hit,26,11,42.3,0.557197093963623,0.8221778221778222,9.8
+Ketamine,AMPA+GABA-A vs baseline,cross-receptor,matched(MID),mid_antici_hit,30,19,63.3,0.2004884220659733,0.1108891108891109,9.0
+Ketamine,AMPA+GABA-A vs baseline,cross-receptor,mismatched(SST),mid_antici_hit,30,18,60.0,0.3615946080535651,0.1758241758241758,9.2
+Ketamine,AMPA+GABA-A vs baseline,cross-receptor,matched(MID),mid_feed_hit,26,23,88.5,8.797645568847656e-05,0.0009990009990009,9.7
+Ketamine,AMPA+GABA-A vs baseline,cross-receptor,mismatched(SST),mid_feed_hit,26,24,92.3,1.049041748046875e-05,0.0009990009990009,9.6
+Midazolam,AMPA vs baseline,cross-receptor,matched(MID),mid_antici_hit,52,28,53.8,0.6778086391424605,0.3436563436563437,7.2
+Midazolam,AMPA vs baseline,cross-receptor,mismatched(SST),mid_antici_hit,52,20,38.5,0.1263470758139213,0.971028971028971,6.9
+Midazolam,AMPA vs baseline,cross-receptor,matched(MID),mid_feed_hit,50,35,70.0,0.0066004479668109,0.0049950049950049,7.3
+Midazolam,AMPA vs baseline,cross-receptor,mismatched(SST),mid_feed_hit,50,27,54.0,0.6718110337653656,0.3456543456543456,7.2
+Midazolam,AMPA+GABA-A vs baseline,matched,matched(MID),mid_antici_hit,52,36,69.2,0.0077874363057435,0.0039960039960039,6.9
+Midazolam,AMPA+GABA-A vs baseline,matched,mismatched(SST),mid_antici_hit,52,31,59.6,0.2116085687615161,0.0969030969030969,7.0
+Midazolam,AMPA+GABA-A vs baseline,matched,matched(MID),mid_feed_hit,50,37,74.0,0.0009362229108518,0.0029970029970029,7.1
+Midazolam,AMPA+GABA-A vs baseline,matched,mismatched(SST),mid_feed_hit,50,35,70.0,0.0066004479668109,0.0019980019980019,7.3
+Ketamine,AMPA vs baseline,matched,matched(MID),pooled (both MID conditions),56,38,67.9,0.0104548183218921,0.0049950049950049,6.8
+Ketamine,AMPA vs baseline,matched,mismatched(SST),pooled (both MID conditions),56,25,44.6,0.5044037600228255,0.7822177822177823,7.2
+Ketamine,AMPA+GABA-A vs baseline,cross-receptor,matched(MID),pooled (both MID conditions),56,42,75.0,0.0002344458609191,0.0009990009990009,6.8
+Ketamine,AMPA+GABA-A vs baseline,cross-receptor,mismatched(SST),pooled (both MID conditions),56,42,75.0,0.0002344458609191,0.0009990009990009,6.9
+Midazolam,AMPA vs baseline,cross-receptor,matched(MID),pooled (both MID conditions),102,63,61.8,0.0222976618246929,0.0209790209790209,5.4
+Midazolam,AMPA vs baseline,cross-receptor,mismatched(SST),pooled (both MID conditions),102,47,46.1,0.4884344645326324,0.8111888111888111,5.2
+Midazolam,AMPA+GABA-A vs baseline,matched,matched(MID),pooled (both MID conditions),102,73,71.6,1.5502681985416567e-05,0.0009990009990009,5.2
+Midazolam,AMPA+GABA-A vs baseline,matched,mismatched(SST),pooled (both MID conditions),102,66,64.7,0.0038655835883383,0.0029970029970029,5.3

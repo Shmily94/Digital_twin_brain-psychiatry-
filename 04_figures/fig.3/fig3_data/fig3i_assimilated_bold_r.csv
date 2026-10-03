@@ -1,0 +1,169 @@
+subject_id,task,model,family,sim_neurons,assimilation_hyperparams,resolution,n_repeats_averaged,bold_r
+112288,MID,3m_268,regional,3 M,3 M,268 regions,5,0.89028
+112288,MID,10m_268,regional,10 M,3 M,268 regions,5,0.89049
+112288,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.69276
+112288,MID,10m,voxel,10 M,100 M,voxel,5,0.8854
+112288,MID,100m,voxel,100 M,100 M,voxel,5,0.87199
+112288,MID,1b,voxel,1 B,100 M,voxel,5,0.88168
+112288,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.7462
+112288,SST,3m_268,regional,3 M,3 M,268 regions,5,0.93159
+112288,SST,10m_268,regional,10 M,3 M,268 regions,5,0.93171
+112288,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.71549
+112288,SST,10m,voxel,10 M,100 M,voxel,5,0.91638
+112288,SST,100m,voxel,100 M,100 M,voxel,5,0.91497
+112288,SST,1b,voxel,1 B,100 M,voxel,5,0.92348
+112288,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.8148
+16275727,MID,3m_268,regional,3 M,3 M,268 regions,5,0.87765
+16275727,MID,10m_268,regional,10 M,3 M,268 regions,5,0.87781
+16275727,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.65392
+16275727,MID,10m,voxel,10 M,100 M,voxel,5,0.86943
+16275727,MID,100m,voxel,100 M,100 M,voxel,5,0.86773
+16275727,MID,1b,voxel,1 B,100 M,voxel,5,0.86807
+16275727,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.74909
+16275727,SST,3m_268,regional,3 M,3 M,268 regions,5,0.90653
+16275727,SST,10m_268,regional,10 M,3 M,268 regions,5,0.90662
+16275727,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.71152
+16275727,SST,10m,voxel,10 M,100 M,voxel,5,0.89043
+16275727,SST,100m,voxel,100 M,100 M,voxel,5,0.89897
+16275727,SST,1b,voxel,1 B,100 M,voxel,5,0.89973
+16275727,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.68758
+44576096,MID,3m_268,regional,3 M,3 M,268 regions,5,0.9086
+44576096,MID,10m_268,regional,10 M,3 M,268 regions,5,0.90874
+44576096,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.65693
+44576096,MID,10m,voxel,10 M,100 M,voxel,5,0.87996
+44576096,MID,100m,voxel,100 M,100 M,voxel,5,0.88103
+44576096,MID,1b,voxel,1 B,100 M,voxel,5,0.88159
+44576096,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.69558
+44576096,SST,3m_268,regional,3 M,3 M,268 regions,5,0.95489
+44576096,SST,10m_268,regional,10 M,3 M,268 regions,5,0.95496
+44576096,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.7188
+44576096,SST,10m,voxel,10 M,100 M,voxel,5,0.92709
+44576096,SST,100m,voxel,100 M,100 M,voxel,5,0.93365
+44576096,SST,1b,voxel,1 B,100 M,voxel,5,0.93418
+44576096,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.85934
+63218063,MID,3m_268,regional,3 M,3 M,268 regions,5,0.89588
+63218063,MID,10m_268,regional,10 M,3 M,268 regions,5,0.89604
+63218063,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.61929
+63218063,MID,10m,voxel,10 M,100 M,voxel,5,0.87267
+63218063,MID,100m,voxel,100 M,100 M,voxel,5,0.87255
+63218063,MID,1b,voxel,1 B,100 M,voxel,5,0.87304
+63218063,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.74506
+63218063,SST,3m_268,regional,3 M,3 M,268 regions,5,0.9212
+63218063,SST,10m_268,regional,10 M,3 M,268 regions,5,0.92155
+63218063,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.6688
+63218063,SST,10m,voxel,10 M,100 M,voxel,5,0.89633
+63218063,SST,100m,voxel,100 M,100 M,voxel,5,0.91087
+63218063,SST,1b,voxel,1 B,100 M,voxel,5,0.91233
+63218063,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.85543
+67342911,MID,3m_268,regional,3 M,3 M,268 regions,5,0.88008
+67342911,MID,10m_268,regional,10 M,3 M,268 regions,5,0.88116
+67342911,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.6538
+67342911,MID,10m,voxel,10 M,100 M,voxel,5,0.82283
+67342911,MID,100m,voxel,100 M,100 M,voxel,5,0.85241
+67342911,MID,1b,voxel,1 B,100 M,voxel,5,0.8566
+67342911,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.67298
+67342911,SST,3m_268,regional,3 M,3 M,268 regions,5,0.93058
+67342911,SST,10m_268,regional,10 M,3 M,268 regions,5,0.93081
+67342911,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.80262
+67342911,SST,10m,voxel,10 M,100 M,voxel,5,0.91805
+67342911,SST,100m,voxel,100 M,100 M,voxel,5,0.92942
+67342911,SST,1b,voxel,1 B,100 M,voxel,5,0.93054
+67342911,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.85628
+67844279,MID,3m_268,regional,3 M,3 M,268 regions,5,0.89093
+67844279,MID,10m_268,regional,10 M,3 M,268 regions,5,0.89103
+67844279,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.6344
+67844279,MID,10m,voxel,10 M,100 M,voxel,5,0.86459
+67844279,MID,100m,voxel,100 M,100 M,voxel,5,0.86338
+67844279,MID,1b,voxel,1 B,100 M,voxel,5,0.86373
+67844279,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.73015
+67844279,SST,3m_268,regional,3 M,3 M,268 regions,5,0.92495
+67844279,SST,10m_268,regional,10 M,3 M,268 regions,5,0.9251
+67844279,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.65868
+67844279,SST,10m,voxel,10 M,100 M,voxel,5,0.89191
+67844279,SST,100m,voxel,100 M,100 M,voxel,5,0.89928
+67844279,SST,1b,voxel,1 B,100 M,voxel,5,0.89988
+67844279,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.71793
+111086310,MID,3m_268,regional,3 M,3 M,268 regions,5,0.89799
+111086310,MID,10m_268,regional,10 M,3 M,268 regions,5,0.8982
+111086310,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.57868
+111086310,MID,10m,voxel,10 M,100 M,voxel,5,0.87013
+111086310,MID,100m,voxel,100 M,100 M,voxel,5,0.86951
+111086310,MID,1b,voxel,1 B,100 M,voxel,5,0.86995
+111086310,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.74524
+111086310,SST,3m_268,regional,3 M,3 M,268 regions,5,0.9328
+111086310,SST,10m_268,regional,10 M,3 M,268 regions,5,0.93311
+111086310,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.67965
+111086310,SST,10m,voxel,10 M,100 M,voxel,5,0.90788
+111086310,SST,100m,voxel,100 M,100 M,voxel,5,0.91606
+111086310,SST,1b,voxel,1 B,100 M,voxel,5,0.91671
+111086310,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.86012
+112517217,MID,3m_268,regional,3 M,3 M,268 regions,5,0.88795
+112517217,MID,10m_268,regional,10 M,3 M,268 regions,5,0.88807
+112517217,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.65463
+112517217,MID,10m,voxel,10 M,100 M,voxel,5,0.86383
+112517217,MID,100m,voxel,100 M,100 M,voxel,5,0.8614
+112517217,MID,1b,voxel,1 B,100 M,voxel,5,0.8617
+112517217,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.70736
+112517217,SST,3m_268,regional,3 M,3 M,268 regions,5,0.91145
+112517217,SST,10m_268,regional,10 M,3 M,268 regions,5,0.91153
+112517217,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.6728
+112517217,SST,10m,voxel,10 M,100 M,voxel,5,0.89959
+112517217,SST,100m,voxel,100 M,100 M,voxel,5,0.90757
+112517217,SST,1b,voxel,1 B,100 M,voxel,5,0.90819
+112517217,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.83572
+113174215,MID,3m_268,regional,3 M,3 M,268 regions,5,0.90511
+113174215,MID,10m_268,regional,10 M,3 M,268 regions,5,0.9053
+113174215,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.65944
+113174215,MID,10m,voxel,10 M,100 M,voxel,5,0.89283
+113174215,MID,100m,voxel,100 M,100 M,voxel,5,0.8906
+113174215,MID,1b,voxel,1 B,100 M,voxel,5,0.891
+113174215,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.77912
+113174215,SST,3m_268,regional,3 M,3 M,268 regions,5,0.93113
+113174215,SST,10m_268,regional,10 M,3 M,268 regions,5,0.93133
+113174215,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.7318
+113174215,SST,10m,voxel,10 M,100 M,voxel,5,0.91991
+113174215,SST,100m,voxel,100 M,100 M,voxel,5,0.92866
+113174215,SST,1b,voxel,1 B,100 M,voxel,5,0.92923
+113174215,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.86116
+168370463,MID,3m_268,regional,3 M,3 M,268 regions,5,0.92859
+168370463,MID,10m_268,regional,10 M,3 M,268 regions,5,0.92881
+168370463,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.71869
+168370463,MID,10m,voxel,10 M,100 M,voxel,5,0.88393
+168370463,MID,100m,voxel,100 M,100 M,voxel,5,0.88963
+168370463,MID,1b,voxel,1 B,100 M,voxel,5,0.89062
+168370463,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.73476
+168370463,SST,3m_268,regional,3 M,3 M,268 regions,5,0.95758
+168370463,SST,10m_268,regional,10 M,3 M,268 regions,5,0.95765
+168370463,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.8347
+168370463,SST,10m,voxel,10 M,100 M,voxel,5,0.94051
+168370463,SST,100m,voxel,100 M,100 M,voxel,5,0.94501
+168370463,SST,1b,voxel,1 B,100 M,voxel,5,0.94535
+168370463,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.88494
+182136619,MID,3m_268,regional,3 M,3 M,268 regions,5,0.8847
+182136619,MID,10m_268,regional,10 M,3 M,268 regions,5,0.88479
+182136619,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.65129
+182136619,MID,10m,voxel,10 M,100 M,voxel,5,0.88825
+182136619,MID,100m,voxel,100 M,100 M,voxel,5,0.8842
+182136619,MID,1b,voxel,1 B,100 M,voxel,5,0.8845
+182136619,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.67219
+182136619,SST,3m_268,regional,3 M,3 M,268 regions,5,0.93166
+182136619,SST,10m_268,regional,10 M,3 M,268 regions,5,0.93179
+182136619,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.71254
+182136619,SST,10m,voxel,10 M,100 M,voxel,5,0.9186
+182136619,SST,100m,voxel,100 M,100 M,voxel,5,0.92634
+182136619,SST,1b,voxel,1 B,100 M,voxel,5,0.92685
+182136619,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.81911
+191996808,MID,3m_268,regional,3 M,3 M,268 regions,5,0.89279
+191996808,MID,10m_268,regional,10 M,3 M,268 regions,5,0.89294
+191996808,MID,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.65373
+191996808,MID,10m,voxel,10 M,100 M,voxel,5,0.86346
+191996808,MID,100m,voxel,100 M,100 M,voxel,5,0.86327
+191996808,MID,1b,voxel,1 B,100 M,voxel,5,0.86377
+191996808,MID,10m_own,voxel,10 M,10 M voxel,voxel,1,0.71213
+191996808,SST,3m_268,regional,3 M,3 M,268 regions,5,0.94091
+191996808,SST,10m_268,regional,10 M,3 M,268 regions,5,0.94099
+191996808,SST,10m_1000,regional,10 M,10 M / 1000,1000 regions,5,0.72464
+191996808,SST,10m,voxel,10 M,100 M,voxel,5,0.9139
+191996808,SST,100m,voxel,100 M,100 M,voxel,5,0.92004
+191996808,SST,1b,voxel,1 B,100 M,voxel,5,0.92049
+191996808,SST,10m_own,voxel,10 M,10 M voxel,voxel,1,0.83441

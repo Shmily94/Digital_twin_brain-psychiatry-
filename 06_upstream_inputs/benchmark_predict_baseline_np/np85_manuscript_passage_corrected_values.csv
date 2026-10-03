@@ -1,0 +1,12 @@
+claim,correct_value,correct_P,df
+AMPA index vs symptom change (zero-order),r = 0.26,P = 0.015,83
+AMPA index vs symptom change (adj. baseline symptom sum),partial r = 0.22,P = 0.042,82
+AMPA index vs symptom change (adj. 4 baseline bands),partial r = 0.24,P = 0.030,79
+full model (index + 4 baseline symptom bands),"R2 = 0.23, 95% CI 0.05-0.34","F(5,79) = 4.80, P = 0.0007; perm P = 0.0004","5,79"
+full model WITH empirical NP added,R2 = 0.29,"F(6,78) = 5.38, P = 0.00011","6,78"
+AMPA incremental over baseline symptoms,dR2 = 0.048,"F(1,79) = 4.91, P = 0.030","1,79"
+AMPA incremental over empirical NP sum,dR2 = 0.050,"F(1,82) = 5.15, P = 0.026","1,82"
+GABA index vs symptom change (zero-order),r = 0.23,P = 0.031,83
+GABA index vs symptom change (adj. baseline symptoms),partial r = 0.16,P = 0.14,82
+GABA incremental over baseline symptoms,dR2 = 0.021,"F(1,79) = 2.05, P = 0.16","1,79"
+GABA incremental over empirical NP sum,dR2 = 0.043,"F(1,82) = 4.34, P = 0.041","1,82"

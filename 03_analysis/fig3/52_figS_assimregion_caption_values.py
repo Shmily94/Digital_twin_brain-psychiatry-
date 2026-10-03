@@ -1,0 +1,291 @@
+"""figS_assimregion_caption_values.csv | Supplementary Fig. S11 (04_figures/supp_assimregion/figS_assimregion_A4.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code compares a meta-analytically defined (prior) brain region
+    set against an activation-derived region set for two tasks (MID and
+    SST), computing region and voxel-level overlap (Dice coefficients),
+    subcortical region counts, and shared-region tallies. It also computes
+    split-half and cross-condition correlation stability of task
+    functional connectivity vectors across five simulated MID assimilation
+    repeats and an actual activation map, then summarizes the min-max
+    ranges of those correlations and a ratio between them. Additionally it
+    extracts recovery percentages (any-voxel and region-mean) from a
+    threshold-sweep table at specific threshold values for each task. One
+    row of the output table holds a single named summary quantity (the
+    key) paired with its computed string or numeric value (the value),
+    such as a Dice percentage, a subcortical fraction, a correlation
+    range, or a recovery percentage at a given threshold.
+
+INPUT FILES
+    assimregion_overlap_simulated_sets.csv
+    assimregion_set_summary.csv
+    baseline_100M_prior_FC_accuracy_by_class.csv
+    np_edges_7runs_stats.csv
+    np_wholematrix_accuracy_by_condition.csv
+    prior_activation_overlap_threshold_sweep.csv
+    task_fc_raw_217x217_7runs.mat
+
+OUTPUT FILE
+    figS_assimregion_caption_values.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/supp_assimregion/figS_assimregion_caption_values.csv
+
+STATISTICAL TESTS
+    descriptive summary only (no inferential test in the recovered cell)
+
+RUNNABLE ON A LAPTOP
+    conditional on the input files above being present on this machine
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 0dc263b8-7352-4320-840a-a5d86070b421
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-25 00:15:33 UTC
+    conda environment  : (not recorded)
+    verbatim archive   : recovered/fig3/figS_assimregion_caption_values__cell_0dc263b8.py
+    candidates found   : 1
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+import pandas as pd
+
+# NOTE ON THE SOURCE
+#   The producing cell wrote the figure script
+#     /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_assimregion/figS_assimregion_A4.py
+#   which performs this computation itself.  The code below is that script up
+#   to and including the statement that writes this table (prints dropped).
+#   HERE and sys.path point at the package copy of that figure directory.
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures/supp_assimregion")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_assimregion")
+HERE = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures/supp_assimregion"
+
+# ---- computation: recovered from execution-log cell 0dc263b8
+import os, sys, itertools
+import numpy as np
+import pandas as pd
+import scipy.io as sio
+FIGDIR = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures"
+HERE = os.path.join(FIGDIR, "supp_assimregion")
+SRC = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/sensitivity_analysis/assimilated_region"
+from np_dtb_style import apply_np_style, C, LW, enforce
+from supp_kit import fill
+import figA4_kit as K
+from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, PW, PH, ML, MR, MT
+S = {}
+def dark(c, k=0.55):
+    r, g, b = (int(c[i:i + 2], 16) for i in (1, 3, 5))
+    return "#%02X%02X%02X" % (int(r * k), int(g * k), int(b * k))
+C_META, C_ACT, C_10M = C("baseline"), C("model_voxel"), "#BFBFBF"
+MK = {"MID": "o", "SST": "s"}
+TASKLAB = {"MID": "Reward (MID)", "SST": "Inhibition (SST)"}
+CS = pd.read_csv(os.path.join(HERE, "data", "assimregion_set_summary.csv"))
+OV = pd.read_csv(os.path.join(HERE, "data", "assimregion_overlap_simulated_sets.csv"))
+AC = pd.read_csv(os.path.join(SRC, "np_wholematrix_accuracy_by_condition.csv"))
+EC = pd.read_csv(os.path.join(SRC, "baseline_100M_prior_FC_accuracy_by_class.csv"))
+TS = pd.read_csv(os.path.join(SRC, "prior_activation_overlap_threshold_sweep.csv"))
+E7 = pd.read_csv(os.path.join(SRC, "np_edges_7runs_stats.csv"))
+VOX = CS[CS.set.isin(["prior", "act_voxmatched"])].set_index(["task", "set"])
+M7 = sio.loadmat(os.path.join(SRC, "task_fc_raw_217x217_7runs.mat"),
+                 squeeze_me=True, struct_as_record=False)["task_fc_112288"]
+IU = np.triu_indices(217, 1)
+S["n_edges_wb"] = len(IU[0])
+GRP = {"feed": ["Feedback_Hit_BIG_WIN", "Feedback_Hit_SMALL_WIN", "Feedback_Hit_NO_WIN"],
+       "anti": ["Anti_Hit_BIG_WIN", "Anti_Hit_SMALL_WIN", "Anti_Hit_NO_WIN"]}
+REPS = [f"MID_assim_{i}" for i in range(1, 6)]
+def cvec(run, which):
+    r = getattr(M7, run)
+    with np.errstate(invalid="ignore"):
+        m = np.nanmean(np.dstack([getattr(r, k) for k in GRP[which]]), axis=2)
+    return m[IU]
+def rr(a, b):
+    m = np.isfinite(a) & np.isfinite(b)
+    return float(np.corrcoef(a[m], b[m])[0, 1])
+sim = []
+for which, clab in [("feed", "feedback-hit"), ("anti", "anticipation-hit")]:
+    V = {r: cvec(r, which) for r in REPS}
+    Va = cvec("MID_act", which)
+    sim += [dict(condition=clab, pair_type="repeat", pair=f"{a[-1]}-{b[-1]}", r=rr(V[a], V[b]))
+            for a, b in itertools.combinations(REPS, 2)]
+    sim += [dict(condition=clab, pair_type="region", pair=f"act-{a[-1]}", r=rr(Va, V[a]))
+            for a in REPS]
+SIM = pd.DataFrame(sim)
+S["sim_repeat"] = "%.4f-%.4f" % (SIM[SIM.pair_type == "repeat"].r.min(),
+                                 SIM[SIM.pair_type == "repeat"].r.max())
+S["sim_region"] = "%.4f-%.4f" % (SIM[SIM.pair_type == "region"].r.min(),
+                                 SIM[SIM.pair_type == "region"].r.max())
+S["sim_ratio"] = "%.1f" % ((1 - SIM[SIM.pair_type == "region"].r.mean()) /
+                           (1 - SIM[SIM.pair_type == "repeat"].r.mean()))
+fig = K.page()
+COLW, GAPX = 79.0, 12.0
+X1, X2 = ML + 12.0, ML + 12.0 + COLW + GAPX
+AXH = 37.0
+R1 = MT + K.LETTER_BAND
+R2 = R1 + AXH + 9.0 + K.LETTER_BAND
+R3 = R2 + AXH + 9.0 + K.LETTER_BAND
+R4 = R3 + AXH + 9.0 + K.LETTER_BAND
+AXH4 = 34.0
+def style(ax):
+    for s in ax.spines.values():
+        s.set_linewidth(LW)
+    ax.tick_params(length=1.8, width=LW, labelsize=TICK_PT)
+    return ax
+ax_a = style(K.axes_mm(fig, X1, R1, COLW, AXH))
+for i, tk in enumerate(["MID", "SST"]):
+    o = OV[OV.task == tk].iloc[0]
+    only_m, sh, only_a = o.n_prior - o.n_overlap, o.n_overlap, o.n_act - o.n_overlap
+    left = 0.0
+    for v, col, ec in [(only_m, fill(C_META), C_META), (sh, dark(C_ACT, .8), dark(C_ACT, .8)),
+                       (only_a, fill(C_ACT), C_ACT)]:
+        ax_a.barh(i, v, left=left, height=.52, facecolor=col, edgecolor=ec,
+                  linewidth=LW, zorder=2)
+        if v >= 4:
+            ax_a.text(left + v / 2, i, f"{int(v)}", ha="center", va="center",
+                      fontsize=TICK_PT, color="black", zorder=3)
+        left += v
+    ax_a.text(left + 1.5, i, f"Dice {100 * o.dice_region:.1f}% (parcels), "
+                             f"{100 * o.dice_voxel:.1f}% (voxels)",
+              ha="left", va="center", fontsize=ANNOT_PT, color="0.3")
+    S[f"dice_{tk}"] = f"{100 * o.dice_region:.1f}"
+    S[f"dice_vox_{tk}"] = f"{100 * o.dice_voxel:.1f}"
+    S[f"shared_{tk}"] = f"{int(sh)} of {int(o.n_prior)}"
+ax_b = style(K.axes_mm(fig, X2, R1, COLW, AXH))
+xb = np.arange(2)
+for k, (st, col, lab) in enumerate([("prior", C_META, "meta-analytic"),
+                                    ("act_voxmatched", C_ACT, "activation, voxel-matched")]):
+    n_sub = [VOX.loc[(t, st)].n_subcortical for t in ["MID", "SST"]]
+    n_tot = [VOX.loc[(t, st)].n_regions for t in ["MID", "SST"]]
+    pct = [100 * a / b for a, b in zip(n_sub, n_tot)]
+    ax_b.bar(xb + (k - .5) * .36, pct, width=.34, facecolor=fill(col), edgecolor=col,
+             linewidth=LW, zorder=2, label=lab)
+    for x, p, a, b in zip(xb + (k - .5) * .36, pct, n_sub, n_tot):
+        ax_b.text(x, p + 1.2, f"{int(a)}/{int(b)}", ha="center", va="bottom",
+                  fontsize=TICK_PT, color=dark(col) if col != C_META else "0.3")
+    for t, a, b in zip(["MID", "SST"], n_sub, n_tot):
+        S[f"sub_{st}_{t}"] = f"{int(a)} of {int(b)}"
+ax_c = style(K.axes_mm(fig, X1, R2, COLW, AXH))
+for tk, ls in [("MID", "-"), ("SST", (0, (3.4, 1.8)))]:
+    t = TS[TS.task == tk].sort_values("thresh")
+    ax_c.plot(t.thresh, 100 * t.recov_any, ls=ls, color=C_ACT, lw=LW * 1.6,
+              marker=MK[tk], ms=2.4, mfc=C_ACT, mec=C_ACT, zorder=3,
+              label=f"{TASKLAB[tk]}, any voxel")
+    ax_c.plot(t.thresh, 100 * t.recov_mean, ls=ls, color=C_10M, lw=LW * 1.4, zorder=2,
+              label=f"{TASKLAB[tk]}, region mean")
+    for th in (0.0, 5.0):
+        v = 100 * float(t[np.isclose(t.thresh, th)].recov_any.iloc[0])
+        S[f"recov_{tk}_T{int(th)}"] = f"{v:.0f}"
+ax_d = style(K.axes_mm(fig, X2, R2, COLW, AXH))
+AC = AC.reset_index(drop=True)
+for i, r in AC.iterrows():
+    tk = "MID" if r.condition.startswith("reward") else "SST"
+    if np.isfinite(r.meta_analytic_mean_r):
+        ax_d.errorbar(i - .18, r.meta_analytic_mean_r,
+                      yerr=[[r.meta_analytic_mean_r - r.meta_analytic_min_r],
+                            [r.meta_analytic_max_r - r.meta_analytic_mean_r]],
+                      fmt=MK[tk], ms=3.6, color=C_META, mfc="white", mec=C_META,
+                      mew=LW * 1.3, elinewidth=LW, capsize=1.8, capthick=LW, zorder=3)
+    else:
+        ax_d.text(i - .18, .60, "no 100 M\nmeta-analytic\nrun", ha="center", va="bottom",
+                  fontsize=ANNOT_PT, color="0.45", linespacing=1.15)
+    ax_d.plot(i + .02, r.activation_r, MK[tk], ms=3.6, mfc=C_ACT, mec=dark(C_ACT),
+              mew=LW * 1.3, zorder=3)
+    ax_d.plot(i + .22, r.prior_10m_cohort_r, MK[tk], ms=3.0, mfc="white", mec=C_10M,
+              mew=LW * 1.3, zorder=3)
+    if np.isfinite(r.meta_analytic_mean_r):
+        ax_d.text(i - .08, max(r.meta_analytic_max_r, r.activation_r) + .012,
+                  f"$\\Delta r$ = {r.activation_r - r.meta_analytic_mean_r:+.4f}",
+                  ha="center", va="bottom", fontsize=ANNOT_PT, color="0.3")
+    S[f"acc_{r.condition}"] = (f"act {r.activation_r:.4f}, meta "
+                               f"{r.meta_analytic_mean_r:.4f}+/-{r.meta_analytic_sd_r:.4f}"
+                               if np.isfinite(r.meta_analytic_mean_r)
+                               else f"act {r.activation_r:.4f}, 10M {r.prior_10m_cohort_r:.4f}")
+ax_f = style(K.axes_mm(fig, X2, R3, COLW, AXH))
+EC = EC.set_index("edge_class").loc[["both", "one", "neither", "all"]].reset_index()
+cols = [C("np12"), C("model_regional"), C("non_np"), C_META]
+for i, (v, n, ms) in enumerate(zip(EC.r_emp_sim, EC.n_edges, EC.mse)):
+    ax_f.text(i, v + .02, f"{v:.3f}\nn = {n:,}\nMSE {ms:.4f}", ha="center", va="bottom",
+              fontsize=TICK_PT, color=dark(cols[i]) if i < 3 else "0.3", linespacing=1.2)
+    S[f"class_{EC.edge_class[i]}"] = f"r = {v:.4f}, n = {n}, MSE = {ms:.5f}"
+ax_g = style(K.axes_mm(fig, X1, R4, COLW * 2 + GAPX, AXH4))
+E7 = E7.sort_values("edge", key=lambda s: s.str.replace("edge", "").astype(int)).reset_index(drop=True)
+for i, r in E7.iterrows():
+    tk = "SST" if r.condition.startswith("SST") else "MID"
+    if np.isfinite(r.mean_repeat):
+        ax_g.errorbar(i - .16, r.mean_repeat,
+                      yerr=[[r.mean_repeat - r.min_repeat], [r.max_repeat - r.mean_repeat]],
+                      fmt=MK[tk], ms=3.4, color=C_META, mfc="white", mec=C_META,
+                      mew=LW * 1.3, elinewidth=LW, capsize=1.6, capthick=LW, zorder=3)
+    ax_g.plot(i + .02, r.act, MK[tk], ms=3.4, mfc=C_ACT, mec=dark(C_ACT), mew=LW * 1.3, zorder=3)
+    ax_g.plot(i + .20, r.empirical, MK[tk], ms=3.4, mfc="black", mec="black", zorder=3)
+    if r.act_outside_repeat_range:
+        ax_g.text(i, max(r.act, r.empirical, r.max_repeat) + .045,
+                  f"z = {r.z_act:.1f}", ha="center", va="bottom", fontsize=ANNOT_PT,
+                  color=dark(C_ACT))
+        S[f"z_edge{i + 1}"] = f"{r.z_act:.1f}"
+pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
+    os.path.join(HERE, "figS_assimregion_caption_values.csv"), index=False)

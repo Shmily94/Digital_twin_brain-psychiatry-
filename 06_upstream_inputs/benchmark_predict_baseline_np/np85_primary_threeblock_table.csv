@@ -1,0 +1,4 @@
+term,b,SE,beta,t,P,dR2_entered_last,F_entered_last,P_entered_last,model_R2,model_adjR2,model_F,model_P,n
+restoration index (weights from 198 independent participants),-0.438834,0.154204,-0.271124,-2.845802,0.005609,0.069395,8.098586,0.005609,0.305929,0.280222,"F(3,81)=11.901",2e-06,85
+age-19 symptom load,-0.197567,0.072881,-0.26601,-2.710821,0.008192,0.062968,7.348552,0.008192,0.305929,0.280222,"F(3,81)=11.901",2e-06,85
+age-19 empirical NP connectivity,1.744594,0.665723,0.257112,2.6206,0.010479,0.058847,6.867546,0.010479,0.305929,0.280222,"F(3,81)=11.901",2e-06,85

@@ -1,0 +1,5 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_motion_a,54,54,784x851,369,motion_subject_level_n288.csv
+figS_motion_b,84,56,1981x850,599,TableS25_motion_np_correlations_corrected_n288.csv
+figS_motion_c,62,54,910x826,373,motion_per_edge_correlations.csv
+figS_motion_d,84,56,1895x861,573,TableS26_group_effect_motion_adjustment_corrected_n288.csv

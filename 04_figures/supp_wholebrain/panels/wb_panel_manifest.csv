@@ -1,0 +1,4 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_wb_a,86,52,1238x790,366,SuppTable_WB1_wholebrain_modulation_n288.csv
+figS_wb_b,66,50,934x766,359,SuppTable_WB1_wholebrain_modulation_n288.csv
+figS_wb_c,180,58,2502x769,353,SuppTable_WB_network_pair_summary_n288.csv

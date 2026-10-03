@@ -1,0 +1,6 @@
+quantity,r_symptom_change,P_change,r_simulated_baseline_NP,P_baseline
+curve slope dNP/dg,-0.050341,0.647284,-0.210057,0.053664
+curve curvature,0.147613,0.177604,-0.004312,0.968761
+required dg to HC median,-0.024735,0.822209,-0.179097,0.100999
+|required dg|,0.17981,0.099625,0.211932,0.051515
+dNP at g=.0044 (current index input),-0.151285,0.166943,-0.856927,0.0

@@ -1,0 +1,17 @@
+cohort,rule,group,measure,n,mean,sd,test,stat,p
+DTB twins n=288,MID-based both-up/any-down,both up,change after AMPA,208,0.7518,0.5028,one-sample t vs 0,21.566,7.7e-55
+DTB twins n=288,MID-based both-up/any-down,any down,change after AMPA,80,0.0471,0.5679,one-sample t vs 0,0.741,0.461
+DTB twins n=288,MID-based both-up/any-down,both up vs any down,change after AMPA,288,0.7047,1.351,Welch t (sd col = Hedges g); Mann-Whitney P = 2.01e-19,9.729,4.03e-17
+DTB twins n=288,MID-based both-up/any-down,both up,change after GABA-A,208,1.2916,0.8539,one-sample t vs 0,21.816,1.46e-55
+DTB twins n=288,MID-based both-up/any-down,any down,change after GABA-A,80,0.321,1.1457,one-sample t vs 0,2.506,0.0143
+DTB twins n=288,MID-based both-up/any-down,both up vs any down,change after GABA-A,288,0.9706,1.029,Welch t (sd col = Hedges g); Mann-Whitney P = 1.2e-11,6.878,3.42e-10
+DTB twins n=288,MID-based both-up/any-down,both up,simulated baseline level,208,-0.3467,0.5618,one-sample t vs 0,-8.901,2.82e-16
+DTB twins n=288,MID-based both-up/any-down,any down,simulated baseline level,80,0.1697,0.571,one-sample t vs 0,2.659,0.00949
+DTB twins n=288,MID-based both-up/any-down,both up vs any down,simulated baseline level,288,-0.5164,-0.915,Welch t (sd col = Hedges g); Mann-Whitney P = 2.14e-10,-6.906,1.56e-10
+DTB twins n=288,non-circular,MID after AMPA,OLS slope on simulated baseline,288,0.347,95% CI 0.259-0.435,t vs slope = 1,-14.571,2.36e-36
+DTB twins n=288,non-circular,MID after AMPA,var(post) / var(baseline),288,0.695,,descriptive,,
+DTB twins n=288,non-circular,MID after GABA-A,OLS slope on simulated baseline,288,0.712,95% CI 0.517-0.907,t vs slope = 1,-2.9,0.00402
+DTB twins n=288,non-circular,MID after GABA-A,var(post) / var(baseline),288,3.326,,descriptive,,
+DTB twins n=288,MID-based both-up/any-down,HC,proportion both up,69,81.2,56/69,chi2(2) = 7.94 across groups,7.939,0.0189
+DTB twins n=288,MID-based both-up/any-down,High-symptom,proportion both up,89,61.8,55/89,chi2(2) = 7.94 across groups,7.939,0.0189
+DTB twins n=288,MID-based both-up/any-down,Patient,proportion both up,130,74.6,97/130,chi2(2) = 7.94 across groups,7.939,0.0189

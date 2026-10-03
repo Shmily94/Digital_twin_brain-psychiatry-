@@ -1,0 +1,322 @@
+{
+ "exc_ampa": {
+  "token": "exc_ampa",
+  "label": "Virtual AMPA up-regulation",
+  "family": "Excitatory (glutamatergic)",
+  "hex": "#FB6A4A",
+  "tier": "data",
+  "note": "primary excitatory perturbation; Woo Reds ramp"
+ },
+ "exc_ketamine": {
+  "token": "exc_ketamine",
+  "label": "Ketamine session",
+  "family": "Excitatory (glutamatergic)",
+  "hex": "#A50F15",
+  "tier": "data",
+  "note": "in vivo counterpart of AMPA (darker)"
+ },
+ "exc_restore": {
+  "token": "exc_restore",
+  "label": "AMPA restoration index",
+  "family": "Excitatory (glutamatergic)",
+  "hex": "#FCAE91",
+  "tier": "data",
+  "note": "derived from the AMPA perturbation"
+ },
+ "exc_similarity": {
+  "token": "exc_similarity",
+  "label": "AMPA-state similarity",
+  "family": "Excitatory (glutamatergic)",
+  "hex": "#FDD9C8",
+  "tier": "data",
+  "note": "derived similarity index; use a dark outline"
+ },
+ "inh_gaba": {
+  "token": "inh_gaba",
+  "label": "Virtual GABA-A up-regulation",
+  "family": "Inhibitory (GABAergic)",
+  "hex": "#47C0E1",
+  "tier": "data",
+  "note": "primary inhibitory perturbation; Woo cold ramp"
+ },
+ "inh_midazolam": {
+  "token": "inh_midazolam",
+  "label": "Midazolam session",
+  "family": "Inhibitory (GABAergic)",
+  "hex": "#1A7A96",
+  "tier": "data",
+  "note": "in vivo counterpart of GABA-A (darker)"
+ },
+ "inh_restore": {
+  "token": "inh_restore",
+  "label": "GABA-A restoration index",
+  "family": "Inhibitory (GABAergic)",
+  "hex": "#A9DEEE",
+  "tier": "data",
+  "note": "derived from the GABA-A perturbation"
+ },
+ "unp_baseline": {
+  "token": "unp_baseline",
+  "label": "Simulated baseline (unperturbed)",
+  "family": "Unperturbed",
+  "hex": "#757575",
+  "tier": "data",
+  "note": "pre-perturbation model state; achromatic by design"
+ },
+ "unp_placebo": {
+  "token": "unp_placebo",
+  "label": "Placebo / saline session",
+  "family": "Unperturbed",
+  "hex": "#C5D0D2",
+  "tier": "data",
+  "note": "in vivo counterpart of baseline"
+ },
+ "unp_null": {
+  "token": "unp_null",
+  "label": "Shuffled-parameter / chance null",
+  "family": "Unperturbed",
+  "hex": "#F4F4F4",
+  "tier": "data",
+  "note": "draw with 45-deg hatch and a grey outline"
+ },
+ "circ_neg29": {
+  "token": "circ_neg29",
+  "label": "Negative NP profile (29 edges)",
+  "family": "NP circuit (lower FC = more symptoms)",
+  "hex": "#FAC66D",
+  "tier": "data",
+  "note": "full negative profile"
+ },
+ "circ_np12": {
+  "token": "circ_np12",
+  "label": "NP factor (12 edges)",
+  "family": "NP circuit (lower FC = more symptoms)",
+  "hex": "#C99A46",
+  "tier": "data",
+  "note": "main phenotype"
+ },
+ "circ_mid6": {
+  "token": "circ_mid6",
+  "label": "MID-only NP formulation (6 edges)",
+  "family": "NP circuit (lower FC = more symptoms)",
+  "hex": "#9A6F20",
+  "tier": "data",
+  "note": "pharmacology formulation"
+ },
+ "circ_nonnp": {
+  "token": "circ_nonnp",
+  "label": "Non-NP / rest of brain",
+  "family": "NP circuit (lower FC = more symptoms)",
+  "hex": "#E3DAC1",
+  "tier": "data",
+  "note": "reference set, rest of brain"
+ },
+ "pos_prof34": {
+  "token": "pos_prof34",
+  "label": "Positive NP profile (34 edges)",
+  "family": "Positive profile (higher FC = more symptoms)",
+  "hex": "#819D98",
+  "tier": "data",
+  "note": "opposite symptom direction; muted = lower visual weight"
+ },
+ "alt_mdd_net": {
+  "token": "alt_mdd_net",
+  "label": "Depression-specific CPM network",
+  "family": "Secondary circuits",
+  "hex": "#A58B77",
+  "tier": "data",
+  "note": "secondary analysis, low chroma"
+ },
+ "alt_wholebrain": {
+  "token": "alt_wholebrain",
+  "label": "Whole-brain parcellated connectome",
+  "family": "Secondary circuits",
+  "hex": "#DDBFAA",
+  "tier": "data",
+  "note": "secondary analysis, low chroma"
+ },
+ "hlth_hc": {
+  "token": "hlth_hc",
+  "label": "Healthy controls",
+  "family": "Health / group severity",
+  "hex": "#99B77C",
+  "tier": "data",
+  "note": "Woo olive; green vs purple keeps the group contrast CVD-safe"
+ },
+ "hlth_norm": {
+  "token": "hlth_norm",
+  "label": "Control reference band / normalisation arrow",
+  "family": "Health / group severity",
+  "hex": "#C9E7AB",
+  "tier": "data",
+  "note": "shaded control band, arrows"
+ },
+ "clin_highsymp": {
+  "token": "clin_highsymp",
+  "label": "High-symptom (IMAGEN)",
+  "family": "Health / group severity",
+  "hex": "#E9D5FF",
+  "tier": "data",
+  "note": "pale end of the patient ramp"
+ },
+ "clin_aud": {
+  "token": "clin_aud",
+  "label": "AUD",
+  "family": "Health / group severity",
+  "hex": "#CAADEF",
+  "tier": "data",
+  "note": ""
+ },
+ "clin_patients": {
+  "token": "clin_patients",
+  "label": "Patients (pooled)",
+  "family": "Health / group severity",
+  "hex": "#A98DCD",
+  "tier": "data",
+  "note": ""
+ },
+ "clin_mdd": {
+  "token": "clin_mdd",
+  "label": "MDD",
+  "family": "Health / group severity",
+  "hex": "#8A6BB1",
+  "tier": "data",
+  "note": "Woo purple"
+ },
+ "bench_sar": {
+  "token": "bench_sar",
+  "label": "SAR benchmark model",
+  "family": "Benchmark models",
+  "hex": "#B7AA82",
+  "tier": "data",
+  "note": "dashed line, low visual weight"
+ },
+ "bench_rww": {
+  "token": "bench_rww",
+  "label": "reduced Wong-Wang benchmark",
+  "family": "Benchmark models",
+  "hex": "#5F5434",
+  "tier": "data",
+  "note": "dotted line, low visual weight"
+ },
+ "scale_3m": {
+  "token": "scale_3m",
+  "label": "3 M neurons (regional)",
+  "family": "Model resolution (ordinal)",
+  "hex": "#E2E2E2",
+  "tier": "scale",
+  "note": "ordinal grey ramp; darker = more neurons"
+ },
+ "scale_10m": {
+  "token": "scale_10m",
+  "label": "10 M neurons",
+  "family": "Model resolution (ordinal)",
+  "hex": "#B8B8B8",
+  "tier": "scale",
+  "note": "ordinal grey ramp; darker = more neurons"
+ },
+ "scale_100m": {
+  "token": "scale_100m",
+  "label": "100 M neurons",
+  "family": "Model resolution (ordinal)",
+  "hex": "#8C8C8C",
+  "tier": "scale",
+  "note": "ordinal grey ramp; darker = more neurons"
+ },
+ "scale_1b": {
+  "token": "scale_1b",
+  "label": "1 B neurons",
+  "family": "Model resolution (ordinal)",
+  "hex": "#585858",
+  "tier": "scale",
+  "note": "ordinal grey ramp; darker = more neurons"
+ },
+ "scale_5b": {
+  "token": "scale_5b",
+  "label": "5 B neurons",
+  "family": "Model resolution (ordinal)",
+  "hex": "#262626",
+  "tier": "scale",
+  "note": "ordinal grey ramp; darker = more neurons"
+ },
+ "coh_imagen": {
+  "token": "coh_imagen",
+  "label": "IMAGEN (discovery, n=1,050)",
+  "family": "Cohorts",
+  "hex": "#475666",
+  "tier": "context",
+  "note": "cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+ },
+ "coh_imagen_fu3": {
+  "token": "coh_imagen_fu3",
+  "label": "IMAGEN follow-up (n=85)",
+  "family": "Cohorts",
+  "hex": "#7F98AD",
+  "tier": "context",
+  "note": "cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+ },
+ "coh_stratify": {
+  "token": "coh_stratify",
+  "label": "STRATIFY / ESTRA (n=427)",
+  "family": "Cohorts",
+  "hex": "#5981A1",
+  "tier": "context",
+  "note": "cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+ },
+ "coh_pharm_hv": {
+  "token": "coh_pharm_hv",
+  "label": "Healthy-volunteer pharma (n=27)",
+  "family": "Cohorts",
+  "hex": "#A2BACD",
+  "tier": "context",
+  "note": "cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+ },
+ "coh_pharm_clin": {
+  "token": "coh_pharm_clin",
+  "label": "Clinical ketamine cohort (n=41)",
+  "family": "Cohorts",
+  "hex": "#D5EEFE",
+  "tier": "context",
+  "note": "cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+ },
+ "task_mid": {
+  "token": "task_mid",
+  "label": "Monetary Incentive Delay (MID)",
+  "family": "Task context",
+  "hex": "#856A4F",
+  "tier": "context",
+  "note": "circle marker; conditions by open/half/solid fill"
+ },
+ "task_sst": {
+  "token": "task_sst",
+  "label": "Stop-Signal Task (SST)",
+  "family": "Task context",
+  "hex": "#637B89",
+  "tier": "context",
+  "note": "square marker"
+ },
+ "task_eft": {
+  "token": "task_eft",
+  "label": "Emotional Face Task (EFT)",
+  "family": "Task context",
+  "hex": "#96B59D",
+  "tier": "context",
+  "note": "triangle marker"
+ },
+ "sym_int": {
+  "token": "sym_int",
+  "label": "Internalising symptoms",
+  "family": "Symptom domains (reserve)",
+  "hex": "#80435E",
+  "tier": "context",
+  "note": "use only if a hue is unavoidable"
+ },
+ "sym_ext": {
+  "token": "sym_ext",
+  "label": "Externalising symptoms",
+  "family": "Symptom domains (reserve)",
+  "hex": "#B67F49",
+  "tier": "context",
+  "note": "use only if a hue is unavoidable"
+ }
+}

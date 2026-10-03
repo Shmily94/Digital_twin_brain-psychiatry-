@@ -1,0 +1,5 @@
+comparison,R2_base,R2_full,dR2,F,df2,P
+AMPA index added to empirical FC,0.151519,0.201671,0.050152,5.151377,82,0.025853
+empirical FC added to AMPA index,0.069442,0.201671,0.132229,13.581803,82,0.000409
+GABA_A index added to empirical FC,0.151519,0.194122,0.042603,4.334989,82,0.040455
+empirical FC added to GABA_A index,0.054893,0.194122,0.139229,14.166857,82,0.000313

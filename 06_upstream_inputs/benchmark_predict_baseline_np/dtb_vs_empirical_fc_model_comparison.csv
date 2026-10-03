@@ -1,0 +1,4 @@
+model,predictors,n,R2,adj_R2,F,df1,df2,P,LOO_Q2,LOO_r,LOO_MAE
+Empirical FC (sum of 12 NP edges at age 19),1,85,0.151519,0.141296,14.821833,1,83,0.000231,0.113986,0.340685,4.380963
+DTB behavioural restoration index,1,85,0.069442,0.058231,6.193833,1,83,0.014818,0.026255,0.182335,4.675088
+Empirical FC + DTB restoration index,2,85,0.201671,0.1822,10.357274,2,82,9.8e-05,0.146934,0.387994,4.216612

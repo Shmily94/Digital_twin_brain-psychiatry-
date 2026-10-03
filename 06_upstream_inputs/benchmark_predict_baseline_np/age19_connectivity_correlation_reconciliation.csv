@@ -1,0 +1,9 @@
+candidate_quantity,r,P,matches_claim
+"summed 12 empirical NP edges, n=85 (script sample)",0.1048,0.3397,False
+"mean of 12 empirical NP edges, n=85",0.1048,0.3397,False
+"summed 12 empirical NP edges, n=100 (stage-1 sample)",0.0713,0.481,False
+"Spearman rho vs summed edges, n=85",0.1401,0.2008,False
+"Fisher-z mean of 12 edgewise r, n=85",0.0373,0.7349,False
+"multiple R, index ~ 12 empirical edges",0.39,0.3928,False
+L2 norm of the 12 empirical edges,-0.4473,1.8e-05,False
+mdl_base applied to empirical NP = FC-PREDICTED baseline symptom score,-0.0616,0.5755,True

@@ -1,0 +1,166 @@
+#!/usr/bin/env python3
+"""fig5_mdd_hc_n36.csv
+
+Computes
+    Clinical ketamine cohort (n = 36, 22 MDD + 14 HC): subject-level NP FC at
+    placebo and day 2 on both the 11-edge and the 12-row edge definition,
+    MADRS scores, symptom-PCA scores and the covariates (age, sex, infusion
+    order, mean framewise displacement). Source data for Fig. 5d,e; the file
+    also re-verifies the two main-text group statistics.
+
+Inputs
+    - /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/New_pharma_dataset/
+    - /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/
+    - (path built in the chain) D+'ketamine_n36_with_covariates.csv'
+    - (path built in the chain) R+'_revision/conflicts_report.csv'
+    - (path built in the chain) F5+'fig5_mdd_hc_n36.csv'
+
+Output
+    04_figures/_recovered_session_b194cd74/fig5_data_adj/fig5_mdd_hc_n36.csv; 04_figures/fig.5/fig5_data/fig5_mdd_hc_n36.csv
+
+Statistical tests
+    in this script's own computation:
+      - ordinary least squares GLM with covariates
+    in the recovered chain that prepares its inputs:
+      - Fisher z 95% confidence interval
+
+Local runnability
+    partial (local_runnable = partial).  Verification: not_run.
+    re-run failed: script re-run failed: AttributeError: 'Series' object has
+    no attribute 'grp'
+Recovered from
+    execution-log cell 040b58f5-5246-4b17-ba2d-4a7b245c1dbf
+    frame fe47a03f-2d43-4fe0-a1c3-e0544839d822, cell_index 1086, 2026-09-23 08:17 UTC, conda env "python"
+    dependency chain recovered from the same session, in order:
+    2721bade, 01a726d6, bbac1365, 95acb715, c99c4c44, b563cfa2, 457de626,
+    040b58f5
+
+Random seed
+    not applicable - nothing in this script is stochastic.
+
+Notes
+    Rebuilt by the statistics-layer recovery (docs/RECOVERY_PROTOCOL.md).  The
+    computation is the recovered cell chain unchanged: same tests, same
+    covariates, same corrections, same seeds.  Only the header, the explicit
+    output path and the suppression of the original session's side outputs were
+    added.  Lines marked "[recovery: side output suppressed]" wrote files other
+    than this script's one deliverable into the author's working tree; they are
+    commented out so that running this script cannot modify anything outside
+    OUT_DIR.  The verbatim terminal cell is archived at
+    recovered/fig5/fig5_mdd_hc_n36__cell_040b58f5.py
+"""
+import os
+import sys
+
+OUT_DIR = os.environ.get(
+    "RECOVERY_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "_scratch"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+# ---------------------------------------------------------------- cell 2721bade (cell_index 1062)
+import pandas as pd, numpy as np, statsmodels.api as sm, statsmodels.formula.api as smf
+D='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/New_pharma_dataset/'
+k=pd.read_csv(D+'ketamine_n36_with_covariates.csv')
+print(k.columns.tolist()); print(k.head(3).to_string()); print(k.shape)
+
+# ---------------------------------------------------------------- cell 01a726d6 (cell_index 1066)
+import scipy.io as sio, numpy as np, pandas as pd, statsmodels.formula.api as smf
+def matload(p):
+    try: return sio.loadmat(p, simplify_cells=True)
+    except NotImplementedError:
+        import h5py; return h5py.File(p,'r')
+p2=matload(D+'task_fc2_ses_p2.mat'); d2=matload(D+'task_fc2_ses_d2.mat')
+print([k for k in p2 if not k.startswith('__')])
+idx=matload(D+'np_idx.mat'); print({k:np.shape(v) for k,v in idx.items() if not k.startswith('__')})
+
+# ---------------------------------------------------------------- cell bbac1365 (cell_index 1067)
+NI=np.asarray(idx['np_idx']).astype(int)
+uniq=[]
+for a,b in NI:
+    key=tuple(sorted((a,b)))
+    if key not in uniq: uniq.append(key)
+print('12 rows ->',len(uniq),'unique pairs')
+A=np.asarray(p2['sub_pos_up']); B=np.asarray(d2['sub_pos_up']); print(A.shape,B.shape)
+def summed(M, pairs):
+    # M: (n_sub, n_node, n_node) or (n_node,n_node,n_sub)
+    if M.shape[0]==M.shape[1]: M=np.moveaxis(M,2,0)
+    return np.array([sum(M[s,a-1,b-1] for a,b in pairs) for s in range(M.shape[0])])
+for lab,pairs in [('12 rows',[tuple(r) for r in NI]),('11 unique',uniq)]:
+    sp, sd = summed(A,pairs), summed(B,pairs)
+    print(lab, 'n=%d'%len(sp), 'mean p2=%.4f d2=%.4f'%(sp.mean(),sd.mean()))
+    globals()['S_'+lab.split()[0]]=(sp,sd)
+
+# ---------------------------------------------------------------- cell 95acb715 (cell_index 1068)
+def ids(d):
+    f=d['files']
+    out=[]
+    for x in np.atleast_1d(f):
+        s=str(x)
+        import re
+        m=re.search(r'(MOA\d+)',s) or re.search(r'sub-([A-Za-z0-9]+)',s)
+        out.append(m.group(1) if m else s)
+    return out
+ip2, id2 = ids(p2), ids(d2)
+print(len(ip2), ip2[:3], len(id2), id2[:3])
+
+# ---------------------------------------------------------------- cell c99c4c44 (cell_index 1069)
+M2=np.moveaxis(np.asarray(p2['sub_pos_up']),2,0); MD=np.moveaxis(np.asarray(d2['sub_pos_up']),2,0)
+P2=dict(zip(ip2,M2)); D2=dict(zip(id2,MD))
+def build(pairs):
+    rows=[]
+    for _,r in k.iterrows():
+        s=r.SubID
+        if s in P2 and s in D2:
+            fp=sum(P2[s][a-1,b-1] for a,b in pairs); fd=sum(D2[s][a-1,b-1] for a,b in pairs)
+            rows.append(dict(SubID=s,grp=r.grp,age=r.age,sexM=r.sexM,drug_first=r.drug_first,fd_mean=r.fd_mean,fp=fp,fd_=fd,delta=fd-fp))
+    return pd.DataFrame(rows)
+for lab,pairs in [('12 rows',[tuple(r) for r in NI]),('11 unique',uniq)]:
+    t=build(pairs)
+    mb=smf.ols('fp ~ grp + age + sexM + fd_mean + drug_first',data=t).fit()
+    mi=smf.ols('delta ~ grp + age + sexM + fd_mean + drug_first',data=t).fit()
+    mc=smf.ols('delta ~ 1 + age + sexM + fd_mean + drug_first',data=t).fit()
+    print(f"{lab:10s} n={len(t)}  baseline t={mb.tvalues['grp']:+.3f} P={mb.pvalues['grp']:.4f} | change-mean t={mc.tvalues['Intercept']:+.3f} P={mc.pvalues['Intercept']:.4f} | group x drug t={mi.tvalues['grp']:+.3f} P={mi.pvalues['grp']:.4f}  df={int(mi.df_resid)}")
+
+# ---------------------------------------------------------------- cell b563cfa2 (cell_index 1070)
+# [recovery] this cell raised in the original session at its line 13; only the
+# statements that had already executed are carried over
+t11=build(uniq)
+def fz(x): return np.arctanh(np.clip(x,-0.999999,0.999999))
+def sumz(store,s,pairs): return sum(fz(store[s][a-1,b-1]) for a,b in pairs)
+t11['fpz']=[sumz(P2,s,uniq) for s in t11.SubID]; t11['fdz']=[sumz(D2,s,uniq) for s in t11.SubID]
+t11['dz']=t11.fdz-t11.fpz
+fdtxt={}
+for ses in ['p2','d2']:
+    for ln in open(D+f'EFT_ses-{ses}_mean_FD.txt'):
+        pr=ln.split()
+        if len(pr)>=2 and pr[0].startswith(('MOA','sub')):
+            fdtxt.setdefault(ses,{})[pr[0].replace('sub-','')]=float(pr[-1])
+print('FD txt keys', {s:len(v) for s,v in fdtxt.items()})
+
+# ---------------------------------------------------------------- cell 457de626 (cell_index 1079)
+# [recovery] this cell raised in the original session at its line 5; only the
+# statements that had already executed are carried over
+import pandas as pd, openpyxl
+R='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/'
+cf=pd.read_csv(R+'_revision/conflicts_report.csv')
+print(cf.columns.tolist())
+
+# ---------------------------------------------------------------- cell 040b58f5 (cell_index 1086)
+F5=R+'figures/fig.5/fig5_data/'
+old=pd.read_csv(F5+'fig5_mdd_hc_n36.csv')
+new=old.rename(columns={'FC_p2':'FC_p2_12row','FC_d2':'FC_d2_12row','FC_delta':'FC_delta_12row'})
+m11=t11.set_index('SubID')
+new['FC_p2']  = m11.loc[new.SubID,'fp'].values
+new['FC_d2']  = m11.loc[new.SubID,'fd_'].values
+new['FC_delta']= m11.loc[new.SubID,'delta'].values
+for c in ['age','sexM','drug_first','fd_p2']: new[c]=m11.loc[new.SubID,c].values
+# verify the two main-text statistics off the file itself
+chk=new.assign(grp=(new.group=='MDD').astype(int))
+mb=smf.ols('FC_p2 ~ grp + age + sexM + fd_p2 + drug_first',data=chk).fit()
+mi=smf.ols('FC_delta ~ grp + age + sexM + fd_p2 + drug_first',data=chk).fit()
+print('from new file: baseline t(%d)=%.3f P=%.4f | interaction t(%d)=%.3f P=%.4f'%(
+    mi.df_resid,mb.tvalues['grp'],mb.pvalues['grp'],mi.df_resid,mi.tvalues['grp'],mi.pvalues['grp']))
+assert abs(mb.tvalues['grp']+2.766)<0.001 and abs(mi.tvalues['grp']-3.429)<0.001
+new.to_csv(os.path.join(OUT_DIR, 'fig5_mdd_hc_n36.csv'), index=False)
+print('cols:',new.columns.tolist())
+print('corr 11-edge vs 12-row delta = %.4f'%np.corrcoef(new.FC_delta,new.FC_delta_12row)[0,1])

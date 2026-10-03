@@ -1,0 +1,7 @@
+,dR2,F,df1,df2,P,q_BH,P_bonf
+12 simulated edges beyond age-19 symptoms,0.211552,1.980916,12.0,71.0,0.038764,0.064347,0.232584
+12 empirical edges beyond age-19 symptoms,0.109658,0.884226,12.0,71.0,0.566385,0.566385,1.0
+summed empirical NP beyond the 12 simulated edges,0.073295,8.149839,1.0,71.0,0.005641,0.016924,0.033848
+12 simulated edges beyond the summed empirical NP,0.209944,1.945336,12.0,71.0,0.042898,0.064347,0.257387
+12 simulated edges beyond symptoms + summed empirical NP,0.171421,1.688987,12.0,70.0,0.087933,0.10552,0.5276
+summed empirical NP beyond age-19 symptoms,0.079955,8.587535,1.0,82.0,0.004383,0.016924,0.0263

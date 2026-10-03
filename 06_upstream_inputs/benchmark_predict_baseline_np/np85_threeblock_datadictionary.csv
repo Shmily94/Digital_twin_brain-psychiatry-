@@ -1,0 +1,19 @@
+column,description,unit
+specification,which predictor coding was used for the connectivity and symptom blocks,—
+term,predictor name,—
+b,unstandardised coefficient,symptom points per predictor unit
+SE,standard error of b,—
+beta,standardised coefficient,SD per SD
+t,t statistic,—
+P,two-sided P for the coefficient,—
+VIF,variance inflation factor (>5 indicates collinearity concern),—
+model_R2 / model_adjR2 / model_F / model_P,whole-model fit for that specification,—
+block,which block was entered last,—
+dR2,increment in R2 when that block is added last,—
+F_change / df1 / df2,nested F test for the increment,—
+P,P for the increment,—
+semipartial_r,signed sqrt(dR2) = semipartial correlation of the block with the outcome,—
+R2_without / R2_with,model R2 excluding / including the block (bootstrap row: CI bounds),—
+method,"F-change, permutation, or bootstrap",—
+comparison,"for the step-up rows, which covariate set the index was added to",—
+SIGN NOTE,ampa_index is the stored C_Delta_Behav_mod: NEGATIVE = predicted symptom reduction. Outcome is age23 - age19 symptoms: NEGATIVE = improvement. A POSITIVE coefficient therefore means greater predicted restoration goes with greater symptom reduction.,—

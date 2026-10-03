@@ -1,0 +1,13 @@
+Contrast,Task condition,n,Edges tested,"FDR q<0.05, n (%)","Increases, % of significant","|dz|>0.5, n (%)","|dz|>0.8, n (%)",Median |dz| (significant edges)
+AMPA vs. baseline,MID anticipation-hit,288,23436,"19,460 (83.0)",87.9,"7,312 (31.2)","2,883 (12.3)",0.4
+AMPA vs. baseline,MID feedback-hit,288,23436,"19,499 (83.2)",88.1,"7,242 (30.9)","2,812 (12.0)",0.4
+AMPA vs. baseline,SST stop-failure,288,23436,"16,284 (69.5)",55.0,"3,726 (15.9)","1,523 (6.5)",0.32
+AMPA vs. baseline,SST stop-success,288,23436,"16,558 (70.7)",53.0,"4,054 (17.3)","1,617 (6.9)",0.32
+AMPA+GABA-A vs. baseline,MID anticipation-hit,288,23436,"19,412 (82.8)",88.8,"8,671 (37.0)","3,750 (16.0)",0.45
+AMPA+GABA-A vs. baseline,MID feedback-hit,288,23436,"19,398 (82.8)",89.3,"8,718 (37.2)","3,750 (16.0)",0.46
+AMPA+GABA-A vs. baseline,SST stop-failure,288,23436,"21,028 (89.7)",91.2,"12,280 (52.4)","6,796 (29.0)",0.59
+AMPA+GABA-A vs. baseline,SST stop-success,288,23436,"20,863 (89.0)",90.5,"12,351 (52.7)","6,750 (28.8)",0.59
+AMPA+GABA-A vs. AMPA (incremental),MID anticipation-hit,288,23436,"16,989 (72.5)",74.2,"5,672 (24.2)","2,461 (10.5)",0.36
+AMPA+GABA-A vs. AMPA (incremental),MID feedback-hit,288,23436,"16,922 (72.2)",74.7,"5,601 (23.9)","2,414 (10.3)",0.36
+AMPA+GABA-A vs. AMPA (incremental),SST stop-failure,288,23436,"20,893 (89.1)",88.5,"12,937 (55.2)","8,460 (36.1)",0.66
+AMPA+GABA-A vs. AMPA (incremental),SST stop-success,288,23436,"20,989 (89.6)",88.1,"13,241 (56.5)","8,578 (36.6)",0.67

@@ -1,0 +1,340 @@
+# ===========================================================================
+# VERBATIM ARCHIVE -- execution-log cell source, exactly as it ran.
+# Nothing has been removed, added or reformatted below the header.
+#
+#   cell id       : 0156dd3a-3b54-4c55-9367-524d260239d2
+#   frame id      : c60c0dc4-003a-4667-bb4f-e50a2f4c1e5f
+#   ran           : 2026-09-27 07:04:50 UTC
+#   conda env     : (not recorded)
+#   cell kind     : edit_file
+#   produced      : 04_figures/supp_boldcc/figS_boldcc_A4_caption_values.csv
+# ===========================================================================
+
+# [edit_file] created /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_boldcc/figS_boldcc_A4.py
++++ /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_boldcc/figS_boldcc_A4.py
++"""Supplementary figure: agreement between simulated and empirical regional
++BOLD signals, in the assimilated regions and across the whole brain.
++
++  a  distribution over participants of the simulated-empirical BOLD
++     correlation in the two task states, for the assimilated regions and for
++     the whole brain
++  b  the same quantities subject by subject, whole-brain against assimilated
++
++n = 288 participants (the head-motion-retained sample, mean FD < 0.5 mm).
++Panels carry only the significance symbol (*** P < 0.001, ** P < 0.01,
++* P < 0.05, n.s.); every coefficient is in the caption and in
++data/bold_cc_n288.csv.
++
++Source: figures_v2/fig3/bold_cc_300subs.csv, restricted to the n = 288 sample.
++
++    python figS_boldcc_A4.py [--no-caption]
++"""
++import os, sys
++import numpy as np
++import pandas as pd
++import matplotlib
++matplotlib.use("Agg")
++import matplotlib.pyplot as plt
++from matplotlib.lines import Line2D
++from matplotlib.patches import Patch
++from scipy import stats
++
++FIGDIR = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures"
++HERE = os.path.join(FIGDIR, "supp_boldcc")
++sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
++sys.path.insert(0, FIGDIR)
++from np_dtb_style import apply_np_style, panel, C, LW, enforce
++from supp_kit import fill, pt_edge
++from fig_export import collect_text_records
++import figA4_kit as K
++from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT
++
++DPI = 400
++WITH_CAP = "--no-caption" not in sys.argv
++STEM = "figS_boldcc_A4" if WITH_CAP else "figS_boldcc_A4_nocaption"
++SUPP_NO = "S4"                     # freed when the conductance and EFT panels
++                                   # were merged into the single S3
++apply_np_style()
++K.apply_page_style()
++
++D = pd.read_csv(os.path.join(HERE, "data", "bold_cc_n288.csv"))
++N = len(D)
++
++TASKS = ["mid", "sst"]
++TLAB = {"mid": "MID", "sst": "SST"}
++SETS = ["assimilated", "whole"]
++SLAB = {"assimilated": "Assimilated regions", "whole": "Whole brain"}
++COL = {"assimilated": C("np12"), "whole": C("reference")}
++TMK = {"mid": "o", "sst": "s"}
++S = {}                             # every caption number
++
++
++def mark(p):
++    return ("***" if p < .001 else "**" if p < .01 else "*" if p < .05
++            else "n.s.")
++
++
++def v(task, kind):
++    return D[f"{task}_{kind}"].to_numpy(float)
++
++
++def p_a(ax):
++    pos = {("mid", "assimilated"): 0.0, ("mid", "whole"): 0.86,
++           ("sst", "assimilated"): 2.14, ("sst", "whole"): 3.0}
++    rng = np.random.default_rng(0)
++    for task in TASKS:
++        for kind in SETS:
++            x, c = pos[(task, kind)], COL[kind]
++            y = v(task, kind)
++            ax.scatter(x + rng.uniform(-.21, .21, len(y)), y, s=2.6,
++                       facecolor=c, edgecolor="none", alpha=.45, zorder=2)
++            bp = ax.boxplot([y], positions=[x], widths=.62, showfliers=False,
++                            patch_artist=True, zorder=3)
++            for el in ("boxes", "whiskers", "caps", "medians"):
++                for art in bp[el]:
++                    art.set_linewidth(LW); art.set_color("black")
++            bp["boxes"][0].set_facecolor(fill(c))
++            bp["boxes"][0].set_edgecolor("black")
++            bp["boxes"][0].set_alpha(.92)
++            S[f"a|{task}|{kind}"] = dict(
++                mean=float(y.mean()), sd=float(y.std(ddof=1)),
++                median=float(np.median(y)), lo=float(y.min()),
++                hi=float(y.max()))
++        a_, w_ = v(task, "assimilated"), v(task, "whole")
++        d = a_ - w_
++        t_, p_ = stats.ttest_rel(a_, w_)
++        S[f"a|{task}|paired"] = dict(
++            diff=float(d.mean()), t=float(t_), p=float(p_),
++            dz=float(d.mean() / d.std(ddof=1)), df=len(d) - 1)
++        x1, x2 = pos[(task, "assimilated")], pos[(task, "whole")]
++        yb = 1.015
++        ax.plot([x1, x1, x2, x2], [yb - .022, yb, yb, yb - .022],
++                color="0.35", lw=LW, clip_on=False, zorder=4)
++        ax.text((x1 + x2) / 2, yb + .012, mark(float(p_)), ha="center",
++                va="bottom", fontsize=ANNOT_PT, clip_on=False)
++    ax.set_xticks([np.mean([pos[(t, k)] for k in SETS]) for t in TASKS])
++    ax.set_xticklabels([TLAB[t] for t in TASKS], fontsize=TICK_PT)
++    ax.set_xlim(-.62, 3.62)
++    ax.set_ylim(0, 1.0)
++    ax.set_yticks([0, .2, .4, .6, .8, 1.0])
++    ax.set_ylabel("Simulated-empirical BOLD\ncorrelation", fontsize=LABEL_PT)
++    ax.set_xlabel("Task", fontsize=LABEL_PT)
++    ax.tick_params(axis="x", length=0)
++    hs = [Patch(facecolor=fill(COL[k]), edgecolor="black", lw=LW)
++          for k in SETS]
++    ax.legend(hs, [SLAB[k] for k in SETS], loc="lower center",
++              bbox_to_anchor=(.5, 1.045), ncol=2, fontsize=TICK_PT,
++              frameon=False, borderpad=0, handlelength=1.3,
++              handletextpad=.5, columnspacing=1.6)
++
++
++def p_b(ax):
++    for task in TASKS:
++        a_, w_ = v(task, "assimilated"), v(task, "whole")
++        ax.scatter(a_, w_, s=5.0, marker=TMK[task], facecolor=C("np12"),
++                   edgecolor="none", alpha=.50, zorder=3)
++        b = np.polyfit(a_, w_, 1)
++        xx = np.linspace(a_.min(), a_.max(), 50)
++        ax.plot(xx, np.polyval(b, xx), color="black", lw=LW * 1.3, zorder=4)
++        r, p_ = stats.pearsonr(a_, w_)
++        S[f"b|{task}"] = dict(r=float(r), p=float(p_))
++        ax.text(xx[-1], np.polyval(b, xx[-1]) + .018,
++                f"{TLAB[task]} {mark(float(p_))}", ha="right", va="bottom",
++                fontsize=TICK_PT, color="0.25")
++    for task in TASKS:
++        r, p_ = stats.pearsonr(v("mid", f"{'whole' if task else ''}"), v("sst", "whole")) \
++            if False else (0, 0)
++    r_w, p_w = stats.pearsonr(v("mid", "whole"), v("sst", "whole"))
++    r_a, p_a_ = stats.pearsonr(v("mid", "assimilated"), v("sst", "assimilated"))
++    S["b|cross_whole"] = dict(r=float(r_w), p=float(p_w))
++    S["b|cross_assim"] = dict(r=float(r_a), p=float(p_a_))
++    ax.set_xlim(.76, .96)
++    ax.set_ylim(.04, .82)
++    ax.set_xticks([.80, .85, .90, .95])
++    ax.set_yticks([.2, .4, .6, .8])
++    ax.set_xlabel("Assimilated regions", fontsize=LABEL_PT,
++                  color=COL["assimilated"])
++    ax.set_ylabel("Whole brain", fontsize=LABEL_PT, color=COL["whole"])
++    hs = [Line2D([], [], marker=TMK[t], linestyle="none", markersize=3.0,
++                 markerfacecolor=C("np12"), markeredgecolor="none")
++          for t in TASKS]
++    ax.legend(hs, [TLAB[t] for t in TASKS], loc="upper left",
++              fontsize=TICK_PT, frameon=False, borderaxespad=.2,
++              handletextpad=.4, labelspacing=.25)
++
++
++PANEL_FN = {"a": p_a, "b": p_b}
++
++# --------------------------------------------------------------- page geometry
++GUT = K.LETTER_W + K.LETTER_PADX
++GAPX, GAP = 9.0, K.GAP
++LETTER_BAND, MB = K.LETTER_BAND, K.MB
++XB = 11.0
++MAX_H = 58.0
++ROWS = [["a", "b"]]
++BLOCK = {"a": 94.0, "b": 77.0}
++
++
++def col_geom(fig, panels):
++    rend = fig.canvas.get_renderer()
++    mm = lambda px: px / fig.dpi * 25.4
++    by = {p["ch"]: p for p in panels}
++    geom, x = {}, ML
++    for row in ROWS:
++        for ch in row:
++            ax = by[ch]["axes"][0]
++            bb, pos = ax.get_tightbbox(rend), ax.get_position()
++            L = min(max(pos.x0 * PW - mm(bb.x0), 0.0), 26.0)
++            R_ = min(max(mm(bb.x1) - (pos.x0 + pos.width) * PW, 0.0), 4.0)
++            geom[ch] = (x, x + GUT + L, max(BLOCK[ch] - GUT - L - R_, 30.0))
++            x += BLOCK[ch] + GAPX
++    return geom
++
++
++def build(plot_h, geom=None):
++    f = plt.figure(figsize=panel(PW, PH))
++    out, y = [], MT
++    for row in ROWS:
++        top = y + LETTER_BAND
++        x = ML
++        for ch in row:
++            slot, ax_x, ax_w = (geom[ch] if geom else
++                                (x, x + GUT + 20.0, BLOCK[ch] - GUT - 24.0))
++            ax = K.axes_mm(f, ax_x, top, ax_w, plot_h)
++            PANEL_FN[ch](ax)
++            out.append(dict(ch=ch, x=slot, axes=[ax],
++                            txt=K.letter(f, slot, top - 1.2, ch)))
++            x += BLOCK[ch] + GAPX
++        y = top + plot_h + XB + GAP
++    enforce(f)
++    for p_ in out:                     # enforce() restores the house tick
++        if p_["ch"] == "a":            # marks; a categorical axis has none
++            p_["axes"][0].tick_params(axis="x", length=0)
++    return f, out, y - GAP
++
++
++# ------------------------------------------------------------------- caption
++CAP_TITLE = (f"Supplementary Fig. {SUPP_NO} | Agreement between simulated and "
++             "empirical regional BOLD signals in the assimilated regions and "
++             "across the whole brain.")
++
++
++def pf(p):
++    return ("P < 0.001" if p < 1e-3 else f"P = {p:.3f}" if p >= .01
++            else f"P = {p:.2g}")
++
++
++def dline(task, kind):
++    d = S[f"a|{task}|{kind}"]
++    return (f"{d['mean']:.3f} +/- {d['sd']:.3f} (median {d['median']:.3f}, "
++            f"range {d['lo']:.3f} to {d['hi']:.3f})")
++
++
++def caption_runs():
++    cap = [
++        ("", f"Correlation between the simulated and the empirical regional "
++             f"BOLD time series in each of n = {N} participants, the sample "
++             f"retained after the mean framewise displacement < 0.5 mm "
++             f"criterion. The correlation is evaluated separately over the "
++             f"regions whose empirical BOLD signals entered the data "
++             f"assimilation and over all regions of the brain, that is "
++             f"including the regions that were never assimilated, and "
++             f"separately for the stop-signal task (SST) and the monetary "
++             f"incentive delay task (MID). Panels carry only the "
++             f"significance symbol (*** P < 0.001, ** P < 0.01, * P < 0.05, "
++             f"n.s. not significant); the coefficients are given below and "
++             f"the per-participant values are in bold_cc_n288.csv. "),
++        ("a", f", distribution over participants; boxes are the median and "
++              f"interquartile range with whiskers at 1.5 x IQR, one point "
++              f"per participant. MID assimilated regions "
++              f"{dline('mid', 'assimilated')}, MID whole brain "
++              f"{dline('mid', 'whole')}; SST assimilated regions "
++              f"{dline('sst', 'assimilated')}, SST whole brain "
++              f"{dline('sst', 'whole')}. The assimilated regions exceed the "
++              f"whole brain by "
++              f"{S['a|mid|paired']['diff']:.3f} in MID "
++              f"(paired-samples two-sided t test, "
++              f"t({S['a|mid|paired']['df']}) = {S['a|mid|paired']['t']:.1f}, "
++              f"{pf(S['a|mid|paired']['p'])}, "
++              f"Cohen's dz = {S['a|mid|paired']['dz']:.2f}) and by "
++              f"{S['a|sst|paired']['diff']:.3f} in SST "
++              f"(t({S['a|sst|paired']['df']}) = {S['a|sst|paired']['t']:.1f}, "
++              f"{pf(S['a|sst|paired']['p'])}, "
++              f"dz = {S['a|sst|paired']['dz']:.2f}), which is expected: the "
++              f"assimilated signals are the fitting target, the whole-brain "
++              f"value is the out-of-sample agreement. "),
++        ("b", f", the same values participant by participant, whole-brain "
++              f"agreement against agreement in the assimilated regions, with "
++              f"the least-squares fit. Participants whose assimilated regions "
++              f"are fitted better also generalise better, moderately so in "
++              f"both tasks (MID Pearson r = {S['b|mid']['r']:.3f}, "
++              f"{pf(S['b|mid']['p'])}; SST r = {S['b|sst']['r']:.3f}, "
++              f"{pf(S['b|sst']['p'])}), so the two quantities are related but "
++              f"far from redundant. Across the two tasks the whole-brain "
++              f"agreement of the same participant is uncorrelated "
++              f"(r = {S['b|cross_whole']['r']:.3f}, "
++              f"{pf(S['b|cross_whole']['p'])}) whereas the assimilated-region "
++              f"agreement is weakly correlated "
++              f"(r = {S['b|cross_assim']['r']:.3f}, "
++              f"{pf(S['b|cross_assim']['p'])}), indicating that out-of-sample "
++              f"agreement is a property of the task state being simulated "
++              f"rather than a fixed property of the participant. "),
++        ("", "All tests are two-sided and uncorrected. "),
++    ]
++    runs = [(CAP_TITLE + " ", True)]
++    for lab, seg in cap:
++        if lab:
++            runs.append((lab + ",", True))
++            seg = seg[1:] if seg.startswith(",") else seg
++        runs.append((seg, False))
++    return runs
++
++
++# pass 1 -- caption height at a provisional plot height
++_f0, _p0, _ = build(46.0)
++_runs0 = caption_runs()
++_l0 = (K._wrap(_f0, _runs0, PW - ML - MR, CAP_PT,
++               _f0.canvas.get_renderer())[0] if WITH_CAP else [])
++plt.close(_f0)
++
++CAP_H = (K.CAP_GAP + len(_l0) * K.CAP_LH + 1.0) if WITH_CAP else 0.0
++FIXED = MT + LETTER_BAND + XB
++PLOT_H = min(PH - MB - CAP_H - FIXED, MAX_H)
++assert PLOT_H > 20.0, f"no room for the panels: {PLOT_H:.1f} mm"
++
++# pass 2 -- solve the column geometry at the fitted height
++_f1, _p1, _ = build(PLOT_H)
++_geom = col_geom(_f1, _p1)
++plt.close(_f1)
++for _ in range(3):
++    _f2, _p2, _ = build(PLOT_H, geom=_geom)
++    _geom = col_geom(_f2, _p2)
++    plt.close(_f2)
++fig, PANELS, BOTTOM = build(PLOT_H, geom=_geom)
++K.place_letters(fig, PANELS, rows=ROWS)
++
++runs = caption_runs()
++if WITH_CAP:
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
++        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
++else:
++    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
++
++assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
++print(f"[{STEM}] axes height {PLOT_H:.1f} mm; panels end at {BOTTOM:.1f} mm; "
++      f"caption {n_lines} lines -> {CAP_BOTTOM:.1f} mm of {PH:.0f} mm")
++
++# ----------------------------------------------------------------------- export
++png, pdf, ppt = (os.path.join(HERE, STEM + ext) for ext in (".png", ".pdf", ".pptx"))
++fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
++fig.savefig(pdf, bbox_inches=None, facecolor="white")
++K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
++              collect_text_records=collect_text_records)
++bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
++       if t.get_text().strip() and t.get_fontname() != "Arial"]
++print("non-Arial text:", bad[:5], "| files:",
++      [os.path.basename(p) for p in (png, pdf, ppt)])
++pd.DataFrame([{"key": k, "value": str(v_)} for k, v_ in S.items()]).to_csv(
++    os.path.join(HERE, "figS_boldcc_A4_caption_values.csv"), index=False)
++plt.close(fig)
++

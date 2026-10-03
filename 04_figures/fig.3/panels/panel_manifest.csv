@@ -1,0 +1,11 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+fig3a,126,56,1877x993,378,fig3a_mse_per_subject.csv
+fig3b,126,56,1856x1024,374,fig3b_wholebrain_fc_crossscale.csv
+fig3b_legend,76,30,935x371,312,legend for fig3b
+fig3c,70,62,1625x1072,590,fig3c_cross_scale_similarity.csv
+fig3c_ampa,70,62,1854x1072,673,fig3c_cross_scale_similarity_ampa.csv
+fig3c_gaba,70,62,1654x1072,600,fig3c_cross_scale_similarity_gaba.csv
+fig3d,84,54,1352x979,409,fig3d_run_to_run_sd.csv
+fig3e,62,46,1355x805,555,fig3e_ampa_sweep.csv
+fig3f,62,46,1150x805,471,fig3f_gaba_sweep.csv
+fig3g,122,56,1964x1004,409,fig3g_delta_np_seven_models.csv

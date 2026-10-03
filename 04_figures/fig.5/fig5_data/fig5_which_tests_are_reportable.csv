@@ -1,0 +1,15 @@
+cohort,quantity,estimate,ci_low,ci_high,test,stat,p,circular,note
+healthy n=27,"Ketamine on placebo, OLS slope",0.545,0.051,1.039,t vs slope = 1,-1.898,0.0693,no,uses only placebo and post-drug values; no grouping by the sign of the change
+healthy n=27,var(Ketamine) / var(placebo),1.735,,,descriptive,,,no,>1 means the drug increased between-subject spread
+healthy n=27,"placebo vs change under Ketamine, Pearson r",-0.355,,,Pearson,-0.355,0.0693,partly,inflated by the shared placebo term; report the slope above instead
+healthy n=27,"Midazolam on placebo, OLS slope",0.181,-0.375,0.737,t vs slope = 1,-3.033,0.00558,no,uses only placebo and post-drug values; no grouping by the sign of the change
+healthy n=27,var(Midazolam) / var(placebo),1.856,,,descriptive,,,no,>1 means the drug increased between-subject spread
+healthy n=27,"placebo vs change under Midazolam, Pearson r",-0.519,,,Pearson,-0.519,0.00558,partly,inflated by the shared placebo term; report the slope above instead
+healthy n=27,"Delta ketamine vs Delta midazolam, Pearson r",0.428,,,Pearson,0.428,0.0258,partly,both changes share the -placebo term
+healthy n=27,"Ketamine vs Midazolam, partial r | placebo",0.306,,,partial Pearson,0.306,0.129,no,the non-circular test of cross-drug consistency of the individual response
+healthy n=27,"both-up vs any-down, change under ketamine",0.832,,,Welch t,5.469,1.17e-05,YES - do not report,group defined by the sign of these same changes (8/8 forced)
+healthy n=27,"both-up vs any-down, change under midazolam",1.02,,,Welch t,3.744,0.00268,YES - do not report,group defined by the sign of these same changes (8/8 forced)
+healthy n=27,"both-up vs any-down, placebo level",-0.448,,,Welch t,-2.827,0.0101,partly,"not definitional, but coupled through change = post - placebo"
+MDD 22 / HC 14,"HC vs MDD, placebo (p2)",1.104,,,Welch t (Hedges g = +0.82; MW P = 0.0171),2.262,0.0335,no,"grouping variable is diagnosis, external to the FC measurement"
+MDD 22 / HC 14,"HC vs MDD, ketamine (d2)",-0.779,,,Welch t (Hedges g = -0.49; MW P = 0.178),-1.435,0.162,no,"grouping variable is diagnosis, external to the FC measurement"
+MDD 22 / HC 14,"HC vs MDD, change d2 - p2",-1.883,,,Welch t (Hedges g = -0.90; MW P = 0.0241),-2.546,0.0176,no,"grouping variable is diagnosis, external to the FC measurement"

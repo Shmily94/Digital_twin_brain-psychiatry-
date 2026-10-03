@@ -1,0 +1,13 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_pet_a,52,50,731x711,357,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_b,52,50,715x711,349,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_c,52,50,742x711,362,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_d,52,50,742x711,362,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_e,52,50,742x711,362,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_f,52,50,742x711,362,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_g,52,50,742x711,362,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_h,52,50,742x711,362,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_i,52,50,713x711,348,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_j,52,50,742x711,362,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_k,52,50,769x711,376,pet_permutation_39maps.csv / pet_regional_values_268x39.csv
+figS_pet_l,120,215,1813x3309,384,pet_permutation_39maps.csv

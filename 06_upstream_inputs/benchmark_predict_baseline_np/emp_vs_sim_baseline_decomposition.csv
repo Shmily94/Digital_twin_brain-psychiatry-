@@ -1,0 +1,4 @@
+predictor,r_change,reconstructed,term_from_y23,term_from_y19,pct_from_y19
+empirical baseline NP,0.389254,0.389254,-0.018214,0.407468,95.721172
+simulated baseline NP (sum),0.290104,0.290104,0.010491,0.279613,96.383851
+simulated baseline NP (n288),0.225634,0.225634,0.094596,0.131038,58.075558

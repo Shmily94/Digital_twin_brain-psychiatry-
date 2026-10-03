@@ -1,0 +1,4 @@
+reference,voxel_family_mean,regional_family_mean,winner,gap,best_single_build
+empirical_original_3m (common),0.1024,0.096,regional,0.0065,3m_268 (0.0888)
+empirical_model_voxels (common),0.0581,0.0784,voxel,0.0204,10m voxel (0.0498)
+"mixed, as in Table S10",0.0581,0.096,voxel,0.0379,10m voxel (0.0498)

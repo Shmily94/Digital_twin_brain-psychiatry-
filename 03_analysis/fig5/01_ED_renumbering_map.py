@@ -1,0 +1,333 @@
+#!/usr/bin/env python3
+"""ED_renumbering_map.csv
+
+Computes
+    Renumbering map from the pre-revision supplementary figure labels to the
+    Extended Data and Supplementary Information labels of the submitted
+    version, with the main-text paragraph in which each figure is first cited.
+
+Inputs
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/14e6f0b7-ee8b-47be-b546-5b12e8540cfc/vfdcde268_280926NatMed_Response_Letter_R1-R4_Claude.docx
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/2b769225-2f82-481d-9d62-9dbbcd5caa07/vf41d01db_290926Supplementary_Information_legends.docx
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/6968fd84-488d-4ed8-ac18-99a9cba0fab6/v5b379bf7_docxedit.py
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/a42c58ac-1e77-4fc4-9b5b-31288ffc2530/vcbd180f3_290926Suppl.Table.xlsx
+    - /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/
+    - /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/280926Supplementary_Information_legends_tracked.docx
+
+Output
+    04_figures/_recovered_session_b194cd74/ED_renumbering_map.csv
+
+Statistical tests
+      - none: this script assembles a label-mapping table
+
+
+Local runnability
+    no (local_runnable = no).  Verification: not_run.
+    re-run stops at a missing upstream input: /Users/yunman/Desktop/submission
+    /revision/text/280926Supplementary_Information_legends_tracked.docx. The
+    recovered chain reads the pre-revision manuscript/supplementary files by
+    their original names; those files were renamed later in the revision, so
+    the derivation is documented but not re-runnable as written
+Recovered from
+    execution-log cell 22ca620c-f728-4fbd-bd5f-caf8b66c31bf
+    frame b194cd74-5255-435a-9c1e-206638f9adae, cell_index 703, 2026-09-29 13:56 UTC, conda env "python"
+    dependency chain recovered from the same session, in order:
+    2e5aff97, 85b127f1, 00dba3c4, 1300c438, f2540348, 5788277d, dffd61a6,
+    0f4f92b0, b9313cf9, 5074a2e6, 170b450e, cf34fe3e, 83dee93a, 22ca620c
+
+Random seed
+    not applicable - nothing in this script is stochastic (the only
+    permutation keyword in the recovered chain occurs inside a caption
+    string).
+
+Notes
+    Rebuilt by the statistics-layer recovery (docs/RECOVERY_PROTOCOL.md).  The
+    computation is the recovered cell chain unchanged: same tests, same
+    covariates, same corrections, same seeds.  Only the header, the explicit
+    output path and the suppression of the original session's side outputs were
+    added.  Lines marked "[recovery: side output suppressed]" wrote files other
+    than this script's one deliverable into the author's working tree; they are
+    commented out so that running this script cannot modify anything outside
+    OUT_DIR.  The verbatim terminal cell is archived at
+    recovered/fig5/ED_renumbering_map__cell_22ca620c.py
+"""
+import os
+import sys
+
+OUT_DIR = os.environ.get(
+    "RECOVERY_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "_scratch"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+# ---------------------------------------------------------------- cell 2e5aff97 (cell_index 448)
+# [recovery] this cell raised in the original session at its line 7; only the
+# statements that had already executed are carried over
+import zipfile, re, os, shutil, glob, json, math, collections
+import numpy as np, pandas as pd, openpyxl
+from lxml import etree
+dest='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/'
+XL=dest+'280926Suppl.Table_v5.xlsx'
+
+# ---------------------------------------------------------------- cell 85b127f1 (cell_index 489)
+# [recovery] this cell raised in the original session at its line 4; only the
+# statements that had already executed are carried over
+import shutil, os
+shutil.copy('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/6968fd84-488d-4ed8-ac18-99a9cba0fab6/v5b379bf7_docxedit.py','docxedit.py')
+
+# ---------------------------------------------------------------- cell 00dba3c4 (cell_index 490)
+# [recovery] this cell raised in the original session at its line 6; only the
+# statements that had already executed are carried over
+import sys; sys.path.append(os.getcwd())
+import docxedit
+doc=docxedit.TrackedDoc(SI if 'SI' in dir() else '/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/280926Supplementary_Information_legends_tracked.docx', author='Claude')
+SI='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/280926Supplementary_Information_legends_tracked.docx'
+
+# ---------------------------------------------------------------- cell 1300c438 (cell_index 498)
+import zipfile, collections
+from lxml import etree
+W='{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
+RL='/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/14e6f0b7-ee8b-47be-b546-5b12e8540cfc/vfdcde268_280926NatMed_Response_Letter_R1-R4_Claude.docx'
+z=zipfile.ZipFile(RL); print([n for n in z.namelist() if n.startswith('word/') and n.endswith('.xml')][:15])
+root=etree.fromstring(z.read('word/document.xml'))
+c=collections.Counter()
+for tag in ('ins','del','pPrChange','rPrChange','moveFrom','moveTo'):
+    for e in root.iter(W+tag): c[(tag,e.get(W+'author'))]+=1
+print('revisions:', dict(c))
+print('comments part:', 'word/comments.xml' in z.namelist())
+paras=root.findall('.//'+W+'body//'+W+'p')
+print('paras', len(paras))
+
+# ---------------------------------------------------------------- cell f2540348 (cell_index 499)
+def ptext(p, mode='accept'):
+    out=[]
+    for node in p.iter():
+        if node.tag==W+'t':
+            anc={a.tag for a in node.iterancestors()}
+            if mode=='accept' and W+'del' in anc: continue
+            if mode=='reject' and W+'ins' in anc: continue
+            out.append(node.text or '')
+        elif node.tag==W+'delText' and mode=='reject':
+            out.append(node.text or '')
+        elif node.tag==W+'tab': out.append('\t')
+    return ''.join(out)
+acc=[ptext(p) for p in paras]
+open('rl_accepted.txt','w').write('\n'.join('%d\t%s'%(i,t) for i,t in enumerate(acc)))
+# comments
+cr=etree.fromstring(z.read('word/comments.xml'))
+cm={}
+for cel in cr.iter(W+'comment'):
+    cid=cel.get(W+'id'); cm[cid]=(cel.get(W+'author'), ''.join(t.text or '' for t in cel.iter(W+'t')).strip())
+# anchor paragraph for each comment
+anch={}
+for i,p in enumerate(paras):
+    for e in p.iter():
+        if e.tag in (W+'commentRangeStart', W+'commentReference'):
+            cid=e.get(W+'id')
+            anch.setdefault(cid, i)
+print('COMMENTS (%d):'%len(cm))
+for cid,(au,tx) in sorted(cm.items(), key=lambda kv:int(kv[0])):
+    print('\n--- id%s [%s] para %s'%(cid,au,anch.get(cid)))
+    print(tx[:1200])
+
+# ---------------------------------------------------------------- cell 5788277d (cell_index 502)
+FILES={'MS':'14ee7f62-5e94-47c9-838c-3f3f82db848a','MET':'13d8a62b-c4cf-46f5-a102-3538544fe331','SI':'f41d01db-37b1-4977-a6cc-5e5eaa4ad3c4'}
+TXT={}
+for k,v in FILES.items():
+    None; None  # [recovery: unresolvable interactive debris removed]  # [recovery: unresolvable interactive debris removed]
+    ps=rr.findall('.//'+W+'body//'+W+'p')
+    TXT[k]=[ptext(p) for p in ps]
+    pass  # [recovery: side output suppressed] open('cur_%s.txt'%k,'w').write('\n'.join('%d\t%s'%(i,t) for i,t in enumerate(TXT[k])))
+    print(k, len(ps), 'paras,', sum(len(t) for t in TXT[k]), 'chars')
+xl=openpyxl.load_workbook('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/a42c58ac-1e77-4fc4-9b5b-31288ffc2530/vcbd180f3_290926Suppl.Table.xlsx')
+print('table sheets:', len(xl.sheetnames))
+w24=xl['Table S24']; S24=[[('' if c is None else str(c).strip()) for c in r[:17]] for r in w24.iter_rows(min_row=1, values_only=True)]
+print('S24 rows:', sum(1 for r in S24 if r[0] or r[1]))
+KEYS=['0.09','Bonferroni','Benjamini','0.0072','permutation','restoration','ΔR','R2','Δ R']
+for k in ['MS','MET','SI']:
+    print('\n==',k)
+    for kw in ['r = 0.09','Bonferroni','Benjamini','0.0072','0.0095','ΔR']:
+        idx=[i for i,t in enumerate(TXT[k]) if kw in t]
+        print('  %-12s %s'%(kw, idx[:12]))
+
+# ---------------------------------------------------------------- cell dffd61a6 (cell_index 504)
+import re
+RX=re.compile(r'([A-Za-zΔ][A-Za-zΔ²\s\.\-\(\)0-9,]{0,18}?)\s*=\s*(-?\d+(?:\.\d+)?(?:\s*[×x]\s*10[-−–\u2212]?\d+)?)')
+def stats_of(lines):
+    out=collections.defaultdict(set)
+    for i,t in enumerate(lines):
+        for m in RX.finditer(t):
+            lab=re.sub(r'\s+',' ',m.group(1)).strip(' ,.(')
+            if len(lab)<1 or lab.lower() in ('and','or','the','of','to'): continue
+            out[(lab, m.group(2))].add(i)
+    return out
+SL=stats_of(acc)
+FL={k:stats_of(TXT[k]) for k in TXT}
+allf=set()
+for k in FL: allf|=set(FL[k].keys())
+# letter stats absent from all files
+labs_in_files=collections.defaultdict(set)
+for (lab,val) in allf: labs_in_files[lab].add(val)
+miss=[(lab,val,sorted(SL[(lab,val)])) for (lab,val) in SL if (lab,val) not in allf and lab in labs_in_files]
+print('letter stats whose label exists in the current files but with a different value: %d'%len(miss))
+for lab,val,ps in sorted(miss, key=lambda x:x[2]):
+    print('  para%-5s %-14s letter=%-10s files=%s'%(ps[0], lab, val, sorted(labs_in_files[lab])[:8]))
+
+# ---------------------------------------------------------------- cell 0f4f92b0 (cell_index 557)
+SIP='/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/2b769225-2f82-481d-9d62-9dbbcd5caa07/vf41d01db_290926Supplementary_Information_legends.docx'; shutil.copy(SIP,'SI_in.docx')
+si=docxedit.TrackedDoc('SI_in.docx', author='Claude Science')
+INCL=("Comparison of included and excluded participants. Of the 414 STRATIFY participants with symptom data available, 198 entered "
+ "the population-scale sample. Patients were preferentially modelled, because digital twins were built only where diffusion and "
+ "task data were both complete and patient scans were prioritised (129 of 199 patients versus 69 of 215 controls; "
+ "\u03c7\u00b2(1) = 43.07, P < 0.0001), so the modelled participants had higher six-domain symptom scores overall "
+ "(15.00 \u00b1 11.38 versus 10.75 \u00b1 9.73; two-sided Welch t(389.4) = 4.07, P < 0.0001; Hedges' g = 0.40). Within diagnostic strata, "
+ "included and excluded participants did not differ in symptom severity (controls 6.96 \u00b1 6.26 versus 6.69 \u00b1 6.20, "
+ "t(132.3) = 0.29, P = 0.77, g = 0.04; patients 19.30 \u00b1 11.18 versus 19.21 \u00b1 10.35, t(151.4) = 0.06, P = 0.96, g = 0.01), and the "
+ "ratio of MDD to AUD did not differ between included and excluded patients (\u03c7\u00b2(1) = 1.98, P = 0.16). The 89 IMAGEN participants "
+ "in the population sample were selected by a prespecified symptom threshold and are therefore not comparable with unselected "
+ "IMAGEN participants in this respect.")
+LONGADD=("The measured NP edges are not uninformative when they are summed rather than entered individually. The summed age-19 "
+ "empirical NP factor was associated with symptom change (r = 0.39, P = 0.0002, n = 85), and the simulated and measured "
+ "read-outs are partly complementary: adding the summed measured factor to the 12 simulated edges increased the explained "
+ "variance (\u0394R\u00b2 = 0.07, F(1,71) = 8.15, P = 0.0056; leave-one-out r 0.29 to 0.38, permutation P = 0.0015), and adding the 12 "
+ "simulated edges to the summed measured factor increased it as well (\u0394R\u00b2 = 0.21, F(12,71) = 1.95, P = 0.043). With age-19 "
+ "symptoms and the summed measured factor both included, the 12 simulated edges gave a further \u0394R\u00b2 = 0.17 that did not reach "
+ "significance (F(12,70) = 1.69, P = 0.088). The difference between simulated and measured connectivity therefore concerns the "
+ "12 edges taken individually and not the summed factor, and the two sources of prognostic information overlap in part. "
+ "Leave-one-out predictions for the four model specifications are shown in Fig. S15.")
+S15=("Fig. S15 Leave-one-out prediction of four-year symptom change under four model specifications. Leave-one-out predicted "
+ "against observed symptom change (age 23 minus age 19) in the 85 longitudinal participants. a, Age-19 symptom load alone "
+ "(r = 0.35). b, Age-19 symptoms with the 12 simulated NP edges (r = 0.40). c, Age-19 symptoms with the 12 empirical NP edges "
+ "(r = 0.23). d, The 12 empirical NP edges alone (r = 0.13); the same 12 edges simulated by the digital twins are shown in "
+ "Fig. 5h. Negative values denote symptom reduction. Points are individual participants and the line is an ordinary "
+ "least-squares fit with its 95% confidence band, shown to indicate direction and not as an additional test; no other error "
+ "indicators are drawn. Prediction used ordinary least squares with leave-one-out cross-validation and a two-sided Pearson "
+ "correlation between predicted and observed change; significance was assessed against a permutation null (2,000 shuffles of "
+ "the outcome with the complete leave-one-out procedure repeated): a, P = 0.0010; b, P = 0.0010; c, P = 0.034; d, P = 0.12. "
+ "In-sample statistics: a, R\u00b2 = 0.16, F(1,83) = 15.41, P = 0.0002; b, R\u00b2 = 0.37, F(13,71) = 3.18, P = 0.0009; c, R\u00b2 = 0.27, "
+ "F(13,71) = 1.98, P = 0.035; d, R\u00b2 = 0.21, adjusted R\u00b2 = 0.07, F(12,72) = 1.56, P = 0.12. No multiple-comparison correction "
+ "was applied across the four nested specifications; exact statistics are listed in Table S24.")
+i15=[i for i,t in enumerate(TXT['SI']) if t.strip().startswith('Fig. S15')][0]
+i6=[i for i,t in enumerate(TXT['SI']) if t.strip().startswith('Fig. S6')][0]
+c6=re.search(r'c, AMPA\s+GABA-A perturbation', TXT['SI'][i6]).group(0)
+SIEDITS=[
+ (120,'r = 0.35, P = 0.001)','r = 0.35, permutation P = 0.0010)'),
+ (120,'r = 0.29, P = 0.0072)','r = 0.29, permutation P = 0.0095)'),
+ (120,'r = 0.13, P = 0.22;','r = 0.13, permutation P = 0.12;'),
+ (120,'r = 0.40, P = 0.0002)','r = 0.40, permutation P = 0.0010)'),
+ (120,'r = 0.23, P = 0.033)','r = 0.23, permutation P = 0.034)'),
+ (120,'significance of the simulated-edge model was assessed against a permutation null',
+      'significance of every model was assessed against a permutation null'),
+ (i6, c6, 'c, GABA-A perturbation'),
+ (i15, TXT['SI'][i15].strip(), S15),
+]
+for pi,old,new in SIEDITS:
+    print(pi, TXT['SI'][pi].count(old), '|', repr(old[:50]))
+
+# ---------------------------------------------------------------- cell b9313cf9 (cell_index 558)
+for pi,old,new in SIEDITS:
+    assert si.replace(old,new,para=pi) is not None, (pi,old[:40])
+si.new_paragraph_after(89, INCL)
+si.new_paragraph_after(120, LONGADD)
+SIOUT='290926Supplementary_Information_S18incl_long_tracked.docx'
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+rr=etree.fromstring(zipfile.ZipFile('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/'+SIOUT).read('word/document.xml'))
+cc=collections.Counter()
+for tag in ('ins','del','pPrChange'):
+    for e in rr.iter(W+tag): cc[(tag,e.get(W+'author'))]+=1
+print('SI revisions:', dict(cc))
+ps3=rr.findall('.//'+W+'body//'+W+'p')
+for i in (90,121,122,180,222):
+    print('\n--- %d ---\n%s'%(i, ptext(ps3[i])[:420]))
+
+# ---------------------------------------------------------------- cell 5074a2e6 (cell_index 560)
+def alltext(path, mode):
+    r=etree.fromstring(zipfile.ZipFile(path).read('word/document.xml'))
+    return [ptext(p,mode) for p in r.findall('.//'+W+'body//'+W+'p')]
+o_rej=alltext(SIP,'reject'); n_rej=alltext('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/'+SIOUT,'reject')
+n_rej2=[t for i,t in enumerate(n_rej) if i not in (90,122)]
+print('rejected view identical after removing my two new paragraphs:', o_rej==n_rej2)
+if o_rej!=n_rej2:
+    for i,(a,b) in enumerate(zip(o_rej,n_rej2)):
+        if a!=b: print('diff at',i,'\n  orig:',a[:200],'\n  new :',b[:200]); break
+
+# ---------------------------------------------------------------- cell 170b450e (cell_index 689)
+FIN={'MS':'727e49a0-9803-49b6-ae06-ced3ffbdab95','MET':'bfbbb659-12ff-4acd-93df-849a18b5bd14','SI':'cfb4921d-728a-4379-b20b-d8ff31836c35','RL':'af1fa416-a5a0-49be-b2d2-5e56e246f267'}
+FT={}
+for k,v in FIN.items():
+    pass  # [recovery: unresolvable interactive debris removed] FT[k]=alltext(host.artifact_path(v),'accept')
+    pass  # [recovery: side output suppressed] open('fin_%s.txt'%k,'w').write('\n'.join('%d\t%s'%(i,t) for i,t in enumerate(FT[k])))
+    print(k, len(FT[k]),'paras', sum(len(t) for t in FT[k]),'chars')
+legs=[(i,t[:95]) for i,t in enumerate(FT['SI']) if re.match(r'^\s*Fig\.\s*S\d+', t)]
+print('\nSI figure legends (%d):'%len(legs))
+for i,t in legs: print(' ',i,'|',t)
+secs=[(i,t[:85]) for i,t in enumerate(FT['SI']) if re.match(r'^\s*Supplementary (Results|Methods)\s*\d+', t)]
+print('\nSI sections (%d):'%len(secs))
+for i,t in secs: print(' ',i,'|',t)
+
+# ---------------------------------------------------------------- cell cf34fe3e (cell_index 691)
+CANDS=['S5','S6','S10','S11','S12','S13','S14','S15','S16','S17','S21','S22']
+CIT=re.compile(r'Fig\.?\s*S\s*(\d+)')
+order=[]
+for i,t in enumerate(FT['MS']):
+    if i>=180: break   # legends start around 183; restrict to body text
+    for m in CIT.finditer(t):
+        tag='S'+m.group(1)
+        if tag not in [o[0] for o in order]: order.append((tag,i))
+print('first citation order in the manuscript body:')
+print([(t,i) for t,i in order])
+print('\ncandidates not cited in the body:', [c for c in CANDS if c not in [o[0] for o in order]])
+met_order=[]
+for i,t in enumerate(FT['MET']):
+    for m in CIT.finditer(t):
+        tag='S'+m.group(1)
+        if tag not in [o[0] for o in met_order]: met_order.append((tag,i))
+print('\nfirst citation order in Methods:', [(t,i) for t,i in met_order][:20])
+
+# ---------------------------------------------------------------- cell 83dee93a (cell_index 692)
+ED={'S6':1,'S10':2,'S11':3,'S12':4,'S14':5,'S15':6,'S17':7,'S21':8,'S22':9}
+SINEW={'S1':1,'S2':2,'S3':3,'S4':4,'S5':5,'S7':6,'S8':7,'S9':8,'S13':9,'S16':10,'S18':11,'S19':12,'S20':13,'S23':14}
+def newlabel(num, panel=''):
+    if num in ED: return 'Extended Data Fig. %d%s'%(ED[num],panel)
+    if num in SINEW: return 'Fig. S%d%s'%(SINEW[num],panel)
+    raise KeyError(num)
+CL=re.compile(r'(Figs?\.?\s*)?((?:S\s*\d+[a-z]?(?:\s*(?:,|;|and|to|–|-|&)\s*)?)+)')
+ITEM=re.compile(r'S\s*(\d+)([a-z])?((?:\s*,\s*[a-z])*)')
+def rewrite(text):
+    out=[]; last=0
+    for m in CL.finditer(text):
+        head, body = m.group(1), m.group(2)
+        items=list(ITEM.finditer(body))
+        if not items: continue
+        if head is None:
+            prev=text[max(0,m.start()-14):m.start()]
+            if not re.search(r'(Fig|Figs)\.?\s*$', prev) and not re.search(r'(Fig|Figs)\.?\s*S\s*\d+[a-z]?\s*(,|;|and|to|–|-|&)\s*$', prev):
+                continue
+        parts=[]
+        for it in items:
+            num='S'+it.group(1); panel=(it.group(2) or '')+(it.group(3) or '').replace(' ','')
+            if num in ED: panel=''          # merged/moved: panel letters preserved only for 1:1 moves
+            parts.append(newlabel(num, panel))
+        seps=re.findall(r'\s*(?:,|;|and|to|–|-|&)\s*', body)
+        rebuilt=parts[0]
+        for k,p in enumerate(parts[1:]):
+            sep=seps[k] if k<len(seps) else ', '
+            rebuilt+= (sep if sep.strip() else ', ')+p
+        out.append((m.start(), m.end(), rebuilt))
+    if not out: return None
+    s=text; 
+    for a,b,r in reversed(out): s=s[:a]+r+s[b:]
+    return s
+tests=['Fig. S6','Fig.S6b','Figs. S16 and S17','Fig. S13, S14','(Fig. S11a; Table S16)','Supplementary Results 10-13','Fig. S23','Fig. S18e','Fig. S10','Fig. S5','Fig.S21','Fig. S16b,c']
+for t in tests: print('%-28s -> %s'%(t, rewrite(t)))
+
+# ---------------------------------------------------------------- cell 22ca620c (cell_index 703)
+rows=[]
+for old,n in sorted(ED.items(), key=lambda kv: kv[1]):
+    rows.append(dict(old_label='Fig. %s'%old, new_label='Extended Data Fig. %d'%n, destination='Extended Data',
+                     first_cited_main_text_para=[i for t,i in order if t==old][0] if old in [t for t,_ in order] else ''))
+for old,n in sorted(SINEW.items(), key=lambda kv: kv[1]):
+    rows.append(dict(old_label='Fig. %s'%old, new_label='Fig. S%d'%n, destination='Supplementary Information',
+                     first_cited_main_text_para=[i for t,i in order if t==old][0] if old in [t for t,_ in order] else 'Methods only'))
+MAP=pd.DataFrame(rows); MAP = pd.DataFrame(rows)
+MAP.to_csv(os.path.join(OUT_DIR, 'ED_renumbering_map.csv'), index=False)
+print(MAP.to_string(index=False))

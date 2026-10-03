@@ -1,0 +1,11 @@
+group,simulated_source,unit,t,P,mean_diff,n_pos
+AUD,sim wide table (corrected MID),edge (n=12),1.172853,0.265627,0.039937,9
+AUD,sim .mat simulate_np (pre-correction MID),edge (n=12),1.461126,0.17195,0.047028,9
+HC,sim wide table (corrected MID),edge (n=12),1.22657,0.245592,0.050411,6
+HC,sim .mat simulate_np (pre-correction MID),edge (n=12),1.80087,0.099172,0.064319,8
+IMAGEN,sim wide table (corrected MID),edge (n=12),-0.297679,0.771495,-0.010061,5
+IMAGEN,sim .mat simulate_np (pre-correction MID),edge (n=12),0.756067,0.465493,0.028534,6
+MDD,sim wide table (corrected MID),edge (n=12),1.319679,0.213748,0.040838,7
+MDD,sim .mat simulate_np (pre-correction MID),edge (n=12),1.652438,0.126673,0.047221,7
+ALL,sim wide table (corrected MID),edge (n=12),0.825513,0.426621,0.027221,5
+ALL,sim .mat simulate_np (pre-correction MID),edge (n=12),1.490036,0.16432,0.045504,7

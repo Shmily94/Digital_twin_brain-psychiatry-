@@ -1,0 +1,20 @@
+node,network
+AntPFC,DMN
+VentralPCC,DMN
+ParaHipp,DMN
+dlPFC_1,FPN
+dlPFC_2,FPN
+ITG_R,FPN
+ParsOrbitalis_L,SMF
+STG,SMF
+FEF_R,SMF
+AG,SMF
+FEF_L,Limbic
+PreMot+SuppMot,Limbic
+ParsOrbitalis_R,Limbic
+DorsalPCC,Limbic
+Caudate,Sub
+Hippocampus,Sub
+ITG_L,Motor
+VisMotor,Visual Asso
+Fusiform,Visual Asso

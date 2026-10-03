@@ -1,0 +1,360 @@
+"""Supplementary figure: connectome-based prediction of MID task performance
+from empirical and DTB-simulated task-state functional connectivity.
+
+  a  bubble plot of the cross-validated prediction accuracy (Spearman r
+     between predicted and observed response time) for the three MID
+     conditions, from whole-brain task-state FC of four sources: empirical
+     anticipation, empirical feedback, simulated anticipation, simulated
+     feedback
+  b  the same six prediction targets (3 conditions x 2 task states) as
+     simulated against empirical accuracy, on the identity line
+
+n = 288 participants, leave-one-out connectome-based predictive modelling
+(CPM, edge threshold P < 0.01); r is the mean of the positive- and
+negative-edge models as stored by the analysis.  Panels carry only the
+significance symbol (*** P < 0.001, ** P < 0.01, * P < 0.05, n.s.); every
+coefficient is in the caption and in data/cpm_predict_perf_n288.csv.
+
+Source: figures_v2/fig4/cpm_task_perf_results (32 CPM runs = 8 targets x 4 FC
+sources); accuracy targets are in the same table and are not plotted here.
+
+    python figS_cpm_A4.py [--no-caption]
+"""
+import os, sys, colorsys
+import numpy as np
+import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib import colors as mcol
+from matplotlib.lines import Line2D
+from scipy import stats
+
+FIGDIR = "/Users/yunman/Desktop/submission/revision/text/figures"
+HERE = os.path.join(FIGDIR, "supp_cpm")
+sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
+sys.path.insert(0, FIGDIR)
+from np_dtb_style import apply_np_style, panel, C, LW, enforce
+from supp_kit import fill
+from fig_export import collect_text_records
+import figA4_kit as K
+from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT
+
+DPI = 400
+WITH_CAP = "--no-caption" not in sys.argv
+STEM = "figS_cpm_A4" if WITH_CAP else "figS_cpm_A4_nocaption"
+SUPP_NO = "S15"                    # occupied: S1-S8 (S3 = merged sensitivity),
+                                   # S9 stratify, S10 pet, S11 midpaired,
+                                   # S12 oldham, S13 wbdrug, S14 npscores
+apply_np_style()
+K.apply_page_style()
+
+D = pd.read_csv(os.path.join(HERE, "data", "cpm_predict_perf_n288.csv"))
+RT = D[D.target.str.endswith("_RT")].copy()
+N = int(D.n.iloc[0])
+
+CONDS = ["BIG_WIN_RT", "SMALL_WIN_RT", "NO_WIN_RT"]
+CLAB = {"BIG_WIN_RT": "Big win", "SMALL_WIN_RT": "Small win",
+        "NO_WIN_RT": "No win"}
+STATES = ["anticipation", "feedback"]
+SLAB = {"anticipation": "anticipation", "feedback": "feedback"}
+SRCS = [("empirical", "anticipation"), ("empirical", "feedback"),
+        ("simulated", "anticipation"), ("simulated", "feedback")]
+SMK = {"anticipation": "o", "feedback": "s"}
+
+
+BASE = C("np12")
+CCOL = {c: BASE for c in CONDS}     # one flat colour; condition is the x axis
+S = {}                             # every caption number
+
+
+def mark(p):
+    """Significance symbol; every number goes in the caption."""
+    return ("***" if p < .001 else "**" if p < .01 else "*" if p < .05
+            else "n.s.")
+
+
+def get(target, src, state):
+    row = RT[(RT.target == target) & (RT.fc_source == src)
+             & (RT.task_state == state)].iloc[0]
+    return float(row.r), float(row.p)
+
+
+def paired_stats():
+    """The 6 vs 6 paired comparison: simulated against empirical, one pair
+    per prediction target (three conditions x two task states)."""
+    e = np.array([get(c, "empirical", st)[0] for c in CONDS for st in STATES])
+    s_ = np.array([get(c, "simulated", st)[0] for c in CONDS for st in STATES])
+    d = s_ - e
+    t_, p_t = stats.ttest_rel(s_, e)
+    sd = float(d.std(ddof=1))
+    tc = stats.t.ppf(.975, len(d) - 1)
+    se = sd / np.sqrt(len(d))
+    return e, s_, dict(n_targets=len(e), emp=float(e.mean()),
+                       sim=float(s_.mean()), diff=float(d.mean()), sd=sd,
+                       lo=float(d.mean() - tc * se),
+                       hi=float(d.mean() + tc * se),
+                       t=float(t_), p=float(p_t), dz=float(d.mean() / sd),
+                       n_above=int((s_ > e).sum()))
+
+
+def bubble(r):
+    """Marker area proportional to r, so area reads as accuracy."""
+    return 560.0 * max(r, 0.0)
+
+
+def p_a(ax):
+    for yi, (src, state) in enumerate(SRCS[::-1]):          # top row first
+        for xi, cond in enumerate(CONDS):
+            r, p = get(cond, src, state)
+            col = CCOL[cond]
+            filled = src == "simulated"
+            ax.scatter(xi, yi, s=bubble(r), marker="o",
+                       facecolor=col if filled else "white",
+                       edgecolor=col, linewidth=LW * 1.3, zorder=3)
+            ax.text(xi, yi - .40, mark(p), ha="center", va="top",
+                    fontsize=TICK_PT, color="0.35" if p >= .05 else "black")
+            S[f"a|{cond}|{src}|{state}"] = dict(r=r, p=p)
+    ax.set_xticks(range(len(CONDS)))
+    ax.set_xticklabels([CLAB[c] for c in CONDS], fontsize=TICK_PT)
+    ax.set_yticks(range(len(SRCS)))
+    ax.set_yticklabels([f"{s.capitalize()}\n{SLAB[st]}"
+                        for s, st in SRCS[::-1]], fontsize=TICK_PT)
+    ax.set_xlim(-.62, len(CONDS) - .38)
+    ax.set_ylim(-.75, len(SRCS) - .25)
+    ax.set_xlabel("MID condition", fontsize=LABEL_PT)
+    ax.tick_params(axis="both", labelsize=TICK_PT, length=0)
+    for sp in ("left", "bottom"):
+        ax.spines[sp].set_visible(False)
+    ax.grid(axis="y", color="0.92", lw=LW, zorder=0)
+    ax.set_axisbelow(True)
+    # size key: two reference bubbles in the band above the axes
+    hs = [Line2D([], [], marker="o", linestyle="none",
+                 markersize=np.sqrt(bubble(v)) * .62, markerfacecolor="none",
+                 markeredgecolor="0.45", markeredgewidth=LW)
+          for v in (.2, .4)]
+    ax.legend(hs, ["$r$ = 0.2", "$r$ = 0.4"], loc="lower center",
+              bbox_to_anchor=(.5, 1.0), ncol=2, fontsize=TICK_PT,
+              frameon=False, borderpad=0, handletextpad=.6,
+              columnspacing=1.6)
+
+
+def p_b(ax):
+    e, s_, st_ = paired_stats()
+    S["b"] = st_
+    pairs = [(c, st) for c in CONDS for st in STATES]
+    POS = {"empirical": 0.0, "simulated": 1.0}
+    for i in range(len(e)):                       # one line per target
+        ax.plot([POS["empirical"], POS["simulated"]], [e[i], s_[i]],
+                color="0.75", lw=LW * .8, zorder=2)
+    for kind, vals in (("empirical", e), ("simulated", s_)):
+        x = POS[kind]
+        bp = ax.boxplot([vals], positions=[x], widths=.52, showfliers=False,
+                        patch_artist=True, zorder=1)
+        for el in ("boxes", "whiskers", "caps", "medians"):
+            for art in bp[el]:
+                art.set_linewidth(LW); art.set_color("black")
+        bp["boxes"][0].set_facecolor(fill(BASE))
+        bp["boxes"][0].set_edgecolor("black")
+        filled = kind == "simulated"
+        for (cond, state), y in zip(pairs, vals):
+            ax.scatter(x, y, s=16, marker=SMK[state],
+                       facecolor=BASE if filled else "white",
+                       edgecolor=BASE, linewidth=LW * 1.1, zorder=3)
+    ax.set_xlim(-.62, 1.62)
+    ax.set_ylim(.385, .525)
+    ax.set_xticks([POS["empirical"], POS["simulated"]])
+    ax.set_xticklabels(["Empirical\nFC", "Simulated\nFC"], fontsize=TICK_PT)
+    ax.set_yticks([.40, .45, .50])
+    ax.set_ylabel("Prediction $r$", fontsize=LABEL_PT)
+    ax.tick_params(axis="x", length=0)
+    yb = .508
+    ax.plot([0, 0, 1, 1], [yb - .006, yb, yb, yb - .006], color="0.35",
+            lw=LW, zorder=4)
+    ax.text(.5, yb + .002, mark(float(st_["p"])), ha="center", va="bottom",
+            fontsize=ANNOT_PT, zorder=4)
+    hs = [Line2D([], [], marker=SMK[st], linestyle="none", markersize=3.2,
+                 markerfacecolor=BASE, markeredgecolor=BASE)
+          for st in STATES]
+    ax.legend(hs, ["Anticipation", "Feedback"], loc="upper left",
+              fontsize=TICK_PT, frameon=False, borderaxespad=.2,
+              handletextpad=.4, labelspacing=.25)
+
+
+PANEL_FN = {"a": p_a, "b": p_b}
+
+# --------------------------------------------------------------- page geometry
+GUT = K.LETTER_W + K.LETTER_PADX
+GAPX, GAP = 8.0, K.GAP
+LETTER_BAND, MB = K.LETTER_BAND, K.MB
+XB = 11.0
+MAX_H = 62.0
+ROWS = [["a", "b"]]
+BLOCK = {"a": 108.0, "b": 64.0}         # 172 + one 8 mm gap = 180
+
+
+def col_geom(fig, panels):
+    rend = fig.canvas.get_renderer()
+    mm = lambda px: px / fig.dpi * 25.4
+    by = {p["ch"]: p for p in panels}
+    geom, x = {}, ML
+    for row in ROWS:
+        for ch in row:
+            ax = by[ch]["axes"][0]
+            bb, pos = ax.get_tightbbox(rend), ax.get_position()
+            L = min(max(pos.x0 * PW - mm(bb.x0), 0.0), 26.0)
+            R_ = min(max(mm(bb.x1) - (pos.x0 + pos.width) * PW, 0.0), 4.0)
+            geom[ch] = (x, x + GUT + L, max(BLOCK[ch] - GUT - L - R_, 30.0))
+            x += BLOCK[ch] + GAPX
+    return geom
+
+
+def build(plot_h, geom=None):
+    f = plt.figure(figsize=panel(PW, PH))
+    out, y = [], MT
+    for row in ROWS:
+        top = y + LETTER_BAND
+        x = ML
+        for ch in row:
+            slot, ax_x, ax_w = (geom[ch] if geom else
+                                (x, x + GUT + 20.0, BLOCK[ch] - GUT - 24.0))
+            ax = K.axes_mm(f, ax_x, top, ax_w, plot_h)
+            PANEL_FN[ch](ax)
+            out.append(dict(ch=ch, x=slot, axes=[ax],
+                            txt=K.letter(f, slot, top - 1.2, ch)))
+            x += BLOCK[ch] + GAPX
+        y = top + plot_h + XB + GAP
+    enforce(f)
+    for p_ in out:                     # enforce() puts the house
+        if p_['ch'] == 'a':            # tick marks back on; the
+            p_['axes'][0].tick_params(axis='both', length=0)
+    return f, out, y - GAP
+
+
+# ------------------------------------------------------------------- caption
+CAP_TITLE = (f"Supplementary Fig. {SUPP_NO} | Connectome-based prediction of "
+             "MID task performance from empirical and simulated task-state "
+             "connectivity.")
+
+
+def pf(p):
+    return ("P < 0.001" if p < 1e-3 else f"P = {p:.3f}" if p >= .01
+            else f"P = {p:.2g}")
+
+
+def a_line(src, state):
+    out = []
+    for cond in CONDS:
+        d = S[f"a|{cond}|{src}|{state}"]
+        out.append(f"{CLAB[cond].lower()} r = {d['r']:.3f} ({pf(d['p'])})")
+    return ", ".join(out)
+
+
+def caption_runs():
+    b = S["b"]
+    cap = [
+        ("", f"Connectome-based predictive modelling (CPM) of monetary "
+             f"incentive delay (MID) task performance in n = {N} "
+             f"participants. Each model is trained and tested by "
+             f"leave-one-out cross-validation on whole-brain task-state "
+             f"functional connectivity with an edge-selection threshold of "
+             f"P < 0.01, and prediction accuracy is Spearman's correlation "
+             f"between predicted and observed response time, averaged over "
+             f"the positive- and negative-edge models. Predictions are run "
+             f"separately for the big-win, small-win and no-win conditions "
+             f"and separately for connectivity taken from empirical fMRI and "
+             f"from the DTB simulations, in each of the two MID task states "
+             f"(reward anticipation and outcome feedback). Panels carry only "
+             f"the significance symbol (*** P < 0.001, ** P < 0.01, "
+             f"* P < 0.05, n.s. not significant); the coefficients are given "
+             f"below and all 32 model fits, including the accuracy targets "
+             f"that are not plotted, are in cpm_predict_perf_n288.csv. "),
+        ("a", ", prediction accuracy as a bubble plot, bubble area "
+              "proportional to r, open for empirical connectivity and filled "
+              "for simulated. Empirical anticipation: " + a_line("empirical", "anticipation")
+              + ". Empirical feedback: " + a_line("empirical", "feedback")
+              + ". Simulated anticipation: " + a_line("simulated", "anticipation")
+              + ". Simulated feedback: " + a_line("simulated", "feedback")
+              + ". Response time is predicted well above chance from every "
+                "one of the four connectivity sources and in all three "
+                "conditions. "),
+        ("b", f", the {b['n_targets']} prediction targets (three conditions "
+              f"x two task states) as a paired comparison of simulated "
+              f"against empirical connectivity; each line joins the two "
+              f"models of one target, boxes are the median and interquartile "
+              f"range over the {b['n_targets']} targets, open markers are "
+              f"empirical and filled markers simulated. Simulated "
+              f"connectivity predicts at least as well as empirical "
+              f"connectivity in {b['n_above']} of {b['n_targets']} targets, "
+              f"mean r = {b['sim']:.3f} against {b['emp']:.3f}, a mean "
+              f"advantage of {b['diff']:+.3f} "
+              f"(95% CI {b['lo']:+.3f} to {b['hi']:+.3f}; paired-samples "
+              f"two-sided t test, t({b['n_targets'] - 1}) = {b['t']:.3f}, "
+              f"{pf(b['p'])}, Cohen's dz = {b['dz']:.2f}). The comparison is "
+              f"across prediction targets, not across participants, so it "
+              f"tests whether the simulated connectome carries the "
+              f"behaviour-predictive structure of the empirical one, not "
+              f"whether any single model is better in an individual. "),
+        ("", "All tests are two-sided and uncorrected. The accuracy "
+             "(hit-rate) targets and the two difference contrasts "
+             "(big-win minus no-win, small-win minus no-win) were fitted with "
+             "the same pipeline and are tabulated in the source file; they "
+             "are predicted far less well than response time from either "
+             "connectivity source. "),
+    ]
+    runs = [(CAP_TITLE + " ", True)]
+    for lab, seg in cap:
+        if lab:
+            runs.append((lab + ",", True))
+            seg = seg[1:] if seg.startswith(",") else seg
+        runs.append((seg, False))
+    return runs
+
+
+# pass 1 -- caption height at a provisional plot height
+_f0, _p0, _ = build(46.0)
+_runs0 = caption_runs()
+_l0 = (K._wrap(_f0, _runs0, PW - ML - MR, CAP_PT,
+               _f0.canvas.get_renderer())[0] if WITH_CAP else [])
+plt.close(_f0)
+
+CAP_H = (K.CAP_GAP + len(_l0) * K.CAP_LH + 1.0) if WITH_CAP else 0.0
+FIXED = MT + LETTER_BAND + XB
+PLOT_H = min(PH - MB - CAP_H - FIXED, MAX_H)
+assert PLOT_H > 20.0, f"no room for the panels: {PLOT_H:.1f} mm"
+
+# pass 2 -- solve the column geometry at the fitted height
+_f1, _p1, _ = build(PLOT_H)
+_geom = col_geom(_f1, _p1)
+plt.close(_f1)
+for _ in range(3):
+    _f2, _p2, _ = build(PLOT_H, geom=_geom)
+    _geom = col_geom(_f2, _p2)
+    plt.close(_f2)
+fig, PANELS, BOTTOM = build(PLOT_H, geom=_geom)
+K.place_letters(fig, PANELS, rows=ROWS)
+
+runs = caption_runs()
+if WITH_CAP:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
+        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
+else:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
+
+assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
+print(f"[{STEM}] axes height {PLOT_H:.1f} mm; panels end at {BOTTOM:.1f} mm; "
+      f"caption {n_lines} lines -> {CAP_BOTTOM:.1f} mm of {PH:.0f} mm")
+
+# ----------------------------------------------------------------------- export
+png, pdf, ppt = (os.path.join(HERE, STEM + ext) for ext in (".png", ".pdf", ".pptx"))
+fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
+fig.savefig(pdf, bbox_inches=None, facecolor="white")
+K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
+              collect_text_records=collect_text_records)
+bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
+       if t.get_text().strip() and t.get_fontname() != "Arial"]
+print("non-Arial text:", bad[:5], "| files:",
+      [os.path.basename(p) for p in (png, pdf, ppt)])
+pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
+    os.path.join(HERE, "figS_cpm_A4_caption_values.csv"), index=False)
+plt.close(fig)

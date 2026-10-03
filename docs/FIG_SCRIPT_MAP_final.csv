@@ -1,0 +1,29 @@
+figure,final_deliverable,figure_script,render_output,identification_evidence
+Fig.1,Manuscript image1.png,fig.1/fig1_editable.pptx (PPT 拼版),—,整图为 PPT 拼版；面板由 fig.1/fig1_v4.py 等生成
+Fig.2,Manuscript image2.png,fig.2/fig2.py (面板) + PPT 拼版,fig.2/panels/*.png,整图为 PPT 拼版；面板脚本可复现
+Fig.3,Manuscript image3.png,fig.3/fig3_main_A4_v2.py,fig.3/fig3_main_A4_v2.png,SHA256 完全一致
+Fig.4,Manuscript image4.png,fig.4/fig4_main_A4.py,fig.4/fig4_main_A4.png,SHA256 完全一致
+Fig.5,Manuscript image5.png,_recovered_session_b194cd74/fig5_main_A4_np12_adj.py,fig.5/fig5_main_A4_np12_adj.png,SHA256 完全一致（脚本自会话工作目录恢复）
+ED.1,Extended_Data_Fig_1.png,supp_crossbuild/figS5_crossbuild_A4.py,figS5_crossbuild_A4_nocaption.png → 缩放 1270px,ED 副本 SHA256 一致；A4 源 phash d=0.3
+ED.2,Extended_Data_Fig_2.png,supp_oldham/figS_oldham_A4.py,figS_oldham_A4_nocaption.png → 缩放 1270px,ED 副本 SHA256 一致；A4 源 phash d=0.8
+ED.3,Extended_Data_Fig_3.png,supp_wholebrain/figS_wb_A4.py,figS_wb_A4_nocaption.png → 缩放 1270px,ED 副本 SHA256 一致；A4 源 phash d=0.3
+ED.4,Extended_Data_Fig_4.png,supp_depnet/figS_depnet_A4.py,figS_depnet_A4_nocaption.png → 缩放 1270px,ED 副本 SHA256 一致；A4 源 phash d=0.8
+ED.5,Extended_Data_Fig_5.png / .pdf,_recovered_session_b194cd74/ed5_wbdrug.py,ed5/figS_wbdrug_A4_nocaption.png → 缩放 1270px,ED 副本与 pdf 均 SHA256 一致；A4 源 phash d=0.90
+ED.6,Extended_Data_Fig_6.png,_recovered_session_b194cd74/figS15_models_all_v4.py,figS15_longitudinal_all_models_v4_A4.png → 缩放 1270px,ED 副本 SHA256 一致；A4 源 phash d=1.12
+ED.7,Extended_Data_Fig_7.png / .pdf,_recovered_session_b194cd74/ed7_finger.py,ed7/figS_finger_A4_nocaption.png → 缩放 1270px,ED 副本与 pdf 均 SHA256 一致；A4 源 phash d=0.34
+ED.8,Extended_Data_Fig_8.png,supp_sensitivity/figS_sensitivity_A4.py,figS_sensitivity_A4_nocaption.png → 缩放 1270px,ED 副本 SHA256 一致；nocaption 与 nocaption_v2 无法区分 → 待确认
+ED.9,Extended_Data_Fig_9.png,supp_motion/figS_motion_A4.py,figS_motion_A4_nocaption.png → 缩放 1270px,ED 副本 SHA256 一致；A4 源 phash d=0.8
+Fig.S1,SI image1.png,_recovered_session_b194cd74/figS1_stratify_k2.py,figS1_k2/figS_stratify_A4_nocaption.png,SI 嵌入图与 figS1_new_image1.png SHA256 完全一致
+Fig.S2,SI image2.png,supp_pet/pet_supp.py,supp_pet/panels/figS_pet_l.png,RMS 4.35（A4 整页 37.1）→ 使用面板而非整页
+Fig.S3,SI image3.png,fig.2/fig2.py,fig.2/panels/fig2f.png,phash d=1.0（次优 34.4）
+Fig.S4,SI image4.png,—（纯示意图）,—,无数据、无统计，PPT/Illustrator 绘制
+Fig.S5,SI image5.png,需从会话执行记录恢复,—,图树与恢复目录均无匹配；候选 cell 已定位（见 OPEN_QUESTIONS）
+Fig.S6,SI image6.png,fig.3/fig3h_distributed_1b.py,fig.3/panels/fig3h1.png,phash d=0.7（次优 34.5）
+Fig.S7,SI image7.png,supp_fidelity/figS_fidelity_A4.py,figS_fidelity_A4_nocaption.png,phash d=0.6（次优 35.0）
+Fig.S8,SI image8.png,fig.4/fig4.py,fig.4/panels/fig4h.png,phash d=0.8（次优 14.8）
+Fig.S9,SI image9.png,supp_midpaired/figS_midpaired_A4.py,figS_midpaired_A4.png,RMS 6.634；与 _v2(6.647) 无法区分 → 待确认
+Fig.S10,SI image10.png,supp_assim/figS_assim_A4.py,figS_assim_A4.png,phash d=0.4（次优 31.8）
+Fig.S11,SI image11.png,supp_assimregion/figS_assimregion_A4.py,figS_assimregion_A4_nocaption.png,phash d=0.7（次优 34.9）
+Fig.S12,SI image12.png,supp_npscores/figS_npscores_A4.py,figS_npscores_A4_nocaption.png,phash d=0.7（次优 31.8）
+Fig.S13,SI image13.png,supp_midnp/figS_midnp_A4.py,figS_midnp_A4.png,phash d=0.5（次优 22.9）
+Fig.S14,SI image14.png,supp_paramspace/figS_paramspace_A4.py,figS_paramspace_A4_nocaption.png,phash d=0.3（次优 17.2）

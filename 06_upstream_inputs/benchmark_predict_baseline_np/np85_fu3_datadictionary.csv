@@ -1,0 +1,31 @@
+column,description,unit
+id,subject numeric ID,—
+sub_id,subject string ID,—
+group,High-symptom / HC,—
+sex,sex,—
+age_baseline,age at FU2 baseline,years
+site,recruitment site,—
+headmotion,mean FD (FU2),mm
+fu3_edge1,"FU3 (age 23) empirical NP edge 1, SST stop-success, Shen-268 node pair (86,28)",Fisher-z FC
+fu3_edge2,"FU3 (age 23) empirical NP edge 2, SST stop-success, Shen-268 node pair (154,58)",Fisher-z FC
+fu3_edge3,"FU3 (age 23) empirical NP edge 3, SST stop-success, Shen-268 node pair (150,86)",Fisher-z FC
+fu3_edge4,"FU3 (age 23) empirical NP edge 4, SST stop-failure, Shen-268 node pair (152,64)",Fisher-z FC
+fu3_edge5,"FU3 (age 23) empirical NP edge 5, SST stop-failure, Shen-268 node pair (183,147)",Fisher-z FC
+fu3_edge6,"FU3 (age 23) empirical NP edge 6, SST stop-failure, Shen-268 node pair (226,196)",Fisher-z FC
+fu3_edge7,"FU3 (age 23) empirical NP edge 7, MID feedback-hit, Shen-268 node pair (152,5)",Fisher-z FC
+fu3_edge8,"FU3 (age 23) empirical NP edge 8, MID feedback-hit, Shen-268 node pair (16,15)",Fisher-z FC
+fu3_edge9,"FU3 (age 23) empirical NP edge 9, MID feedback-hit, Shen-268 node pair (233,15)",Fisher-z FC
+fu3_edge10,"FU3 (age 23) empirical NP edge 10, MID feedback-hit, Shen-268 node pair (66,41)",Fisher-z FC
+fu3_edge11,"FU3 (age 23) empirical NP edge 11, MID feedback-hit, Shen-268 node pair (260,94)",Fisher-z FC
+fu3_edge12,"FU3 (age 23) empirical NP edge 12, MID anticipation-hit, Shen-268 node pair (233,15)",Fisher-z FC
+fu3_sst_sum,sum of FU3 edges 1-6,Fisher-z FC
+fu3_mid_sum,sum of FU3 edges 7-12,Fisher-z FC
+fu3_np_sum,sum of all 12 FU3 edges,Fisher-z FC
+fu2_np_sum,"manuscript FU2 (age 19) empirical NP sum, for reference",Fisher-z FC
+d_np_sum_fu3_minus_fu2,FU3 minus FU2 NP sum,Fisher-z FC
+beha19_sum,DAWBA eat+dep+gad+sp at age 19,count
+beha23_sum,same at age 23,count
+beha_change_raw,beha23_sum - beha19_sum,count
+simbase_np_sum,simulated baseline NP sum (FU2 model),Fisher-z FC
+mod_np_sum__ampa,AMPA-modulated NP sum (FU2 model),Fisher-z FC
+restoration_index_ampa_PUBLISHED,archived published restoration index,a.u.

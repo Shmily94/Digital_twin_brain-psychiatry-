@@ -1,0 +1,13 @@
+edge,condition,parcel_pair_217space,i_217,j_217,np_edge_id
+edge1,SST_stop_success,p86-p28,86,28,2
+edge2,SST_stop_success,p128-p58,128,58,5
+edge3,SST_stop_success,p124-p86,124,86,7
+edge4,SST_stop_failure,p126-p64,126,64,15
+edge5,SST_stop_failure,p157-p121,157,121,18
+edge6,SST_stop_failure,p200-p170,200,170,19
+edge7,MID_feed_hit,p126-p5,126,5,20
+edge8,MID_feed_hit,p16-p15,16,15,22
+edge9,MID_feed_hit,p207-p15,207,15,23
+edge10,MID_feed_hit,p66-p41,66,41,24
+edge11,MID_feed_hit,p213-p94,213,94,26
+edge12,MID_antici_hit,p207-p15,207,15,27

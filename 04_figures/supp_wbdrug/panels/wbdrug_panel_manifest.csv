@@ -1,0 +1,5 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_wbdrug_a,124,56,2130x839,436,wbdrug_direction_agreement_n288.csv
+figS_wbdrug_b,124,56,1972x839,404,wbdrug_direction_agreement_n288.csv
+figS_wbdrug_legend,86,30,1408x371,416,legend for figS_wbdrug
+figS_wbdrug_c,80,54,2153x814,684,wbdrug_map_reliability.csv

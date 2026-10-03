@@ -1,0 +1,10 @@
+model,k,r_LOO,P,R2_LOO,short,simulated,empirical,null_p95,perm_P,n,n_perm
+age-19 symptoms only,1,0.2329,0.02859,-0.0342,symptoms,0,0,0.1929,0.02859,85,5000
+12 simulated NP edges,12,0.3183,0.0088,-0.0533,"simulated
+edges",1,0,0.2182,0.0088,85,5000
+12 empirical NP edges,12,0.0879,0.22356,-0.3166,"empirical
+edges",0,1,0.2135,0.22356,85,5000
+symptoms + 12 simulated edges,13,0.4016,0.0008,0.0287,"symptoms +
+simulated",1,0,0.2224,0.0008,85,5000
+symptoms + 12 empirical edges,13,0.1868,0.08198,-0.2413,"symptoms +
+empirical",0,1,0.2203,0.08198,85,5000

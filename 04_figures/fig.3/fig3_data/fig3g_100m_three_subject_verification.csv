@@ -1,0 +1,7 @@
+subject_id,sweep_alias,drug,perturbed_np_sum_recomputed,baseline_100m_newflow,delta_recomputed,delta_stored_fig3g,implied_baseline_of_stored,baseline_3m_sweep,conductance,n_repeats,source
+112288,HC01,ampa,0.406,0.437,-0.031,-0.5884,0.9944,0.99,ampa 0.0044,5,orignial_3subs_perturb_100m_whole_brain_fc/sub-000000112288
+112288,HC01,gaba,0.6547,0.437,0.2177,-0.3401,0.9947,0.99,ampa 0.0044 + gaba 0.0040,5,orignial_3subs_perturb_100m_whole_brain_fc/sub-000000112288
+113174215,MDD,ampa,0.4146,-0.8128,1.2274,1.1464,-0.7317,-0.7317,ampa 0.0044,5,orignial_3subs_perturb_100m_whole_brain_fc/sub-000113174215
+113174215,MDD,gaba,-0.5178,-0.8128,0.295,0.2294,-0.7472,-0.7317,ampa 0.0044 + gaba 0.0040,5,orignial_3subs_perturb_100m_whole_brain_fc/sub-000113174215
+182136619,AUD,ampa,0.443,-0.895,1.338,1.444,-1.001,-1.001,ampa 0.0044,5,orignial_3subs_perturb_100m_whole_brain_fc/sub-000182136619
+182136619,AUD,gaba,-0.5799,-0.895,0.3151,1.1205,-1.7003,-1.001,ampa 0.0044 + gaba 0.0040,5,orignial_3subs_perturb_100m_whole_brain_fc/sub-000182136619

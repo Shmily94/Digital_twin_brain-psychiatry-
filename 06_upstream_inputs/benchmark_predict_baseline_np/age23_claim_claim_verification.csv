@@ -1,0 +1,4 @@
+claim,recomputed,verdict
+"beta = 0.232, P = 0.042 (index -> age-23 controlling age-19)","b = 0.2319, P = 0.0421 (unstandardised; AMPA full-sample index)",MATCHES
+"r = -0.16, P = 0.15 (index vs age-19 symptoms)","r = -0.156, P = 0.153 (AMPA full-sample index vs summed age-19 items)",MATCHES
+"r = -0.06, P = 0.58 (index vs age-19 empirical NP connectivity)","summed 12 empirical NP edges: r = +0.105, P = 0.340  --  FC-PREDICTED baseline symptom score: r = -0.0616, P = 0.5755",MISLABELLED

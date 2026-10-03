@@ -1,0 +1,18 @@
+step,stat,claim,verdict
+manuscript base model: Δbeh ~ empirical NP (summed 12 edges),"adj R2=0.1413, F(1,83)=14.82, P=0.000231","adj R2=0.14, F=14.8, P=0.00023",MATCH
+manuscript increment: + AMPA restoration index,"dR2=0.0502, F(1,82)=5.151, P=0.0259","dR2=0.050, F=5.15, P=0.026",MATCH
+manuscript increment: + GABA_A restoration index,"dR2=0.0426, F(1,82)=4.335, P=0.0405","dR2=0.043, P=0.040",MATCH
+SUBSTITUTION: + simulated baseline NP on read-out direction (no perturbation),"dR2=0.0570, F(1,82)=5.910, P=0.0172",(not reported),LARGER THAN INDEX
+index over BOTH empirical and simulated baseline,"dR2=0.0001, F(1,81)=0.006, P=0.938",(not reported),NULL
+index_ampa explained by simulated baseline NP (12 edges),R2=0.8801; Spearman rho=-0.924 on projection,(reviewer: monotone transform),REVIEWER CORRECT
+PROPOSED COUNTER: residual of index after removing simulated baseline,"dR2=0.0009, F(1,83)=0.073, P=0.788",(counter would need P<0.05),COUNTER FAILS
+GABA_A index residual (70% free of simulated baseline),"dR2=0.0076, F(1,82)=0.737, P=0.393",-,NULL
+AMPA-minus-GABA contrast (shared baseline term cancels),"dR2=0.0042, F(1,82)=0.413, P=0.522",-,NULL
+Discussion wording: increment over sym19 items AND empirical NP,"dR2=0.0313, F(1,67)=3.094, P=0.0831",described as the same dR2=0.050,DIFFERENT MODEL
+increment over empirical NP as 12 separate edges,"dR2=0.0399, F(1,71)=3.757, P=0.0566",described as the same dR2=0.050,DIFFERENT MODEL
+multiplicity across the two reported increments,Holm/Bonferroni adj P=0.0519/0.0519; FDR-BH adj P=0.0405,uncorrected,FAILS Holm
+your result: sym23 ~ sym19 + AMPA index,"b=0.2319, dR2=0.0239, F(1,82)=4.264, P=0.0421","beta=0.232, P=0.042",MATCH
+SUBSTITUTION: sym23 ~ sym19 + simulated baseline NP (no perturbation),"b=-0.2480, dR2=0.0278, F(1,82)=5.011, P=0.0279",(not reported),LARGER THAN INDEX
+sym23 ~ sym19 + simulated baseline + AMPA index,"dR2=0.0000, F(1,81)=0.0002, P=0.989",(not reported),NULL
+simulated baseline NP vs empirical baseline NP (read-out direction),"r=+0.188, P=0.085; R2 on 12 empirical edges=0.163, P=0.322",(assumed to track),WEAK — nulls are not diagnostic
+simulated baseline NP vs age-19 symptoms,"r=+0.186, P=0.089",(assumed to track),WEAK — nulls are not diagnostic

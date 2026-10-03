@@ -1,0 +1,152 @@
+task,category,shen_id,hemisphere,anat_label,network
+MID,both,82,R,PrimVisual,Visual I
+MID,both,84,R,VentCing,Motor
+MID,both,124,R,Putamen,Sub
+MID,both,215,L,PrimVisual,Visual I
+MID,both,216,L,PrimVisual,Visual I
+MID,both,261,L,Putamen,Sub
+MID,both,262,L,Putamen,Sub
+MID,prior_only,1,R,OrbFrontal,FPN
+MID,prior_only,2,R,OrbFrontal,Limbic
+MID,prior_only,3,R,OrbFrontal,DMN
+MID,prior_only,4,R,OrbFrontal,FPN
+MID,prior_only,5,R,AntPFC,DMN
+MID,prior_only,6,R,AntPFC,DMN
+MID,prior_only,14,R,FrontEyeFilds,FPN
+MID,prior_only,23,R,PrimMotor,Motor
+MID,prior_only,36,R,Insula,Limbic
+MID,prior_only,83,R,DorsalACC,Limbic
+MID,prior_only,93,R,Hippocampus,Sub
+MID,prior_only,94,R,Hippocampus,Sub
+MID,prior_only,120,R,,Sub
+MID,prior_only,121,R,Caudate,Sub
+MID,prior_only,122,R,Caudate,Sub
+MID,prior_only,123,R,Caudate,Sub
+MID,prior_only,125,R,Nacc,Sub
+MID,prior_only,126,R,Thalamus,Sub
+MID,prior_only,127,R,Thalamus,Sub
+MID,prior_only,128,R,Thalamus,Sub
+MID,prior_only,134,L,OrbFrontal,DMN
+MID,prior_only,135,L,OrbFrontal,Limbic
+MID,prior_only,136,L,OrbFrontal,Limbic
+MID,prior_only,137,L,OrbFrontal,SMF
+MID,prior_only,138,L,AntPFC,DMN
+MID,prior_only,140,L,OrbFrontal,SMF
+MID,prior_only,141,L,AntPFC,DMN
+MID,prior_only,158,L,PrimMotor,Motor
+MID,prior_only,169,L,Insula,Limbic
+MID,prior_only,217,L,,Sub
+MID,prior_only,219,L,DorsalAcc,SMF
+MID,prior_only,220,L,VentCing,Limbic
+MID,prior_only,221,L,VentCing,Limbic
+MID,prior_only,228,L,Amygdala,Sub
+MID,prior_only,229,L,Hippocampus,Sub
+MID,prior_only,230,L,Hippocampus,Sub
+MID,prior_only,231,L,Hippocampus,Sub
+MID,prior_only,232,L,Hippocampus,Sub
+MID,prior_only,257,L,,Sub
+MID,prior_only,258,L,Caudate,Sub
+MID,prior_only,259,L,Caudate,Sub
+MID,prior_only,260,L,Caudate,Sub
+MID,prior_only,263,L,Thalamus,Sub
+MID,prior_only,264,L,Thalamus,Sub
+MID,activation_only,15,R,FrontEyeFilds,Limbic
+MID,activation_only,20,R,Broca_Triang,Limbic
+MID,activation_only,21,R,Broca-Operc,FPN
+MID,activation_only,25,R,PreMot+SuppMot,Motor
+MID,activation_only,27,R,PreMot+SuppMot,Motor
+MID,activation_only,28,R,PreMot+SuppMot,Limbic
+MID,activation_only,31,R,PreMot+SuppMot,FPN
+MID,activation_only,32,R,PreMot+SuppMot,Limbic
+MID,activation_only,35,R,Insula,Motor
+MID,activation_only,42,R,VisMotor,Visual Asso
+MID,activation_only,43,R,VisMotor,Visual Asso
+MID,activation_only,68,R,Fusiform,Visual I
+MID,activation_only,72,R,Visual Assoc,Visual I
+MID,activation_only,75,R,Visual Assoc,Visual I
+MID,activation_only,77,R,SecVisual,Visual I
+MID,activation_only,79,R,SecVisual,Visual I
+MID,activation_only,80,R,SecVisual,Visual I
+MID,activation_only,91,R,DorsalPCC,Limbic
+MID,activation_only,101,R,Cerebellum,Cerebellum
+MID,activation_only,106,R,Cerebellum,Cerebellum
+MID,activation_only,150,L,FrontEyeFilds,SMF
+MID,activation_only,155,L,Broca_Triang,Limbic
+MID,activation_only,157,L,PreMot+SuppMot,FPN
+MID,activation_only,161,L,PreMot+SuppMot,Motor
+MID,activation_only,165,L,PreMot+SuppMot,SMF
+MID,activation_only,166,L,PreMot+SuppMot,Motor
+MID,activation_only,168,L,Insula,Motor
+MID,activation_only,171,L,PrimSensory,Motor
+MID,activation_only,177,L,VisMotor,Visual Asso
+MID,activation_only,179,L,SupramargGyr,Motor
+MID,activation_only,184,L,AngGyrus,FPN
+MID,activation_only,198,L,Fusiform,Visual I
+MID,activation_only,205,L,Visual Assoc,Visual I
+MID,activation_only,207,L,Visual Assoc,Visual I
+MID,activation_only,208,L,Visual Assoc,Visual I
+MID,activation_only,211,L,SecVisual,Visual I
+MID,activation_only,226,L,DorsalPCC,Limbic
+MID,activation_only,238,L,Cerebellum,Cerebellum
+MID,activation_only,244,L,Cerebellum,Limbic
+MID,activation_only,248,L,Cerebellum,Cerebellum
+MID,activation_only,254,L,Cerebellum,Cerebellum
+SST,prior_only,1,R,OrbFrontal,FPN
+SST,prior_only,4,R,OrbFrontal,FPN
+SST,prior_only,7,R,AntPFC,FPN
+SST,prior_only,8,R,AntPFC,FPN
+SST,prior_only,9,R,AntPFC,FPN
+SST,prior_only,19,R,dlPFC,FPN
+SST,prior_only,21,R,Broca-Operc,FPN
+SST,prior_only,22,R,Broca-Operc,FPN
+SST,prior_only,23,R,PrimMotor,Motor
+SST,prior_only,30,R,PreMot+SuppMot,FPN
+SST,prior_only,31,R,PreMot+SuppMot,FPN
+SST,prior_only,34,R,Insula,Motor
+SST,prior_only,35,R,Insula,Motor
+SST,prior_only,37,R,Insula,Motor
+SST,prior_only,82,R,PrimVisual,Visual I
+SST,prior_only,83,R,DorsalACC,Limbic
+SST,prior_only,120,R,,Sub
+SST,prior_only,121,R,Caudate,Sub
+SST,prior_only,122,R,Caudate,Sub
+SST,prior_only,123,R,Caudate,Sub
+SST,prior_only,124,R,Putamen,Sub
+SST,prior_only,126,R,Thalamus,Sub
+SST,prior_only,127,R,Thalamus,Sub
+SST,prior_only,128,R,Thalamus,Sub
+SST,prior_only,139,L,AntPFC,FPN
+SST,prior_only,140,L,OrbFrontal,SMF
+SST,prior_only,142,L,AntPFC,FPN
+SST,prior_only,143,L,AntPFC,FPN
+SST,prior_only,147,L,dlPFC,FPN
+SST,prior_only,154,L,dlPFC,FPN
+SST,prior_only,157,L,PreMot+SuppMot,FPN
+SST,prior_only,158,L,PrimMotor,Motor
+SST,prior_only,164,L,PreMot+SuppMot,FPN
+SST,prior_only,168,L,Insula,Motor
+SST,prior_only,170,L,Insula,Motor
+SST,prior_only,215,L,PrimVisual,Visual I
+SST,prior_only,216,L,PrimVisual,Visual I
+SST,prior_only,217,L,,Sub
+SST,prior_only,219,L,DorsalAcc,SMF
+SST,prior_only,257,L,,Sub
+SST,prior_only,258,L,Caudate,Sub
+SST,prior_only,259,L,Caudate,Sub
+SST,prior_only,260,L,Caudate,Sub
+SST,prior_only,261,L,Putamen,Sub
+SST,prior_only,262,L,Putamen,Sub
+SST,prior_only,263,L,Thalamus,Sub
+SST,prior_only,264,L,Thalamus,Sub
+SST,activation_only,20,R,Broca_Triang,Limbic
+SST,activation_only,28,R,PreMot+SuppMot,Limbic
+SST,activation_only,43,R,VisMotor,Visual Asso
+SST,activation_only,47,R,SupramargGyr,FPN
+SST,activation_only,66,R,Fusiform,Visual Asso
+SST,activation_only,74,R,Visual Assoc,Visual Asso
+SST,activation_only,78,R,SecVisual,Visual II
+SST,activation_only,150,L,FrontEyeFilds,SMF
+SST,activation_only,155,L,Broca_Triang,Limbic
+SST,activation_only,184,L,AngGyrus,FPN
+SST,activation_only,209,L,Visual Assoc,Visual Asso
+SST,activation_only,210,L,SecVisual,Visual Asso

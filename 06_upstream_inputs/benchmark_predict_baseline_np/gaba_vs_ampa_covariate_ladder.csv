@@ -1,0 +1,9 @@
+index,covariates,dR2,F,df2,P
+GABA_A restoration index,none (raw symptom change),0.054893,4.820764,83,0.03091
+GABA_A restoration index,empirical NP FC (summed),0.042603,4.334989,82,0.040455
+GABA_A restoration index,baseline symptom scores (4 items),0.020648,2.054335,79,0.155719
+GABA_A restoration index,FC + baseline symptoms,0.01923,2.070886,78,0.154135
+AMPA restoration index,none (raw symptom change),0.069442,6.193833,83,0.014818
+AMPA restoration index,empirical NP FC (summed),0.050152,5.151377,82,0.025853
+AMPA restoration index,baseline symptom scores (4 items),0.04769,4.912149,79,0.029545
+AMPA restoration index,FC + baseline symptoms,0.036084,3.97839,78,0.049581

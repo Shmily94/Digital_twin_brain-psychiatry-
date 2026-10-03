@@ -1,0 +1,16 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+fig5a,80,54,1155x773,367,fig5_healthy_n27.csv
+fig5b,66,54,1046x849,403,fig5_healthy_n27.csv
+fig5c,48,54,722x773,382,fig5_healthy_n27.csv
+fig5d,48,54,695x849,368,fig5_mdd_hc_n36.csv
+fig5e,48,54,695x773,368,fig5_mdd_hc_n36.csv
+fig5f,58,54,1076x826,471,fig5f_np_symptom_resid_MDD_n22.csv
+fig5g,58,54,1089x881,477,fig5g_state_similarity_MDD_n22.csv
+fig5h1,60,54,1160x826,491,fig5h_added_variable_n85.csv
+fig5h2,76,54,1404x884,469,fig5h_increments.csv
+fig5h3,46,50,1201x833,663,fig5h_paragraph_scatters_n85.csv
+fig5h4,46,50,743x777,410,fig5h_paragraph_scatters_n85.csv
+fig5h5,46,50,847x777,468,fig5h_paragraph_scatters_n85.csv
+fig5h6,46,50,826x777,456,fig5h_paragraph_scatters_n85.csv
+fig5b_pattern,66,54,941x925,362,fig5_healthy_n27_with_pattern.csv
+fig5c_pattern,48,54,722x814,382,fig5_healthy_n27_with_pattern.csv

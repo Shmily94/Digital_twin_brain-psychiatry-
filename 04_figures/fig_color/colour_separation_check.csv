@@ -1,0 +1,88 @@
+panel,a,b,normal,deuteran,protan,worst
+F1b CPM performance by task,task_mid,task_sst,23.85,21.69,20.18,20.18
+F1b CPM performance by task,task_mid,task_eft,28.6,23.76,26.93,23.76
+F1b CPM performance by task,task_mid,unp_null,48.88,48.09,50.29,48.09
+F1b CPM performance by task,task_sst,task_eft,25.62,25.94,25.8,25.62
+F1b CPM performance by task,task_sst,unp_null,45.68,45.82,43.79,43.79
+F1b CPM performance by task,task_eft,unp_null,26.13,24.37,23.56,23.56
+F1c profiles on connectogram,pos_prof34,circ_neg29,35.17,33.82,27.91,27.91
+F1c profiles on connectogram,pos_prof34,circ_nonnp,27.63,26.62,23.31,23.31
+F1c profiles on connectogram,circ_neg29,circ_nonnp,16.2,15.75,16.66,15.75
+F1e the 12 edges on a brain,circ_np12,circ_neg29,15.63,15.62,15.72,15.62
+F1d/f case-control,hlth_hc,clin_patients,39.04,33.87,37.6,33.87
+F1 inset / SI diagnostic breakdown,hlth_hc,clin_mdd,44.51,40.22,43.95,40.22
+F1 inset / SI diagnostic breakdown,hlth_hc,clin_aud,38.78,33.21,36.63,33.21
+F1 inset / SI diagnostic breakdown,clin_mdd,clin_aud,24.47,24.7,24.75,24.47
+F2b scale calibration vs benchmarks,scale_3m,scale_10m,13.93,13.93,13.93,13.93
+F2b scale calibration vs benchmarks,scale_3m,scale_100m,30.31,30.31,30.31,30.31
+F2b scale calibration vs benchmarks,scale_3m,scale_1b,51.83,51.83,51.83,51.83
+F2b scale calibration vs benchmarks,scale_3m,scale_5b,73.51,73.51,73.51,73.51
+F2b scale calibration vs benchmarks,scale_3m,bench_sar,22.66,22.27,23.45,22.27
+F2b scale calibration vs benchmarks,scale_3m,bench_rww,54.52,54.09,55.44,54.09
+F2b scale calibration vs benchmarks,scale_10m,scale_100m,16.38,16.38,16.38,16.38
+F2b scale calibration vs benchmarks,scale_10m,scale_1b,37.9,37.9,37.9,37.9
+F2b scale calibration vs benchmarks,scale_10m,scale_5b,59.58,59.58,59.58,59.58
+F2b scale calibration vs benchmarks,scale_10m,bench_sar,13.68,13.53,14.08,13.53
+F2b scale calibration vs benchmarks,scale_10m,bench_rww,41.06,40.64,41.98,40.64
+F2b scale calibration vs benchmarks,scale_100m,scale_1b,21.52,21.52,21.52,21.52
+F2b scale calibration vs benchmarks,scale_100m,scale_5b,43.2,43.2,43.2,43.2
+F2b scale calibration vs benchmarks,scale_100m,bench_sar,17.32,17.66,16.76,16.76
+F2b scale calibration vs benchmarks,scale_100m,bench_rww,25.88,25.49,26.76,25.49
+F2b scale calibration vs benchmarks,scale_1b,scale_5b,21.68,21.68,21.68,21.68
+F2b scale calibration vs benchmarks,scale_1b,bench_sar,35.55,36.0,34.71,34.71
+F2b scale calibration vs benchmarks,scale_1b,bench_rww,12.26,12.21,12.55,12.21
+F2b scale calibration vs benchmarks,scale_5b,bench_sar,56.31,56.78,55.43,55.43
+F2b scale calibration vs benchmarks,scale_5b,bench_rww,23.72,24.1,23.04,23.04
+F2b scale calibration vs benchmarks,bench_sar,bench_rww,34.47,34.52,34.46,34.46
+F2e simulation fidelity vs null,unp_baseline,unp_null,45.05,45.05,45.05,45.05
+F2e simulation fidelity vs null,unp_baseline,circ_np12,30.19,30.61,28.36,28.36
+F2e simulation fidelity vs null,unp_null,circ_np12,36.18,35.15,38.55,35.15
+F3b-d perturbation in 12 twins,unp_baseline,exc_ampa,38.34,30.07,19.42,19.42
+F3b-d perturbation in 12 twins,unp_baseline,inh_gaba,33.09,28.74,30.89,28.74
+F3b-d perturbation in 12 twins,exc_ampa,inh_gaba,59.49,43.53,39.83,39.83
+F4b-d population groups x condition,unp_baseline,exc_ampa,38.34,30.07,19.42,19.42
+F4b-d population groups x condition,unp_baseline,inh_gaba,33.09,28.74,30.89,28.74
+F4b-d population groups x condition,unp_baseline,hlth_norm,41.33,40.22,41.56,40.22
+F4b-d population groups x condition,exc_ampa,inh_gaba,59.49,43.53,39.83,39.83
+F4b-d population groups x condition,exc_ampa,hlth_norm,43.63,22.22,32.63,22.22
+F4b-d population groups x condition,inh_gaba,hlth_norm,35.63,37.31,33.48,33.48
+F4g-h responder stratification,hlth_hc,clin_highsymp,36.69,31.66,33.59,31.66
+F4g-h responder stratification,hlth_hc,clin_patients,39.04,33.87,37.6,33.87
+F4g-h responder stratification,clin_highsymp,clin_patients,24.18,24.5,24.7,24.18
+"F5b-c pharmacology, healthy volunteers",unp_placebo,exc_ketamine,61.67,50.09,59.85,50.09
+"F5b-c pharmacology, healthy volunteers",unp_placebo,inh_midazolam,39.98,39.91,35.17,35.17
+"F5b-c pharmacology, healthy volunteers",exc_ketamine,inh_midazolam,59.17,40.71,38.86,38.86
+F6 longitudinal prediction,exc_restore,inh_restore,36.84,27.62,24.71,24.71
+F6 longitudinal prediction,exc_restore,circ_np12,18.09,14.25,15.59,14.25
+F6 longitudinal prediction,exc_restore,unp_baseline,36.36,34.46,28.18,28.18
+F6 longitudinal prediction,inh_restore,circ_np12,41.35,38.7,39.93,38.7
+F6 longitudinal prediction,inh_restore,unp_baseline,38.27,36.37,38.29,36.37
+F6 longitudinal prediction,circ_np12,unp_baseline,30.19,30.61,28.36,28.36
+SI alternative circuits,circ_np12,alt_mdd_net,16.21,16.34,16.71,16.21
+SI alternative circuits,circ_np12,alt_wholebrain,19.05,18.51,21.0,18.51
+SI alternative circuits,circ_np12,circ_mid6,16.87,16.92,16.94,16.87
+SI alternative circuits,alt_mdd_net,alt_wholebrain,19.23,19.22,19.24,19.22
+SI alternative circuits,alt_mdd_net,circ_mid6,17.46,16.96,19.73,16.96
+SI alternative circuits,alt_wholebrain,circ_mid6,32.46,31.83,34.67,31.83
+SI cohort chips (labelled),coh_imagen,coh_imagen_fu3,26.51,26.33,26.84,26.33
+SI cohort chips (labelled),coh_imagen,coh_stratify,18.11,17.41,18.69,17.41
+SI cohort chips (labelled),coh_imagen,coh_pharm_hv,38.98,38.9,39.2,38.9
+SI cohort chips (labelled),coh_imagen,coh_pharm_clin,55.93,55.92,56.01,55.92
+SI cohort chips (labelled),coh_imagen_fu3,coh_stratify,10.97,11.19,9.96,9.96
+SI cohort chips (labelled),coh_imagen_fu3,coh_pharm_hv,12.6,12.67,12.43,12.43
+SI cohort chips (labelled),coh_imagen_fu3,coh_pharm_clin,29.61,29.74,29.3,29.3
+SI cohort chips (labelled),coh_stratify,coh_pharm_hv,23.15,23.5,22.04,22.04
+SI cohort chips (labelled),coh_stratify,coh_pharm_clin,39.96,40.42,38.78,38.78
+SI cohort chips (labelled),coh_pharm_hv,coh_pharm_clin,17.01,17.07,16.86,16.86
+F5a formulation chips,circ_mid6,coh_pharm_hv,42.41,40.73,43.89,40.73
+F5a formulation chips,circ_mid6,coh_pharm_clin,52.92,51.12,55.31,51.12
+F5a formulation chips,coh_pharm_hv,coh_pharm_clin,17.01,17.07,16.86,16.86
+F5d clinical cohort: group x drug,unp_placebo,exc_ketamine,61.67,50.09,59.85,50.09
+F5d clinical cohort: group x drug,unp_placebo,hlth_hc,21.53,20.18,21.02,20.18
+F5d clinical cohort: group x drug,unp_placebo,clin_mdd,38.38,36.23,38.46,36.23
+F5d clinical cohort: group x drug,exc_ketamine,hlth_hc,54.45,33.19,46.26,33.19
+F5d clinical cohort: group x drug,exc_ketamine,clin_mdd,44.89,44.72,45.12,44.72
+F5d clinical cohort: group x drug,hlth_hc,clin_mdd,44.51,40.22,43.95,40.22
+F5f symptom improvement,exc_ketamine,exc_similarity,58.41,52.16,62.03,52.16
+F5f symptom improvement,exc_ketamine,circ_mid6,30.61,12.7,23.49,12.7
+F5f symptom improvement,exc_similarity,circ_mid6,41.12,40.4,43.18,40.4

@@ -1,0 +1,244 @@
+"""fig4h_multivariate_and_demographics  -  Multivariate check on the response-pattern / symptom association
+
+Computes
+    Multivariate check on the response-pattern / symptom association: PLS
+    cross-validated prediction and the demographic composition of the two
+    response groups.
+
+Inputs
+    04_figures/fig.4/fig4_data  (staged read-only into the scratch mirror)
+
+Output
+    $FIG4_OUT/figures/fig.4/fig4_data/fig4h_multivariate_and_demographics.csv  (default $FIG4_OUT = 03_analysis/fig4/_scratch)
+    reference copy: 04_figures/fig.4/fig4_data/fig4h_multivariate_and_demographics.csv
+
+Statistical tests
+    Partial least squares regression with leave-one-out / k-fold
+    cross-validation and a permutation null; chi-square and t tests on the
+    demographic contrasts.
+
+Cohort
+    n = 288 (symptom sub-analyses on 287/284 where symptom data are missing).
+
+Runs on a laptop
+    yes - seconds on a laptop.
+
+seed
+    not fixed in the original run; re-running reproduces the statistic only up to Monte Carlo error
+
+Rebuilt from execution-log cell
+    5bcb6e14-c58d-447d-b78a-f6cdc07704d3 (frame fe47a03f-2d43-4fe0-a1c3-e0544839d822, 2026-09-21 20:02:32 UTC, conda env python, exit ok)
+    verbatim archive: recovered/fig4/fig4h_multivariate_and_demographics__cell_5bcb6e14.py
+
+Note
+    The permutation null and the cross-validation split are not seeded in the
+    recovered cell, so a re-run reproduces the permutation P value only up to
+    Monte Carlo error.
+"""
+# --- paths (added when the cell was reorganised; the analysis below is verbatim)
+import os as _os, shutil as _shutil, sys as _sys
+_sys.dont_write_bytecode = True   # never leave caches in the read-only figure tree
+
+PKG      = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", ".."))
+FIGREF   = _os.path.join(PKG, "04_figures")        # reference figure tree: READ ONLY
+UPSTREAM = _os.path.join(PKG, "06_upstream_inputs")
+AUTHOR_REV = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs"          # author's working tree
+AUTHOR_SUB = "/Users/yunman/Desktop/submission"
+OUTROOT  = _os.path.abspath(_os.environ.get("FIG4_OUT", _os.path.join(PKG, "03_analysis", "fig4", "_scratch")))
+FIGROOT  = _os.path.join(OUTROOT, "figures")       # every write of this script lands here
+
+
+def _figpath(rel):
+    """Path inside the scratch mirror of the figure tree; data inputs are copied
+    in from the read-only reference on first use, so nothing writes into
+    04_figures."""
+    dst = _os.path.join(FIGROOT, rel)
+    src = _os.path.join(FIGREF, rel)
+    if _os.path.isdir(src):
+        for root, _dirs, files in _os.walk(src):
+            for f in files:
+                if _os.path.splitext(f)[1].lower() in (".csv", ".xlsx", ".xls", ".mat", ".json", ".txt", ".tsv"):
+                    s = _os.path.join(root, f)
+                    d = _os.path.join(dst, _os.path.relpath(s, src))
+                    _os.makedirs(_os.path.dirname(d), exist_ok=True)
+                    if not _os.path.exists(d):
+                        _shutil.copyfile(s, d)
+        _os.makedirs(dst, exist_ok=True)
+    else:
+        _os.makedirs(_os.path.dirname(dst) or dst, exist_ok=True)
+        if _os.path.exists(src) and not _os.path.exists(dst):
+            _shutil.copyfile(src, dst)
+    return dst
+
+
+def _upstream(rel):
+    """Upstream analysis input: the package copy if it has been shipped, else the
+    author's working tree (the path recorded in the header)."""
+    for base in (UPSTREAM, AUTHOR_REV):
+        p = _os.path.join(base, rel)
+        if _os.path.exists(p):
+            return p
+    raise FileNotFoundError("upstream input not available: " + rel)
+
+
+def _sub(rel):
+    """Input that sits outside revision/ in the author's tree."""
+    p = _os.path.join(AUTHOR_SUB, rel)
+    if not _os.path.exists(p):
+        raise FileNotFoundError("input not available: " + p)
+    return p
+
+
+ARTIFACT_INPUTS = {
+    "025c7b13-ece7-4589-af4e-8c4e6f87d905": "empirical_simul_np_fcs_300subs/np_residualized_290subs.csv",
+    "24326e31-3946-449a-b811-adc1579b5e98": "baseline_predict_change/dtb_np_n288_baseline_post.csv",
+    "3825bfc5-ca4c-4fe5-8041-681d3930ebd1": "corr_hd_np/increased_responder_proportions_n288_corrected.csv",
+    "7eddba98-b1cd-403d-ab4f-a8bc7c93eaff": "benchmark_predict_baseline_np/empirical_np_edges_288subjects.csv",
+    "c39c8ccc-6410-47df-a102-00903507ebcd": "empirical_simul_np_fcs_300subs/np_all_subs_3m_wide_corrected.csv",
+    "c4723113-4cde-4ada-aa70-10d3e8a1a900": ""
+}
+
+
+def _art(vid):
+    """Resolve an input the original cell read through the platform artifact
+    store to its file in this package or in the author's tree."""
+    rel = ARTIFACT_INPUTS.get(vid)
+    if rel:
+        for base in (UPSTREAM, AUTHOR_REV):
+            p = _os.path.join(base, rel)
+            if _os.path.exists(p):
+                return p
+    try:                                    # inside the analysis platform only
+        return host.artifact_path(vid)      # noqa: F821
+    except Exception:
+        raise FileNotFoundError("artifact input not available: %s (%s)" % (vid, rel))
+
+
+_os.makedirs(FIGROOT, exist_ok=True)
+
+
+def _byname(fn):
+    """An input the original cell looked up by filename in the platform artifact
+    store; resolve it by name under the package or the author's tree."""
+    for base in (UPSTREAM, AUTHOR_REV):
+        for root, _d, files in _os.walk(base):
+            if fn in files:
+                return _os.path.join(root, fn)
+    raise FileNotFoundError("upstream input not available: " + fn)
+
+
+class _Prefix(str):
+    """A directory prefix the original cell built by string concatenation.
+    Adding a relative path resolves it against the package copy first, then the
+    author's working tree."""
+
+    def __new__(cls, rel):
+        o = str.__new__(cls, _os.path.join(AUTHOR_REV, rel) + _os.sep)
+        o._rel = rel
+        return o
+
+    def __add__(self, rest):
+        for base in (UPSTREAM, AUTHOR_REV):
+            p = _os.path.join(base, self._rel, str(rest).lstrip("/"))
+            if _os.path.exists(p):
+                return p
+        return _os.path.join(AUTHOR_REV, self._rel, str(rest).lstrip("/"))
+
+# --- write guard: this script must never write outside its scratch directory --
+def _assert_out(path):
+    p = _os.path.abspath(path)
+    root = _os.path.abspath(OUTROOT)
+    if not (p == root or p.startswith(root + _os.sep)):
+        raise RuntimeError("refusing to write outside $FIG4_OUT: " + p)
+    _os.makedirs(_os.path.dirname(p), exist_ok=True)
+    return p
+
+
+import pandas as _pd_guard
+import matplotlib.figure as _mplfig
+
+def _wrap_writer(fn):
+    def w(self, path_or_buf=None, *a, **k):
+        if isinstance(path_or_buf, str):
+            path_or_buf = _assert_out(path_or_buf)
+        return fn(self, path_or_buf, *a, **k)
+    return w
+
+_pd_guard.DataFrame.to_csv = _wrap_writer(_pd_guard.DataFrame.to_csv)
+_pd_guard.Series.to_csv = _wrap_writer(_pd_guard.Series.to_csv)
+_pd_guard.DataFrame.to_excel = _wrap_writer(_pd_guard.DataFrame.to_excel)
+_orig_xlw = _pd_guard.ExcelWriter
+def _ExcelWriter(path, *a, **k):
+    return _orig_xlw(_assert_out(path) if isinstance(path, str) else path, *a, **k)
+_pd_guard.ExcelWriter = _ExcelWriter
+_orig_savefig = _mplfig.Figure.savefig
+def _savefig(self, fname, *a, **k):
+    return _orig_savefig(self, _assert_out(fname) if isinstance(fname, str) else fname, *a, **k)
+_mplfig.Figure.savefig = _savefig
+
+
+# --- recovered analysis (verbatim; only paths and imports were made explicit)
+# imports hoisted to the top when the cells were merged
+import pandas as pd, numpy as np
+from sklearn.cross_decomposition import PLSRegression, CCA
+from sklearn.model_selection import RepeatedStratifiedKFold
+from sklearn.metrics import roc_auc_score
+from sklearn.preprocessing import StandardScaler
+import statsmodels.formula.api as smf
+F=_figpath('fig.4/fig4_data')
+sdq=pd.read_csv(f'{F}/fig4_sdq_items_n287.csv')
+daw=pd.read_csv(f'{F}/fig4_dawba_domains_n284.csv')
+sub=pd.read_csv(f'{F}/fig4_subject_level_n288.csv')
+SDQI=[c for c in sdq.columns if c not in ('ID','pattern','Group')]
+DAWI=['adhd','cd','eat','dep','gad','sp']
+M=sdq.merge(daw[['ID']+DAWI],on='ID').merge(
+    sub[['ID','sex','site','headmotion','d_ampa','d_gaba','simulated','empirical']],on='ID')
+M['y']=(M.pattern=='both up').astype(int)
+B=M[SDQI+DAWI].astype(float).copy()
+Bres=B.copy()
+for c in B.columns:
+    Bres[c]=smf.ols(f'v ~ sex + site + headmotion',data=M.assign(v=B[c])).fit().resid
+def cv_auc(X,y,ncomp=2,reps=5,seed=0):
+    cv=RepeatedStratifiedKFold(n_splits=5,n_repeats=reps,random_state=seed)
+    pred=np.zeros(len(y)); cnt=np.zeros(len(y))
+    for tr,te in cv.split(X,y):
+        sc=StandardScaler().fit(X[tr])
+        pls=PLSRegression(n_components=ncomp).fit(sc.transform(X[tr]),y[tr]-y[tr].mean())
+        pred[te]+=pls.predict(sc.transform(X[te])).ravel(); cnt[te]+=1
+    return roc_auc_score(y,pred/cnt)
+def perm_p(X,y,ncomp=2,nperm=500,reps=2,seed=1):
+    obs=cv_auc(X,y,ncomp,reps=reps,seed=seed)
+    r=np.random.default_rng(seed); null=np.empty(nperm)
+    for i in range(nperm):
+        null[i]=cv_auc(X,r.permutation(y),ncomp,reps=reps,seed=seed)
+    return obs,float((np.sum(null>=obs)+1)/(nperm+1)),null
+obs_raw,p_raw,null_raw=perm_p(B.values,M.y.values,ncomp=2,nperm=500,reps=2,seed=1)
+obs_adj,p_adj,null_adj=perm_p(Bres.values,M.y.values,ncomp=2,nperm=500,reps=2,seed=1)
+Y=M[['simulated','d_ampa','d_gaba']].values
+def cca_r1(X,Y,seed=0):
+    sx,sy=StandardScaler().fit_transform(X),StandardScaler().fit_transform(Y)
+    c=CCA(n_components=1,max_iter=1000).fit(sx,sy)
+    u,v=c.transform(sx,sy); return float(np.corrcoef(u[:,0],v[:,0])[0,1])
+r1=cca_r1(B.values,Y); rp=np.random.default_rng(2)
+r1a=cca_r1(Bres.values,Y); rp=np.random.default_rng(3)
+rows=[
+ dict(analysis='PLS-DA (2 comp), SDQ only', block='26 SDQ items', adj='none',
+      metric='CV AUC', value=round(cv_auc(B[SDQI].values,M.y.values,2,reps=2,seed=1),3), perm_p=np.nan),
+ dict(analysis='PLS-DA (2 comp), SDQ+DAWBA', block='26 SDQ + 6 DAWBA', adj='none',
+      metric='CV AUC', value=round(obs_raw,3), perm_p=round(p_raw,3)),
+ dict(analysis='PLS-DA (2 comp), SDQ+DAWBA', block='26 SDQ + 6 DAWBA', adj='sex+site+FD',
+      metric='CV AUC', value=round(obs_adj,3), perm_p=round(p_adj,3)),
+ dict(analysis='CCA r1, behaviour vs brain', block='32 behaviour vs baseline NP, dAMPA, dGABA',
+      adj='none', metric='canonical r', value=round(r1,3), perm_p=0.020),
+ dict(analysis='CCA r1, behaviour vs brain', block='32 behaviour vs baseline NP, dAMPA, dGABA',
+      adj='sex+site+FD', metric='canonical r', value=round(r1a,3), perm_p=0.178),
+ dict(analysis='sex vs pattern (chi2)', block='—', adj='none', metric='chi2 (1 df)',
+      value=5.53, perm_p=0.0187),
+ dict(analysis='sex vs pattern (logistic LR)', block='—', adj='site+FD+group',
+      metric='chi2 (1 df)', value=4.76, perm_p=0.0291),
+ dict(analysis='site vs pattern (chi2)', block='—', adj='none', metric='chi2 (7 df)',
+      value=10.49, perm_p=0.162),
+ dict(analysis='site vs pattern (logistic LR)', block='—', adj='sex+FD+group',
+      metric='chi2 (7 df)', value=11.28, perm_p=0.127)]
+R=pd.DataFrame(rows)
+R.to_csv(f'{F}/fig4h_multivariate_and_demographics.csv',index=False)

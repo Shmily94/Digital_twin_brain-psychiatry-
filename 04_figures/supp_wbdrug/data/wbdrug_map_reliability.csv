@@ -1,0 +1,5 @@
+drug,drug_condition,spearman_brown_reliability,max_attainable_r
+Ketamine,mid_antici_hit,0.025,0.159
+Ketamine,mid_feed_hit,0.041,0.202
+Midazolam,mid_antici_hit,0.198,0.445
+Midazolam,mid_feed_hit,0.176,0.42

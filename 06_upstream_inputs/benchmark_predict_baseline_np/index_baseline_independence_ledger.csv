@@ -1,0 +1,6 @@
+panel,quantity,model,text_value,recomputed,text_P,recomputed_P,ci_lo,ci_hi,df,n,verdict
+a,AMPA restoration index vs age-19 empirical NP connectivity,"Pearson r(index_ampa, sum of the 12 empirical NP edges)",0.11,0.10483121157594565,0.34,0.33966878687684593,-0.11076764834667854,0.3110067640293822,83,85,"MATCH on P; r rounds to 0.10, not 0.11 — figure shows 0.10"
+b,AMPA restoration index vs age-19 internalising symptoms,"Pearson r(index_ampa, summed age-19 items 3-6)",-0.16,-0.156275,0.15,0.153216,-0.3574924514827914,0.0588077312398651,83,85,MATCH
+c,"AMPA index -> age-23 symptoms, adjusting for age-19 symptoms",OLS sym23 ~ sym19 + index_ampa (b unstandardised),0.232,0.231921,0.042,0.042099,,,82,85,MATCH
+c,same effect as a partial correlation,"partial r(sym23, index_ampa | sym19)",,0.222276,,0.042099,,,82,85,PLOTTED
+"a,b",minimum |r| detectable at 80% power,"two-tailed alpha = 0.05, n = 85",,0.3,,,,,83,85,CONTEXT

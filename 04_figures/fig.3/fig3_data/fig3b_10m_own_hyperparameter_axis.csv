@@ -1,0 +1,9 @@
+build,reference,n,mean_sd,range
+"10m_own (10M neurons, 10M voxel hyper)",B_model_voxels,12,0.0763 ± 0.0226,0.0365–0.1107
+"10m (10M neurons, 100M hyper)",B_model_voxels,12,0.6134 ± 0.0548,0.5066–0.6871
+"100m (100M neurons, 100M hyper)",B_model_voxels,12,0.6056 ± 0.0554,0.4921–0.6809
+"1b (1B neurons, 100M hyper)",B_model_voxels,12,0.5874 ± 0.0533,0.4872–0.6583
+"10m_own (10M neurons, 10M voxel hyper)",A_all_voxels,12,0.0767 ± 0.0195,0.0464–0.1059
+"10m (10M neurons, 100M hyper)",A_all_voxels,12,0.5429 ± 0.0559,0.4279–0.6183
+"100m (100M neurons, 100M hyper)",A_all_voxels,12,0.5381 ± 0.0541,0.4260–0.6197
+"1b (1B neurons, 100M hyper)",A_all_voxels,12,0.5225 ± 0.0527,0.4240–0.6079

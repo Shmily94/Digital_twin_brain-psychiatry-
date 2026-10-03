@@ -1,0 +1,7 @@
+model,family,neurons,run_sd_mean,run_sd_sd,n_runs_per_subject
+3m_268,regional,3000000,0.1481,0.034,3-10 (variable)
+10m_268,regional,10000000,0.087,0.0217,5
+10m_1000,regional,10000000,0.1126,0.0378,5
+10m,voxel,10000000,0.0954,0.0343,5
+100m,voxel,100000000,0.0803,0.0314,5
+1b,voxel,1000000000,0.0375,0.0088,5

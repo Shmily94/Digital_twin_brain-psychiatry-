@@ -1,0 +1,8 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_depnet_a1,42,50,621x725,376,depnet_subject_level_n141.csv
+figS_depnet_a2,42,50,621x725,376,depnet_subject_level_n141.csv
+figS_depnet_a3,42,50,621x725,376,depnet_subject_level_n141.csv
+figS_depnet_a4,42,50,655x725,396,depnet_subject_level_n141.csv
+figS_depnet_b,66,50,1185x766,456,depnet_subject_level_n141.csv
+figS_depnet_c,70,54,1042x773,378,depnet_subject_level_n141.csv
+figS_depnet_d,180,44,2379x679,336,depnet_edge_source_data.csv

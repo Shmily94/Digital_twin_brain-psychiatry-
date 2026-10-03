@@ -1,0 +1,5 @@
+relationship,n,test,r,ci_low,ci_high,p
+"AMPA index vs FU3 symptom change, adjusted for baseline empirical NP",85,partial Pearson r,0.243,0.032,0.434,0.025
+"AMPA index vs FU3 symptom change, unadjusted",85,Pearson r,0.264,0.053,0.451,0.0148
+AMPA index vs baseline empirical NP connectivity,85,Pearson r,0.105,-0.111,0.311,0.34
+AMPA index vs baseline symptoms,85,Pearson r,-0.156,-0.357,0.059,0.153

@@ -1,0 +1,348 @@
+row,column,before,after
+6,Test statistic,t = 3.829,t = 3.83
+6,Exact P,0.000148,0.00015
+6,Corrected P,0.000296,0.0003
+6,Effect size,Hedges' g = 0.370,Hedges' g = 0.37
+8,Test statistic,t = 3.382,t = 3.38
+8,Exact P,0.000787,0.0008
+8,Corrected P,0.00158,0.0016
+8,Effect size,Hedges' g = 0.327,Hedges' g = 0.33
+9,Test statistic,mean difference = +0.00144,mean difference = +0.0014
+9,Exact P,0.00927,0.0093
+10,Test statistic,mean difference = +0.00564,mean difference = +0.0056
+10,Exact P,0.00234,0.0023
+11,Test statistic,mean difference = +0.00419,mean difference = +0.0042
+12,Test statistic,mean difference = +0.01594,mean difference = +0.016
+12,Exact P,2.28e-07,< 0.0001
+13,Test statistic,mean difference = +0.11755,mean difference = +0.12
+13,Exact P,6.23e-11,< 0.0001
+14,Test statistic,mean difference = +0.08821,mean difference = +0.088
+14,Exact P,9.97e-08,< 0.0001
+15,Test statistic,F = 8.203,F = 8.20
+15,Exact P,0.000344,0.0003
+15,Corrected P,HC-High q = 0.0239; HC-Pt q = 0.000204; High-Pt q = 0.147,HC-High q = 0.0239; HC-Pt q = 0.0002; High-Pt q = 0.147
+16,Test statistic,t = 2.438,t = 2.44
+16,Effect size,Cohen's d = 0.388,Cohen's d = 0.39
+17,Test statistic,t = 4.111,t = 4.11
+17,Exact P,6.80e-05,< 0.0001
+17,Corrected P,0.000204,0.0002
+17,Effect size,Cohen's d = 0.618,Cohen's d = 0.62
+18,Test statistic,t = 1.458,t = 1.46
+18,Effect size,Cohen's d = 0.204,Cohen's d = 0.20
+19,Test statistic,F = 9.223,F = 9.22
+19,Exact P,0.000131,0.00013
+19,Corrected P,HC-High q = 0.944; HC-Pt q = 0.00157; High-Pt q = 0.00102,HC-High q = 0.944; HC-Pt q = 0.0016; High-Pt q = 0.001
+21,Test statistic,t = 3.362,t = 3.36
+21,Exact P,0.00104,0.001
+21,Corrected P,0.00157,0.0016
+21,Effect size,Cohen's d = 0.531,Cohen's d = 0.53
+22,Test statistic,t = 3.658,t = 3.66
+22,Exact P,0.00034,0.0003
+22,Corrected P,0.00102,0.001
+22,Effect size,Cohen's d = 0.519,Cohen's d = 0.52
+23,Test statistic,F = 0.952,F = 0.95
+24,Test statistic,t = 0.305,t = 0.31
+25,Test statistic,t = 1.194,t = 1.19
+25,Effect size,Cohen's d = 0.179,Cohen's d = 0.18
+26,Test statistic,t = 1.054,t = 1.05
+26,Effect size,Cohen's d = 0.141,Cohen's d = 0.14
+27,Test statistic,F = 0.851,F = 0.85
+28,Test statistic,t = -0.868,t = -0.87
+28,Effect size,Cohen's d = -0.141,Cohen's d = -0.14
+29,Test statistic,t = 0.329,t = 0.33
+30,Test statistic,t = 1.337,t = 1.34
+30,Effect size,Cohen's d = 0.176,Cohen's d = 0.18
+31,Test statistic,"d = 0.618 (empirical), 0.531 (simulated), 0.145 (AMPA), 0.116 (GABA-A)","d = 0.62 (empirical), 0.53 (simulated), 0.15 (AMPA), 0.12 (GABA-A)"
+32,Test statistic,t = 14.138,t = 14.14
+32,Exact P,8.43e-35,< 0.0001
+32,Effect size,"mean change = +0.7771, dz = 0.833, 234/288 increased (81.2%)","mean change = +0.78, dz = 0.83, 234/288 increased (81.2%)"
+33,Test statistic,t = 27.107,t = 27.11
+33,Exact P,4.04e-81,< 0.0001
+33,Effect size,"mean change = +2.7355, dz = 1.597, 282/288 increased (97.9%)","mean change = +2.74, dz = 1.60, 282/288 increased (97.9%)"
+34,Test statistic,chi2 = 14.166,chi2 = 14.17
+34,Exact P,8.39e-4,0.0008
+35,Exact P,4.85e-26,< 0.0001
+35,Effect size,means -0.573 vs +0.879,means -0.57 vs +0.88
+37,Test statistic,t = -2.827,t = -2.83
+37,Effect size,means -0.315 vs +0.133,means -0.32 vs +0.13
+38,Test statistic,t = -6.949,t = -6.95
+38,Exact P,3.78e-10,< 0.0001
+38,Effect size,means -0.313 +- 0.584 vs +0.223 +- 0.514,means -0.31 +- 0.58 vs +0.22 +- 0.51
+39,Test statistic,+2.664,+2.66
+39,Effect size,estimate = +0.8747,estimate = +0.87
+40,Test statistic,-1.570,-1.57
+40,Effect size,estimate = -0.9304,estimate = -0.93
+41,Test statistic,+3.429,+3.43
+41,Exact P,0.00178,0.0018
+41,Effect size,estimate = +2.4251,estimate = +2.43
+42,Test statistic,-2.506,-2.51
+42,Effect size,estimate = -1.1134,estimate = -1.11
+43,Test statistic,-0.558,-0.56
+43,Effect size,estimate = -0.5580,estimate = -0.56
+48,Test statistic,0.243,0.24
+48,Effect size,partial r = +0.243,partial r = +0.24
+49,Test statistic,+4.912,+4.91
+49,Effect size,estimate = +0.0477,estimate = +0.048
+50,Test statistic,t = 2.360,t = 2.36
+50,Effect size,Hedges' g = 0.277,Hedges' g = 0.28
+51,Test statistic,t = 4.140,t = 4.14
+51,Exact P,4.91e-05,< 0.0001
+51,Corrected P,0.000147,0.00015
+51,Effect size,Hedges' g = 0.461,Hedges' g = 0.46
+52,Test statistic,t = 2.250,t = 2.25
+52,Effect size,Hedges' g = 0.220,Hedges' g = 0.22
+53,Test statistic,t = 1.270,t = 1.27
+53,Effect size,Hedges' g = 0.156,Hedges' g = 0.16
+54,Test statistic,t = 2.450,t = 2.45
+54,Effect size,Hedges' g = 0.291,Hedges' g = 0.29
+55,Test statistic,t = 1.640,t = 1.64
+55,Effect size,Hedges' g = 0.192,Hedges' g = 0.19
+56,Test statistic,t = 4.100,t = 4.10
+56,Exact P,6e-05,< 0.0001
+56,Corrected P,0.00018,0.0002
+56,Effect size,Hedges' g = 0.468,Hedges' g = 0.47
+57,Test statistic,t = 13.375,t = 13.38
+57,Exact P,1.43e-26,< 0.0001
+57,Corrected P,4.30e-26,< 0.0001
+57,Effect size,Hedges' g = 1.908; means 6.777 (s.d. 6.202) vs 21.922 (s.d. 10.660),Hedges' g = 1.91; means 6.78 (s.d. 6.20) vs 21.92 (s.d. 10.66)
+58,Test statistic,t = 8.439,t = 8.44
+58,Exact P,6.39e-14,< 0.0001
+58,Corrected P,1.92e-13,< 0.0001
+58,Effect size,Hedges' g = 1.243; means 6.777 (s.d. 6.202) vs 16.427 (s.d. 10.409),Hedges' g = 1.24; means 6.78 (s.d. 6.20) vs 16.43 (s.d. 10.41)
+59,Test statistic,t = 14.217,t = 14.22
+59,Exact P,1.20e-35,< 0.0001
+59,Corrected P,3.61e-35,< 0.0001
+59,Effect size,Hedges' g = 1.424; means 6.777 (s.d. 6.202) vs 19.271 (s.d. 10.868),Hedges' g = 1.42; means 6.78 (s.d. 6.20) vs 19.27 (s.d. 10.87)
+60,Test statistic,mean difference = +4.392,mean difference = +4.39
+60,Exact P,0.009299,0.0093
+60,Effect size,Hedges' g = 0.503,Hedges' g = 0.50
+61,Test statistic,mean difference = +0.1094,mean difference = +0.11
+61,Corrected P,q = 0.04077,q = 0.0408
+61,Effect size,Hedges' g = 0.490,Hedges' g = 0.49
+62,Exact P,0.009999,0.01
+62,Effect size,Hedges' g = 0.490,Hedges' g = 0.49
+63,Test statistic,mean difference = +7.351,mean difference = +7.35
+63,Exact P,0.006199,0.0062
+63,Corrected P,q = 0.03022,q = 0.0302
+63,Effect size,Hedges' g = 0.521,Hedges' g = 0.52
+64,Test statistic,mean difference = +0.8932,mean difference = +0.89
+64,Corrected P,q = 0.03022,q = 0.0302
+64,Effect size,Hedges' g = 0.566,Hedges' g = 0.57
+65,Test statistic,mean difference = +0.3805,mean difference = +0.38
+65,Exact P,0.005799,0.0058
+65,Corrected P,q = 0.03022,q = 0.0302
+65,Effect size,Hedges' g = 0.537,Hedges' g = 0.54
+66,Test statistic,mean difference = +0.2866,mean difference = +0.29
+66,Corrected P,q = 0.03022,q = 0.0302
+66,Effect size,Hedges' g = 0.582,Hedges' g = 0.58
+67,Test statistic,mean difference = +0.2064,mean difference = +0.21
+67,Corrected P,q = 0.03022,q = 0.0302
+67,Effect size,Hedges' g = 0.613,Hedges' g = 0.61
+68,Corrected P,q = 0.03022,q = 0.0302
+68,Effect size,Hedges' g = 0.543,Hedges' g = 0.54
+69,Test statistic,mean difference = +5.521,mean difference = +5.52
+69,Corrected P,q = 0.03022,q = 0.0302
+69,Effect size,Hedges' g = 0.544,Hedges' g = 0.54
+70,Corrected P,q = 0.03022,q = 0.0302
+70,Effect size,Hedges' g = 0.555,Hedges' g = 0.56
+71,Test statistic,t = 3.200,t = 3.20
+71,Exact P,0.00148,0.0015
+71,Corrected P,0.00591,0.0059
+71,Effect size,Cohen's d = 0.310,Cohen's d = 0.31
+72,Test statistic,t = 3.018,t = 3.02
+72,Effect size,Cohen's d = 0.292,Cohen's d = 0.29
+73,Test statistic,t = 3.780,t = 3.78
+73,Exact P,0.00018,0.0002
+73,Corrected P,0.00215,0.0022
+73,Effect size,Cohen's d = 0.366,Cohen's d = 0.37
+74,Test statistic,t = 0.366,t = 0.37
+75,Test statistic,t = 2.104,t = 2.10
+75,Effect size,Cohen's d = 0.204,Cohen's d = 0.20
+76,Test statistic,t = 0.615,t = 0.62
+77,Test statistic,t = 2.464,t = 2.46
+77,Effect size,Cohen's d = 0.239,Cohen's d = 0.24
+78,Test statistic,t = 0.418,t = 0.42
+79,Test statistic,t = -1.451,t = -1.45
+79,Effect size,Cohen's d = -0.141,Cohen's d = -0.14
+80,Test statistic,t = 3.298,t = 3.30
+80,Exact P,0.00106,0.0011
+80,Corrected P,0.00591,0.0059
+80,Effect size,Cohen's d = 0.320,Cohen's d = 0.32
+81,Test statistic,t = -2.045,t = -2.05
+81,Effect size,Cohen's d = -0.198,Cohen's d = -0.20
+82,Test statistic,t = -1.892,t = -1.89
+82,Effect size,Cohen's d = -0.183,Cohen's d = -0.18
+85,Test statistic,"regional BOLD correlations plateaued at about 3 million neurons, mean r > 0.6 across the two tasks","regional BOLD correlations plateaued at about 3 million neurons, mean r > 0.60 across the two tasks"
+86,Test statistic,mean pooled rho = 0.903 (range 0.870 to 0.933); participant-level t(11) = 9.64 to 11.76,mean pooled rho = 0.90 (range 0.87 to 0.93); participant-level t(11) = 9.64 to 11.76
+86,Exact P,1.4e-07 to 1.1e-06 across the three pairs,< 0.0001 to < 0.0001 across the three pairs
+87,Test statistic,"pooled rho = 0.8915; within-participant rho = 0.856 +- 0.100, positive in 12 of 12; t = 12.727","pooled rho = 0.89; within-participant rho = 0.86 +- 0.10, positive in 12 of 12; t = 12.73"
+87,Exact P,6.34e-08,< 0.0001
+87,Corrected P,6.34e-07,< 0.0001
+88,Test statistic,"pooled rho = 0.433 to 0.525 (mean 0.472); within-participant rho = 0.426 to 0.508; t(11) = 4.264 to 6.230; 3 M/268 versus 1 B rho = 0.5247, positive in 11 of 12","pooled rho = 0.43 to 0.53 (mean 0.47); within-participant rho = 0.43 to 0.51; t(11) = 4.26 to 6.23; 3 M/268 versus 1 B rho = 0.52, positive in 11 of 12"
+88,Exact P,6.43e-05 to 1.33e-03 across the six pairs,< 0.0001 to 0.0013 across the six pairs
+88,Corrected P,6.43e-04 to 1.33e-02,0.0006 to 0.0133
+89,Test statistic,rho = 0.06-0.15 across the comparison builds,rho = 0.060-0.15 across the comparison builds
+90,Test statistic,"pooled rho = 0.8564; within-participant rho = 0.815 +- 0.134, positive in 12 of 12; t = 10.029","pooled rho = 0.86; within-participant rho = 0.82 +- 0.13, positive in 12 of 12; t = 10.03"
+90,Exact P,7.18e-07,< 0.0001
+91,Exact P,1.14e-67 to 4.27e-28,< 0.0001 to < 0.0001
+92,Exact P,1.32e-42 to 1.76e-05,< 0.0001 to < 0.0001
+93,Test statistic,rho = -0.07 to 0.13; t(142) = -0.82 to 1.50,rho = -0.070 to 0.13; t(142) = -0.82 to 1.50
+93,Exact P,0.135 to 0.783 (0 of 6 pairs significant),0.135 to 0.783 (< 0.0001 of 6 pairs significant)
+94,Test statistic,"pooled rho = 0.8319; within-participant rho = 0.849 +- 0.134, positive in 12 of 12; t = 11.504","pooled rho = 0.83; within-participant rho = 0.85 +- 0.13, positive in 12 of 12; t = 11.50"
+94,Exact P,1.79e-07,< 0.0001
+95,Exact P,2.45e-122,< 0.0001
+96,Exact P,3.9e-38 to 1.07e-22,< 0.0001 to < 0.0001
+97,Exact P,4.51e-08 to 0.206 (7 of 9 pairs significant),< 0.0001 to 0.206 (7 of 9 pairs significant)
+98,Test statistic,rho = -0.19 to 0.07; t(142) = -2.35 to 0.84,rho = -0.19 to 0.070; t(142) = -2.35 to 0.84
+101,Test statistic,"MID: assimilated regions 0.90 +- 0.01 (median 0.90, range 0.85-0.93), whole brain 0.39 +- 0.07 (median 0.39, range 0.19-0.61); SST: assimilated regions 0.91 +- 0.02 (median 0.91, range 0.78-0.95), whole brain 0.43 +- 0.09 (median 0.42, range 0.09-0.77)","MID: assimilated regions 0.90 +- 0.010 (median 0.90, range 0.85-0.93), whole brain 0.39 +- 0.070 (median 0.39, range 0.19-0.61); SST: assimilated regions 0.91 +- 0.020 (median 0.91, range 0.78-0.95), whole brain 0.43 +- 0.090 (median 0.42, range 0.090-0.77)"
+104,Test statistic,U=5614.5,U=5614.50
+105,Test statistic,t = -8.927,t = -8.93
+105,Exact P,5.44e-17,< 0.0001
+105,Effect size,"r = -0.4668, variance ratio = 0.375","r = -0.47, variance ratio = 0.38"
+106,Test statistic,t = 12.311,t = 12.31
+106,Exact P,3.1e-28,< 0.0001
+106,Effect size,"r = +0.5885, variance ratio = 3.676","r = +0.59, variance ratio = 3.68"
+107,Test statistic,t = 1.143,t = 1.14
+107,Effect size,"r = +0.2227, variance ratio = 1.492","r = +0.22, variance ratio = 1.49"
+108,Test statistic,t = 1.275,t = 1.28
+108,Effect size,"r = +0.2471, variance ratio = 1.655","r = +0.25, variance ratio = 1.66"
+109,Test statistic,t = 0.681,t = 0.68
+109,Exact P,0.5,0.50
+109,Effect size,"r = +0.1161, variance ratio = 1.262","r = +0.12, variance ratio = 1.26"
+110,Effect size,53.0% of significant edges increased; median |dz| = 0.321,53.0% of significant edges increased; median |dz| = 0.32
+111,Effect size,90.5% of significant edges increased; median |dz| = 0.592,90.5% of significant edges increased; median |dz| = 0.59
+112,Effect size,55.0% of significant edges increased; median |dz| = 0.315,55.0% of significant edges increased; median |dz| = 0.32
+113,Effect size,91.2% of significant edges increased; median |dz| = 0.589,91.2% of significant edges increased; median |dz| = 0.59
+114,Effect size,88.1% of significant edges increased; median |dz| = 0.399,88.1% of significant edges increased; median |dz| = 0.40
+115,Effect size,89.3% of significant edges increased; median |dz| = 0.455,89.3% of significant edges increased; median |dz| = 0.46
+116,Effect size,87.9% of significant edges increased; median |dz| = 0.402,87.9% of significant edges increased; median |dz| = 0.40
+117,Effect size,88.8% of significant edges increased; median |dz| = 0.454,88.8% of significant edges increased; median |dz| = 0.45
+118,Test statistic,t = -4.983,t = -4.98
+118,Exact P,1.87e-06,< 0.0001
+118,Effect size,adjusted difference = +1.2518; unadjusted Cohen's d = 0.807,adjusted difference = +1.25; unadjusted Cohen's d = 0.81
+119,Test statistic,t = -5.127,t = -5.13
+119,Exact P,9.93e-07,< 0.0001
+119,Effect size,adjusted difference = +1.0895; unadjusted Cohen's d = 0.797,adjusted difference = +1.09; unadjusted Cohen's d = 0.80
+120,Test statistic,t = -0.967,t = -0.97
+120,Effect size,adjusted difference = +0.1266; unadjusted Cohen's d = 0.222,adjusted difference = +0.13; unadjusted Cohen's d = 0.22
+121,Test statistic,t = -2.782,t = -2.78
+121,Exact P,0.00617,0.0062
+121,Effect size,adjusted difference = +1.2474; unadjusted Cohen's d = 0.522,adjusted difference = +1.25; unadjusted Cohen's d = 0.52
+123,Exact P,< 0.0001; < 0.0001; 0.0062; 0.335 (same order),< 0.00010; < 0.00010; 0.0062; 0.335 (same order)
+125,Exact P,< 0.0001,< 0.00010
+126,Test statistic,t = -1.683,t = -1.68
+126,Effect size,mean difference = -0.2022,mean difference = -0.20
+127,Test statistic,t = -1.375,t = -1.38
+127,Effect size,mean difference = -0.2479,mean difference = -0.25
+128,Effect size,binomial P = 0.362; null s.d. = 9.0%,binomial P = 0.36; null s.d. = 9.0%
+129,Effect size,binomial P = 0.856; null s.d. = 9.2%,binomial P = 0.86; null s.d. = 9.2%
+130,Exact P,0.00899,0.009
+130,Effect size,binomial P = 0.00936; null s.d. = 9.9%,binomial P = 0.0094; null s.d. = 9.9%
+131,Effect size,binomial P = 0.557; null s.d. = 9.8%,binomial P = 0.56; null s.d. = 9.8%
+132,Effect size,binomial P = 0.0105; null s.d. = 6.8%,binomial P = 0.011; null s.d. = 6.8%
+133,Effect size,binomial P = 0.504; null s.d. = 7.2%,binomial P = 0.50; null s.d. = 7.2%
+134,Effect size,binomial P = 0.00779; null s.d. = 6.9%,binomial P = 0.0078; null s.d. = 6.9%
+135,Effect size,binomial P = 0.212; null s.d. = 7.0%,binomial P = 0.21; null s.d. = 7.0%
+136,Effect size,binomial P = 0.000936; null s.d. = 7.1%,binomial P = 0.00094; null s.d. = 7.1%
+138,Exact P,0.000999,0.001
+138,Effect size,binomial P = 1.55e-05; null s.d. = 5.2%,binomial P = 0.000016; null s.d. = 5.2%
+139,Effect size,binomial P = 0.00387; null s.d. = 5.3%,binomial P = 0.0039; null s.d. = 5.3%
+140,Effect size,maximum attainable correlation = 0.159,maximum attainable correlation = 0.16
+141,Effect size,maximum attainable correlation = 0.202,maximum attainable correlation = 0.20
+142,Test statistic,reliability = 0.198,reliability = 0.20
+142,Effect size,maximum attainable correlation = 0.445,maximum attainable correlation = 0.45
+143,Test statistic,reliability = 0.176,reliability = 0.18
+143,Effect size,maximum attainable correlation = 0.420,maximum attainable correlation = 0.42
+146,Effect size,"in-sample R² = 0.21, adjusted R² = 0.07","in-sample R² = 0.21, adjusted R² = 0.070"
+150,Exact P,"0.0010 (permutation, leave-one-out r); 0.0009 (F test)","0.001 (permutation, leave-one-out r); 0.0009 (F test)"
+152,Effect size,"in-sample R² = 0.21, adjusted R² = 0.07","in-sample R² = 0.21, adjusted R² = 0.070"
+155,Test statistic,between-edge s.d. = 0.1693; mean between-run s.d. = 0.0123; ratio = 13.76,between-edge s.d. = 0.17; mean between-run s.d. = 0.012; ratio = 13.76
+156,Test statistic,mean self r = 0.1662; mean best-other r = 0.0034,mean self r = 0.17; mean best-other r = 0.0034
+157,Test statistic,mean self r = 0.2021; mean best-other r = 0.0047,mean self r = 0.20; mean best-other r = 0.0047
+158,Test statistic,t = 2.293,t = 2.29
+158,Effect size,mean margin 0.1974 +- 0.0426 (twins) vs 0.1628 +- 0.0699 (empirical); mean difference +0.0346,mean margin 0.20 +- 0.043 (twins) vs 0.16 +- 0.070 (empirical); mean difference +0.035
+159,Test statistic,t = 11.411,t = 11.41
+159,Exact P,5.99e-11,< 0.0001
+160,Test statistic,t = 22.725,t = 22.73
+160,Exact P,2.94e-17,< 0.0001
+172,Test statistic,"ICC(3,1), runs fixed = 0.9951; ICC(2,1), runs random = 0.9942; mean between-run profile r = 0.9958; min between-run profile r = 0.9903; max between-run profile r = 0.9985; SD between edges (signal) = 0.1693; mean SD between runs (noise) = 0.0123; signal/noise SD ratio = 13.76; n runs = 5.0; n reward-task edges = 6.0","ICC(3,1), runs fixed = 0.9951; ICC(2,1), runs random = 0.9942; mean between-run profile r = 0.9958; min between-run profile r = 0.9903; max between-run profile r = 0.9985; SD between edges (signal) = 0.17; mean SD between runs (noise) = 0.012; signal/noise SD ratio = 13.76; n runs = 5.00; n reward-task edges = 6.00"
+173,Test statistic,activation r = 0.7059 versus meta-analytic 0.7129 +- 0.0007 (range 0.7120 to 0.7138); delta r = -0.0070,activation r = 0.71 versus meta-analytic 0.71 +- 0.00070 (range 0.71 to 0.71); delta r = -0.0070
+174,Test statistic,activation r = 0.7011 versus meta-analytic 0.7007 +- 0.0006 (range 0.6999 to 0.7015); delta r = +0.0004,activation r = 0.70 versus meta-analytic 0.70 +- 0.00060 (range 0.70 to 0.70); delta r = +0.00040
+175,Test statistic,activation versus meta-analytic r = 0.966 to 0.969; between-repeat r = 0.995 to 0.996 (10 pairs),activation versus meta-analytic r = 0.97 to 0.97; between-repeat r = 0.995 to 0.996 (10 pairs)
+176,Test statistic,"r = 0.973 (both), 0.353 (one), 0.083 (neither), 0.270 (all edges)","r = 0.97 (both), 0.35 (one), 0.083 (neither), 0.27 (all edges)"
+177,Test statistic,"edge 7 z = 6.1 and edge 11 z = 8.3 lie outside the repeat range; edges 8, 9, 10, 12 z = 0.6 to 1.4 lie inside","edge 7 z = 6.10 and edge 11 z = 8.30 lie outside the repeat range; edges 8, 9, 10, 12 z = 0.60 to 1.40 lie inside"
+178,Test statistic,t = -0.773,t = -0.77
+178,Effect size,"mean difference = -0.1151, dz = -0.093","mean difference = -0.12, dz = -0.093"
+179,Test statistic,t = 1.568,t = 1.57
+179,Effect size,"mean difference = +0.1899, dz = +0.166","mean difference = +0.19, dz = +0.17"
+180,Test statistic,t = -0.759,t = -0.76
+180,Effect size,"mean difference = -0.0689, dz = -0.067","mean difference = -0.069, dz = -0.067"
+181,Test statistic,"t statistics not reported in the legend; mean increases 0.740 (HC), 0.50 (high-symptom), 0.99 (patients)","t statistics not reported in the legend; mean increases 0.74 (HC), 0.50 (high-symptom), 0.99 (patients)"
+181,Exact P,< 0.0001 in all three groups,< 0.00010 in all three groups
+181,Effect size,"mean within-group increase in the NP factor: 0.740, 0.50 and 0.99","mean within-group increase in the NP factor: 0.74, 0.50 and 0.99"
+182,Test statistic,"t statistics not reported in the legend; mean increases 2.60 (HC), 2.63 (high-symptom), 2.883 (patients)","t statistics not reported in the legend; mean increases 2.60 (HC), 2.63 (high-symptom), 2.88 (patients)"
+182,Exact P,< 0.0001 in all three groups,< 0.00010 in all three groups
+182,Effect size,"mean within-group increase in the NP factor: 2.60, 2.63 and 2.883","mean within-group increase in the NP factor: 2.60, 2.63 and 2.88"
+183,Test statistic,t = 15.491,t = 15.49
+183,Exact P,9.39e-40,< 0.0001
+183,Effect size,"mean change = +0.5560, dz = 0.913, 239/288 increased (83.0%)","mean change = +0.56, dz = 0.91, 239/288 increased (83.0%)"
+184,Test statistic,t = 16.714,t = 16.71
+184,Exact P,2.91e-44,< 0.0001
+184,Effect size,"mean change = +1.0220, dz = 0.985, 243/288 increased (84.4%)","mean change = +1.02, dz = 0.985, 243/288 increased (84.4%)"
+188,Effect size,variance ratio = 0.483,variance ratio = 0.48
+189,Exact P,< 0.0001,< 0.00010
+190,Exact P,< 0.0001,< 0.00010
+191,Test statistic,t = 12.409,t = 12.41
+191,Exact P,1.35e-28,< 0.0001
+191,Effect size,"mean change = +1.5414, Cohen's dz = 0.731; 85.4% of participants moved in the group direction","mean change = +1.54, Cohen's dz = 0.73; 85.4% of participants moved in the group direction"
+192,Test statistic,t = 14.138,t = 14.14
+192,Exact P,8.43e-35,< 0.0001
+192,Effect size,"mean change = +0.7771, Cohen's dz = 0.833; 81.2% of participants moved in the group direction","mean change = +0.78, Cohen's dz = 0.83; 81.2% of participants moved in the group direction"
+193,Test statistic,t = 10.382,t = 10.38
+193,Exact P,1.20e-21,< 0.0001
+193,Effect size,"mean change = +1.3612, Cohen's dz = 0.612; 75.3% of participants moved in the group direction","mean change = +1.36, Cohen's dz = 0.61; 75.3% of participants moved in the group direction"
+194,Test statistic,t = 24.940,t = 24.94
+194,Exact P,8.08e-74,< 0.0001
+194,Effect size,"mean change = +3.1681, Cohen's dz = 1.470; 96.2% of participants moved in the group direction","mean change = +3.17, Cohen's dz = 1.47; 96.2% of participants moved in the group direction"
+195,Test statistic,t = 27.107,t = 27.11
+195,Exact P,4.04e-81,< 0.0001
+195,Effect size,"mean change = +2.7355, Cohen's dz = 1.597; 97.9% of participants moved in the group direction","mean change = +2.74, Cohen's dz = 1.60; 97.9% of participants moved in the group direction"
+196,Test statistic,t = 21.893,t = 21.89
+196,Exact P,3.70e-63,< 0.0001
+196,Effect size,"mean change = +2.7780, Cohen's dz = 1.290; 94.1% of participants moved in the group direction","mean change = +2.78, Cohen's dz = 1.29; 94.1% of participants moved in the group direction"
+197,Test statistic,chi2 = 11.234,chi2 = 11.23
+197,Exact P,0.00364,0.0036
+198,Test statistic,chi2 = 16.999,chi2 = 17.00
+198,Exact P,0.000204,0.0002
+199,Test statistic,chi2 = 20.704,chi2 = 20.70
+199,Exact P,3.19e-05,< 0.0001
+200,Test statistic,chi2 = 1.654,chi2 = 1.65
+201,Test statistic,chi2 = 0.659,chi2 = 0.66
+202,Test statistic,chi2 = 1.370,chi2 = 1.37
+203,Test statistic,within AMPA r = 0.39-0.55 (3 pairs); within GABA-A r = 0.69-0.90 (3 pairs); between knobs r = -0.05 to 0.31 (9 pairs),within AMPA r = 0.39-0.55 (3 pairs); within GABA-A r = 0.69-0.90 (3 pairs); between knobs r = -0.050 to 0.31 (9 pairs)
+203,Exact P,within AMPA 3.75e-12 to 4.94e-24; within GABA-A 8.17e-43 to 8.85e-107; between knobs 0.935 to 1.03e-05 (3 of 9 pairs significant),within AMPA < 0.0001 to < 0.0001; within GABA-A < 0.0001 to < 0.0001; between knobs 0.935 to < 0.0001 (3 of 9 pairs significant)
+204,Test statistic,control AMPA = -0.6555; MDD AMPA = +1.0709; AUD AMPA = +0.8578; control GABA-A = +1.9725; MDD GABA-A = +0.6330; AUD GABA-A = +0.8574,control AMPA = -0.66; MDD AMPA = +1.07; AUD AMPA = +0.86; control GABA-A = +1.97; MDD GABA-A = +0.63; AUD GABA-A = +0.86
+205,Test statistic,0.844,0.84
+206,Test statistic,-1.478,-1.48
+207,Test statistic,7380.0,7380.00
+208,Test statistic,0.1283,0.13
+209,Test statistic,0.1424,0.14
+210,Test statistic,0.1378,0.14
+211,Test statistic,r = +0.155,r = +0.16
+211,Exact P,0.00824,0.0082
+211,Effect size,variance explained = 2.42%; Spearman rho = +0.162 (P = 0.00579),variance explained = 2.42%; Spearman rho = +0.16 (P = 0.0058)
+212,Test statistic,r = +0.127,r = +0.13
+212,Effect size,variance explained = 1.63%; Spearman rho = +0.159 (P = 0.00702),variance explained = 1.63%; Spearman rho = +0.16 (P = 0.0070)
+213,Test statistic,r = +0.149,r = +0.15
+213,Effect size,variance explained = 2.23%; Spearman rho = +0.110 (P = 0.0623),variance explained = 2.23%; Spearman rho = +0.11 (P = 0.062)
+214,Test statistic,r = +0.268,r = +0.27
+214,Exact P,4.10e-06,< 0.0001
+214,Corrected P,2.46e-05,< 0.0001
+214,Effect size,variance explained = 7.16%; Spearman rho = +0.278 (P = 1.72e-06),variance explained = 7.16%; Spearman rho = +0.28 (P = 0.0000017)
+215,Corrected P,1,1.00
+215,Effect size,variance explained = 0.12%; Spearman rho = -0.082 (P = 0.168),variance explained = 0.12%; Spearman rho = -0.082 (P = 0.17)
+216,Test statistic,r = +0.204,r = +0.20
+216,Exact P,0.000505,0.0005
+216,Corrected P,0.00303,0.003
+216,Effect size,variance explained = 4.15%; Spearman rho = +0.199 (P = 0.000666),variance explained = 4.15%; Spearman rho = +0.20 (P = 0.00067)
+218,Test statistic,"regime boundaries: asynchronous <= 3.42 Hz, synchronised 5.28-39.86 Hz, excessive firing >= 69.67 Hz; baseline 0.0008 S cm-2 AMPA and 0.0015 S cm-2 GABA-A at 1.54 Hz, coherence = 0.0636","regime boundaries: asynchronous <= 3.42 Hz, synchronised 5.28-39.86 Hz, excessive firing >= 69.67 Hz; baseline 0.00080 S cm-2 AMPA and 0.0015 S cm-2 GABA-A at 1.54 Hz, coherence = 0.064"

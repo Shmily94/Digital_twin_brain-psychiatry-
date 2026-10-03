@@ -1,0 +1,7 @@
+pipeline,n_units,mean_diff,t,P,interpretation
+"raw 12-edge sum, subjects as units",288,0.3267,4.764,3e-06,significant
+"per edge, subjects as units (pooled)",288,,,,"8/12 edges significant, all survive FDR"
+both sides z-scored or mean-centred,288,0.0,0.0,1.0,NULL BY CONSTRUCTION - centring removes the mean difference
+paired over the 12 edge means,12,0.027220959736834735,0.8255130875181697,0.4266214129277989,n.s. - signed differences cancel across edges
+paired over the 4 group means,4,0.0303,2.218,0.1133,"n.s. - n = 4, underpowered"
+"Wilcoxon signed-rank, raw sum",288,,,3.4e-08,significant

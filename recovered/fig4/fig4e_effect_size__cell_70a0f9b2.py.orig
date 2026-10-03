@@ -1,0 +1,72 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/fig.4/fig4_data/fig4e_effect_size.csv
+#
+# cell id      : 70a0f9b2-3826-489b-9f8a-59838d95dee2
+# frame id     : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp    : 2026-09-21 19:05:33 UTC
+# conda env    : python
+# language     : python
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/11_fig4e_effect_size.py
+##############################################################################
+p4='/Users/yunman/Desktop/submission/revision/text/figures/fig.4/fig4.py'
+s=open(p4).read()
+s=s.replace("enforce(fig); save(fig, 'fig4e', W, H, 'fig4_subject_level_n288.csv')",
+            "enforce(fig); save(fig, 'fig4e_density', W, H, 'fig4_subject_level_n288.csv')",1)
+anchor="# ------------------------------------- f  per-twin response, AMPA vs GABA-A --"
+new_e = '''# ------- e  the claim itself: HC - patient effect size across conditions -----
+# a-d show the data condition by condition; this panel shows the quantity the
+# claim is about -- how the HC/patient separation changes once the twins are
+# perturbed -- with 95% CIs, so "no longer detectable" is not read as "equal".
+EM = [('empirical', 'Empirical', C('baseline'), True),
+      ('simulated', 'Simulated\\nbaseline', C('baseline'), False),
+      ('ampa', 'After\\nAMPA', C('ampa'), False),
+      ('gaba', 'After\\nGABA-A', C('gaba'), False)]
+W, H = 66, 50
+fig, ax = plt.subplots(figsize=panel(W, H))
+erows = []
+for i, (c_, lab, col, open_ in EM):
+    hc = T.loc[T.Group == 'HC', c_ + '_r'].values
+    pt = T.loc[T.Group == 'Patient', c_ + '_r'].values
+    n1, n2 = len(hc), len(pt)
+    sp_ = np.sqrt(((n1 - 1) * hc.var(ddof=1) + (n2 - 1) * pt.var(ddof=1)) / (n1 + n2 - 2))
+    dd = (hc.mean() - pt.mean()) / sp_
+    se = np.sqrt((n1 + n2) / (n1 * n2) + dd ** 2 / (2 * (n1 + n2)))
+    t_, p_ = stats.ttest_ind(hc, pt, equal_var=False)
+    erows.append(dict(condition=lab.replace('\\n', ' '), n_hc=n1, n_patient=n2,
+                      cohens_d=round(float(dd), 3),
+                      ci_lo=round(float(dd - 1.96 * se), 3),
+                      ci_hi=round(float(dd + 1.96 * se), 3),
+                      t=round(float(t_), 3), p=float(f'{p_:.3g}')))
+    ax.vlines(i, dd - 1.96 * se, dd + 1.96 * se, color=col, lw=LW, zorder=2)
+    ax.plot([i - .13, i + .13], [dd - 1.96 * se] * 2, color=col, lw=LW, zorder=2)
+    ax.plot([i - .13, i + .13], [dd + 1.96 * se] * 2, color=col, lw=LW, zorder=2)
+    ax.scatter([i], [dd], s=13, facecolor='white' if open_ else col,
+               edgecolor=col, linewidth=LW, zorder=4)
+    ax.text(i, dd + 1.96 * se + .05, f'$P$ = {p_:.2g}', ha='center', va='bottom',
+            fontsize=ANNOT_PT, color='0.35')
+E4 = pd.DataFrame(erows)
+E4.to_csv(f'{D}/fig4e_effect_size.csv', index=False)
+ax.plot(range(len(EM)), E4.cohens_d, color='0.6', lw=LW, zorder=1)
+ax.axhline(0, color='0.6', lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
+ax.set_xticks(range(len(EM)))
+ax.set_xticklabels([e[1] for e in EM], fontsize=TICK_PT)
+ax.set_xlim(-.5, len(EM) - .5)
+ax.set_ylim(min(E4.ci_lo) - .12, max(E4.ci_hi) + .28)
+ax.set_ylabel("Cohen's $d$ (HC − patient)")
+hEM = [Line2D([], [], marker='o', linestyle='none', markersize=3.2,
+              markerfacecolor='white', markeredgecolor=C('baseline'),
+              markeredgewidth=LW),
+       Line2D([], [], marker='o', linestyle='none', markersize=3.2,
+              markerfacecolor=C('baseline'), markeredgecolor=C('baseline'),
+              markeredgewidth=LW)]
+ax.legend(hEM, ['empirical', 'simulated'], loc='lower left', fontsize=ANNOT_PT,
+          handletextpad=.4, borderaxespad=.2, frameon=False)
+panel_title(ax, 'The HC–patient separation is no longer detectable')
+enforce(fig); save(fig, 'fig4e', W, H, 'fig4_subject_level_n288.csv')
+
+'''
+open(p4,'w').write(s.replace(anchor, new_e+anchor,1))
+print('ok')

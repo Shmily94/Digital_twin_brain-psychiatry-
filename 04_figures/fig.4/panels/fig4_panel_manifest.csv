@@ -1,0 +1,15 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+fig4a,42,50,752x766,455,fig4_subject_level_n288.csv
+fig4b,42,50,844x766,510,fig4_subject_level_n288.csv
+fig4c,42,50,1097x766,663,fig4_subject_level_n288.csv
+fig4d,42,50,1122x766,679,fig4_subject_level_n288.csv
+fig4e_density,180,46,2322x729,328,fig4_subject_level_n288.csv
+fig4e,66,50,1107x766,426,fig4_subject_level_n288.csv
+fig4f,62,60,872x899,357,fig4_subject_level_n288.csv
+fig4g,100,50,1393x811,354,fig4_subject_level_n288.csv
+fig4h,180,58,2455x904,346,fig4_sdq_items_n287.csv
+fig4h_ampa,180,58,2455x904,346,fig4_sdq_items_n287.csv
+fig4h_dawba,86,50,1587x853,469,fig4_dawba_domains_n284.csv
+fig4h_dawba_pattern,86,50,1489x853,440,fig4_dawba_domains_n284.csv
+fig4i,110,56,1458x797,337,fig4_paired_np_mid_n288.csv
+fig4j,170,52,2186x802,327,fig4_paired_np_mid_n288.csv

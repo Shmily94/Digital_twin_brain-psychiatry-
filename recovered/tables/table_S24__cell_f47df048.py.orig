@@ -1,0 +1,44 @@
+# Verbatim archive of an interactive execution-log cell. Nothing removed, nothing reformatted.
+# table            : table_S24
+# cell id          : f47df048-e8f9-4536-a372-41c302d7d938
+# frame id         : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp        : 2026-09-23 13:56:25 UTC (epoch-ms 1790171785013)
+# conda env        : python
+# produced         : last run of build_table_s21.py -> Table_S21_rebuilt.csv, and its insertion as the statistical-reporting sheet (old 'Table S21', renumbered to Table S24 in the final workbook)
+# ----------------------------------------------------------------------------
+
+cd /Users/yunman/Desktop/submission/revision/text && python - <<'EOF'
+import shutil, openpyxl, pandas as pd
+from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
+from openpyxl.utils import get_column_letter
+shutil.copy('Suppl.Table_revision.xlsx','Suppl.Table_revision_updated.xlsx')
+W=openpyxl.load_workbook('Suppl.Table_revision_updated.xlsx')
+W['Table S21'].title='Table S21 (superseded)'
+T=pd.read_csv('_revision/Table_S21_rebuilt.csv').fillna('')
+ws=W.create_sheet('Table S21')
+TITLE=('Table S21. Detailed statistical information for every panel of Figures 1-5 and '
+ 'Supplementary Figures S1-S27. Sample sizes, units of observation, the error indicator drawn in '
+ 'each panel, the test with its sidedness and pairing, the multiple-comparison correction, exact '
+ 'test statistics with degrees of freedom, exact and corrected P values, effect sizes with 95% '
+ 'confidence intervals, and the source data file for each row. Figure numbering follows the '
+ 'revised submission. All values were recomputed from the figure source data; rows whose value '
+ 'could not be reproduced are marked in the notes.')
+ws['A1']=TITLE; ws['A1'].font=Font(bold=True,size=10); ws['A1'].alignment=Alignment(wrap_text=True,vertical='top')
+ws.merge_cells(start_row=1,start_column=1,end_row=1,end_column=len(T.columns)); ws.row_dimensions[1].height=62
+hf=PatternFill('solid',fgColor='DDE6F0'); thin=Side(style='thin',color='9AA5B1')
+for j,c in enumerate(T.columns,1):
+    cell=ws.cell(row=2,column=j,value=c); cell.font=Font(bold=True,size=9); cell.fill=hf
+    cell.alignment=Alignment(wrap_text=True,vertical='bottom'); cell.border=Border(bottom=thin)
+for i,(_,r) in enumerate(T.iterrows(),3):
+    for j,c in enumerate(T.columns,1):
+        cell=ws.cell(row=i,column=j,value=str(r[c])); cell.font=Font(size=9)
+        cell.alignment=Alignment(wrap_text=True,vertical='top')
+widths={'Figure':13,'Panel':13,'Quantity tested':46,'Sample size':22,'Unit of observation':16,
+ 'Error indicator drawn in the panel':30,'Statistical test':40,'Sidedness':11,'Pairing':11,
+ 'Multiple-comparison correction':30,'Test statistic':24,'Degrees of freedom':11,'Exact P':11,
+ 'Corrected P':16,'Effect size':38,'95% confidence interval':20,'Source data file and notes':52}
+for j,c in enumerate(T.columns,1): ws.column_dimensions[get_column_letter(j)].width=widths.get(c,18)
+ws.freeze_panes='A3'; ws.row_dimensions[2].height=40
+W.save('Suppl.Table_revision_updated.xlsx'); print('ok',ws.max_row-2)
+EOF
+W=~/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/fe47a03f-2d43-4fe0-a1c3-e0544839d822/ && cp figures/supp_stratify/panels/figS_stratify_e.png figures/supp_stratify/panels/figS_stratify_e.pdf figures/supp_stratify/data/stratify_symptom_tests.csv figures/supp_stratify/stratify_supp.py Suppl.Table_revision_updated.xlsx _revision/Table_S21_rebuilt.csv _revision/build_table_s21.py $W && echo copied

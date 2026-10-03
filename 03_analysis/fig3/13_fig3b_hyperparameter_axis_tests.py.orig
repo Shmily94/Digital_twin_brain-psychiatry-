@@ -1,0 +1,145 @@
+"""fig3b_hyperparameter_axis_tests.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code compares, for each subject, functional connectivity
+    similarity computed using a model's own hyperparameters at 10M voxels
+    versus hyperparameters tuned on a 100M voxel model, doing this
+    separately for two voxel reference sets (a subset of voxels and all
+    voxels). For each reference set it computes the paired difference
+    between the two conditions across subjects, then runs a paired t-test
+    and a Wilcoxon signed-rank test on that difference, along with a 95
+    percent confidence interval, effect size (dz), the count of subjects
+    where the 100M-tuned hyperparameters score higher, and the fold ratio
+    of the two condition means. One row of the output table summarizes
+    this full paired comparison for one reference voxel set, reporting the
+    sample size, the formatted mean plus or minus standard deviation for
+    each condition, the range of the own-hyperparameter condition, the
+    mean difference, its confidence interval, the t-statistic, degrees of
+    freedom, p
+
+INPUT FILES
+    revision/10m_voxel_population_simulation/analysis_results/fc_similarity_four_runs_per_subject.csv
+
+OUTPUT FILE
+    fig3b_hyperparameter_axis_tests.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3b_hyperparameter_axis_tests.csv
+
+STATISTICAL TESTS
+    paired two-sided t test
+    Wilcoxon signed-rank test
+    Cohen's d_z effect size
+
+RUNNABLE ON A LAPTOP
+    conditional on the input files above being present on this machine
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 1dbf78d8-6fdc-4505-97f9-8822a3724f5e
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-23 15:00:44 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3b_hyperparameter_axis_tests__cell_1dbf78d8.py
+    candidates found   : 2
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+from scipy import stats as st
+import numpy as np
+import pandas as pd
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 457de626, 49894910, 706899db, 821bf2cd, 9607e4f5, ffbb91c0)
+R='/Users/yunman/Desktop/submission/revision/text/'
+FIG=R+'figures/'
+SUB='/Users/yunman/Desktop/submission/'
+D3=FIG+'fig.3/fig3_data/'
+FR=pd.read_csv(SUB+'revision/10m_voxel_population_simulation/analysis_results/fc_similarity_four_runs_per_subject.csv')
+rows=[]
+for ref,tag in [('r_dtb_voxels__','B_model_voxels'),('r_all_voxels__','A_all_voxels')]:
+    own=FR.set_index('sub_id')[ref+'10m_own_params']; hyp=FR.set_index('sub_id')[ref+'10m_100m_params']
+    d=hyp-own; t,p=st.ttest_rel(hyp,own); w=st.wilcoxon(hyp,own)
+    rows.append(dict(reference=tag,n=len(d),
+        own_hyper_mean=round(own.mean(),4),own_hyper_sd=round(own.std(ddof=1),4),
+        own_hyper_range=f'{own.min():.3f}-{own.max():.3f}',
+        hyper100m_mean=round(hyp.mean(),4),hyper100m_sd=round(hyp.std(ddof=1),4),
+        diff=round(d.mean(),4),ci=f'{d.mean()-st.t.ppf(.975,11)*d.std(ddof=1)/np.sqrt(12):.4f} to {d.mean()+st.t.ppf(.975,11)*d.std(ddof=1)/np.sqrt(12):.4f}',
+        t=round(float(t),3),df=11,p=f'{p:.3g}',dz=round(d.mean()/d.std(ddof=1),2),
+        n_higher=f'{int((d>0).sum())}/12',wilcoxon_p=f'{w.pvalue:.4g}',
+        fold=round(hyp.mean()/own.mean(),1)))
+BW=pd.DataFrame(rows)
+
+# ---- computation: recovered from execution-log cell 1dbf78d8
+def ms(m,s,p=4): return f'{m:.{p}f} ± {s:.{p}f}'
+BW2=pd.DataFrame([dict(reference=r.reference,n=r.n,
+        own_hyper_10M=ms(r.own_hyper_mean,r.own_hyper_sd),own_hyper_range=r.own_hyper_range,
+        hyper_100M=ms(r.hyper100m_mean,r.hyper100m_sd),difference=f'{r["diff"]:+.4f}',ci95=r.ci,
+        t=r.t,df=r.df,p=r.p,dz=r.dz,n_higher=r.n_higher,wilcoxon_p=r.wilcoxon_p,fold=r.fold)
+        for _,r in BW.iterrows()])
+BW2.to_csv(D3+'fig3b_hyperparameter_axis_tests.csv',index=False)

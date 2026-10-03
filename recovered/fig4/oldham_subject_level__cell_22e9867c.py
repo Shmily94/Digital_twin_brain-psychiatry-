@@ -1,0 +1,28 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/supp_oldham/data/oldham_subject_level.csv
+#
+# cell id      : 22e9867c-f442-442a-b25e-d2ee46ade4d5
+# frame id     : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp    : 2026-09-22 21:01:19 UTC
+# conda env    : python
+# language     : python
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/40_oldham_subject_level.py
+##############################################################################
+OD='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_oldham'
+keys=['model_gaba','model_ampa','healthy_mid','healthy_ket','healthy_mid_resid','healthy_ket_resid','clinical_ket','clinical_ket_mdd']
+OL.insert(0,'series',keys); OL.to_csv(f'{OD}/data/oldham_tests.csv',index=False)
+src={'model_gaba':(S4.ID.values,S4.simulated.values,S4.gaba.values),
+     'model_ampa':(S4.ID.values,S4.simulated.values,S4.ampa.values),
+     'healthy_mid':(R27.index.values,R27.Placebo.values,R27.Midazolam.values),
+     'healthy_ket':(R27.index.values,R27.Placebo.values,R27.Ketamine.values),
+     'healthy_mid_resid':(H27.Subject.values,H27.Placebo.values,H27.Midazolam.values),
+     'healthy_ket_resid':(H27.Subject.values,H27.Placebo.values,H27.Ketamine.values),
+     'clinical_ket':(M36.SubID.values,M36.FC_p2.values,M36.FC_d2.values),
+     'clinical_ket_mdd':(M22.SubID.values,M22.FC_p2.values,M22.FC_d2.values)}
+SLD=pd.concat([pd.DataFrame(dict(series=k,subject=i,pre=p,post=q,mean_pre_post=(p+q)/2,difference=q-p))
+               for k,(i,p,q) in src.items()],ignore_index=True)
+SLD.to_csv(f'{OD}/data/oldham_subject_level.csv',index=False)
+print(SLD.groupby('series').size().to_dict())

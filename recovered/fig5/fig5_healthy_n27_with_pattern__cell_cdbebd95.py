@@ -1,0 +1,32 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/_recovered_session_b194cd74/fig5_data_adj/fig5_healthy_n27_with_pattern.csv; 04_figures/fig.5/fig5_data/fig5_healthy_n27_with_pattern.csv
+# cell id       : cdbebd95-8ffb-4c92-bfc0-391d8e03604a
+# frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# cell_index    : 478
+# executed at   : 2026-09-21 20:58 UTC
+# language      : bash
+# organised as  : 03_analysis/fig5/12_fig5_healthy_n27_with_pattern.py
+# This data file is a render-time by-product of 04_figures/fig.5/fig5.py.
+# The cell below is the execution-log cell that produced the packaged copy
+# (it runs, or last edits and runs, that figure script). The derivation itself
+# is the figure script, which is already in the package.
+# ---------------------------------------------------------------------------
+cd "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig.5" && python - <<'PY'
+p='fig5.py'; s=open(p).read()
+s = s.replace("""    tr = ax.get_xaxis_transform()
+    for xc, bl in blocklab:
+        ax.text(xc, -.155, bl, transform=tr, ha='center', va='top',
+                fontsize=ANNOT_PT, clip_on=False)""",
+"""    tr = ax.get_xaxis_transform()
+    yb = -.155 - .115 * (max(t.count('\\n') for t in tlabs))   # clear multi-line ticks
+    for xc, bl in blocklab:
+        ax.text(xc, yb, bl, transform=tr, ha='center', va='top',
+                fontsize=ANNOT_PT, clip_on=False)""")
+open(p,'w').write(s)
+PY
+python fig5.py >/dev/null 2>&1 && cp panels/fig5b.png panels/fig5b.pdf panels/fig5d.png panels/fig5d.pdf panels/fig5b_pattern.png panels/fig5b_pattern.pdf panels/fig5c_pattern.png panels/fig5c_pattern.pdf fig5.py panels/fig5_panel_manifest.csv fig5_data/fig5_healthy_pattern_rule_n27.csv fig5_data/fig5_healthy_n27_with_pattern.csv ~/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/fe47a03f-2d43-4fe0-a1c3-e0544839d822/ && echo ok
+python - <<'PY'
+import pandas as pd
+d=pd.read_csv('fig5_data/fig5_healthy_pattern_rule_n27.csv')
+print(d[d.rule=='four-way breakdown'].pivot_table(index='group',columns='measure',values=['mean','n']).round(3).to_string())
+PY

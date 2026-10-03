@@ -1,0 +1,18 @@
+key,value
+a|HC,"{'n': 69, 'mean': 0.12831264782608695, 'sd': 0.04900785622862393, 'median': 0.119981}"
+a|High-symptom,"{'n': 89, 'mean': 0.1424350168539326, 'sd': 0.06971729831261757, 'median': 0.129206}"
+a|Patient,"{'n': 130, 'mean': 0.13784829307692306, 'sd': 0.07613084580362127, 'median': 0.1088445}"
+b|Empirical NP factor,"{'r': 0.155, 'lo': 0.041, 'hi': 0.266, 'p': 0.00824, 'pb': 0.0494, 've': 0.0242, 'rho': 0.162, 'p_rho': 0.00579}"
+b|Simulated NP,"{'r': 0.127, 'lo': 0.012, 'hi': 0.24, 'p': 0.0306, 'pb': 0.1836, 've': 0.0163, 'rho': 0.159, 'p_rho': 0.00702}"
+b|Manipulated NP (AMPA),"{'r': 0.149, 'lo': 0.034, 'hi': 0.26, 'p': 0.0112, 'pb': 0.0672, 've': 0.0223, 'rho': 0.11, 'p_rho': 0.0623}"
+b|Manipulated NP (GABA-A on high AMPA),"{'r': 0.268, 'lo': 0.157, 'hi': 0.372, 'p': 4.1e-06, 'pb': 0.0, 've': 0.0716, 'rho': 0.278, 'p_rho': 1.72e-06}"
+b|Delta NP (AMPA),"{'r': -0.035, 'lo': -0.15, 'hi': 0.081, 'p': 0.554, 'pb': 1.0, 've': 0.0012, 'rho': -0.082, 'p_rho': 0.168}"
+b|Delta NP (GABA-A on high AMPA),"{'r': 0.204, 'lo': 0.09, 'hi': 0.312, 'p': 0.000505, 'pb': 0.003, 've': 0.0415, 'rho': 0.199, 'p_rho': 0.000666}"
+c,"{'n': 288, 'max_abs_r': 0.1039268048206728, 'min_p': 0.0782727603030313, 'min_pb': 0.9392731236363756, 'worst': 'empirical_fc12', 'sum_r': 0.155, 'sum_pb': 0.0494}"
+d|Empirical NP factor,"{'no_fd': 6.04, 'with_fd': 6.78, 'p_no_bonf': 0.0008, 'p_with_bonf': 0.0003, 'f_no': 9.158, 'f_with': 10.329, 'p_no_raw': 0.00014, 'p_with_raw': 4.67e-05}"
+d|Simulated NP,"{'no_fd': 9.23, 'with_fd': 9.27, 'p_no_bonf': 0.0, 'p_with_bonf': 0.0, 'f_no': 14.482, 'f_with': 14.502, 'p_no_raw': 1.02e-06, 'p_with_raw': 1.01e-06}"
+d|Manipulated NP (AMPA),"{'no_fd': 1.48, 'with_fd': 1.54, 'p_no_bonf': 0.72, 'p_with_bonf': 0.666, 'f_no': 2.137, 'f_with': 2.219, 'p_no_raw': 0.12, 'p_with_raw': 0.111}"
+d|Manipulated NP (GABA-A on high AMPA),"{'no_fd': 0.88, 'with_fd': 0.77, 'p_no_bonf': 1.0, 'p_with_bonf': 1.0, 'f_no': 1.265, 'f_with': 1.108, 'p_no_raw': 0.284, 'p_with_raw': 0.332}"
+d|Delta NP (AMPA),"{'no_fd': 5.08, 'with_fd': 5.06, 'p_no_bonf': 0.0035, 'p_with_bonf': 0.0038, 'f_no': 7.632, 'f_with': 7.566, 'p_no_raw': 0.000591, 'p_with_raw': 0.000629}"
+d|Delta NP (GABA-A on high AMPA),"{'no_fd': 0.62, 'with_fd': 0.61, 'p_no_bonf': 1.0, 'p_with_bonf': 1.0, 'f_no': 0.883, 'f_with': 0.872, 'p_no_raw': 0.415, 'p_with_raw': 0.419}"
+d_shift,0.7400000000000002

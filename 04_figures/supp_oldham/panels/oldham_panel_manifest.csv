@@ -1,0 +1,7 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_oldham_a,56,52,835x742,379,oldham_tests.csv / oldham_subject_level.csv
+figS_oldham_b,56,52,805x742,365,oldham_tests.csv / oldham_subject_level.csv
+figS_oldham_c,56,52,805x742,365,oldham_tests.csv / oldham_subject_level.csv
+figS_oldham_d,56,52,834x742,378,oldham_tests.csv / oldham_subject_level.csv
+figS_oldham_e,56,52,805x742,365,oldham_tests.csv / oldham_subject_level.csv
+figS_oldham_f,80,72,1325x1057,421,oldham_tests.csv

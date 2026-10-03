@@ -1,0 +1,30 @@
+row,col,old,new,reason
+65,Multiple-comparison correction,"Bonferroni, 3 tests","Bonferroni, 2 contrasts (HC vs MDD, HC vs AUD)","item 1: Welch, family = 2 contrasts"
+66,Multiple-comparison correction,"Bonferroni, 3 tests","Bonferroni, 2 contrasts (HC vs MDD, HC vs AUD)","item 1: Welch, family = 2 contrasts"
+70,Multiple-comparison correction,"Bonferroni, 3 tests","Bonferroni, 2 contrasts (HC vs MDD, HC vs AUD)","item 1: Welch, family = 2 contrasts"
+71,Multiple-comparison correction,"Bonferroni, 3 tests","Bonferroni, 2 contrasts (HC vs MDD, HC vs AUD)","item 1: Welch, family = 2 contrasts"
+67,Multiple-comparison correction,"Bonferroni, 3 tests","Bonferroni, 3 contrasts (HC vs all patients, HC vs MDD, HC vs AUD)","item 1: positive profile, family = 3"
+68,Multiple-comparison correction,"Bonferroni, 3 tests","Bonferroni, 3 contrasts (HC vs all patients, HC vs MDD, HC vs AUD)","item 1: positive profile, family = 3"
+69,Multiple-comparison correction,"Bonferroni, 3 tests","Bonferroni, 3 contrasts (HC vs all patients, HC vs MDD, HC vs AUD)","item 1: positive profile, family = 3"
+65,Corrected P,0.057,0.038,item 1: recomputed with family = 2
+66,Corrected P,0.00015,0.0001,item 1: recomputed with family = 2
+70,Corrected P,0.308,0.21,item 1: recomputed with family = 2
+71,Corrected P,0.0002,0.0001,item 1: recomputed with family = 2
+41,Test statistic,"d = 0.62 (empirical), 0.53 (simulated), 0.15 (AMPA), 0.12 (GABA-A)","d = 0.62 (measured), 0.53 (simulated baseline), 0.18 (AMPA), 0.05 (GABA-A)",item 4: recomputed from fig4_subject_level_n288.csv
+41,95% confidence interval,empirical 0.320 to 0.916; simulated 0.234 to 0.827,measured 0.320 to 0.916; simulated baseline 0.234 to 0.827; AMPA -0.114 to 0.471; GABA-A -0.245 to 0.339,item 4: CIs for all four conditions
+41,Exact P,not applicable (effect sizes of the tests in rows for Fig. 4a-4d; see those rows for exact P values),"measured < 0.0001; simulated baseline 0.001; AMPA 0.235; GABA-A 0.742 (Welch t(135.0) = 4.11, t(118.1) = 3.36, t(137.0) = 1.19, t(155.3) = 0.33)",item 4: exact Welch statistics added
+141,Exact P,0.1048,0.10,"item 6: two decimals, aligned with main text and SI"
+138,Exact P,< 0.00010; < 0.00010; 0.0062; 0.335 (same order),< 0.0001; < 0.0001; 0.0062; 0.335 (same order),item 9: P < 0.0001 format
+140,Exact P,< 0.00010,< 0.0001,item 9: P < 0.0001 format
+209,Exact P,< 0.00010 in all three groups,< 0.0001 in all three groups,item 9: P < 0.0001 format
+210,Exact P,< 0.00010 in all three groups,< 0.0001 in all three groups,item 9: P < 0.0001 format
+217,Exact P,< 0.00010,< 0.0001,item 9: P < 0.0001 format
+218,Exact P,< 0.00010,< 0.0001,item 9: P < 0.0001 format
+242,Effect size,variance explained = 7.16%; Spearman rho = +0.28 (P = 0.0000017),variance explained = 7.16%; Spearman rho = +0.28 (P < 0.0001),item 9: P below threshold
+153,Effect size,binomial P = 0.000016; null s.d. = 5.2%,binomial P < 0.0001; null s.d. = 5.2%,item 9: P below threshold
+86,Figure,,Supplementary Fig. S3,"item 13: block label was on the Edge 4 row, leaving edges 1-3 under the Fig. S2 block"
+89,Figure,Supplementary Fig. S3,,item 13: duplicate block label removed
+76,Corrected P,q = 0.0408,q = 0.041,"item 13: q rounded to two significant digits, matching the legend"
+117,Effect size,,mean Spearman rho = 0.48 for simulated versus 0.42 for empirical connectivity across the six targets,item 13: legend means added to Table S24
+59,Test statistic,"leave-one-out r = 0.32; nested F(12,63) = 3.02 over the covariates","leave-one-out r = 0.32; nested F(12,63) = 3.02 over the covariates; whole-model F(21,63) = 2.15",item 13: whole-model F added to match the Fig. 5h legend
+59,Exact P,"0.0088 (leave-one-out r, 5,000 permutations); 0.0022 (nested F test over the covariates)","0.0088 (leave-one-out r, 5,000 permutations); 0.0022 (nested F test over the covariates); 0.0103 (whole-model F test)",item 13: whole-model P added to match the Fig. 5h legend

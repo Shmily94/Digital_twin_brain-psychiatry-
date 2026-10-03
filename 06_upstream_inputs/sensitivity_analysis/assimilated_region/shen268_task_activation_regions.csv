@@ -1,0 +1,497 @@
+contrast,shen_id,hemisphere,anat_label,network,MNI_X,MNI_Y,MNI_Z,mean_T,frac_voxels_T>5,call
+MID_BIG_WIN,215,L,PrimVisual,Visual I,-6.0,-81.2,12.2,31.465,1.0,activated
+MID_BIG_WIN,80,R,SecVisual,Visual I,7.8,-88.6,11.9,31.218,1.0,activated
+MID_BIG_WIN,211,L,SecVisual,Visual I,-8.9,-70.7,-1.7,30.59,1.0,activated
+MID_BIG_WIN,79,R,SecVisual,Visual I,7.0,-75.7,-2.8,29.654,1.0,activated
+MID_BIG_WIN,82,R,PrimVisual,Visual I,14.6,-68.3,8.3,26.972,0.985,activated
+MID_BIG_WIN,28,R,PreMot+SuppMot,Limbic,6.1,14.0,48.7,25.258,0.986,activated
+MID_BIG_WIN,72,R,Visual Assoc,Visual I,21.0,-63.7,-9.0,24.965,1.0,activated
+MID_BIG_WIN,77,R,SecVisual,Visual I,7.7,-75.0,25.0,23.917,0.959,activated
+MID_BIG_WIN,161,L,PreMot+SuppMot,Motor,-6.5,-4.3,47.6,23.42,0.94,activated
+MID_BIG_WIN,25,R,PreMot+SuppMot,Motor,7.0,-8.1,52.9,22.555,0.984,activated
+MID_BIG_WIN,20,R,Broca_Triang,Limbic,37.0,20.8,5.9,22.437,0.959,activated
+MID_BIG_WIN,261,L,Putamen,Sub,-24.8,5.6,-0.1,21.178,1.0,activated
+MID_BIG_WIN,155,L,Broca_Triang,Limbic,-32.5,22.1,5.8,21.036,0.953,activated
+MID_BIG_WIN,32,R,PreMot+SuppMot,Limbic,32.0,-5.4,52.1,20.998,1.0,activated
+MID_BIG_WIN,166,L,PreMot+SuppMot,Motor,-27.6,-9.1,55.9,20.966,0.991,activated
+MID_BIG_WIN,27,R,PreMot+SuppMot,Motor,49.2,-4.5,48.1,20.417,0.984,activated
+MID_BIG_WIN,208,L,Visual Assoc,Visual I,-16.8,-84.9,33.0,20.32,0.96,activated
+MID_BIG_WIN,150,L,FrontEyeFilds,SMF,-5.0,17.7,46.1,19.616,0.874,activated
+MID_BIG_WIN,124,R,Putamen,Sub,26.6,6.3,0.1,19.259,1.0,activated
+MID_BIG_WIN,68,R,Fusiform,Visual I,25.2,-44.6,-12.2,18.778,0.962,activated
+MID_BIG_WIN,168,L,Insula,Motor,-39.1,1.7,9.5,18.101,0.966,activated
+MID_BIG_WIN,42,R,VisMotor,Visual Asso,14.8,-68.4,34.9,18.062,0.923,activated
+MID_BIG_WIN,207,L,Visual Assoc,Visual I,-25.9,-63.1,-12.3,17.857,0.956,activated
+MID_BIG_WIN,15,R,FrontEyeFilds,Limbic,6.7,21.4,31.5,17.849,0.957,activated
+MID_BIG_WIN,165,L,PreMot+SuppMot,SMF,-45.8,-0.4,49.3,17.638,0.897,activated
+MID_BIG_WIN,179,L,SupramargGyr,Motor,-35.7,-39.3,47.7,17.31,0.978,activated
+MID_BIG_WIN,75,R,Visual Assoc,Visual I,18.9,-81.8,41.5,17.091,0.906,activated
+MID_BIG_WIN,162,L,PreMot+SuppMot,SMF,-9.1,0.4,66.5,16.736,0.841,activated
+MID_BIG_WIN,205,L,Visual Assoc,Visual I,-17.0,-50.7,0.8,16.376,0.8,activated
+MID_BIG_WIN,216,L,PrimVisual,Visual I,-22.1,-66.7,7.4,16.274,0.813,activated
+MID_BIG_WIN,177,L,VisMotor,Visual Asso,-28.4,-62.3,40.4,15.643,0.908,activated
+MID_BIG_WIN,35,R,Insula,Motor,41.4,3.5,7.2,15.398,0.952,activated
+MID_BIG_WIN,218,L,PreMot+SuppMot,Motor,-7.8,-22.4,46.0,14.81,0.874,activated
+MID_BIG_WIN,157,L,PreMot+SuppMot,FPN,-46.2,7.9,28.6,14.761,0.906,activated
+MID_BIG_WIN,262,L,Putamen,Sub,-9.6,-25.4,-1.4,14.665,0.953,activated
+MID_BIG_WIN,176,L,VisMotor,Visual I,-9.5,-71.0,31.9,14.655,0.789,activated
+MID_BIG_WIN,238,L,Cerebellum,Cerebellum,-37.0,-52.9,-31.1,14.654,0.95,activated
+MID_BIG_WIN,91,R,DorsalPCC,Limbic,8.3,-39.9,48.1,14.624,0.917,activated
+MID_BIG_WIN,248,L,Cerebellum,Cerebellum,-8.0,-68.4,-19.9,14.582,0.989,activated
+MID_BIG_WIN,29,R,PreMot+SuppMot,Limbic,13.7,6.3,65.4,14.407,0.847,activated
+MID_BIG_WIN,89,R,DorsalPCC,Motor,7.8,-23.1,44.9,14.349,0.882,activated
+MID_BIG_WIN,106,R,Cerebellum,Cerebellum,7.1,-69.0,-20.9,14.348,1.0,activated
+MID_BIG_WIN,171,L,PrimSensory,Motor,-50.6,-23.8,41.4,14.214,0.885,activated
+MID_BIG_WIN,254,L,Cerebellum,Cerebellum,-21.2,-53.4,-23.6,13.846,1.0,activated
+MID_BIG_WIN,84,R,VentCing,Motor,5.3,-1.0,35.6,13.714,0.88,activated
+MID_BIG_WIN,226,L,DorsalPCC,Limbic,-8.8,-42.6,50.1,13.691,0.889,activated
+MID_BIG_WIN,87,R,VenPostCing,Visual I,28.4,-53.8,7.1,13.678,0.765,activated
+MID_BIG_WIN,221,L,VentCing,Limbic,-5.1,13.2,28.7,13.454,0.743,activated
+MID_BIG_WIN,33,R,PrimSensory,Motor,42.0,-23.4,53.4,13.391,0.904,activated
+MID_BIG_WIN,169,L,Insula,Limbic,-38.7,8.1,-4.8,13.301,0.779,activated
+MID_BIG_WIN,244,L,Cerebellum,Limbic,-6.5,-50.2,-11.4,13.289,0.885,activated
+MID_BIG_WIN,73,R,Visual Assoc,Visual Asso,30.1,-82.9,20.5,13.279,0.84,activated
+MID_BIG_WIN,126,R,Thalamus,Sub,10.5,-26.8,-2.2,13.178,0.875,activated
+MID_BIG_WIN,31,R,PreMot+SuppMot,FPN,39.7,3.4,34.0,13.107,0.846,activated
+MID_BIG_WIN,98,R,SecVisual,Visual I,14.6,-46.1,2.8,12.975,0.678,activated
+MID_BIG_WIN,198,L,Fusiform,Visual I,-26.7,-42.7,-16.1,12.972,0.874,activated
+MID_BIG_WIN,184,L,AngGyrus,FPN,-53.4,-43.5,38.8,12.943,0.981,activated
+MID_BIG_WIN,178,L,VisMotor,Limbic,-9.8,-66.3,55.1,12.922,0.85,activated
+MID_BIG_WIN,144,L,AntPFC,Limbic,-28.8,50.1,21.7,12.818,0.802,activated
+MID_BIG_WIN,21,R,Broca-Operc,FPN,55.4,9.6,22.2,12.79,0.838,activated
+MID_BIG_WIN,258,L,Caudate,Sub,-12.5,11.6,8.7,12.516,0.849,activated
+MID_BIG_WIN,43,R,VisMotor,Visual Asso,31.6,-60.8,49.2,12.184,0.84,activated
+MID_BIG_WIN,110,R,Cerebellum,Limbic,21.1,-54.8,-23.8,12.019,0.943,activated
+MID_BIG_WIN,101,R,Cerebellum,Cerebellum,6.1,-50.7,-12.3,11.973,0.868,activated
+MID_BIG_WIN,158,L,PrimMotor,Motor,-41.6,-14.7,44.8,11.686,0.75,activated
+MID_BIG_WIN,38,R,PrimSensory,Motor,32.4,-39.2,49.6,11.593,0.885,activated
+MID_BIG_WIN,128,R,Thalamus,Sub,5.5,-9.7,5.2,11.504,0.869,activated
+MID_BIG_WIN,125,R,Nacc,Sub,14.0,8.3,-9.5,11.467,0.715,activated
+MID_BIG_WIN,113,R,Cerebellum,Cerebellum,36.7,-57.1,-32.8,11.107,0.759,activated
+MID_BIG_WIN,45,R,SupramargGyr,Motor,52.8,-27.2,40.9,10.929,0.904,activated
+MID_BIG_WIN,47,R,SupramargGyr,FPN,54.2,-45.2,36.9,10.416,0.858,activated
+MID_BIG_WIN,49,R,AngGyrus,DMN,41.4,-75.3,28.0,9.984,0.724,activated
+MID_BIG_WIN,265,L,BrainStem,BrainStem,-5.0,-21.5,-15.8,9.982,0.867,activated
+MID_BIG_WIN,263,L,Thalamus,Sub,-4.9,-10.3,5.8,9.953,0.765,activated
+MID_BIG_WIN,26,R,PreMot+SuppMot,Motor,26.3,-12.9,66.2,9.866,0.837,activated
+MID_BIG_WIN,236,L,Cerebellum,Cerebellum,-6.5,-66.2,-37.7,9.795,0.876,activated
+MID_BIG_WIN,105,R,Cerebellum,Cerebellum,6.9,-67.9,-37.8,9.754,0.91,activated
+MID_BIG_WIN,132,R,BrainStem,Cerebellum,6.3,-24.9,-17.5,9.612,0.838,activated
+MID_BIG_WIN,240,L,Cerebellum,Visual Asso,-21.2,-70.0,-48.9,9.604,0.866,activated
+MID_BIG_WIN,11,R,dlPFC,Limbic,37.6,35.4,31.1,9.581,0.654,activated
+MID_BIG_WIN,181,L,SupramargGyr,Motor,-59.5,-25.9,21.9,9.42,0.718,activated
+MID_BIG_WIN,259,L,Caudate,Sub,-10.4,10.9,-8.1,9.402,0.633,activated
+MID_BIG_WIN,65,R,SupTemGyrus,SMF,59.3,-43.8,8.5,9.158,0.723,activated
+MID_BIG_WIN,50,R,AngGyrus,DMN,48.9,-58.1,14.4,9.027,0.722,activated
+MID_BIG_WIN,175,L,VisMotor,Visual Asso,-25.4,-54.7,64.0,8.834,0.632,activated
+MID_BIG_WIN,209,L,Visual Assoc,Visual Asso,-48.3,-67.4,1.1,8.59,0.819,activated
+MID_BIG_WIN,255,L,Cerebellum,Cerebellum,-6.6,-54.7,-26.3,8.527,0.808,activated
+MID_BIG_WIN,9,R,AntPFC,FPN,28.9,51.1,18.7,8.499,0.658,activated
+MID_BIG_WIN,213,L,SecVisual,Visual II,-14.7,-84.0,-13.1,8.377,0.574,activated
+MID_BIG_WIN,160,L,PreMot+SuppMot,Motor,-16.2,-19.2,69.5,8.249,0.817,activated
+MID_BIG_WIN,112,R,Cerebellum,FPN,19.6,-73.5,-50.0,8.217,0.711,activated
+MID_BIG_WIN,36,R,Insula,Limbic,37.5,21.1,-10.1,8.124,0.603,activated
+MID_BIG_WIN,123,R,Caudate,Sub,12.6,20.2,-0.7,8.066,0.616,activated
+MID_BIG_WIN,204,L,Visual Assoc,Visual Asso,-31.6,-87.2,12.5,7.969,0.657,activated
+MID_BIG_WIN,34,R,Insula,Motor,41.8,5.0,-7.6,7.948,0.511,activated
+MID_BIG_WIN,219,L,DorsalAcc,SMF,-6.0,34.1,26.3,7.716,0.589,activated
+MID_BIG_WIN,167,L,PrimSensory,Motor,-35.9,-23.3,65.6,7.617,0.662,activated
+MID_BIG_WIN,109,R,Cerebellum,Motor,23.4,-59.3,-52.1,7.337,0.683,activated
+MID_BIG_WIN,200,L,Fusiform,Visual Asso,-42.6,-52.1,-17.4,7.198,0.73,activated
+MID_BIG_WIN,146,L,dlPFC,Limbic,-27.3,34.1,36.4,7.117,0.582,activated
+MID_BIG_WIN,54,R,MedTempGyrus,SMF,50.0,-33.8,-0.7,7.011,0.683,activated
+MID_BIG_WIN,71,R,Fusiform,Visual Asso,41.6,-45.7,-22.6,6.986,0.683,activated
+MID_BIG_WIN,172,L,PrimSensory,Motor,-23.5,-31.6,63.6,6.825,0.708,activated
+MID_BIG_WIN,212,L,SecVisual,Visual II,-10.8,-98.1,7.6,6.817,0.564,activated
+MID_BIG_WIN,117,R,Cerebellum,Cerebellum,7.1,-53.7,-34.4,6.776,0.667,activated
+MID_BIG_WIN,251,L,Cerebellum,Limbic,-10.3,-37.7,-25.1,6.448,0.671,activated
+MID_BIG_WIN,44,R,VisMotor,Limbic,7.5,-57.3,61.8,6.353,0.6,activated
+MID_BIG_WIN,170,L,Insula,Motor,-37.7,-12.9,-1.4,6.203,0.575,activated
+MID_BIG_WIN,103,R,Cerebellum,Cerebellum,13.7,-40.1,-25.4,6.178,0.644,activated
+MID_BIG_WIN,142,L,AntPFC,FPN,-29.2,54.3,2.5,6.121,0.623,activated
+MID_BIG_WIN,133,R,BrainStem,Cerebellum,7.5,-34.2,-37.3,6.033,0.678,activated
+MID_BIG_WIN,163,L,PreMot+SuppMot,Motor,-57.0,-3.4,6.8,5.963,0.431,activated
+MID_BIG_WIN,250,L,Cerebellum,Cerebellum,-22.7,-57.9,-48.8,5.962,0.569,activated
+MID_BIG_WIN,24,R,PreMot+SuppMot,Motor,6.0,-22.3,65.6,5.886,0.52,activated
+MID_BIG_WIN,121,R,Caudate,Sub,12.7,12.9,11.5,5.875,0.583,activated
+MID_BIG_WIN,180,L,SupramargGyr,Motor,-42.2,-31.2,15.9,5.69,0.562,activated
+MID_BIG_WIN,237,L,Cerebellum,Cerebellum,-8.7,-50.6,-39.6,5.683,0.544,activated
+MID_BIG_WIN,119,R,Cerebellum,Limbic,30.4,-36.4,-31.1,5.649,0.511,activated
+MID_BIG_WIN,164,L,PreMot+SuppMot,FPN,-23.2,10.7,53.6,5.643,0.512,activated
+MID_BIG_WIN,46,R,SupramargGyr,Motor,58.0,-29.3,19.5,5.623,0.552,activated
+MID_BIG_WIN,37,R,Insula,Motor,38.3,-12.5,-1.1,5.535,0.528,activated
+MID_BIG_WIN,220,L,VentCing,Limbic,-3.8,-5.0,32.6,5.525,0.672,activated
+MID_BIG_WIN,245,L,Cerebellum,Limbic,-27.8,-36.0,-30.9,5.439,0.558,activated
+MID_BIG_WIN,22,R,Broca-Operc,FPN,40.0,17.6,29.2,5.357,0.475,activated
+MID_BIG_WIN,264,L,Thalamus,Sub,-11.6,-25.6,14.8,5.245,0.444,activated
+MID_BIG_WIN,203,L,Visual Assoc,DMN,-41.2,-75.4,22.8,5.005,0.54,activated
+MID_BIG_WIN,1,R,OrbFrontal,FPN,13.9,56.8,-16.6,-5.101,0.0,deactivated
+MID_BIG_WIN,12,R,FrontEyeFilds,SMF,14.3,36.9,48.9,-5.33,0.058,deactivated
+MID_BIG_WIN,10,R,dlPFC,Limbic,8.4,53.3,23.9,-5.565,0.075,deactivated
+MID_BIG_WIN,187,L,Temporalpole,SMF,-49.5,11.1,-30.6,-5.651,0.0,deactivated
+MID_BIG_WIN,8,R,AntPFC,FPN,44.6,46.2,-4.9,-5.676,0.01,deactivated
+MID_BIG_WIN,141,L,AntPFC,DMN,-11.7,65.1,4.2,-5.91,0.034,deactivated
+MID_BIG_WIN,100,R,Cerebellum,Visual II,32.2,-78.5,-40.4,-5.994,0.03,deactivated
+MID_BIG_WIN,137,L,OrbFrontal,SMF,-8.2,39.7,-21.4,-6.065,0.0,deactivated
+MID_BIG_WIN,190,L,MedTempGyrus,SMF,-57.6,-6.4,-22.7,-6.121,0.0,deactivated
+MID_BIG_WIN,148,L,FrontEyeFilds,SMF,-11.2,34.3,51.5,-6.243,0.006,deactivated
+MID_BIG_WIN,152,L,ParsOrbitalis,Limbic,-28.4,36.0,-15.6,-6.279,0.034,deactivated
+MID_BIG_WIN,134,L,OrbFrontal,DMN,-5.4,29.1,-10.1,-6.538,0.0,deactivated
+MID_BIG_WIN,129,R,BrainStem,Cerebellum,4.7,-37.2,-53.0,-6.56,0.072,deactivated
+MID_BIG_WIN,3,R,OrbFrontal,DMN,5.1,34.9,-17.4,-6.951,0.0,deactivated
+MID_BIG_WIN,151,L,ParsOrbitalis,SMF,-46.2,28.2,-7.1,-7.074,0.127,deactivated
+MID_BIG_WIN,225,L,DorsalPCC,DMN,-6.5,-53.9,37.4,-7.236,0.041,deactivated
+MID_BIG_WIN,241,L,Cerebellum,Visual II,-40.3,-74.2,-29.1,-7.248,0.062,deactivated
+MID_BIG_WIN,102,R,Cerebellum,Visual II,39.1,-74.9,-29.7,-7.38,0.047,deactivated
+MID_BIG_WIN,242,L,Cerebellum,FPN,-30.2,-80.2,-40.3,-7.394,0.015,deactivated
+MID_BIG_WIN,266,L,BrainStem,Cerebellum,-4.5,-38.0,-53.1,-7.751,0.053,deactivated
+MID_BIG_WIN,17,R,ParsOrbitalis,FPN,33.4,37.3,-16.4,-8.198,0.009,deactivated
+MID_BIG_WIN,138,L,AntPFC,DMN,-6.9,48.3,-5.7,-8.386,0.0,deactivated
+MID_BIG_WIN,145,L,dlPFC,SMF,-10.1,55.7,30.2,-9.407,0.005,deactivated
+MID_BIG_WIN,210,L,SecVisual,Visual Asso,-36.0,-84.2,-3.9,-10.308,0.047,deactivated
+MID_BIG_WIN,257,L,,Sub,-10.8,23.9,9.6,-12.238,0.0,deactivated
+MID_BIG_WIN,78,R,SecVisual,Visual II,23.7,-96.0,6.5,-15.308,0.192,deactivated
+MID_BIG_WIN,81,R,SecVisual,Visual II,31.2,-91.8,-10.8,-30.548,0.0,deactivated
+MID_BIG_WIN,214,L,SecVisual,Visual II,-22.3,-96.6,-10.1,-34.605,0.0,deactivated
+MID_SMALL_WIN,80,R,SecVisual,Visual I,7.8,-88.6,11.9,28.513,1.0,activated
+MID_SMALL_WIN,215,L,PrimVisual,Visual I,-6.0,-81.2,12.2,28.483,1.0,activated
+MID_SMALL_WIN,211,L,SecVisual,Visual I,-8.9,-70.7,-1.7,28.397,1.0,activated
+MID_SMALL_WIN,79,R,SecVisual,Visual I,7.0,-75.7,-2.8,27.516,1.0,activated
+MID_SMALL_WIN,82,R,PrimVisual,Visual I,14.6,-68.3,8.3,24.613,0.985,activated
+MID_SMALL_WIN,72,R,Visual Assoc,Visual I,21.0,-63.7,-9.0,22.882,0.995,activated
+MID_SMALL_WIN,77,R,SecVisual,Visual I,7.7,-75.0,25.0,21.726,0.959,activated
+MID_SMALL_WIN,28,R,PreMot+SuppMot,Limbic,6.1,14.0,48.7,21.635,0.957,activated
+MID_SMALL_WIN,161,L,PreMot+SuppMot,Motor,-6.5,-4.3,47.6,19.455,0.893,activated
+MID_SMALL_WIN,25,R,PreMot+SuppMot,Motor,7.0,-8.1,52.9,18.791,0.977,activated
+MID_SMALL_WIN,20,R,Broca_Triang,Limbic,37.0,20.8,5.9,18.688,0.945,activated
+MID_SMALL_WIN,208,L,Visual Assoc,Visual I,-16.8,-84.9,33.0,17.712,0.957,activated
+MID_SMALL_WIN,261,L,Putamen,Sub,-24.8,5.6,-0.1,17.514,1.0,activated
+MID_SMALL_WIN,68,R,Fusiform,Visual I,25.2,-44.6,-12.2,17.251,0.951,activated
+MID_SMALL_WIN,155,L,Broca_Triang,Limbic,-32.5,22.1,5.8,16.857,0.919,activated
+MID_SMALL_WIN,32,R,PreMot+SuppMot,Limbic,32.0,-5.4,52.1,16.802,1.0,activated
+MID_SMALL_WIN,27,R,PreMot+SuppMot,Motor,49.2,-4.5,48.1,16.654,0.93,activated
+MID_SMALL_WIN,166,L,PreMot+SuppMot,Motor,-27.6,-9.1,55.9,16.511,0.974,activated
+MID_SMALL_WIN,150,L,FrontEyeFilds,SMF,-5.0,17.7,46.1,16.448,0.841,activated
+MID_SMALL_WIN,205,L,Visual Assoc,Visual I,-17.0,-50.7,0.8,16.012,0.811,activated
+MID_SMALL_WIN,124,R,Putamen,Sub,26.6,6.3,0.1,15.803,1.0,activated
+MID_SMALL_WIN,168,L,Insula,Motor,-39.1,1.7,9.5,15.587,0.945,activated
+MID_SMALL_WIN,165,L,PreMot+SuppMot,SMF,-45.8,-0.4,49.3,15.105,0.867,activated
+MID_SMALL_WIN,216,L,PrimVisual,Visual I,-22.1,-66.7,7.4,15.029,0.821,activated
+MID_SMALL_WIN,207,L,Visual Assoc,Visual I,-25.9,-63.1,-12.3,14.823,0.868,activated
+MID_SMALL_WIN,75,R,Visual Assoc,Visual I,18.9,-81.8,41.5,14.665,0.89,activated
+MID_SMALL_WIN,177,L,VisMotor,Visual Asso,-28.4,-62.3,40.4,14.583,0.911,activated
+MID_SMALL_WIN,157,L,PreMot+SuppMot,FPN,-46.2,7.9,28.6,14.349,0.906,activated
+MID_SMALL_WIN,15,R,FrontEyeFilds,Limbic,6.7,21.4,31.5,14.207,0.853,activated
+MID_SMALL_WIN,42,R,VisMotor,Visual Asso,14.8,-68.4,34.9,13.981,0.846,activated
+MID_SMALL_WIN,179,L,SupramargGyr,Motor,-35.7,-39.3,47.7,13.553,0.938,activated
+MID_SMALL_WIN,87,R,VenPostCing,Visual I,28.4,-53.8,7.1,13.266,0.765,activated
+MID_SMALL_WIN,35,R,Insula,Motor,41.4,3.5,7.2,13.158,0.928,activated
+MID_SMALL_WIN,162,L,PreMot+SuppMot,SMF,-9.1,0.4,66.5,12.738,0.759,activated
+MID_SMALL_WIN,98,R,SecVisual,Visual I,14.6,-46.1,2.8,12.588,0.684,activated
+MID_SMALL_WIN,248,L,Cerebellum,Cerebellum,-8.0,-68.4,-19.9,12.348,0.968,activated
+MID_SMALL_WIN,31,R,PreMot+SuppMot,FPN,39.7,3.4,34.0,12.094,0.837,activated
+MID_SMALL_WIN,106,R,Cerebellum,Cerebellum,7.1,-69.0,-20.9,11.795,0.984,activated
+MID_SMALL_WIN,198,L,Fusiform,Visual I,-26.7,-42.7,-16.1,11.713,0.868,activated
+MID_SMALL_WIN,176,L,VisMotor,Visual I,-9.5,-71.0,31.9,11.537,0.717,activated
+MID_SMALL_WIN,244,L,Cerebellum,Limbic,-6.5,-50.2,-11.4,11.458,0.866,activated
+MID_SMALL_WIN,221,L,VentCing,Limbic,-5.1,13.2,28.7,11.334,0.694,activated
+MID_SMALL_WIN,21,R,Broca-Operc,FPN,55.4,9.6,22.2,11.325,0.827,activated
+MID_SMALL_WIN,238,L,Cerebellum,Cerebellum,-37.0,-52.9,-31.1,11.204,0.882,activated
+MID_SMALL_WIN,262,L,Putamen,Sub,-9.6,-25.4,-1.4,11.168,0.858,activated
+MID_SMALL_WIN,91,R,DorsalPCC,Limbic,8.3,-39.9,48.1,11.113,0.854,activated
+MID_SMALL_WIN,43,R,VisMotor,Visual Asso,31.6,-60.8,49.2,10.953,0.838,activated
+MID_SMALL_WIN,84,R,VentCing,Motor,5.3,-1.0,35.6,10.925,0.8,activated
+MID_SMALL_WIN,169,L,Insula,Limbic,-38.7,8.1,-4.8,10.87,0.738,activated
+MID_SMALL_WIN,254,L,Cerebellum,Cerebellum,-21.2,-53.4,-23.6,10.798,0.938,activated
+MID_SMALL_WIN,29,R,PreMot+SuppMot,Limbic,13.7,6.3,65.4,10.77,0.749,activated
+MID_SMALL_WIN,218,L,PreMot+SuppMot,Motor,-7.8,-22.4,46.0,10.68,0.788,activated
+MID_SMALL_WIN,73,R,Visual Assoc,Visual Asso,30.1,-82.9,20.5,10.477,0.759,activated
+MID_SMALL_WIN,171,L,PrimSensory,Motor,-50.6,-23.8,41.4,10.441,0.806,activated
+MID_SMALL_WIN,226,L,DorsalPCC,Limbic,-8.8,-42.6,50.1,10.363,0.828,activated
+MID_SMALL_WIN,184,L,AngGyrus,FPN,-53.4,-43.5,38.8,10.188,0.903,activated
+MID_SMALL_WIN,101,R,Cerebellum,Cerebellum,6.1,-50.7,-12.3,10.17,0.85,activated
+MID_SMALL_WIN,126,R,Thalamus,Sub,10.5,-26.8,-2.2,10.047,0.779,activated
+MID_SMALL_WIN,89,R,DorsalPCC,Motor,7.8,-23.1,44.9,10.01,0.79,activated
+MID_SMALL_WIN,144,L,AntPFC,Limbic,-28.8,50.1,21.7,9.884,0.741,activated
+MID_SMALL_WIN,33,R,PrimSensory,Motor,42.0,-23.4,53.4,9.331,0.774,activated
+MID_SMALL_WIN,178,L,VisMotor,Limbic,-9.8,-66.3,55.1,9.292,0.746,activated
+MID_SMALL_WIN,49,R,AngGyrus,DMN,41.4,-75.3,28.0,9.023,0.72,activated
+MID_SMALL_WIN,110,R,Cerebellum,Limbic,21.1,-54.8,-23.8,8.627,0.841,activated
+MID_SMALL_WIN,236,L,Cerebellum,Cerebellum,-6.5,-66.2,-37.7,8.396,0.752,activated
+MID_SMALL_WIN,38,R,PrimSensory,Motor,32.4,-39.2,49.6,8.224,0.743,activated
+MID_SMALL_WIN,45,R,SupramargGyr,Motor,52.8,-27.2,40.9,8.163,0.777,activated
+MID_SMALL_WIN,125,R,Nacc,Sub,14.0,8.3,-9.5,8.135,0.617,activated
+MID_SMALL_WIN,50,R,AngGyrus,DMN,48.9,-58.1,14.4,8.113,0.695,activated
+MID_SMALL_WIN,105,R,Cerebellum,Cerebellum,6.9,-67.9,-37.8,8.043,0.75,activated
+MID_SMALL_WIN,113,R,Cerebellum,Cerebellum,36.7,-57.1,-32.8,8.029,0.617,activated
+MID_SMALL_WIN,158,L,PrimMotor,Motor,-41.6,-14.7,44.8,8.003,0.679,activated
+MID_SMALL_WIN,128,R,Thalamus,Sub,5.5,-9.7,5.2,7.965,0.654,activated
+MID_SMALL_WIN,47,R,SupramargGyr,FPN,54.2,-45.2,36.9,7.854,0.751,activated
+MID_SMALL_WIN,65,R,SupTemGyrus,SMF,59.3,-43.8,8.5,7.852,0.674,activated
+MID_SMALL_WIN,255,L,Cerebellum,Cerebellum,-6.6,-54.7,-26.3,7.779,0.808,activated
+MID_SMALL_WIN,11,R,dlPFC,Limbic,37.6,35.4,31.1,7.753,0.632,activated
+MID_SMALL_WIN,258,L,Caudate,Sub,-12.5,11.6,8.7,7.607,0.659,activated
+MID_SMALL_WIN,265,L,BrainStem,BrainStem,-5.0,-21.5,-15.8,7.305,0.785,activated
+MID_SMALL_WIN,132,R,BrainStem,Cerebellum,6.3,-24.9,-17.5,7.177,0.757,activated
+MID_SMALL_WIN,240,L,Cerebellum,Visual Asso,-21.2,-70.0,-48.9,6.968,0.771,activated
+MID_SMALL_WIN,263,L,Thalamus,Sub,-4.9,-10.3,5.8,6.516,0.594,activated
+MID_SMALL_WIN,181,L,SupramargGyr,Motor,-59.5,-25.9,21.9,6.461,0.588,activated
+MID_SMALL_WIN,117,R,Cerebellum,Cerebellum,7.1,-53.7,-34.4,6.396,0.646,activated
+MID_SMALL_WIN,34,R,Insula,Motor,41.8,5.0,-7.6,6.301,0.422,activated
+MID_SMALL_WIN,209,L,Visual Assoc,Visual Asso,-48.3,-67.4,1.1,6.257,0.668,activated
+MID_SMALL_WIN,26,R,PreMot+SuppMot,Motor,26.3,-12.9,66.2,6.1,0.62,activated
+MID_SMALL_WIN,9,R,AntPFC,FPN,28.9,51.1,18.7,6.032,0.55,activated
+MID_SMALL_WIN,175,L,VisMotor,Visual Asso,-25.4,-54.7,64.0,5.899,0.522,activated
+MID_SMALL_WIN,259,L,Caudate,Sub,-10.4,10.9,-8.1,5.796,0.524,activated
+MID_SMALL_WIN,200,L,Fusiform,Visual Asso,-42.6,-52.1,-17.4,5.643,0.635,activated
+MID_SMALL_WIN,112,R,Cerebellum,FPN,19.6,-73.5,-50.0,5.605,0.544,activated
+MID_SMALL_WIN,213,L,SecVisual,Visual II,-14.7,-84.0,-13.1,5.435,0.519,activated
+MID_SMALL_WIN,147,L,dlPFC,FPN,-46.1,28.2,26.8,5.267,0.498,activated
+MID_SMALL_WIN,54,R,MedTempGyrus,SMF,50.0,-33.8,-0.7,5.042,0.554,activated
+MID_SMALL_WIN,237,L,Cerebellum,Cerebellum,-8.7,-50.6,-39.6,5.036,0.476,activated
+MID_SMALL_WIN,206,L,Visual Assoc,Visual Asso,-43.2,-70.4,-13.8,-5.03,0.138,deactivated
+MID_SMALL_WIN,187,L,Temporalpole,SMF,-49.5,11.1,-30.6,-5.038,0.0,deactivated
+MID_SMALL_WIN,8,R,AntPFC,FPN,44.6,46.2,-4.9,-5.136,0.005,deactivated
+MID_SMALL_WIN,6,R,AntPFC,DMN,14.6,64.7,3.6,-5.602,0.0,deactivated
+MID_SMALL_WIN,190,L,MedTempGyrus,SMF,-57.6,-6.4,-22.7,-5.631,0.0,deactivated
+MID_SMALL_WIN,5,R,AntPFC,DMN,8.2,45.9,-1.7,-5.69,0.0,deactivated
+MID_SMALL_WIN,141,L,AntPFC,DMN,-11.7,65.1,4.2,-5.836,0.0,deactivated
+MID_SMALL_WIN,1,R,OrbFrontal,FPN,13.9,56.8,-16.6,-5.965,0.0,deactivated
+MID_SMALL_WIN,134,L,OrbFrontal,DMN,-5.4,29.1,-10.1,-6.063,0.0,deactivated
+MID_SMALL_WIN,266,L,BrainStem,Cerebellum,-4.5,-38.0,-53.1,-6.082,0.053,deactivated
+MID_SMALL_WIN,140,L,OrbFrontal,SMF,-6.0,48.1,11.7,-6.11,0.0,deactivated
+MID_SMALL_WIN,12,R,FrontEyeFilds,SMF,14.3,36.9,48.9,-6.147,0.0,deactivated
+MID_SMALL_WIN,3,R,OrbFrontal,DMN,5.1,34.9,-17.4,-6.458,0.0,deactivated
+MID_SMALL_WIN,137,L,OrbFrontal,SMF,-8.2,39.7,-21.4,-6.497,0.0,deactivated
+MID_SMALL_WIN,10,R,dlPFC,Limbic,8.4,53.3,23.9,-6.579,0.007,deactivated
+MID_SMALL_WIN,225,L,DorsalPCC,DMN,-6.5,-53.9,37.4,-6.71,0.015,deactivated
+MID_SMALL_WIN,100,R,Cerebellum,Visual II,32.2,-78.5,-40.4,-6.731,0.01,deactivated
+MID_SMALL_WIN,148,L,FrontEyeFilds,SMF,-11.2,34.3,51.5,-6.764,0.0,deactivated
+MID_SMALL_WIN,152,L,ParsOrbitalis,Limbic,-28.4,36.0,-15.6,-7.035,0.0,deactivated
+MID_SMALL_WIN,151,L,ParsOrbitalis,SMF,-46.2,28.2,-7.1,-7.589,0.075,deactivated
+MID_SMALL_WIN,138,L,AntPFC,DMN,-6.9,48.3,-5.7,-8.177,0.0,deactivated
+MID_SMALL_WIN,242,L,Cerebellum,FPN,-30.2,-80.2,-40.3,-8.181,0.015,deactivated
+MID_SMALL_WIN,17,R,ParsOrbitalis,FPN,33.4,37.3,-16.4,-8.752,0.005,deactivated
+MID_SMALL_WIN,102,R,Cerebellum,Visual II,39.1,-74.9,-29.7,-8.963,0.011,deactivated
+MID_SMALL_WIN,241,L,Cerebellum,Visual II,-40.3,-74.2,-29.1,-8.989,0.039,deactivated
+MID_SMALL_WIN,145,L,dlPFC,SMF,-10.1,55.7,30.2,-9.249,0.0,deactivated
+MID_SMALL_WIN,257,L,,Sub,-10.8,23.9,9.6,-12.552,0.0,deactivated
+MID_SMALL_WIN,210,L,SecVisual,Visual Asso,-36.0,-84.2,-3.9,-13.566,0.017,deactivated
+MID_SMALL_WIN,78,R,SecVisual,Visual II,23.7,-96.0,6.5,-17.937,0.154,deactivated
+MID_SMALL_WIN,81,R,SecVisual,Visual II,31.2,-91.8,-10.8,-32.301,0.0,deactivated
+MID_SMALL_WIN,214,L,SecVisual,Visual II,-22.3,-96.6,-10.1,-37.355,0.0,deactivated
+MID_BIG_WIN-NO_WIN,76,R,SecVisual,Visual II,17.9,-83.4,-11.3,18.82,0.996,activated
+MID_BIG_WIN-NO_WIN,80,R,SecVisual,Visual I,7.8,-88.6,11.9,18.38,1.0,activated
+MID_BIG_WIN-NO_WIN,215,L,PrimVisual,Visual I,-6.0,-81.2,12.2,17.496,0.984,activated
+MID_BIG_WIN-NO_WIN,33,R,PrimSensory,Motor,42.0,-23.4,53.4,17.193,0.973,activated
+MID_BIG_WIN-NO_WIN,25,R,PreMot+SuppMot,Motor,7.0,-8.1,52.9,17.129,0.992,activated
+MID_BIG_WIN-NO_WIN,32,R,PreMot+SuppMot,Limbic,32.0,-5.4,52.1,16.088,1.0,activated
+MID_BIG_WIN-NO_WIN,254,L,Cerebellum,Cerebellum,-21.2,-53.4,-23.6,15.413,1.0,activated
+MID_BIG_WIN-NO_WIN,166,L,PreMot+SuppMot,Motor,-27.6,-9.1,55.9,15.005,1.0,activated
+MID_BIG_WIN-NO_WIN,258,L,Caudate,Sub,-12.5,11.6,8.7,14.966,1.0,activated
+MID_BIG_WIN-NO_WIN,161,L,PreMot+SuppMot,Motor,-6.5,-4.3,47.6,14.897,0.94,activated
+MID_BIG_WIN-NO_WIN,78,R,SecVisual,Visual II,23.7,-96.0,6.5,14.853,0.986,activated
+MID_BIG_WIN-NO_WIN,67,R,Fusiform,Visual Asso,36.4,-69.1,-17.5,14.844,0.957,activated
+MID_BIG_WIN-NO_WIN,26,R,PreMot+SuppMot,Motor,26.3,-12.9,66.2,14.753,0.946,activated
+MID_BIG_WIN-NO_WIN,79,R,SecVisual,Visual I,7.0,-75.7,-2.8,14.677,1.0,activated
+MID_BIG_WIN-NO_WIN,27,R,PreMot+SuppMot,Motor,49.2,-4.5,48.1,14.372,0.995,activated
+MID_BIG_WIN-NO_WIN,123,R,Caudate,Sub,12.6,20.2,-0.7,14.321,0.928,activated
+MID_BIG_WIN-NO_WIN,124,R,Putamen,Sub,26.6,6.3,0.1,14.279,1.0,activated
+MID_BIG_WIN-NO_WIN,261,L,Putamen,Sub,-24.8,5.6,-0.1,14.187,1.0,activated
+MID_BIG_WIN-NO_WIN,211,L,SecVisual,Visual I,-8.9,-70.7,-1.7,13.925,1.0,activated
+MID_BIG_WIN-NO_WIN,28,R,PreMot+SuppMot,Limbic,6.1,14.0,48.7,13.856,0.786,activated
+MID_BIG_WIN-NO_WIN,213,L,SecVisual,Visual II,-14.7,-84.0,-13.1,13.191,0.986,activated
+MID_BIG_WIN-NO_WIN,82,R,PrimVisual,Visual I,14.6,-68.3,8.3,13.056,0.912,activated
+MID_BIG_WIN-NO_WIN,214,L,SecVisual,Visual II,-22.3,-96.6,-10.1,12.97,0.918,activated
+MID_BIG_WIN-NO_WIN,179,L,SupramargGyr,Motor,-35.7,-39.3,47.7,12.893,0.991,activated
+MID_BIG_WIN-NO_WIN,262,L,Putamen,Sub,-9.6,-25.4,-1.4,12.846,0.976,activated
+MID_BIG_WIN-NO_WIN,238,L,Cerebellum,Cerebellum,-37.0,-52.9,-31.1,12.794,0.975,activated
+MID_BIG_WIN-NO_WIN,248,L,Cerebellum,Cerebellum,-8.0,-68.4,-19.9,12.686,1.0,activated
+MID_BIG_WIN-NO_WIN,110,R,Cerebellum,Limbic,21.1,-54.8,-23.8,12.657,0.981,activated
+MID_BIG_WIN-NO_WIN,20,R,Broca_Triang,Limbic,37.0,20.8,5.9,12.54,0.918,activated
+MID_BIG_WIN-NO_WIN,162,L,PreMot+SuppMot,SMF,-9.1,0.4,66.5,12.515,0.852,activated
+MID_BIG_WIN-NO_WIN,38,R,PrimSensory,Motor,32.4,-39.2,49.6,12.488,0.918,activated
+MID_BIG_WIN-NO_WIN,167,L,PrimSensory,Motor,-35.9,-23.3,65.6,12.402,0.898,activated
+MID_BIG_WIN-NO_WIN,171,L,PrimSensory,Motor,-50.6,-23.8,41.4,12.371,0.921,activated
+MID_BIG_WIN-NO_WIN,207,L,Visual Assoc,Visual I,-25.9,-63.1,-12.3,12.222,0.947,activated
+MID_BIG_WIN-NO_WIN,45,R,SupramargGyr,Motor,52.8,-27.2,40.9,12.213,0.951,activated
+MID_BIG_WIN-NO_WIN,73,R,Visual Assoc,Visual Asso,30.1,-82.9,20.5,12.124,0.973,activated
+MID_BIG_WIN-NO_WIN,178,L,VisMotor,Limbic,-9.8,-66.3,55.1,12.077,0.964,activated
+MID_BIG_WIN-NO_WIN,72,R,Visual Assoc,Visual I,21.0,-63.7,-9.0,12.029,1.0,activated
+MID_BIG_WIN-NO_WIN,128,R,Thalamus,Sub,5.5,-9.7,5.2,11.915,0.9,activated
+MID_BIG_WIN-NO_WIN,155,L,Broca_Triang,Limbic,-32.5,22.1,5.8,11.875,0.901,activated
+MID_BIG_WIN-NO_WIN,81,R,SecVisual,Visual II,31.2,-91.8,-10.8,11.598,0.828,activated
+MID_BIG_WIN-NO_WIN,126,R,Thalamus,Sub,10.5,-26.8,-2.2,11.588,0.801,activated
+MID_BIG_WIN-NO_WIN,259,L,Caudate,Sub,-10.4,10.9,-8.1,11.504,0.782,activated
+MID_BIG_WIN-NO_WIN,106,R,Cerebellum,Cerebellum,7.1,-69.0,-20.9,11.476,1.0,activated
+MID_BIG_WIN-NO_WIN,125,R,Nacc,Sub,14.0,8.3,-9.5,11.379,0.767,activated
+MID_BIG_WIN-NO_WIN,89,R,DorsalPCC,Motor,7.8,-23.1,44.9,10.831,0.891,activated
+MID_BIG_WIN-NO_WIN,175,L,VisMotor,Visual Asso,-25.4,-54.7,64.0,10.698,0.858,activated
+MID_BIG_WIN-NO_WIN,121,R,Caudate,Sub,12.7,12.9,11.5,10.629,0.755,activated
+MID_BIG_WIN-NO_WIN,91,R,DorsalPCC,Limbic,8.3,-39.9,48.1,10.407,0.882,activated
+MID_BIG_WIN-NO_WIN,263,L,Thalamus,Sub,-4.9,-10.3,5.8,10.239,0.834,activated
+MID_BIG_WIN-NO_WIN,113,R,Cerebellum,Cerebellum,36.7,-57.1,-32.8,10.224,0.858,activated
+MID_BIG_WIN-NO_WIN,165,L,PreMot+SuppMot,SMF,-45.8,-0.4,49.3,10.115,0.847,activated
+MID_BIG_WIN-NO_WIN,15,R,FrontEyeFilds,Limbic,6.7,21.4,31.5,10.076,0.853,activated
+MID_BIG_WIN-NO_WIN,41,R,VisMotor,Visual Asso,25.2,-52.4,68.1,10.072,0.827,activated
+MID_BIG_WIN-NO_WIN,132,R,BrainStem,Cerebellum,6.3,-24.9,-17.5,10.012,0.838,activated
+MID_BIG_WIN-NO_WIN,209,L,Visual Assoc,Visual Asso,-48.3,-67.4,1.1,9.942,0.956,activated
+MID_BIG_WIN-NO_WIN,44,R,VisMotor,Limbic,7.5,-57.3,61.8,9.9,0.872,activated
+MID_BIG_WIN-NO_WIN,240,L,Cerebellum,Visual Asso,-21.2,-70.0,-48.9,9.887,0.955,activated
+MID_BIG_WIN-NO_WIN,208,L,Visual Assoc,Visual I,-16.8,-84.9,33.0,9.884,0.901,activated
+MID_BIG_WIN-NO_WIN,172,L,PrimSensory,Motor,-23.5,-31.6,63.6,9.788,0.992,activated
+MID_BIG_WIN-NO_WIN,29,R,PreMot+SuppMot,Limbic,13.7,6.3,65.4,9.728,0.724,activated
+MID_BIG_WIN-NO_WIN,158,L,PrimMotor,Motor,-41.6,-14.7,44.8,9.722,0.804,activated
+MID_BIG_WIN-NO_WIN,204,L,Visual Assoc,Visual Asso,-31.6,-87.2,12.5,9.663,0.907,activated
+MID_BIG_WIN-NO_WIN,212,L,SecVisual,Visual II,-10.8,-98.1,7.6,9.632,0.818,activated
+MID_BIG_WIN-NO_WIN,218,L,PreMot+SuppMot,Motor,-7.8,-22.4,46.0,9.631,0.815,activated
+MID_BIG_WIN-NO_WIN,160,L,PreMot+SuppMot,Motor,-16.2,-19.2,69.5,9.502,0.933,activated
+MID_BIG_WIN-NO_WIN,75,R,Visual Assoc,Visual I,18.9,-81.8,41.5,9.434,0.878,activated
+MID_BIG_WIN-NO_WIN,42,R,VisMotor,Visual Asso,14.8,-68.4,34.9,9.373,0.864,activated
+MID_BIG_WIN-NO_WIN,265,L,BrainStem,BrainStem,-5.0,-21.5,-15.8,9.352,0.842,activated
+MID_BIG_WIN-NO_WIN,226,L,DorsalPCC,Limbic,-8.8,-42.6,50.1,9.334,0.878,activated
+MID_BIG_WIN-NO_WIN,181,L,SupramargGyr,Motor,-59.5,-25.9,21.9,9.316,0.916,activated
+MID_BIG_WIN-NO_WIN,84,R,VentCing,Motor,5.3,-1.0,35.6,9.103,0.73,activated
+MID_BIG_WIN-NO_WIN,150,L,FrontEyeFilds,SMF,-5.0,17.7,46.1,9.031,0.626,activated
+MID_BIG_WIN-NO_WIN,250,L,Cerebellum,Cerebellum,-22.7,-57.9,-48.8,8.929,0.828,activated
+MID_BIG_WIN-NO_WIN,210,L,SecVisual,Visual Asso,-36.0,-84.2,-3.9,8.868,0.843,activated
+MID_BIG_WIN-NO_WIN,177,L,VisMotor,Visual Asso,-28.4,-62.3,40.4,8.866,0.784,activated
+MID_BIG_WIN-NO_WIN,244,L,Cerebellum,Limbic,-6.5,-50.2,-11.4,8.82,0.806,activated
+MID_BIG_WIN-NO_WIN,77,R,SecVisual,Visual I,7.7,-75.0,25.0,8.767,0.796,activated
+MID_BIG_WIN-NO_WIN,71,R,Fusiform,Visual Asso,41.6,-45.7,-22.6,8.723,0.767,activated
+MID_BIG_WIN-NO_WIN,101,R,Cerebellum,Cerebellum,6.1,-50.7,-12.3,8.596,0.826,activated
+MID_BIG_WIN-NO_WIN,35,R,Insula,Motor,41.4,3.5,7.2,8.586,0.84,activated
+MID_BIG_WIN-NO_WIN,109,R,Cerebellum,Motor,23.4,-59.3,-52.1,8.464,0.845,activated
+MID_BIG_WIN-NO_WIN,43,R,VisMotor,Visual Asso,31.6,-60.8,49.2,8.366,0.721,activated
+MID_BIG_WIN-NO_WIN,39,R,PrimSensory,Motor,20.0,-33.2,69.8,8.359,0.883,activated
+MID_BIG_WIN-NO_WIN,119,R,Cerebellum,Limbic,30.4,-36.4,-31.1,8.07,0.763,activated
+MID_BIG_WIN-NO_WIN,68,R,Fusiform,Visual I,25.2,-44.6,-12.2,7.965,0.716,activated
+MID_BIG_WIN-NO_WIN,21,R,Broca-Operc,FPN,55.4,9.6,22.2,7.902,0.746,activated
+MID_BIG_WIN-NO_WIN,112,R,Cerebellum,FPN,19.6,-73.5,-50.0,7.861,0.772,activated
+MID_BIG_WIN-NO_WIN,168,L,Insula,Motor,-39.1,1.7,9.5,7.821,0.793,activated
+MID_BIG_WIN-NO_WIN,114,R,Cerebellum,Cerebellum,23.0,-71.8,-29.1,7.587,0.766,activated
+MID_BIG_WIN-NO_WIN,74,R,Visual Assoc,Visual Asso,45.1,-74.3,2.6,7.546,0.828,activated
+MID_BIG_WIN-NO_WIN,163,L,PreMot+SuppMot,Motor,-57.0,-3.4,6.8,7.509,0.74,activated
+MID_BIG_WIN-NO_WIN,24,R,PreMot+SuppMot,Motor,6.0,-22.3,65.6,7.437,0.647,activated
+MID_BIG_WIN-NO_WIN,46,R,SupramargGyr,Motor,58.0,-29.3,19.5,7.433,0.726,activated
+MID_BIG_WIN-NO_WIN,253,L,Cerebellum,Cerebellum,-26.3,-69.5,-30.6,7.401,0.675,activated
+MID_BIG_WIN-NO_WIN,216,L,PrimVisual,Visual I,-22.1,-66.7,7.4,7.362,0.672,activated
+MID_BIG_WIN-NO_WIN,221,L,VentCing,Limbic,-5.1,13.2,28.7,7.356,0.701,activated
+MID_BIG_WIN-NO_WIN,206,L,Visual Assoc,Visual Asso,-43.2,-70.4,-13.8,7.339,0.743,activated
+MID_BIG_WIN-NO_WIN,66,R,Fusiform,Visual Asso,46.5,-59.9,-14.8,7.319,0.73,activated
+MID_BIG_WIN-NO_WIN,245,L,Cerebellum,Limbic,-27.8,-36.0,-30.9,7.283,0.708,activated
+MID_BIG_WIN-NO_WIN,247,L,Cerebellum,FPN,-10.3,-81.7,-32.3,7.139,0.755,activated
+MID_BIG_WIN-NO_WIN,69,R,Fusiform,Visual Asso,55.2,-56.3,-4.8,7.092,0.721,activated
+MID_BIG_WIN-NO_WIN,144,L,AntPFC,Limbic,-28.8,50.1,21.7,7.047,0.659,activated
+MID_BIG_WIN-NO_WIN,198,L,Fusiform,Visual I,-26.7,-42.7,-16.1,6.951,0.583,activated
+MID_BIG_WIN-NO_WIN,105,R,Cerebellum,Cerebellum,6.9,-67.9,-37.8,6.875,0.71,activated
+MID_BIG_WIN-NO_WIN,264,L,Thalamus,Sub,-11.6,-25.6,14.8,6.832,0.615,activated
+MID_BIG_WIN-NO_WIN,184,L,AngGyrus,FPN,-53.4,-43.5,38.8,6.707,0.634,activated
+MID_BIG_WIN-NO_WIN,118,R,Cerebellum,Cerebellum,33.8,-47.2,-53.9,6.643,0.623,activated
+MID_BIG_WIN-NO_WIN,174,L,VisMotor,Motor,-7.4,-34.1,67.5,6.595,0.72,activated
+MID_BIG_WIN-NO_WIN,176,L,VisMotor,Visual I,-9.5,-71.0,31.9,6.535,0.667,activated
+MID_BIG_WIN-NO_WIN,122,R,Caudate,Sub,13.7,-4.2,20.9,6.453,0.64,activated
+MID_BIG_WIN-NO_WIN,251,L,Cerebellum,Limbic,-10.3,-37.7,-25.1,6.235,0.65,activated
+MID_BIG_WIN-NO_WIN,37,R,Insula,Motor,38.3,-12.5,-1.1,6.203,0.594,activated
+MID_BIG_WIN-NO_WIN,236,L,Cerebellum,Cerebellum,-6.5,-66.2,-37.7,6.197,0.589,activated
+MID_BIG_WIN-NO_WIN,249,L,Cerebellum,Cerebellum,-34.6,-50.3,-54.0,6.171,0.566,activated
+MID_BIG_WIN-NO_WIN,169,L,Insula,Limbic,-38.7,8.1,-4.8,6.012,0.628,activated
+MID_BIG_WIN-NO_WIN,103,R,Cerebellum,Cerebellum,13.7,-40.1,-25.4,6.011,0.659,activated
+MID_BIG_WIN-NO_WIN,61,R,PrimAuditory,Motor,59.2,-3.4,2.7,5.96,0.547,activated
+MID_BIG_WIN-NO_WIN,31,R,PreMot+SuppMot,FPN,39.7,3.4,34.0,5.884,0.577,activated
+MID_BIG_WIN-NO_WIN,107,R,Cerebellum,Cerebellum,46.0,-46.5,-42.4,5.825,0.583,activated
+MID_BIG_WIN-NO_WIN,255,L,Cerebellum,Cerebellum,-6.6,-54.7,-26.3,5.752,0.635,activated
+MID_BIG_WIN-NO_WIN,200,L,Fusiform,Visual Asso,-42.6,-52.1,-17.4,5.633,0.628,activated
+MID_BIG_WIN-NO_WIN,170,L,Insula,Motor,-37.7,-12.9,-1.4,5.528,0.525,activated
+MID_BIG_WIN-NO_WIN,9,R,AntPFC,FPN,28.9,51.1,18.7,5.495,0.57,activated
+MID_BIG_WIN-NO_WIN,102,R,Cerebellum,Visual II,39.1,-74.9,-29.7,5.427,0.464,activated
+MID_BIG_WIN-NO_WIN,11,R,dlPFC,Limbic,37.6,35.4,31.1,5.394,0.457,activated
+MID_BIG_WIN-NO_WIN,34,R,Insula,Motor,41.8,5.0,-7.6,5.281,0.489,activated
+MID_BIG_WIN-NO_WIN,256,L,Cerebellum,Cerebellum,-24.3,-37.8,-44.3,5.092,0.576,activated
+MID_BIG_WIN-NO_WIN,241,L,Cerebellum,Visual II,-40.3,-74.2,-29.1,5.057,0.444,activated
+MID_BIG_WIN-NO_WIN,260,L,Caudate,Sub,-14.6,-3.5,21.1,5.035,0.543,activated
+MID_BIG_WIN-NO_WIN,145,L,dlPFC,SMF,-10.1,55.7,30.2,-5.477,0.0,deactivated
+MID_BIG_WIN-NO_WIN,225,L,DorsalPCC,DMN,-6.5,-53.9,37.4,-5.767,0.015,deactivated
+MID_BIG_WIN-NO_WIN,48,R,AngGyrus,FPN,47.8,-61.6,34.7,-6.758,0.0,deactivated
+SST_STOP_SUCCESS,74,R,Visual Assoc,Visual Asso,45.1,-74.3,2.6,23.274,0.996,activated
+SST_STOP_SUCCESS,210,L,SecVisual,Visual Asso,-36.0,-84.2,-3.9,20.931,0.953,activated
+SST_STOP_SUCCESS,20,R,Broca_Triang,Limbic,37.0,20.8,5.9,18.984,0.952,activated
+SST_STOP_SUCCESS,155,L,Broca_Triang,Limbic,-32.5,22.1,5.8,17.276,0.924,activated
+SST_STOP_SUCCESS,209,L,Visual Assoc,Visual Asso,-48.3,-67.4,1.1,15.856,0.819,activated
+SST_STOP_SUCCESS,47,R,SupramargGyr,FPN,54.2,-45.2,36.9,15.185,0.991,activated
+SST_STOP_SUCCESS,28,R,PreMot+SuppMot,Limbic,6.1,14.0,48.7,14.718,0.943,activated
+SST_STOP_SUCCESS,78,R,SecVisual,Visual II,23.7,-96.0,6.5,14.002,0.902,activated
+SST_STOP_SUCCESS,43,R,VisMotor,Visual Asso,31.6,-60.8,49.2,12.767,0.952,activated
+SST_STOP_SUCCESS,150,L,FrontEyeFilds,SMF,-5.0,17.7,46.1,12.631,0.89,activated
+SST_STOP_SUCCESS,204,L,Visual Assoc,Visual Asso,-31.6,-87.2,12.5,12.318,0.779,activated
+SST_STOP_SUCCESS,66,R,Fusiform,Visual Asso,46.5,-59.9,-14.8,12.087,0.82,activated
+SST_STOP_SUCCESS,184,L,AngGyrus,FPN,-53.4,-43.5,38.8,11.804,0.992,activated
+SST_STOP_SUCCESS,166,L,PreMot+SuppMot,Motor,-27.6,-9.1,55.9,11.275,0.769,activated
+SST_STOP_SUCCESS,36,R,Insula,Limbic,37.5,21.1,-10.1,11.103,0.695,activated
+SST_STOP_SUCCESS,15,R,FrontEyeFilds,Limbic,6.7,21.4,31.5,10.535,0.785,activated
+SST_STOP_SUCCESS,169,L,Insula,Limbic,-38.7,8.1,-4.8,10.496,0.641,activated
+SST_STOP_SUCCESS,212,L,SecVisual,Visual II,-10.8,-98.1,7.6,10.13,0.712,activated
+SST_STOP_SUCCESS,69,R,Fusiform,Visual Asso,55.2,-56.3,-4.8,10.006,0.702,activated
+SST_STOP_SUCCESS,67,R,Fusiform,Visual Asso,36.4,-69.1,-17.5,9.964,0.92,activated
+SST_STOP_SUCCESS,65,R,SupTemGyrus,SMF,59.3,-43.8,8.5,9.874,0.8,activated
+SST_STOP_SUCCESS,32,R,PreMot+SuppMot,Limbic,32.0,-5.4,52.1,9.865,0.773,activated
+SST_STOP_SUCCESS,206,L,Visual Assoc,Visual Asso,-43.2,-70.4,-13.8,9.837,0.796,activated
+SST_STOP_SUCCESS,29,R,PreMot+SuppMot,Limbic,13.7,6.3,65.4,9.72,0.916,activated
+SST_STOP_SUCCESS,73,R,Visual Assoc,Visual Asso,30.1,-82.9,20.5,9.625,0.807,activated
+SST_STOP_SUCCESS,76,R,SecVisual,Visual II,17.9,-83.4,-11.3,9.349,0.754,activated
+SST_STOP_SUCCESS,50,R,AngGyrus,DMN,48.9,-58.1,14.4,9.16,0.632,activated
+SST_STOP_SUCCESS,177,L,VisMotor,Visual Asso,-28.4,-62.3,40.4,9.136,0.726,activated
+SST_STOP_SUCCESS,31,R,PreMot+SuppMot,FPN,39.7,3.4,34.0,9.095,0.748,activated
+SST_STOP_SUCCESS,179,L,SupramargGyr,Motor,-35.7,-39.3,47.7,8.891,0.668,activated
+SST_STOP_SUCCESS,54,R,MedTempGyrus,SMF,50.0,-33.8,-0.7,8.765,0.802,activated
+SST_STOP_SUCCESS,144,L,AntPFC,Limbic,-28.8,50.1,21.7,8.689,0.793,activated
+SST_STOP_SUCCESS,45,R,SupramargGyr,Motor,52.8,-27.2,40.9,8.633,0.739,activated
+SST_STOP_SUCCESS,238,L,Cerebellum,Cerebellum,-37.0,-52.9,-31.1,8.572,0.876,activated
+SST_STOP_SUCCESS,11,R,dlPFC,Limbic,37.6,35.4,31.1,8.533,0.748,activated
+SST_STOP_SUCCESS,113,R,Cerebellum,Cerebellum,36.7,-57.1,-32.8,8.47,0.765,activated
+SST_STOP_SUCCESS,71,R,Fusiform,Visual Asso,41.6,-45.7,-22.6,8.122,0.767,activated
+SST_STOP_SUCCESS,165,L,PreMot+SuppMot,SMF,-45.8,-0.4,49.3,7.822,0.788,activated
+SST_STOP_SUCCESS,162,L,PreMot+SuppMot,SMF,-9.1,0.4,66.5,7.495,0.719,activated
+SST_STOP_SUCCESS,21,R,Broca-Operc,FPN,55.4,9.6,22.2,7.215,0.608,activated
+SST_STOP_SUCCESS,213,L,SecVisual,Visual II,-14.7,-84.0,-13.1,6.968,0.612,activated
+SST_STOP_SUCCESS,9,R,AntPFC,FPN,28.9,51.1,18.7,6.853,0.641,activated
+SST_STOP_SUCCESS,168,L,Insula,Motor,-39.1,1.7,9.5,6.803,0.628,activated
+SST_STOP_SUCCESS,81,R,SecVisual,Visual II,31.2,-91.8,-10.8,6.79,0.539,activated
+SST_STOP_SUCCESS,214,L,SecVisual,Visual II,-22.3,-96.6,-10.1,6.696,0.571,activated
+SST_STOP_SUCCESS,261,L,Putamen,Sub,-24.8,5.6,-0.1,5.923,0.69,activated
+SST_STOP_SUCCESS,200,L,Fusiform,Visual Asso,-42.6,-52.1,-17.4,5.869,0.628,activated
+SST_STOP_SUCCESS,34,R,Insula,Motor,41.8,5.0,-7.6,5.74,0.385,activated
+SST_STOP_SUCCESS,16,R,ParsOrbitalis,SMF,53.6,24.8,0.9,5.616,0.424,activated
+SST_STOP_SUCCESS,219,L,DorsalAcc,SMF,-6.0,34.1,26.3,5.454,0.551,activated
+SST_STOP_SUCCESS,142,L,AntPFC,FPN,-29.2,54.3,2.5,5.341,0.5,activated
+SST_STOP_SUCCESS,157,L,PreMot+SuppMot,FPN,-46.2,7.9,28.6,5.21,0.518,activated
+SST_STOP_SUCCESS,35,R,Insula,Motor,41.4,3.5,7.2,5.167,0.432,activated
+SST_STOP_SUCCESS,243,L,Cerebellum,Cerebellum,-19.3,-46.4,-53.2,-5.033,0.0,deactivated
+SST_STOP_SUCCESS,104,R,Cerebellum,Cerebellum,23.5,-35.9,-43.0,-5.207,0.0,deactivated
+SST_STOP_SUCCESS,40,R,PrimSensory,Motor,43.3,-10.8,13.9,-5.21,0.0,deactivated
+SST_STOP_SUCCESS,96,R,ParaHip,DMN,29.3,-19.6,-26.3,-5.313,0.0,deactivated
+SST_STOP_SUCCESS,33,R,PrimSensory,Motor,42.0,-23.4,53.4,-5.332,0.011,deactivated
+SST_STOP_SUCCESS,234,L,ParaHipp,DMN,-30.5,-23.9,-26.6,-5.337,0.0,deactivated
+SST_STOP_SUCCESS,77,R,SecVisual,Visual I,7.7,-75.0,25.0,-5.338,0.0,deactivated
+SST_STOP_SUCCESS,61,R,PrimAuditory,Motor,59.2,-3.4,2.7,-5.352,0.064,deactivated
+SST_STOP_SUCCESS,176,L,VisMotor,Visual I,-9.5,-71.0,31.9,-5.411,0.059,deactivated
+SST_STOP_SUCCESS,211,L,SecVisual,Visual I,-8.9,-70.7,-1.7,-5.933,0.0,deactivated
+SST_STOP_SUCCESS,152,L,ParsOrbitalis,Limbic,-28.4,36.0,-15.6,-5.986,0.021,deactivated
+SST_STOP_SUCCESS,141,L,AntPFC,DMN,-11.7,65.1,4.2,-5.994,0.0,deactivated
+SST_STOP_SUCCESS,257,L,,Sub,-10.8,23.9,9.6,-6.088,0.0,deactivated
+SST_STOP_SUCCESS,180,L,SupramargGyr,Motor,-42.2,-31.2,15.9,-6.613,0.068,deactivated
+SST_STOP_SUCCESS,3,R,OrbFrontal,DMN,5.1,34.9,-17.4,-6.646,0.0,deactivated
+SST_STOP_SUCCESS,134,L,OrbFrontal,DMN,-5.4,29.1,-10.1,-6.972,0.0,deactivated
+SST_STOP_SUCCESS,39,R,PrimSensory,Motor,20.0,-33.2,69.8,-7.752,0.0,deactivated
+SST_STOP_SUCCESS,90,R,DorsalPCC,DMN,6.2,-57.4,38.2,-7.886,0.034,deactivated
+SST_STOP_SUCCESS,64,R,SupTemGyrus,SMF,56.5,-8.5,-14.3,-7.898,0.004,deactivated
+SST_STOP_SUCCESS,198,L,Fusiform,Visual I,-26.7,-42.7,-16.1,-8.151,0.007,deactivated
+SST_STOP_SUCCESS,5,R,AntPFC,DMN,8.2,45.9,-1.7,-8.44,0.0,deactivated
+SST_STOP_SUCCESS,172,L,PrimSensory,Motor,-23.5,-31.6,63.6,-9.322,0.0,deactivated
+SST_STOP_SUCCESS,91,R,DorsalPCC,Limbic,8.3,-39.9,48.1,-9.365,0.0,deactivated
+SST_STOP_SUCCESS,225,L,DorsalPCC,DMN,-6.5,-53.9,37.4,-9.588,0.0,deactivated
+SST_STOP_SUCCESS,226,L,DorsalPCC,Limbic,-8.8,-42.6,50.1,-9.715,0.0,deactivated
+SST_STOP_SUCCESS,62,R,PrimAuditory,Motor,39.9,-25.6,14.4,-9.877,0.007,deactivated
+SST_STOP_SUCCESS,138,L,AntPFC,DMN,-6.9,48.3,-5.7,-10.605,0.0,deactivated
+SST_STOP_SUCCESS,86,R,VenPostCing,DMN,12.3,-57.2,18.1,-15.274,0.0,deactivated
+SST_STOP_SUCCESS,222,L,VenPostCing,DMN,-8.6,-58.8,17.6,-16.13,0.0,deactivated

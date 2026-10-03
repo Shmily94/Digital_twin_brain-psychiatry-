@@ -1,0 +1,3 @@
+model,k_added,dR2,F,df1,df2,P,R2,LOO_r
+covariates + 12 simulated edges,12,0.3347,3.0169,12,63,0.0022,0.4176,0.3183
+covariates + 12 simulated edges + summed empirical NP,1,0.06611706286911345,7.939176029442828,1,62,0.006482336749532045,0.48366708551583526,0.3875

@@ -1,0 +1,462 @@
+"""Supplementary figure: virtual perturbational sensitivity analysis - the
+conductance sweep and the EFT validation on ONE A4 page.
+
+The two analyses answer the two halves of "does the virtual perturbation
+result depend on how it was set up":
+
+  a-c  GROUP level, n = 288 twins: each conductance knob re-run at a weaker
+       and a stronger setting around the value used in the main analysis
+       (AMPA 0.0040 / 0.0044 / 0.0048, GABA-A 0.0035 / 0.0040 / 0.0045
+       S cm-2) - parameter stability
+  d-e  INDIVIDUAL level, three twins calibrated at the 100-million-neuron
+       scale and perturbed at the main-analysis conductances, in a DIFFERENT
+       task context (emotional face task, EFT) and on the reward/inhibition
+       NP profile of the same twins - response validation across task context
+
+Panels are rebuilt from supp_conductance/conductance_supp.py and
+supp_eft/eft_supp.py under the frozen rules of figA4_kit (8 / 9 / 10 / 11 pt
+type, no declarative titles, statistics in a rich-text caption, both
+variants).
+
+    python figS_sensitivity_A4.py [--no-caption]
+"""
+import os, sys
+import numpy as np
+import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
+
+FIGDIR = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures"
+HERE = os.path.join(FIGDIR, "supp_sensitivity")
+COND = os.path.join(FIGDIR, "supp_conductance", "data")
+EFT = os.path.join(FIGDIR, "supp_eft", "data")
+sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
+sys.path.insert(0, FIGDIR)
+from np_dtb_style import apply_np_style, panel, C, LW, enforce, panel_title
+from fig_export import collect_text_records
+from supp_kit import fill, pt_edge
+import figA4_kit as K
+from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT
+
+DPI = 400
+WITH_CAP = "--no-caption" not in sys.argv
+STEM = "figS_sensitivity_A4" if WITH_CAP else "figS_sensitivity_A4_nocaption"
+SUPP_NO = "S3"                     # this figure merges the existing S3
+                                   # (conductance robustness) and S4
+                                   # (EFT bidirectionality)
+apply_np_style()
+K.apply_page_style()
+
+G = pd.read_csv(os.path.join(COND, "conductance_grid_summary_n288.csv"))
+RB = pd.read_csv(os.path.join(COND, "conductance_responder_by_group_n288.csv"))
+IN = pd.read_csv(os.path.join(COND, "conductance_subject_level_n288.csv"))
+XC = pd.read_csv(os.path.join(COND,
+                              "conductance_across_setting_correlations.csv"))
+E = pd.read_csv(os.path.join(EFT, "eft_3subs.csv"))
+NP = pd.read_csv(os.path.join(EFT, "np_task_3subs.csv"))
+
+KCOL = {"AMPA": C("ampa"), "GABA-A": C("gaba")}
+PCOL = KCOL
+ORDER = ["weaker", "original", "stronger"]
+SET = ["ampa_low", "ampa", "ampa_high", "gaba_low", "gaba", "gaba_high"]
+SETLAB = dict(zip(SET, ["0.0040", "0.0044", "0.0048",
+                        "0.0035", "0.0040", "0.0045"]))
+GRP = ["HC", "High-symptom", "Patient"]
+GCOL = {"HC": C("hc"), "High-symptom": C("high_symptom"),
+        "Patient": C("patient")}
+SUBS = ["HC01", "MDD", "AUD"]
+MRK = {"HC01": "o", "MDD": "s", "AUD": "^"}
+S = {}                             # every caption number
+
+
+# ------------------------------------------------ a-c  conductance, n = 288
+def p_a(ax):
+    x, ticks, blocks = 0.0, [], []
+    for knob in ["AMPA", "GABA-A"]:
+        sub = G[G.knob == knob].set_index("setting").loc[ORDER]
+        blockmax = float(sub.ci_hi.max())
+        first = x
+        for s in ORDER:
+            r = sub.loc[s]
+            ax.bar(x, r.mean_delta, width=.62, facecolor=fill(KCOL[knob]),
+                   edgecolor="black", zorder=2)
+            ax.plot([x, x], [r.ci_lo, r.ci_hi], color="black", zorder=3)
+            ax.text(x, blockmax + (.15 if ORDER.index(s) % 2 == 0 else .70),
+                    f"$d$ = {r.cohens_d:.2f}", ha="center", va="bottom",
+                    fontsize=TICK_PT, color="0.35")
+            if s == "original":
+                ax.text(x, -.30, "used in\nmain text", ha="center", va="top",
+                        fontsize=TICK_PT, color=KCOL[knob])
+            ticks.append((x, f"{r.conductance:.4f}"))
+            S[f"a|{knob}|{s}"] = dict(
+                g=float(r.conductance), mean=float(r.mean_delta),
+                lo=float(r.ci_lo), hi=float(r.ci_hi), d=float(r.cohens_d),
+                t=float(r.t), p=float(r.p), same=float(r.pct_same_sign))
+            x += 1.0
+        blocks.append(((first + x - 1) / 2, knob))
+        x += 1.3
+    ax.axhline(0, color="0.6", ls=(0, (2.6, 1.7)), zorder=1)
+    ax.set_xticks([t[0] for t in ticks])
+    ax.set_xticklabels([t[1] for t in ticks], fontsize=TICK_PT)
+    ax.set_xlim(ticks[0][0] - .75, ticks[-1][0] + .75)
+    ax.set_ylim(-1.25, G.ci_hi.max() * 1.42)
+    ax.set_ylabel("Mean \u0394 NP (95% CI)", fontsize=LABEL_PT)
+    ax.tick_params(axis="both", labelsize=TICK_PT)
+    tr = ax.get_xaxis_transform()
+    for xc, bl in blocks:              # just under the one-line tick labels
+        ax.text(xc, -.13, f"{bl} (S cm$^{{-2}}$)", transform=tr, ha="center",
+                va="top", fontsize=ANNOT_PT, clip_on=False)
+
+
+def p_b(ax):
+    piv = RB[RB.group.isin(GRP)].pivot_table(index="setting", columns="group",
+                                             values="pct_up").reindex(SET)[GRP]
+    x = np.arange(len(SET))
+    wid = .26
+    for i, g in enumerate(GRP):
+        ax.bar(x + (i - 1) * wid, piv[g].values, width=wid,
+               facecolor=fill(GCOL[g]), edgecolor="black", zorder=2, label=g)
+    chi = RB[RB.group == "chi2 across groups"].set_index("setting").loc[SET]
+    for s in SET:                      # the chi-squared P values are carried
+        S[f"b|{s}"] = dict(            # by the caption, not printed on the bars
+            pct={g: float(piv.loc[s, g]) for g in GRP},
+            overall=float(chi.loc[s, "pct_up"]),
+            chi2=float(chi.loc[s, "chi2"]), p=float(chi.loc[s, "p"]))
+    ax.set_xticks(x)
+    ax.set_xticklabels(
+        [f'{SETLAB[s]}\n'
+         f'{"weaker" if s.endswith("_low") else "stronger" if s.endswith("_high") else "original"}'
+         for s in SET], fontsize=TICK_PT)
+    ax.set_ylim(0, 122); ax.set_yticks([0, 50, 100])
+    ax.set_ylabel("Twins with increased NP (%)", fontsize=LABEL_PT)
+    ax.set_xlim(-.6, len(SET) - .4)
+    ax.tick_params(axis="both", labelsize=TICK_PT)
+    tr = ax.get_xaxis_transform()
+    ax.text(1, -.22, "AMPA", transform=tr, ha="center", va="top",
+            fontsize=ANNOT_PT, color=C("ampa"), clip_on=False)
+    ax.text(4, -.22, "GABA-A", transform=tr, ha="center", va="top",
+            fontsize=ANNOT_PT, color=C("gaba"), clip_on=False)
+    ax.legend(loc="upper center", fontsize=TICK_PT, frameon=False,
+              borderaxespad=.1, handlelength=1.1, handletextpad=.5,
+              labelspacing=.2, ncol=3, columnspacing=1.0)
+
+
+def p_c(ax):
+    cnt = IN.n_settings_up.value_counts().reindex(range(7), fill_value=0)
+    ax.bar(cnt.index, cnt.values, width=.72, facecolor=fill(C("increased")),
+           edgecolor="black", zorder=2)
+    for i, v in cnt.items():
+        if v:
+            ax.text(i, v + 3, f"{v}", ha="center", va="bottom",
+                    fontsize=TICK_PT, color="0.35")
+    ax.set_xticks(range(7)); ax.set_xticklabels(range(7), fontsize=TICK_PT)
+    ax.set_xlabel("Settings with increased NP (of 6)", fontsize=LABEL_PT)
+    ax.set_ylabel("Twins", fontsize=LABEL_PT)
+    ax.set_ylim(0, cnt.max() * 1.42)
+    ax.tick_params(axis="both", labelsize=TICK_PT)
+    ax.text(.03, .97, f"{cnt[6]}/{int(cnt.sum())} = "
+            f"{100 * cnt[6] / cnt.sum():.1f}%\nincreased under all six",
+            transform=ax.transAxes, ha="left", va="top", fontsize=TICK_PT,
+            color="0.35")
+    S["c"] = dict(n=int(cnt.sum()), all6=int(cnt[6]),
+                  pct_all6=float(100 * cnt[6] / cnt.sum()),
+                  counts={int(k): int(v) for k, v in cnt.items()})
+
+
+# -------------------------------------------- d-e  EFT validation, 3 twins
+def paired(ax, T, letter, ylab, head):
+    xpos = {"AMPA": (0, 1), "GABA-A": (2.3, 3.3)}
+    for pert in ["AMPA", "GABA-A"]:
+        x0, x1 = xpos[pert]
+        for s in SUBS:
+            r = T[(T.perturbation == pert) & (T.subject == s)].iloc[0]
+            ax.plot([x0, x1], [r.baseline, r.perturbed], color=PCOL[pert],
+                    lw=LW * 1.4, zorder=2, solid_capstyle="round")
+            for xx, yy, fc in [(x0, r.baseline, "white"),
+                               (x1, r.perturbed, PCOL[pert])]:
+                ax.scatter([xx], [yy], s=26, marker=MRK[s], facecolor=fc,
+                           edgecolor=PCOL[pert] if fc == "white"
+                           else pt_edge(PCOL[pert]), linewidth=LW, zorder=3)
+            S[f"{letter}|{pert}|{s}"] = dict(base=float(r.baseline),
+                                             pert=float(r.perturbed),
+                                             delta=float(r.delta))
+    ax.axhline(0, color="0.6", ls=(0, (2.6, 1.7)), zorder=1)
+    ax.set_xticks([0, 1, 2.3, 3.3])
+    # four labels under a 30 mm axis only fit on the slant
+    ax.set_xticklabels(["baseline", "AMPA", "baseline", "GABA-A"],
+                       fontsize=TICK_PT, rotation=45, ha="right",
+                       rotation_mode="anchor")
+    ax.set_xlim(-.55, 3.85)
+    ax.set_ylabel(ylab, fontsize=LABEL_PT)
+    ax.tick_params(axis="both", labelsize=TICK_PT)
+    if letter == "d":                  # one twin-symbol key for d and e
+        hd = [Line2D([], [], marker=MRK[s], linestyle="none", markersize=3.4,
+                     markerfacecolor="0.45", markeredgecolor="none")
+              for s in SUBS]
+        ax.legend(hd, SUBS, loc="upper left", fontsize=TICK_PT, frameon=False,
+                  borderaxespad=.2, handletextpad=.3, labelspacing=.22,
+                  ncol=3, columnspacing=.6)
+    lo, hi = ax.get_ylim()
+    ax.set_ylim(lo, hi + (hi - lo) * .22)
+
+
+def p_d(ax):
+    paired(ax, E, "d", "Summed EFT NP FC", "Emotional face task")
+
+
+def p_e(ax):
+    paired(ax, NP, "e", "Summed NP FC (12 edges)",
+           "Same twins, NP task")
+
+
+def p_f(ax):
+    for T, mk in [(E, "o"), (NP, "D")]:
+        for pert in ["AMPA", "GABA-A"]:
+            d = T[T.perturbation == pert]
+            ax.scatter(d.baseline, d.delta, s=24, marker=mk,
+                       facecolor=PCOL[pert], edgecolor=pt_edge(PCOL[pert]),
+                       linewidth=LW * .55, zorder=3)
+    ax.axhline(0, color="0.6", ls=(0, (2.6, 1.7)), zorder=1)
+    ax.axvline(0, color="0.85", zorder=1)
+    ax.set_xlabel("Baseline FC", fontsize=LABEL_PT)
+    ax.set_ylabel("Change after perturbation", fontsize=LABEL_PT)
+    ax.tick_params(axis="both", labelsize=TICK_PT)
+    hd = [Line2D([], [], marker="o", linestyle="none", markersize=3.4,
+                 markerfacecolor="0.45", markeredgecolor="none"),
+          Line2D([], [], marker="D", linestyle="none", markersize=3.2,
+                 markerfacecolor="0.45", markeredgecolor="none"),
+          Line2D([], [], marker="s", linestyle="none", markersize=3.4,
+                 markerfacecolor=C("ampa"), markeredgecolor="none"),
+          Line2D([], [], marker="s", linestyle="none", markersize=3.4,
+                 markerfacecolor=C("gaba"), markeredgecolor="none")]
+    ax.legend(hd, ["EFT", "NP task", "AMPA", "GABA-A"], loc="upper right",
+              fontsize=TICK_PT, frameon=False, borderaxespad=.2,
+              handletextpad=.4, labelspacing=.22)
+    lo, hi = ax.get_ylim()
+    ax.set_ylim(lo, hi + (hi - lo) * .24)
+
+
+PANEL_FN = {"a": p_a, "b": p_b, "c": p_c, "d": p_d, "e": p_e}
+# p_f (baseline versus change) is kept above but no longer placed
+
+# --------------------------------------------------------------- page geometry
+GUT = K.LETTER_W + K.LETTER_PADX
+GAPX, GAP = 5.0, K.GAP
+LETTER_BAND, MB = K.LETTER_BAND, K.MB
+MAX_H = 44.0
+# a and b carry six x labels each and need the full text width between them;
+# the four narrower panels share the second row
+ROWS = [(["a", "b"], 12.0), (["c", "d", "e"], 12.0)]        # (letters, x band)
+BLOCK = {"a": 88.0, "b": 87.0,                             # 175 + 1 gap = 180
+         "c": 54.0, "d": 58.0, "e": 58.0}                  # 170 + 2 gaps = 180
+
+
+def col_geom(fig, panels):
+    """Per panel: its own label block inside its column, gaps exactly GAPX."""
+    rend = fig.canvas.get_renderer()
+    mm = lambda px: px / fig.dpi * 25.4
+    by = {p["ch"]: p for p in panels}
+    geom = {}
+    for row, _xb in ROWS:
+        x = ML
+        for ch in row:
+            ax = by[ch]["axes"][0]
+            bb, pos = ax.get_tightbbox(rend), ax.get_position()
+            # clamp: b carries a rotated annotation left of its frame and
+            # block labels past its right edge, which would otherwise eat the
+            # whole column
+            L = min(max(pos.x0 * PW - mm(bb.x0), 0.0), 15.0)
+            R_ = min(max(mm(bb.x1) - (pos.x0 + pos.width) * PW, 0.0), 5.0)
+            geom[ch] = (x, x + GUT + L,
+                        max(BLOCK[ch] - GUT - L - R_, BLOCK[ch] * .45))
+            x += BLOCK[ch] + GAPX
+    return geom
+
+
+def build(plot_h, geom=None):
+    f = plt.figure(figsize=panel(PW, PH))
+    out, y = [], MT
+    for row, xb in ROWS:
+        top = y + LETTER_BAND
+        x = ML
+        for ch in row:
+            slot, ax_x, ax_w = (geom[ch] if geom else
+                                (x, x + GUT + 14.0, BLOCK[ch] - GUT - 16.0))
+            ax = K.axes_mm(f, ax_x, top, ax_w, plot_h)
+            PANEL_FN[ch](ax)
+            out.append(dict(ch=ch, x=slot, axes=[ax],
+                            txt=K.letter(f, slot, top - 1.2, ch)))
+            x += BLOCK[ch] + GAPX
+        y = top + plot_h + xb + GAP
+    enforce(f)
+    return f, out, y - GAP
+
+
+# ------------------------------------------------------------------- caption
+CAP_TITLE = (f"Supplementary Fig. {SUPP_NO} | Virtual perturbational "
+             "sensitivity analysis: parameter stability at the group level "
+             "and response validation across task context.")
+
+
+def pf(p):
+    return (f"P = {p:.3g}" if p >= 1e-3 else
+            f"P = {p:.2g}" if p >= 1e-4 else f"P = {p:.1e}")
+
+
+def grid_line(knob):
+    out = []
+    for s in ORDER:
+        d = S[f"a|{knob}|{s}"]
+        out.append(f"{d['g']:.4f} S cm-2 ({s}) {d['mean']:+.2f} "
+                   f"(95% CI {d['lo']:+.2f} to {d['hi']:+.2f}, "
+                   f"d = {d['d']:.2f}, {pf(d['p'])}, {d['same']:.1f}% of "
+                   f"twins in the same direction)")
+    return "; ".join(out)
+
+
+def eft_line(T):
+    out = []
+    for pert in ["AMPA", "GABA-A"]:
+        d = T[T.perturbation == pert]
+        up, dn = int((d.delta > 0).sum()), int((d.delta < 0).sum())
+        vals = ", ".join(f"{r.subject} {r.delta:+.2f}" for r in d.itertuples())
+        out.append(f"{pert} {up} up / {dn} down ({vals})")
+    return "; ".join(out)
+
+
+def caption_runs():
+    wa, wg = XC[XC.knob == "within-AMPA"], XC[XC.knob == "within-GABA"]
+    ck = XC[XC.knob == "cross-knob"]
+    c = S["c"]
+    amp = [S[f"b|{s}"] for s in ["ampa_low", "ampa", "ampa_high"]]
+    gab = [S[f"b|{s}"] for s in ["gaba_low", "gaba", "gaba_high"]]
+    cap = [
+        ("", "The two halves of the figure ask whether the virtual "
+             "perturbation result depends on how the perturbation was set "
+             "up. a-c test the CONDUCTANCE at which each receptor knob is "
+             "driven, at the group level in all n = 288 twins: every knob was "
+             "re-run at a weaker and a stronger setting around the value used "
+             "in the main analysis (AMPA 0.0040 / 0.0044 / 0.0048, GABA-A "
+             "0.0035 / 0.0040 / 0.0045 S cm-2), giving six settings per twin. "
+             "d-e test the TASK CONTEXT at the individual level, in three "
+             "twins calibrated at the 100-million-neuron scale and perturbed "
+             "at the main-analysis conductances (AMPA 0.0044, GABA-A 0.0040 "
+             "S cm-2): the same twins are shown in the emotional face task, "
+             "which the model was not tuned on, and on the 12-edge NP profile "
+             "of the reward and inhibition tasks. HC02 is excluded from d-e "
+             "for the same reason as in the model sweeps. "),
+        ("a", ", group mean change in NP at each setting, bars with 95% "
+              "confidence intervals and Cohen's d above each bar. AMPA: "
+              + grid_line("AMPA") + ". GABA-A: " + grid_line("GABA-A")
+              + ". Every setting of both knobs raises NP. In both sweeps the "
+                "setting used in the main text gives the SMALLEST raw mean "
+                "change and at the same time the LARGEST standardised effect "
+                "(AMPA d = 0.83 against 0.73 and 0.61; GABA-A d = 1.60 "
+                "against 1.47 and 1.29), because the weaker and stronger "
+                "settings spread the twins more: the main-text choice is "
+                "therefore the conservative one on the raw scale, not the "
+                "one that maximises the reported difference. "),
+        ("b", f", the same six settings resolved by diagnostic group, as the "
+              f"percentage of twins whose NP increased, with the chi-squared "
+              f"P for a difference between groups above each setting "
+              f"(2 d.f.). Under AMPA the patient group responds most often at "
+              f"all three settings ({amp[0]['pct']['Patient']:.1f}%, "
+              f"{amp[1]['pct']['Patient']:.1f}% and "
+              f"{amp[2]['pct']['Patient']:.1f}%, against "
+              f"{amp[0]['pct']['HC']:.1f}%, {amp[1]['pct']['HC']:.1f}% and "
+              f"{amp[2]['pct']['HC']:.1f}% in healthy controls; "
+              f"{pf(amp[0]['p'])}, {pf(amp[1]['p'])} and {pf(amp[2]['p'])}), "
+              f"whereas under GABA-A almost every twin responds and the "
+              f"groups are indistinguishable ({gab[0]['overall']:.1f}%, "
+              f"{gab[1]['overall']:.1f}% and {gab[2]['overall']:.1f}% "
+              f"overall; {pf(gab[0]['p'])}, {pf(gab[1]['p'])} and "
+              f"{pf(gab[2]['p'])}). "),
+        ("c", f", the number of the six settings under which each twin's NP "
+              f"increased: {c['all6']} of {c['n']} twins "
+              f"({c['pct_all6']:.1f}%) increased under all six, so the "
+              f"direction of a twin's response is a property of the twin "
+              f"rather than of the setting. Across settings the twin-wise "
+              f"changes correlate r = {wa.r.min():.2f}-{wa.r.max():.2f} "
+              f"within the AMPA sweep and "
+              f"r = {wg.r.min():.2f}-{wg.r.max():.2f} within the GABA-A "
+              f"sweep, against r = {ck.r.min():.2f}-{ck.r.max():.2f} between "
+              f"knobs, so the two knobs remain distinct manipulations. "),
+        ("d", ", the three 100 M twins in the emotional face task, baseline "
+              "against the perturbed state, one line per twin: "
+              + eft_line(E) + ". "),
+        ("e", ", the same twins on the reward / inhibition NP profile used in "
+              "the main analysis: " + eft_line(NP) + ". "),
+        ("", "The two halves support different claims and should be read as "
+             "such: a-c establish that the group-level result is not an "
+             "artefact of the conductance chosen, in the full sample; d-e "
+             "show that an individual twin's response is bidirectional and "
+             "reproduces in a task the model was not calibrated on, in three "
+             "twins only - a validation of individual response, not a "
+             "population estimate. No multiple-comparison correction is "
+             "applied and all tests are two-sided. Source values are in "
+             "conductance_grid_summary_n288.csv, "
+             "conductance_responder_by_group_n288.csv, "
+             "conductance_subject_level_n288.csv, "
+             "conductance_across_setting_correlations.csv, eft_3subs.csv and "
+             "np_task_3subs.csv. "),
+    ]
+    runs = [(CAP_TITLE + " ", True)]
+    for lab, seg in cap:
+        if lab:
+            runs.append((lab + ",", True))
+            seg = seg[1:] if seg.startswith(",") else seg
+        runs.append((seg, False))
+    return runs
+
+
+# pass 1 -- caption height at a provisional plot height
+_f0, _p0, _ = build(32.0)
+_runs0 = caption_runs()
+_l0 = (K._wrap(_f0, _runs0, PW - ML - MR, CAP_PT,
+               _f0.canvas.get_renderer())[0] if WITH_CAP else [])
+plt.close(_f0)
+
+CAP_H = (K.CAP_GAP + len(_l0) * K.CAP_LH + 1.0) if WITH_CAP else 0.0
+NROW = len(ROWS)
+FIXED = (MT + NROW * LETTER_BAND + sum(xb for _r, xb in ROWS)
+         + (NROW - 1) * GAP)
+PLOT_H = min((PH - MB - CAP_H - FIXED) / NROW, MAX_H)
+assert PLOT_H > 20.0, f"no room for the panels: {PLOT_H:.1f} mm"
+
+# pass 2 -- solve the column geometry at the fitted height
+_f1, _p1, _ = build(PLOT_H)
+_geom = col_geom(_f1, _p1)
+plt.close(_f1)
+for _ in range(3):                      # tick labels move when the width does
+    _f2, _p2, _ = build(PLOT_H, geom=_geom)
+    _geom = col_geom(_f2, _p2)
+    plt.close(_f2)
+fig, PANELS, BOTTOM = build(PLOT_H, geom=_geom)
+K.place_letters(fig, PANELS, rows=[r for r, _xb in ROWS])
+
+runs = caption_runs()
+if WITH_CAP:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
+        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
+else:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
+
+assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
+print(f"[{STEM}] axes height {PLOT_H:.1f} mm; panels end at {BOTTOM:.1f} mm; "
+      f"caption {n_lines} lines -> {CAP_BOTTOM:.1f} mm of {PH:.0f} mm")
+
+# ----------------------------------------------------------------------- export
+png, pdf, ppt = (os.path.join(HERE, STEM + ext) for ext in (".png", ".pdf", ".pptx"))
+fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
+fig.savefig(pdf, bbox_inches=None, facecolor="white")
+K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
+              collect_text_records=collect_text_records)
+bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
+       if t.get_text().strip() and t.get_fontname() != "Arial"]
+print("non-Arial text:", bad[:5], "| files:",
+      [os.path.basename(p) for p in (png, pdf, ppt)])
+pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
+    os.path.join(HERE, "figS_sensitivity_A4_caption_values.csv"), index=False)
+plt.close(fig)

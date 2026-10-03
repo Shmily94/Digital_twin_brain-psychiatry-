@@ -1,0 +1,10 @@
+simulation scale,data resolution,assimilation scale,n,empirical reference,SST Stop Success,SST Stop Failure,MID Reward Antici.,MID Pos. Feedback,4-condition mean
+3m,268-nodes,3m-268,12,B: 268-parcel FC from the voxels the DTB simulates,0.3865 ± 0.0806,0.3678 ± 0.0683,0.3210 ± 0.0711,0.3185 ± 0.0683,0.3485 ± 0.0565
+10m,268-nodes,3m-268,12,B: 268-parcel FC from the voxels the DTB simulates,0.3870 ± 0.0814,0.3670 ± 0.0683,0.3229 ± 0.0766,0.3196 ± 0.0696,0.3491 ± 0.0590
+10m,1000-parcellation,10m-1000,12,B: 268-parcel FC from the voxels the DTB simulates,0.5201 ± 0.0923,0.5121 ± 0.0622,0.4787 ± 0.0641,0.4779 ± 0.0574,0.4972 ± 0.0562
+10m,voxel-wise,10m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.1042 ± 0.0412,0.0913 ± 0.0230,0.0602 ± 0.0223,0.0495 ± 0.0183,0.0763 ± 0.0226
+10m,voxel-wise,100m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.6341 ± 0.0647,0.6205 ± 0.0539,0.6003 ± 0.0746,0.5988 ± 0.0733,0.6134 ± 0.0548
+100m,voxel-wise,100m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.6259 ± 0.0660,0.6116 ± 0.0527,0.5922 ± 0.0753,0.5929 ± 0.0772,0.6056 ± 0.0554
+1b_voxel,voxel-wise,100m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.6071 ± 0.0662,0.5944 ± 0.0518,0.5718 ± 0.0759,0.5762 ± 0.0738,0.5874 ± 0.0533
+SAR,-,-,12,native Shen-268 regional FC,0.2778 ± 0.0299,0.2455 ± 0.0296,0.2096 ± 0.0546,0.2040 ± 0.0507,0.2342 ± 0.0317
+rWW,-,-,12,native Shen-268 regional FC,0.1743 ± 0.0348,0.1536 ± 0.0288,0.1341 ± 0.0343,0.1323 ± 0.0334,0.1486 ± 0.0235

@@ -1,0 +1,5 @@
+quantity,b,std_beta,t,df,P
+"index -> age-23 | age-19, AMPA full-sample index",0.2319,0.1564,2.065,82,0.0421
+"index -> age-23 | age-19, AMPA out-of-sample index",,0.1493,1.97,82,0.0523
+"index -> age-23 | age-19, GABA_A full-sample index",,0.1156,1.487,82,0.1408
+"index -> age-23 | age-19, GABA_A out-of-sample index",,0.1078,1.384,82,0.1702

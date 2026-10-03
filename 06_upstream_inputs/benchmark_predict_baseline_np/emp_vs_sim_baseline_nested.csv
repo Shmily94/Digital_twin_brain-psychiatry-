@@ -1,0 +1,8 @@
+model,R2_reduced,R2_full,dR2,k,df_resid,F,P
+empirical alone -> change,-0.0,0.151519,0.151519,1,83,14.821833,0.000231
+simulated alone -> change,-0.0,0.050911,0.050911,1,83,4.452244,0.037867
+simulated BEYOND empirical,0.151519,0.174485,0.022966,1,82,2.281273,0.134788
+empirical BEYOND simulated,0.050911,0.174485,0.123574,1,82,12.274867,0.000746
+empirical beyond age-19 sym -> age-23,0.517302,0.563061,0.045759,1,82,8.587535,0.004383
+simulated beyond age-19 sym -> age-23,0.517302,0.537533,0.020231,1,82,3.587171,0.061753
+simulated beyond age-19 + empirical -> age-23,0.563061,0.574276,0.011216,1,81,2.133911,0.147941

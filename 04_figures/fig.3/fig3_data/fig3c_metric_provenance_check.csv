@@ -1,0 +1,10 @@
+pair,simulated_source,subjects,n,fisher_z_mean,plain_mean,value_in_fc_similarity_six_models_new3m
+10m vs 100m,new .mat (simu_fc_*),all 12,12,0.9223,0.9064,0.6497
+10m vs 100m,new .mat (simu_fc_*),9 with complete archive data,9,0.9179,0.8986,0.6497
+10m vs 100m,archive simulation_results_wide_12subs.csv,9 with complete archive data,9,0.7123,0.651,0.6497
+10m vs 1b,new .mat (simu_fc_*),all 12,12,0.933,0.9205,0.7273
+10m vs 1b,new .mat (simu_fc_*),9 with complete archive data,9,0.9218,0.908,0.7273
+10m vs 1b,archive simulation_results_wide_12subs.csv,9 with complete archive data,9,0.7551,0.6975,0.7273
+100m vs 1b,new .mat (simu_fc_*),all 12,12,0.9543,0.9167,0.8909
+100m vs 1b,new .mat (simu_fc_*),9 with complete archive data,9,0.9426,0.8968,0.8909
+100m vs 1b,archive simulation_results_wide_12subs.csv,9 with complete archive data,9,0.8962,0.8712,0.8909

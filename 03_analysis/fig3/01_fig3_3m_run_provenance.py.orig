@@ -1,0 +1,184 @@
+"""fig3_3m_run_provenance.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code cross-checks reported 3M/268-parcel model results against a
+    newer simulation run for a neuroscience manuscript's Figure 3. It
+    computes a corrected NP-edge MSE value from Table S10 and compares it
+    against the previously reported figure, and separately recomputes
+    whole-brain functional connectivity correlations (per subject,
+    averaged across the SST and MID task conditions using upper-triangle
+    voxel-pair correlations) from a new run of the 3M model and compares
+    the mean and standard deviation against the old run's values used in
+    Table S9. One row of the output table represents one such comparison
+    for a given panel and quantity, recording the old and new values,
+    which version was actually used in the published figure, and whether
+    the two runs agree or mismatch.
+
+INPUT FILES
+    Baseline_simulated_3m_task_FC.mat
+    revision/10m_voxel_population_simulation/analysis_results/fc_similarity_four_runs_per_subject.csv
+    simu_real_FC_across_scales_12subs.mat
+
+OUTPUT FILE
+    fig3_3m_run_provenance.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3_3m_run_provenance.csv
+
+STATISTICAL TESTS
+    descriptive summary only (no inferential test in the recovered cell)
+
+RUNNABLE ON A LAPTOP
+    no -- a name inherited from the session could not be recovered; see the NOT RECOVERED block
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 89e53249-e679-4b45-98f8-256ddea81e98
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-23 16:00:12 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3_3m_run_provenance__cell_89e53249.py
+    candidates found   : 1
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+import h5py
+import numpy as np
+import pandas as pd
+
+# -------------------------------------------------------------------------
+# NOT RECOVERED.  This script needs the name(s)
+#     P_SAR, P_rWW
+# which the interactive session inherited from a cell that is not present in
+# the execution log (or, for `host`, from the platform session object).  The
+# script therefore cannot run as shipped.  They are used below as:
+#     PB['SAR']=P_SAR.reindex(PB.index).values
+#     PB['rWW']=P_rWW.reindex(PB.index).values
+# Supply them before running.  Nothing has been invented in their place.
+# -------------------------------------------------------------------------
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 01a726d6, 02dc1778, 191d53bb, 1ce39288, 457de626, 49894910, 706899db, 719a706b, 821bf2cd, 9008c0ab, bf658b00, ce01513e, d4af4a56, f12ffd15, ffbb91c0)
+import scipy.io as sio, numpy as np, pandas as pd, statsmodels.formula.api as smf
+def matload(p):
+    try: return sio.loadmat(p, simplify_cells=True)
+    except NotImplementedError:
+        import h5py; return h5py.File(p,'r')
+R='/Users/yunman/Desktop/submission/revision/text/'
+FIG=R+'figures/'
+SUB='/Users/yunman/Desktop/submission/'
+D3=FIG+'fig.3/fig3_data/'
+FR=pd.read_csv(SUB+'revision/10m_voxel_population_simulation/analysis_results/fc_similarity_four_runs_per_subject.csv')
+ES=SUB+'revision/model_scale_consistent/add_new_subjects/empirical_fc_voxel_used_model/'
+MT=matload(ES+'simu_real_FC_across_scales_12subs.mat')
+cn=[str(x) for x in np.atleast_1d(MT['condition_names']).ravel()]
+CORD=['SST_stop_success','SST_stop_failure','MID_antici_hit','MID_feed_hit']
+FB=np.asarray(MT['fc_corr_dtb_voxels'])
+CORD=['SST_stop_success','SST_stop_failure','MID_antici_hit','MID_feed_hit']
+ci=[cn.index(c) for c in CORD]
+K6=['3m_268','10m_268','10m_1000','10m_voxel','100m_voxel','1b_voxel']
+LAB6={'3m_268':'3 M / 268','10m_268':'10 M / 268','10m_1000':'10 M / 1000',
+      '10m_voxel':'10 M voxel, 100 M hyper','100m_voxel':'100 M voxel','1b_voxel':'1 B voxel'}
+subj=[int(x) for x in np.atleast_1d(MT['subject_ids']).ravel()]
+PB=pd.DataFrame({LAB6[s]:np.nanmean(FB[:,ci,si],axis=1) for si,s in enumerate(K6)}, index=subj)
+PB['10 M voxel, 10 M hyper']=FR.set_index('sub_id')['r_dtb_voxels__10m_own_params'].reindex(PB.index).values
+PB['SAR']=P_SAR.reindex(PB.index).values
+PB['rWW']=P_rWW.reindex(PB.index).values
+NR=SUB+'revision/model_scale_consistent/manuscript_numbers_newflow/3m_model_new_run/'
+import h5py
+f=h5py.File(NR+'Baseline_simulated_3m_task_FC.mat','r')
+def cell(si,ti,ri,sj): return np.asarray(f[f['task_fc_Z'][si,ti,ri,sj]][:])
+MIDA=[1,3,5]
+MIDF=[2,4,6]
+def newrun_fc(sj):
+    out={}
+    out['MID_antici_hit']=np.mean([np.mean([cell(s,0,r,sj) for s in MIDA],axis=0) for r in range(5)],axis=0)
+    out['MID_feed_hit']  =np.mean([np.mean([cell(s,0,r,sj) for s in MIDF],axis=0) for r in range(5)],axis=0)
+    out['SST_stop_success']=np.mean([cell(2,1,r,sj) for r in range(5)],axis=0)
+    out['SST_stop_failure']=np.mean([cell(3,1,r,sj) for r in range(5)],axis=0)
+    return out
+RB=np.asarray(MT['real_fc_dtb_voxels'])
+iu=np.triu_indices(217,1)
+res={}
+for cnd in CORD:
+    j=cn.index(cnd); rs=[]
+    for sj in range(12):
+        sim=newrun_fc(sj)[cnd][iu]; emp=RB[:,:,sj,j][iu]
+        m=np.isfinite(sim)&np.isfinite(emp); rs.append(np.corrcoef(sim[m],emp[m])[0,1])
+    res[cnd]=np.array(rs)
+
+# ---- computation: recovered from execution-log cell 89e53249
+newFC=np.column_stack([res[c] for c in CORD]).mean(axis=1)
+old=PB['3 M / 268'].values
+rows=[dict(panel='Fig. 3a / Table S10 (NP-edge MSE)',quantity='3M/268 MSE, reference B',
+      old_run='0.0851 (six_model_mse_12subs.csv)',new_run='0.0649',used_in_figure='NEW run',verdict='CORRECT'),
+ dict(panel='Fig. 3b / Table S9 (whole-brain FC)',quantity='3M/268 whole-brain r, reference B',
+      old_run=f'{old.mean():.4f} ± {old.std(ddof=1):.4f}',new_run=f'{newFC.mean():.4f} ± {newFC.std(ddof=1):.4f}',
+      used_in_figure='OLD run',verdict='MISMATCH')]
+CK=pd.DataFrame(rows)
+CK.to_csv(D3+'fig3_3m_run_provenance.csv',index=False)

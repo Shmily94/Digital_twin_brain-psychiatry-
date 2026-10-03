@@ -1,0 +1,18 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/_recovered_session_b194cd74/ed5/data/wbdrug_direction_agreement_pooled_prior.csv
+# cell id       : b2cddfae-313a-4926-8130-ee69d01e2303
+# frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# cell_index    : 837
+# executed at   : 2026-09-22 20:31 UTC
+# language      : python    conda env: python
+# organised as  : 03_analysis/fig5/03_wbdrug_direction_agreement_pooled_prior.py
+# This is the terminal cell exactly as it ran, with nothing removed and nothing
+# reformatted. It is a fragment of an interactive session and is not standalone;
+# the organised script carries the full dependency chain from the same session.
+# ---------------------------------------------------------------------------
+WD='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_wbdrug/data'
+W3.to_csv(f'{WD}/wbdrug_direction_agreement_n288.csv', index=False)
+pd.read_csv(f'{WB}/model_data/wholebrain_results/pharma_map_reliability.csv').to_csv(f'{WD}/wbdrug_map_reliability.csv', index=False)
+pd.read_csv(f'{WB}/SuppTable_WB2_direction_agreement_corrected.csv').to_csv(f'{WD}/wbdrug_direction_agreement_pooled_prior.csv', index=False)
+print('staged:', sorted(os.listdir(WD)))
+print('\nketamine matched, pooled:', W3[(W3.drug=="Ketamine")&(W3.pairing=="matched")&(W3.level.str.startswith("pooled"))][['task_match','n_same','n_edges','pct_same','p_signflip_node']].to_string(index=False))

@@ -1,0 +1,41 @@
+token,label,family,hex,tier,note
+exc_ampa,Virtual AMPA up-regulation,Excitatory (glutamatergic),#FB6A4A,data,primary excitatory perturbation; Woo Reds ramp
+exc_ketamine,Ketamine session,Excitatory (glutamatergic),#A50F15,data,in vivo counterpart of AMPA (darker)
+exc_restore,AMPA restoration index,Excitatory (glutamatergic),#FCAE91,data,derived from the AMPA perturbation
+exc_similarity,AMPA-state similarity,Excitatory (glutamatergic),#FDD9C8,data,derived similarity index; use a dark outline
+inh_gaba,Virtual GABA-A up-regulation,Inhibitory (GABAergic),#47C0E1,data,primary inhibitory perturbation; Woo cold ramp
+inh_midazolam,Midazolam session,Inhibitory (GABAergic),#1A7A96,data,in vivo counterpart of GABA-A (darker)
+inh_restore,GABA-A restoration index,Inhibitory (GABAergic),#A9DEEE,data,derived from the GABA-A perturbation
+unp_baseline,Simulated baseline (unperturbed),Unperturbed,#757575,data,pre-perturbation model state; achromatic by design
+unp_placebo,Placebo / saline session,Unperturbed,#C5D0D2,data,in vivo counterpart of baseline
+unp_null,Shuffled-parameter / chance null,Unperturbed,#F4F4F4,data,draw with 45-deg hatch and a grey outline
+circ_neg29,Negative NP profile (29 edges),NP circuit (lower FC = more symptoms),#FAC66D,data,full negative profile
+circ_np12,NP factor (12 edges),NP circuit (lower FC = more symptoms),#C99A46,data,main phenotype
+circ_mid6,MID-only NP formulation (6 edges),NP circuit (lower FC = more symptoms),#9A6F20,data,pharmacology formulation
+circ_nonnp,Non-NP / rest of brain,NP circuit (lower FC = more symptoms),#E3DAC1,data,"reference set, rest of brain"
+pos_prof34,Positive NP profile (34 edges),Positive profile (higher FC = more symptoms),#819D98,data,opposite symptom direction; muted = lower visual weight
+alt_mdd_net,Depression-specific CPM network,Secondary circuits,#A58B77,data,"secondary analysis, low chroma"
+alt_wholebrain,Whole-brain parcellated connectome,Secondary circuits,#DDBFAA,data,"secondary analysis, low chroma"
+hlth_hc,Healthy controls,Health / group severity,#99B77C,data,Woo olive; green vs purple keeps the group contrast CVD-safe
+hlth_norm,Control reference band / normalisation arrow,Health / group severity,#C9E7AB,data,"shaded control band, arrows"
+clin_highsymp,High-symptom (IMAGEN),Health / group severity,#E9D5FF,data,pale end of the patient ramp
+clin_aud,AUD,Health / group severity,#CAADEF,data,
+clin_patients,Patients (pooled),Health / group severity,#A98DCD,data,
+clin_mdd,MDD,Health / group severity,#8A6BB1,data,Woo purple
+bench_sar,SAR benchmark model,Benchmark models,#B7AA82,data,"dashed line, low visual weight"
+bench_rww,reduced Wong-Wang benchmark,Benchmark models,#5F5434,data,"dotted line, low visual weight"
+scale_3m,3 M neurons (regional),Model resolution (ordinal),#E2E2E2,scale,ordinal grey ramp; darker = more neurons
+scale_10m,10 M neurons,Model resolution (ordinal),#B8B8B8,scale,ordinal grey ramp; darker = more neurons
+scale_100m,100 M neurons,Model resolution (ordinal),#8C8C8C,scale,ordinal grey ramp; darker = more neurons
+scale_1b,1 B neurons,Model resolution (ordinal),#585858,scale,ordinal grey ramp; darker = more neurons
+scale_5b,5 B neurons,Model resolution (ordinal),#262626,scale,ordinal grey ramp; darker = more neurons
+coh_imagen,"IMAGEN (discovery, n=1,050)",Cohorts,#475666,context,"cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+coh_imagen_fu3,IMAGEN follow-up (n=85),Cohorts,#7F98AD,context,"cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+coh_stratify,STRATIFY / ESTRA (n=427),Cohorts,#5981A1,context,"cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+coh_pharm_hv,Healthy-volunteer pharma (n=27),Cohorts,#A2BACD,context,"cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+coh_pharm_clin,Clinical ketamine cohort (n=41),Cohorts,#D5EEFE,context,"cohort chip: identity carried by the text label, lightness ordered along the pipeline"
+task_mid,Monetary Incentive Delay (MID),Task context,#856A4F,context,circle marker; conditions by open/half/solid fill
+task_sst,Stop-Signal Task (SST),Task context,#637B89,context,square marker
+task_eft,Emotional Face Task (EFT),Task context,#96B59D,context,triangle marker
+sym_int,Internalising symptoms,Symptom domains (reserve),#80435E,context,use only if a hue is unavoidable
+sym_ext,Externalising symptoms,Symptom domains (reserve),#B67F49,context,use only if a hue is unavoidable

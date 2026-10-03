@@ -1,0 +1,5 @@
+empirical,simulated,n,mean_diff,t,P,r
+emp .mat empirical_np (ID-matched),sim wide table (corrected MID),288,0.326652,4.764176,3e-06,0.109417
+emp .mat empirical_np (ID-matched),sim .mat simulate_np (pre-correction MID),288,0.546045,8.462851,0.0,0.039679
+emp wide table (corrected CSV),sim wide table (corrected MID),288,0.3145,4.53074,9e-06,0.088024
+emp wide table (corrected CSV),sim .mat simulate_np (pre-correction MID),288,0.533893,8.220289,0.0,0.02807

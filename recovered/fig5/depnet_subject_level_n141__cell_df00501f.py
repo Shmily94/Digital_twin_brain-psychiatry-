@@ -1,0 +1,23 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/supp_depnet/depnet_data/depnet_subject_level_n141.csv
+# cell id       : df00501f-3ac4-4158-ba7d-705937fd65e8
+# frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# cell_index    : 390
+# executed at   : 2026-09-21 19:23 UTC
+# language      : python    conda env: python
+# organised as  : 03_analysis/fig5/48_depnet_subject_level_n141.py
+# This is the terminal cell exactly as it ran, with nothing removed and nothing
+# reformatted. It is a fragment of an interactive session and is not standalone;
+# the organised script carries the full dependency chain from the same session.
+# ---------------------------------------------------------------------------
+import os
+OD='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_depnet'
+os.makedirs(f'{OD}/depnet_data',exist_ok=True); os.makedirs(f'{OD}/panels',exist_ok=True)
+DN.reset_index().rename(columns={'index':'ID','recruitmentSite':'site'})[
+    ['ID','Group2','sex','site','headmotion','empirical','simulated','ampa','gaba']].rename(
+    columns={'Group2':'group'}).to_csv(f'{OD}/depnet_data/depnet_subject_level_n141.csv',index=False)
+ed=pd.read_csv(f'{B}/figures/depnet_edge_source_data.csv')
+ed.to_csv(f'{OD}/depnet_data/depnet_edge_source_data.csv',index=False)
+print(pd.read_csv(f'{OD}/depnet_data/depnet_subject_level_n141.csv').head(2).to_string(index=False))
+print('\nedge file cols used:', [c for c in ed.columns if c.startswith(('d_','p_','dlt_','dp_'))])
+print('FDR-relevant: n p_Empirical<0.05 =', int((ed.p_Empirical<0.05).sum()), '; p_Simulated<0.05 =', int((ed.p_Simulated<0.05).sum()))

@@ -1,0 +1,5 @@
+condition,meta_analytic_mean_r,meta_analytic_sd_r,meta_analytic_min_r,meta_analytic_max_r,activation_r,prior_10m_cohort_r
+reward feedback-hit,0.7129,0.0007,0.712,0.7138,0.7059,0.606
+reward anticipation-hit,0.7007,0.0006,0.6999,0.7015,0.7011,0.6038
+inhibition stop-success,,,,,0.8255,0.6502
+inhibition stop-failure,,,,,0.7926,0.605

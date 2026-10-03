@@ -1,0 +1,29 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/_recovered_session_b194cd74/fig5_data_adj/fig5_panel_stats.csv; 04_figures/fig.5/fig5_data/fig5_panel_stats.csv
+# cell id       : 958d8567-c478-4057-a1f8-48c0ffe0cff2
+# frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# cell_index    : 501
+# executed at   : 2026-09-21 21:20 UTC
+# language      : bash
+# organised as  : 03_analysis/fig5/15_fig5_panel_stats.py
+# This data file is a render-time by-product of 04_figures/fig.5/fig5.py.
+# The cell below is the execution-log cell that produced the packaged copy
+# (it runs, or last edits and runs, that figure script). The derivation itself
+# is the figure script, which is already in the package.
+# ---------------------------------------------------------------------------
+cd "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig.5" && python - <<'PY'
+p='fig5.py'; s=open(p).read()
+s = s.replace("""     'Δ symptoms at follow-up (residual)', 'partial $r$',""",
+              """     'Δ symptoms at follow-up, residual\\n(negative = improvement)', 'partial $r$',""")
+s = s.replace("""     'AMPA restoration index', 'Δ symptoms at follow-up', '$r$',
+     'Unadjusted association'),""",
+              """     'AMPA restoration index', 'Δ symptoms at follow-up\\n(negative = improvement)', '$r$',
+     'Unadjusted association'),""")
+open(p,'w').write(s)
+PY
+python fig5.py >/dev/null 2>&1
+W=~/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/fe47a03f-2d43-4fe0-a1c3-e0544839d822
+for f in 3 4 5 6; do cp panels/fig5h$f.png panels/fig5h$f.pdf $W/; done
+cp fig5.py fig5_data/fig5h_paragraph_scatters_n85.csv fig5_data/fig5h_paragraph_scatter_stats.csv fig5_data/fig5_panel_stats.csv panels/fig5_panel_manifest.csv $W/ && echo copied
+python -c "
+import pandas as pd; print(pd.read_csv('panels/fig5_panel_manifest.csv').tail(4).to_string(index=False))"

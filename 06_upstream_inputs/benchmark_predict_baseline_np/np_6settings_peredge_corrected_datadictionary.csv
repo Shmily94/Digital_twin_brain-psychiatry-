@@ -1,0 +1,10 @@
+item,detail,note
+source: central ampa/gaba,np_all_subs_3m_wide_corrected.csv (corrected MID script),"ampa_edge*/gaba_edge*, baseline_edge*"
+source: 4 flanking settings,"simulate_FC_new.mat -> simulate_FC (1200 x 12), averaged per subject id",ampa_low/high 0.0040/0.0048; gaba_low/high 0.0035/0.0045
+edge coordinates,"location2 in simulate_FC_new.mat, max index 213 = 217-region no-cerebellum space","edges 1-6 SST, 7-12 MID"
+mod_edge<i>,modulated NP on edge i at that setting,-
+dnp_edge<i>,mod_edge<i> - baseline_edge<i>,baseline = corrected-MID simulated baseline
+restoration_index,dnp(12) @ beta_stored,"beta_stored recovered from .mat dNP -> C_Delta_Behav_mod, r = 1.0000000000"
+restoration_index_scalar,sum(dnp) * b1,"b1 = -2.765 from y19 ~ sum(empirical 12 edges), n=85, P = 0.0049"
+CAVEAT: MID correction,stored/published index used the PRE-correction MID script,corrected vs stored index r = 0.75; headline P moves 0.015 -> 0.123
+SST block unaffected,"edges 1-6 identical between pipelines, r = 1.000","MID edges 7-12 differ at subject level, marginal distributions match"

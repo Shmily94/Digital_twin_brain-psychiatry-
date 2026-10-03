@@ -1,0 +1,23 @@
+# ===========================================================================
+# VERBATIM ARCHIVE -- execution-log cell source, exactly as it ran.
+# Nothing has been removed, added or reformatted below the header.
+#
+#   cell id       : ab30ab4e-bdcd-4b3c-9fc0-b792607c2cc9
+#   frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+#   ran           : 2026-09-21 15:37:53 UTC
+#   conda env     : python
+#   cell kind     : py
+#   produced      : 04_figures/fig.3/fig3_data/fig3h_claim_support_1b.csv
+# ===========================================================================
+
+sup=pd.DataFrame([dict(modulation='AMPA', **res['ampa']), dict(modulation='GABA-A', **res['gaba'])])
+sup=sup.rename(columns={'mean_conc':'mean_edges_concordant_of12','sd':'sd_edges_concordant',
+                        't':'t_vs_chance6','p':'p_vs_chance6','pct':'pct_edges_concordant',
+                        'group_edges_same_sign':'group_level_edges_same_sign_of12',
+                        'top_edge_share':'mean_share_of_total_abs_change_largest_edge',
+                        'n_edges_for_half':'mean_n_edges_for_50pct_of_abs_change'})
+sup=sup.round(4)
+p='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig.3/fig3_data/fig3h_claim_support_1b.csv'
+sup.to_csv(p,index=False)
+import shutil; shutil.copy(p,'/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/workspaces/fe47a03f-2d43-4fe0-a1c3-e0544839d822/')
+print(sup.to_string(index=False))

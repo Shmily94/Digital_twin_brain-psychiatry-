@@ -1,0 +1,170 @@
+#!/usr/bin/env python3
+"""tableS24_fix_log_v2.csv
+
+Computes
+    Log of the substantive corrections made to Supplementary Table S24 in the
+    second pass: row, column, old value, new value and the reason for each
+    change.
+
+Inputs
+    - /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/benchmark_predict_baseline_np/
+    - /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/
+    - (path built in the chain) B+'np_beha_85subjects_all_quantities.csv'
+    - (path built in the chain) B+'np85_12edges_repetitions_wide.csv'
+
+Output
+    04_figures/_recovered_session_b194cd74/tableS24_fix_log_v2.csv
+
+Statistical tests
+      - none in this script's own computation: it assembles a source-data /
+        audit table, and the tests that use it are named in the scripts of
+        the tables downstream
+    in the recovered chain that prepares its inputs:
+      - sign-flip permutation test
+
+Local runnability
+    yes (local_runnable = yes).  Verification: mismatch.
+    25 of the 29 logged cell corrections reproduce identically; 4 rows are
+    absent ((76,'Corrected P'), (86,'Figure'), (89,'Figure'), (117,'Effect
+    size')). Those four edits were made by statements the recovery could not
+    carry over (they depend on a session-workspace helper module, docxedit.py,
+    and on runtime artifact-store lookups); no value differs in the 25 rows
+    that do reproduce
+Recovered from
+    execution-log cell e360f742-07c8-4b6a-9295-dcc3e8896c52
+    frame b194cd74-5255-435a-9c1e-206638f9adae, cell_index 758, 2026-09-29 14:24 UTC, conda env "python"
+    dependency chain recovered from the same session, in order:
+    e414d80b, 1bc3e56a, 1ee87b86, 3f9b1bc7, d284a6c3, de229190, e360f742
+
+Random seed
+    not applicable - nothing in this script is stochastic.
+
+Notes
+    Rebuilt by the statistics-layer recovery (docs/RECOVERY_PROTOCOL.md).  The
+    computation is the recovered cell chain unchanged: same tests, same
+    covariates, same corrections, same seeds.  Only the header, the explicit
+    output path and the suppression of the original session's side outputs were
+    added.  Lines marked "[recovery: side output suppressed]" wrote files other
+    than this script's one deliverable into the author's working tree; they are
+    commented out so that running this script cannot modify anything outside
+    OUT_DIR.  The verbatim terminal cell is archived at
+    recovered/fig5/tableS24_fix_log_v2__cell_e360f742.py
+"""
+import os
+import sys
+
+OUT_DIR = os.environ.get(
+    "RECOVERY_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "_scratch"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+# ---------------------------------------------------------------- cell e414d80b (cell_index 706)
+import pandas as pd, numpy as np, re, os, glob
+B='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/benchmark_predict_baseline_np/'
+q=pd.read_csv(B+'np_beha_85subjects_all_quantities.csv')
+w=pd.read_csv(B+'np85_12edges_repetitions_wide.csv')
+print(q.shape, list(q.columns))
+print(w.shape, list(w.columns)[:20])
+
+# ---------------------------------------------------------------- cell 1bc3e56a (cell_index 712)
+import zipfile, shutil
+from lxml import etree
+W='{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
+T='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/'
+def alltext(path, mode='accept'):
+    with zipfile.ZipFile(path) as z: x=etree.fromstring(z.read('word/document.xml'))
+    out=[]
+    for p in x.iter(W+'p'):
+        s=[]
+        for n in p.iter():
+            tag=etree.QName(n).localname
+            if tag=='t':
+                anc=[etree.QName(a).localname for a in n.iterancestors()]
+                if mode=='accept' and 'del' in anc: continue
+                if mode=='reject' and 'ins' in anc: continue
+                s.append(n.text or '')
+            elif tag=='delText':
+                if mode=='reject': s.append(n.text or '')
+        out.append(''.join(s))
+    return out
+MS=alltext(T+'290926NatMed_Manuscript_ED.docx'); ME=alltext(T+'290926NatMed_Methods_ED.docx'); SI=alltext(T+'290926Supplementary_Information_ED.docx')
+pats={'fig2_test':r'(Student|Welch|unequal[- ]variance|equal[- ]variance)',
+      'bonf':r'Bonferroni',
+      'ketamine_p':r'0\.1048|0\.105|P = 0\.11',
+      'binom':r'binomial',
+      'sign_flip':r'sign-flip|sign flip',
+      'fd_emp':r'0\.30|0\.94',
+      '1df':r'F\(1, ?7[0-9]\)',
+      '4e':r'0\.18|0\.15|0\.12'}
+for lab,rx in pats.items():
+    for nm,doc in [('MS',MS),('ME',ME),('SI',SI)]:
+        hits=[(i,t[:160]) for i,t in enumerate(doc) if re.search(rx,t)]
+        if hits: print('== %s / %s: %d'%(lab,nm,len(hits)), [h[0] for h in hits][:14])
+
+# ---------------------------------------------------------------- cell 1ee87b86 (cell_index 738)
+import openpyxl
+XL=T+'290926Suppl.Table_ED_restructured.xlsx'
+wb=openpyxl.load_workbook(XL)
+print(wb.sheetnames)
+ws=[s for s in wb.sheetnames if '24' in s][0]; sh=wb[ws]
+print(ws, sh.max_row, sh.max_column)
+hdr=[c.value for c in sh[1]]; print(hdr)
+
+# ---------------------------------------------------------------- cell 3f9b1bc7 (cell_index 739)
+hdr=[c.value for c in sh[2]]; print(hdr)
+rows=[]
+for r in range(3,sh.max_row+1):
+    rows.append([sh.cell(r,c).value for c in range(1,sh.max_column+1)])
+D24=pd.DataFrame(rows,columns=[h or 'c%d'%i for i,h in enumerate(hdr)])
+print(D24.shape)
+m=D24.apply(lambda r:' | '.join(str(x) for x in r if x is not None),axis=1)
+for i,s in enumerate(m):
+    if re.search(r'4e|Fig\. 4 \| e|0\.15|0\.12',s) and 'Fig' in s: print(i+3, s[:300])
+
+# ---------------------------------------------------------------- cell d284a6c3 (cell_index 741)
+def cells(pred):
+    out=[]
+    for r in range(3,sh.max_row+1):
+        for c in range(1,sh.max_column+1):
+            v=sh.cell(r,c).value
+            if isinstance(v,str) and pred(v): out.append((r,c,v))
+    return out
+bad=cells(lambda v: re.search(r'P < 0\.000\d{2,}|0\.0000\d|0\.00010|three tests|1048|0\.1048|q = 0\.30|binomial',v))
+for r,c,v in bad: print(r,c,'|',v[:180])
+
+# ---------------------------------------------------------------- cell de229190 (cell_index 745)
+log=[]
+def setc(r,c,new,why):
+    old=sh.cell(r,c).value
+    if old==new: return
+    sh.cell(r,c).value=new; log.append(dict(row=r,col=hdr[c-1],old=old,new=new,reason=why))
+
+# item 1 : Fig. S1 family sizes
+for r in (65,66,70,71):
+    setc(r,10,'Bonferroni, 2 contrasts (HC vs MDD, HC vs AUD)','item 1: Welch, family = 2 contrasts')
+for r in (67,68,69):
+    setc(r,10,'Bonferroni, 3 contrasts (HC vs all patients, HC vs MDD, HC vs AUD)','item 1: positive profile, family = 3')
+setc(65,14,'0.038','item 1: recomputed with family = 2')
+setc(66,14,'0.0001','item 1: recomputed with family = 2')
+setc(70,14,'0.21','item 1: recomputed with family = 2')
+setc(71,14,'0.0001','item 1: recomputed with family = 2')
+# item 4 : Fig. 4e
+setc(41,11,"d = 0.62 (measured), 0.53 (simulated baseline), 0.18 (AMPA), 0.05 (GABA-A)",'item 4: recomputed from fig4_subject_level_n288.csv')
+setc(41,16,'measured 0.320 to 0.916; simulated baseline 0.234 to 0.827; AMPA -0.114 to 0.471; GABA-A -0.245 to 0.339','item 4: CIs for all four conditions')
+setc(41,13,'measured < 0.0001; simulated baseline 0.001; AMPA 0.235; GABA-A 0.742 (Welch t(135.0) = 4.11, t(118.1) = 3.36, t(137.0) = 1.19, t(155.3) = 0.33)','item 4: exact Welch statistics added')
+# item 6 : ketamine group level
+setc(141,13,'0.10','item 6: two decimals, aligned with main text and SI')
+# item 9 : P formatting
+for r,c,v in cells(lambda v: isinstance(v,str) and '0.00010' in v):
+    setc(r,c,v.replace('0.00010','0.0001'),'item 9: P < 0.0001 format')
+setc(242,15,'variance explained = 7.16%; Spearman rho = +0.28 (P < 0.0001)','item 9: P below threshold')
+setc(153,15,'binomial P < 0.0001; null s.d. = 5.2%','item 9: P below threshold')
+print(len(log)); print(pd.DataFrame(log).to_string(index=False,max_colwidth=70))
+
+# ---------------------------------------------------------------- cell e360f742 (cell_index 758)
+setc(59,11,'leave-one-out r = 0.32; nested F(12,63) = 3.02 over the covariates; whole-model F(21,63) = 2.15','item 13: whole-model F added to match the Fig. 5h legend')
+setc(59,13,'0.0088 (leave-one-out r, 5,000 permutations); 0.0022 (nested F test over the covariates); 0.0103 (whole-model F test)','item 13: whole-model P added to match the Fig. 5h legend')
+wb.save('290926Suppl.Table_ED_v2.xlsx')
+LOG=pd.DataFrame(log); LOG = pd.DataFrame(log)
+LOG.to_csv(os.path.join(OUT_DIR, 'tableS24_fix_log_v2.csv'), index=False)
+print(len(LOG),'cell changes'); print(LOG.groupby('reason').size().to_string())

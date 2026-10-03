@@ -1,0 +1,10 @@
+column,description,unit
+variant,which index construction was tested,—
+inputs,"""as published"" = X_mod - X_sim as stored in the .mat (pre-MID-correction); ""corrected MID"" = mod_ampa minus simbase from the corrected wide table",—
+weights_fitted_on,"sample used to fit the 12 regression weights: all 100 (contains all 85 test subjects), 99 (leave-one-out), or the 15 X_train subjects with no overlap",—
+weight_sample_overlaps_test_sample,TRUE = the weight-fitting sample contains the 85 tested subjects,—
+r_vs_change,Pearson r between the index and age19->age23 symptom change,—
+P,two-sided P for r_vs_change,—
+beta_adj_b19 / P_adj_b19,index coefficient and P after adjusting for age-19 symptoms,symptom points per index unit
+SIGN NOTE,index is oriented as stored C_Delta_Behav_mod: NEGATIVE = predicted symptom reduction; outcome NEGATIVE = improvement. A POSITIVE r means greater predicted restoration goes with greater symptom reduction.,—
+KEY READING,the association is NOT weaker when the weights come from a non-overlapping sample - it is stronger. Weight-sample overlap therefore cannot be generating it. The published value is instead sensitive to the MID input correction.,—

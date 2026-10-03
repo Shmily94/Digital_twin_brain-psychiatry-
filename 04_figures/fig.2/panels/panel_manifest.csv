@@ -1,0 +1,8 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+fig2a,120,50.1,2894x1208,613,"Figure_200726.pptx slide 1, panel a"
+fig2b_positive,55,48.9,1322x1176,611,"Figure_200726.pptx slide 1, panel b left"
+fig2b_negative,55,48.9,1322x1176,611,"Figure_200726.pptx slide 1, panel b right"
+fig2d,105,60.8,3093x1792,748,"Figure_200726.pptx slide 1, panel d"
+fig2c,48,52.0,737x749,390,fig2c_profile_scores.csv
+fig2e,52,58.0,752x874,367,fig2c_profile_scores.csv
+fig2f,180,46.0,2458x640,347,fig2e_edge_group_difference.csv

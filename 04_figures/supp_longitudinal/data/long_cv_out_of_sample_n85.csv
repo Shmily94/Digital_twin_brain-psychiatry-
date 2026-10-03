@@ -1,0 +1,6 @@
+model,n,cv_R2_mean,cv_R2_sd,cv_R2_min,cv_R2_max,n_repeats,scheme
+baseline behaviour (4),85,0.086,0.0181,0.0532,0.1065,10,"10-fold, pooled out-of-fold predictions, 10 repeats"
++ AMPA index,85,0.1107,0.0156,0.0797,0.1289,10,"10-fold, pooled out-of-fold predictions, 10 repeats"
++ GABA-A index,85,0.088,0.0229,0.0354,0.1097,10,"10-fold, pooled out-of-fold predictions, 10 repeats"
+baseline empirical NP,85,0.1108,0.0126,0.0806,0.1253,10,"10-fold, pooled out-of-fold predictions, 10 repeats"
+baseline NP + AMPA,85,0.1356,0.0162,0.1027,0.1559,10,"10-fold, pooled out-of-fold predictions, 10 repeats"

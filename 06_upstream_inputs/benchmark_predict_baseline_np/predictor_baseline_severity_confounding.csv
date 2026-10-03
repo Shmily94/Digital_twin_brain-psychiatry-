@@ -1,0 +1,4 @@
+predictor,r_with_baseline_severity,P
+GABA_A restoration index,-0.2256,0.03787
+AMPA restoration index,-0.1563,0.15322
+Empirical NP FC (summed),-0.3026,0.00488

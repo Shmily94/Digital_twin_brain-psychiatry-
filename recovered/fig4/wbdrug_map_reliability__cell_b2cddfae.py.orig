@@ -1,0 +1,19 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/supp_wbdrug/data/wbdrug_map_reliability.csv
+#
+# cell id      : b2cddfae-313a-4926-8130-ee69d01e2303
+# frame id     : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp    : 2026-09-22 20:31:07 UTC
+# conda env    : python
+# language     : python
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/50_wbdrug_map_reliability.py
+##############################################################################
+WD='/Users/yunman/Desktop/submission/revision/text/figures/supp_wbdrug/data'
+W3.to_csv(f'{WD}/wbdrug_direction_agreement_n288.csv', index=False)
+pd.read_csv(f'{WB}/model_data/wholebrain_results/pharma_map_reliability.csv').to_csv(f'{WD}/wbdrug_map_reliability.csv', index=False)
+pd.read_csv(f'{WB}/SuppTable_WB2_direction_agreement_corrected.csv').to_csv(f'{WD}/wbdrug_direction_agreement_pooled_prior.csv', index=False)
+print('staged:', sorted(os.listdir(WD)))
+print('\nketamine matched, pooled:', W3[(W3.drug=="Ketamine")&(W3.pairing=="matched")&(W3.level.str.startswith("pooled"))][['task_match','n_same','n_edges','pct_same','p_signflip_node']].to_string(index=False))

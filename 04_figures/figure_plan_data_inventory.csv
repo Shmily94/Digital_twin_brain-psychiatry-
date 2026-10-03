@@ -1,0 +1,29 @@
+figure,panel,content,data_source,status
+Fig.1,a,框架流程图（已完成）,revision/text/figures/fig.1/fig1_framework.png + fig1_scene.py,已完成，本轮不动
+Fig.2,a,CPM 边选择与 6 个任务条件对 INT/EXT 的预测（气泡图）,"figures_v2/fig2/cpm_predict_beha/, bubblePlot.json",齐
+Fig.2,b,正/负 profile 的功能网络归属热图,"figures_v2/fig1/neg_np.svg, pos_np.svg, correlationHeatmap.json",齐
+Fig.2,c,负向 profile 分数 HC vs Patient（STRATIFY）,figures_v2/fig1/pos_neg_np_stratify_resi_without_ed.csv,人数待定
+Fig.2,d,12 条皮层-皮层下边 circos + 脑图,figures_v2/fig1/np_12_fcs_circos.csv,齐（配色需重做）
+Fig.2,e,12 条边逐边组间差异（新增）,Figures/table/stratify_np_fcs12.mat (525×12) + 组标签表,可建，重叠 434 人；人数待定
+Fig.3,a,12 人 6 个模型尺度的 MSE,revision/text/figures/six_model_mse_12subs.csv + all_data_12subs.xlsx,汇总值齐；逐被试需从 xlsx 提取
+Fig.3,b,基线 NP connectivity 跨尺度相似性热图,model_scale_consistent/simulation_results_long_12subs.csv,边水平仅 10m/100m/1b → 3×3；并入 NP_12edges_10m_1000_10m_268 可到 5×5
+Fig.3,c,各模型尺度的重复间 SD,revision/text/figures/six_model_run_to_run_sd.csv,齐（6 个模型）
+Fig.3,d,AMPA 电导扫描，4 名被试,figures_v2/fig3/manipulated_fcs_4subs/plot_mani_AMPA.csv,齐（4 人 × baseline+10 档）
+Fig.3,e,GABA-A 电导扫描，4 名被试,figures_v2/fig3/manipulated_fcs_4subs/plot_mani_gaba.xlsx,齐（4 人 × baseline+5 档）
+Fig.3,f,12 人跨尺度 Δsummed NP，分 AMPA/GABA,model_scale_consistent/per_subject_modulation_direction_12subs.csv,齐（4 尺度 × 2 扰动 × 12 人）
+Fig.4,a,实测 NP 组间差异（HC/High-symptom/Patient）,figures_v2/fig4/mani_ampa_gaba_subs3.csv: np_factor_2_cov_sex_site_hd,齐 (n=289)
+Fig.4,b,模拟基线 NP 组间差异,同上: Simulated NP_cov_sex_site_hd,齐
+Fig.4,c,AMPA 扰动后 NP 组间差异,同上: Manipulated NP_cov_sex_site_hd,齐
+Fig.4,d,GABA-A 扰动后 NP 组间差异,同上: Manipulated_gaba_with_high_ampa_mid_resi,齐
+Fig.4,e,三条件下三组的 KDE 分布（沿用旧 3e）,figures_v2/fig3/group_empir_simu_manipu_np_Resi3.csv,齐 (1160 行 = 290 人 × 4 条件)；注意这是修正前的 n=290 队列，Fig.4 需改用修正后的 n=288
+Fig.4,f,两种反应模式（双升 vs 任一降）,"figures_v2/fig3/changes_np_after_modulation.csv: dAMPA, dGABA",齐 (n=289)
+Fig.4,g,反应模式 × 诊断分布 + 两组基线差异,changes_np_after_modulation.csv + mani_ampa_gaba_subs3.csv 按 ID 合并,齐
+Fig.4,h,两种反应模式的行为症状组间差异,figures_v2/fig3/compare_subgroup_np_beha_symp.csv,齐 (8 个量表)
+Fig.5,a,健康药理队列设计 / 两亚组异质反应,pharmacological_exper/summed_MID_FCs_3conditions.csv,齐 (27 人 × 3 条件)
+Fig.5,b,"亚组 1/2 的 placebo→ketamine, →midazolam 配对变化",同上,齐
+Fig.5,c,两反应亚组基线 placebo NP 差异,pharmacological_exper/NP_fcs_only_win_mean.csv,齐
+Fig.5,d,MDD vs HC 反应方向不同,New_pharma_dataset/summed_FCs_2conditions_for_plot.csv,齐 (23 人有 p2/d2)
+Fig.5,e,MDD vs HC 基线 NP 差异,New_pharma_dataset/compare_hc_mdd_p2.csv,齐 (Patient 22 / HC 14)
+Fig.5,f,ΔNP 与症状改变的相关（MDD 与 HC）,ΔNP 由 summed_FCs_2conditions_for_plot.csv 算；症状 baseline_np_vs_symptom_change_values.csv,MDD 22 人齐；**HC 逐人症状变化未找到**（仅 Q2 组水平 n=13）
+Fig.5,g,与 AMPA 扰动 MDD 模式的相似度 → 症状改变,revision/text/figures/ampa_ketamine_spearman_4outcomes.csv,"齐 (4 个结局, n=22)"
+Fig.5,h,AMPA restoration index 回归掉实测基线 NP 后仍预测纵向改变,predict_fu3_beha_changes/virtual_modu_predict_fu3_beha_changes.mat (R2_reduced/R2_full/F_change/p_change) + corr_resort_index_beha_change.xlsx,齐 (n=85)；xlsx 里现存的是 GABA index，AMPA 取 Delta_Behav_mod

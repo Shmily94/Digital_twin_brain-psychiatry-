@@ -1,0 +1,7 @@
+analysis,n,r_or_beta,P,kind
+stored index vs symptom change,85,0.263519,0.014818,Pearson r
+flipped restoration (= -index) vs symptom change,85,-0.263519,0.014818,Pearson r
+flipped restoration vs symptom IMPROVEMENT (= -change),85,0.263519,0.014818,Pearson r
+flipped restoration vs symptom change | baseline symptoms,85,-0.231877,0.042079,partial beta
+baseline symptoms vs symptom change,85,-0.3957,0.000178,Pearson r
+flipped restoration vs baseline symptoms,85,0.156275,0.153221,Pearson r

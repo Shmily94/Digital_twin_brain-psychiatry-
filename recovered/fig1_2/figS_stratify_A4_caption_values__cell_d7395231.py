@@ -1,0 +1,91 @@
+# ======================================================================
+# VERBATIM ARCHIVE of the execution-log cell that produced
+#   04_figures/supp_stratify/figS_stratify_A4_caption_values.csv
+# cell id     : d7395231-2aa9-4959-a505-e8d6ddb457d5
+# frame id    : 8d001885-f89b-4ca4-9e30-9866f1015ee6
+# executed    : 2026-09-24 17:53:57 UTC
+# conda env   : python
+# Nothing below this banner has been removed or reformatted.
+# ======================================================================
+
+cd /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/supp_stratify && python3 - <<'PY'
+p="figS_stratify_A4.py"; s=open(p).read()
+E=[
+("""import matplotlib.pyplot as plt""",
+ """import matplotlib.pyplot as plt
+from scipy import stats"""),
+("""def np_panel(ax, letter, measure, groups, ylabel, seed=0, levels=None):
+    vals = [SUBJ.loc[SUBJ.panel_group == g, measure].values for g in groups]
+    sub = TEST[TEST.panel == letter]
+    S[letter] = dict(
+        measure=measure,
+        n={g: int(len(v)) for g, v in zip(groups, vals)},
+        mean={g: round(float(v.mean()), 3) for g, v in zip(groups, vals)},
+        sd={g: round(float(v.std(ddof=1)), 3) for g, v in zip(groups, vals)},
+        tests=[dict(group=r.group, t=float(r.t), df=int(r.df),
+                    p_bonf=float(r.p_bonf3), g=float(r.hedges_g))
+               for _, r in sub.iterrows()])
+    group_panel(ax, groups, vals, ylabel,
+                [(r.group, float(r.p_bonf3)) for _, r in sub.iterrows()],
+                seed=seed, levels=levels)""",
+ """def welch(x, y, k=3):
+    \"\"\"Two-sided Welch t test, Bonferroni over the k contrasts of the measure.
+    Hedges' g keeps the pooled-SD definition -- an effect size, not a test.\"\"\"
+    r = stats.ttest_ind(x, y, equal_var=False)
+    n1, n2 = len(x), len(y)
+    sp = np.sqrt(((n1 - 1) * x.var(ddof=1) + (n2 - 1) * y.var(ddof=1))
+                 / (n1 + n2 - 2))
+    g = (x.mean() - y.mean()) / sp * (1 - 3 / (4 * (n1 + n2) - 9))
+    return dict(t=float(r.statistic), df=float(r.df),
+                p_bonf=float(min(r.pvalue * k, 1.0)), g=float(g))
+
+
+def np_panel(ax, letter, measure, groups, ylabel, seed=0, levels=None):
+    vals = [SUBJ.loc[SUBJ.panel_group == g, measure].values for g in groups]
+    # the table says which contrasts this panel draws; the test is recomputed
+    tg = [r.group for _, r in TEST[TEST.panel == letter].iterrows()]
+    hc = SUBJ.loc[SUBJ.panel_group == "HC", measure].values
+    tests = [dict(group=g, **welch(hc, SUBJ.loc[SUBJ.panel_group == g,
+                                                measure].values)) for g in tg]
+    S[letter] = dict(
+        measure=measure,
+        n={g: int(len(v)) for g, v in zip(groups, vals)},
+        mean={g: round(float(v.mean()), 3) for g, v in zip(groups, vals)},
+        sd={g: round(float(v.std(ddof=1)), 3) for g, v in zip(groups, vals)},
+        tests=tests)
+    group_panel(ax, groups, vals, ylabel,
+                [(t["group"], t["p_bonf"]) for t in tests],
+                seed=seed, levels=levels)"""),
+('''             f"n.s., not significant. In a-d the test is a two-sided "
+             f"independent-samples Student t test (equal variance) and every "
+             f"P below is Bonferroni-corrected over the three contrasts within "''',
+ '''             f"n.s., not significant. Every panel uses the two-sided Welch "
+             f"unequal-variance t test, and every P below is Bonferroni-"
+             f"corrected over the three contrasts within "'''),
+('''             f"measures). "),''',
+ '''             f"measures). For the negative profile and the NP factor the "
+             f"pooled Welch contrast reproduces Fig. 2c,e exactly (t = 3.85, "
+             f"df = 425.0 and t = 3.40, df = 424.5; uncorrected there, as a "
+             f"single pre-specified comparison). "),'''),
+('''              f"{pf(ve[1]['p_bonf'])}, g = {ve[1]['g']:.2f}), mean +/- s.d. "
+              f"This panel uses Welch's unequal-variance t test, and a-d do "
+              f"not, because the summed band score is a right-skewed count "''',
+ '''              f"{pf(ve[1]['p_bonf'])}, g = {ve[1]['g']:.2f}), mean +/- s.d. "
+              f"Welch's test is required here in particular: the summed band "
+              f"score is a right-skewed count "'''),
+('''              f"P < 1e-7), whereas the variance ratio is 1.1-1.3 in a-d. "''',
+ '''              f"P < 1e-7), while in a-d the ratio is 1.1-1.3, where Welch "
+              f"and Student t differ by 0.01-0.32. "'''),
+("""                f"(t = {r['t']:.2f}, df = {r['df']:.0f}, {pf(r['p_bonf'])}, \"""",
+ """                f"(t = {r['t']:.2f}, df = {r['df']:.1f}, {pf(r['p_bonf'])}, \""""),
+]
+for old,new in E:
+    assert s.count(old)==1, old[:45]
+    s=s.replace(old,new)
+open(p,"w").write(s)
+PY
+python3 figS_stratify_A4.py 2>&1|tail -2 && python3 figS_stratify_A4.py --no-caption 2>&1|head -1 && python3 -c "
+import pandas as pd,ast
+d=dict(pd.read_csv('figS_stratify_A4_caption_values.csv').values)
+for k in 'abcde':
+    v=ast.literal_eval(d[k]); print(k, [(t['group'],round(t['t'],3),round(t['df'],1),float('%.3g'%t['p_bonf']),round(t['g'],3)) for t in v['tests']])"

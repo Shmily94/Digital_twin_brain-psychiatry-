@@ -1,0 +1,282 @@
+"""Supplementary figure: Oldham's test in the model and in the drug data, all
+five scatter plots on ONE A4 page.
+
+The panels are the five scatter panels of oldham_supp.py, in the order the
+author asked for, rebuilt under the frozen rules of figA4_kit (8 / 9 / 10 / 11
+pt type, no declarative titles, Oldham's r in the heading band and every other
+statistic in the caption, both variants):
+
+  a  DTB model, baseline -> AMPA            (was figS_oldham_e)
+  b  DTB model, baseline -> GABA-A          (was figS_oldham_a)
+  c  Healthy cohort, placebo -> ketamine    (was figS_oldham_c)
+  d  Healthy cohort, placebo -> midazolam   (was figS_oldham_b)
+  e  Clinical cohort, placebo -> ketamine   (was figS_oldham_d)
+
+Oldham's test regresses the change (post - pre) on the AVERAGE of the two
+measurements rather than on the baseline, which removes the mathematical
+coupling of the naive baseline-versus-change correlation.
+
+    python figS_oldham_A4.py [--no-caption]
+"""
+import os, sys
+import numpy as np
+import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+
+FIGDIR = "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures"
+HERE = os.path.join(FIGDIR, "supp_oldham")
+sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
+sys.path.insert(0, FIGDIR)
+from np_dtb_style import apply_np_style, panel, C, LW, enforce
+from fig_export import collect_text_records
+from supp_kit import fill, pt_edge
+import figA4_kit as K
+from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT
+
+DPI = 400
+WITH_CAP = "--no-caption" not in sys.argv
+STEM = "figS_oldham_A4" if WITH_CAP else "figS_oldham_A4_nocaption"
+SUPP_NO = "S12"
+apply_np_style()
+K.apply_page_style()
+
+T = pd.read_csv(os.path.join(HERE, "data", "oldham_tests.csv")).set_index("series")
+SUBJ = pd.read_csv(os.path.join(HERE, "data", "oldham_subject_level.csv"))
+
+# letter, series, colour, sub-heading, x label, y label
+SPEC = [
+    ("a", "model_ampa", "ampa", "Simulation",
+     "Mean of baseline\nand AMPA state", "AMPA state \u2212 baseline"),
+    ("b", "model_gaba", "gaba", "Simulation",
+     "Mean of baseline\nand GABA-A state", "GABA-A state \u2212 baseline"),
+    ("c", "healthy_ket", "ketamine", "Healthy",
+     "Mean of placebo\nand ketamine", "Ketamine \u2212 placebo"),
+    ("d", "healthy_mid", "midazolam", "Healthy",
+     "Mean of placebo\nand midazolam", "Midazolam \u2212 placebo"),
+    ("e", "clinical_ket", "ketamine", "Clinical",
+     "Mean of placebo\nand ketamine", "Ketamine \u2212 placebo"),
+]
+S = {}                                  # every caption number -> CSV
+
+
+def scatter(ax, letter, series, ckey, head, xlab, ylab):
+    s = SUBJ[SUBJ.series == series]
+    x, y = s.mean_pre_post.values, s.difference.values
+    r = T.loc[series]
+    col = C(ckey)
+    ax.axhline(0, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
+    ax.scatter(x, y, s=4.5 if len(x) > 100 else 16.0, facecolor=col,
+               edgecolor=pt_edge(col), linewidth=LW * .5, alpha=.9, zorder=3)
+    xs = np.linspace(x.min(), x.max(), 100)
+    fit = sm.OLS(y, sm.add_constant(x)).fit()
+    pr = fit.get_prediction(sm.add_constant(xs)).summary_frame(alpha=.05)
+    ax.fill_between(xs, pr.mean_ci_lower, pr.mean_ci_upper, color=fill(col),
+                    alpha=.55, lw=0, zorder=2)
+    ax.plot(xs, pr["mean"], color=col, lw=LW * 1.6, zorder=4)
+    ax.set_xlabel(xlab, fontsize=LABEL_PT)
+    ax.set_ylabel(ylab, fontsize=LABEL_PT)
+    ax.tick_params(axis="both", labelsize=TICK_PT)
+    lo, hi = y.min(), y.max()
+    ax.set_ylim(lo - .08 * (hi - lo), hi + .30 * (hi - lo))
+    ax.text(.02, .985, head, transform=ax.transAxes, ha="left", va="top",
+            fontsize=ANNOT_PT)
+    ax.text(.98, .985, f"$r$ = {r.oldham_r:.2f}".replace("-", "\u2212"),
+            transform=ax.transAxes, ha="right", va="top", fontsize=ANNOT_PT)
+    S[letter] = dict(series=series, n=int(r.n), r=float(r.oldham_r),
+                     ci=(float(r.oldham_ci95_lo), float(r.oldham_ci95_hi)),
+                     t=float(r.oldham_t), df=int(r.df), p=float(r.oldham_p),
+                     vr=float(r.variance_ratio_post_pre),
+                     pre_sd=float(r.pre_sd), post_sd=float(r.post_sd),
+                     naive_r=float(r.naive_baseline_change_r),
+                     naive_p=float(r.naive_p),
+                     slope=float(r.slope_post_on_pre),
+                     slope_ci=(float(r.slope_ci95_lo), float(r.slope_ci95_hi)),
+                     dataset=str(r.dataset), note=str(r.note))
+
+
+PANEL_FN = {sp[0]: (lambda ax, sp=sp: scatter(ax, *sp)) for sp in SPEC}
+
+# --------------------------------------------------------------- page geometry
+GUT = K.LETTER_W + K.LETTER_PADX
+GAPX, GAP = 8.5, K.GAP
+LETTER_BAND, MB = K.LETTER_BAND, K.MB
+LAB_L = 17.0
+XB = 13.0                          # two-line x label
+MAX_H = 44.0
+ROWS = [["a", "b", "c"], ["d", "e"]]
+COLS = [["a", "d"], ["b", "e"], ["c"]]
+NCOL, NROW = 3, len(ROWS)
+COL_W = (PW - ML - MR - (NCOL - 1) * GAPX) / NCOL
+
+
+def col_geom(fig, panels):
+    """One x per COLUMN so the frames line up, with the visible gaps between
+    columns equal to GAPX; the column's widest label block sets its ink line."""
+    rend = fig.canvas.get_renderer()
+    mm = lambda px: px / fig.dpi * 25.4
+    by = {p["ch"]: p for p in panels}
+    L, R = [], []
+    for col in COLS:
+        ll, rr = [], []
+        for ch in col:
+            ax = by[ch]["axes"][0]
+            bb, pos = ax.get_tightbbox(rend), ax.get_position()
+            ll.append(max(pos.x0 * PW - mm(bb.x0), 0.0))
+            rr.append(max(mm(bb.x1) - (pos.x0 + pos.width) * PW, 0.0))
+        L.append(max(ll)); R.append(max(rr))
+    w = (PW - ML - MR - (NCOL - 1) * GAPX - NCOL * GUT - sum(L) - sum(R)) / NCOL
+    geom, x = {}, ML
+    for j, col in enumerate(COLS):
+        for ch in col:
+            geom[ch] = (x, x + GUT + L[j], w)
+        x += GUT + L[j] + w + R[j] + GAPX
+    return geom
+
+
+def build(plot_h, geom=None):
+    f = plt.figure(figsize=panel(PW, PH))
+    out, y = [], MT
+    for row in ROWS:
+        top = y + LETTER_BAND
+        for j, ch in enumerate(row):
+            slot, ax_x, ax_w = (geom[ch] if geom else
+                                (ML + j * (COL_W + GAPX),
+                                 ML + j * (COL_W + GAPX) + LAB_L,
+                                 COL_W - LAB_L))
+            ax = K.axes_mm(f, ax_x, top, ax_w, plot_h)
+            PANEL_FN[ch](ax)
+            out.append(dict(ch=ch, x=slot, axes=[ax],
+                            txt=K.letter(f, slot, top - 1.2, ch)))
+        y = top + plot_h + XB + GAP
+    enforce(f)
+    return f, out, y - GAP
+
+
+# ------------------------------------------------------------------- caption
+CAP_TITLE = (f"Supplementary Fig. {SUPP_NO} | Oldham's test for baseline "
+             "dependence, in the model and in both drug datasets.")
+
+
+def pf(p):
+    return (f"P = {p:.3g}" if p >= 1e-3 else
+            f"P = {p:.2g}" if p >= 1e-4 else f"P = {p:.1e}")
+
+
+def line(letter, what):
+    d = S[letter]
+    return (f", {what}. Oldham r = {d['r']:+.3f} (95% CI {d['ci'][0]:+.3f} to "
+            f"{d['ci'][1]:+.3f}), t = {d['t']:.2f}, df = {d['df']}, "
+            f"{pf(d['p'])}, n = {d['n']}; s.d. {d['pre_sd']:.3f} before and "
+            f"{d['post_sd']:.3f} after, variance ratio {d['vr']:.2f}. The "
+            f"naive baseline-versus-change correlation for the same data is "
+            f"{d['naive_r']:+.3f} ({pf(d['naive_p'])}) and the slope of the "
+            f"perturbed value on the baseline is {d['slope']:.3f} "
+            f"({d['slope_ci'][0]:.3f} to {d['slope_ci'][1]:.3f}). ")
+
+
+def caption_runs():
+    cap = [
+        ("", "Each panel plots the change against the AVERAGE of the two "
+             "measurements rather than against the baseline (Oldham's method), "
+             "which removes the mathematical coupling that makes a plain "
+             "baseline-versus-change correlation negative even when nothing "
+             "depends on the baseline; the method is shift-invariant, so it is "
+             "unaffected by the per-condition mean-centring of the "
+             "pharmacology scores. Points are individual subjects or twins, "
+             "the line is the ordinary-least-squares fit with its 95% "
+             "confidence band, the dashed line marks no change, and the "
+             "coefficient in the heading band is Oldham's r itself; its "
+             "confidence interval, t, P and n are given below. Colour pairs "
+             "each drug with its model counterpart: ketamine with the AMPA "
+             "perturbation (a, c, e) and midazolam with GABA-A (b, d). What "
+             "the test "
+             "answers: because cov(mean, difference) = [var(post) - "
+             "var(pre)] / 2 exactly, the sign of Oldham's r is determined by "
+             "the variance ratio and the test is algebraically the paired "
+             "variance-equality (Pitman-Morgan) test. It therefore asks "
+             "whether the perturbation compressed or expanded between-subject "
+             "spread, NOT whether subjects with a high baseline changed more. "
+             "All correlations are two-sided Pearson and uncorrected. "),
+        ("a", line("a", "the digital twins of the Fig. 4 cohort, simulated "
+                        "baseline to the AMPA-perturbed state. This is the "
+                        "one contrast in which spread CONTRACTS, so Oldham's "
+                        "r is negative")),
+        ("b", line("b", "the same twins, baseline to the GABA-A state "
+                        "(oldham_tests.csv contrast \"baseline -> GABA-A\"), "
+                        "where spread expands and the sign reverses")),
+        ("c", line("c", "the healthy cohort, placebo to ketamine, raw summed "
+                        "FC over the six NP-related MID edges")),
+        ("d", line("d", "the healthy cohort, placebo to midazolam, same "
+                        "measure")),
+        ("e", line("e", "the clinical cohort, placebo session to the ketamine "
+                        "session, all 36 participants (MDD 22 and HC 14)")),
+        ("", f"In none of the three drug contrasts does Oldham's r differ from "
+             f"zero ({pf(S['c']['p'])}, {pf(S['d']['p'])} and "
+             f"{pf(S['e']['p'])}), while the naive baseline-versus-change "
+             f"correlation is large and negative in all of them "
+             f"({S['c']['naive_r']:+.2f}, {S['d']['naive_r']:+.2f} and "
+             f"{S['e']['naive_r']:+.2f}): the apparent baseline dependence in "
+             f"the drug data is what the coupling alone produces. The "
+             f"motion-residualised versions of c and d and the MDD-only "
+             f"subgroup of e are tabulated in oldham_tests.csv and lead to "
+             f"the same conclusion. "),
+    ]
+    runs = [(CAP_TITLE + " ", True)]
+    for lab, seg in cap:
+        if lab:
+            runs.append((lab + ",", True))
+            seg = seg[1:] if seg.startswith(",") else seg
+        runs.append((seg, False))
+    return runs
+
+
+# pass 1 -- caption height at a provisional height
+_f0, _p0, _ = build(30.0)
+_runs0 = caption_runs()
+_l0 = (K._wrap(_f0, _runs0, PW - ML - MR, CAP_PT,
+               _f0.canvas.get_renderer())[0] if WITH_CAP else [])
+plt.close(_f0)
+
+CAP_H = (K.CAP_GAP + len(_l0) * K.CAP_LH + 1.0) if WITH_CAP else 0.0
+FIXED = MT + NROW * (LETTER_BAND + XB) + (NROW - 1) * GAP
+PLOT_H = min((PH - MB - CAP_H - FIXED) / NROW, MAX_H)
+
+# pass 2 -- solve the column geometry at the fitted height
+_f1, _p1, _ = build(PLOT_H)
+_geom = col_geom(_f1, _p1)
+plt.close(_f1)
+for _ in range(3):                      # tick labels move when the width does
+    _f2, _p2, _ = build(PLOT_H, geom=_geom)
+    _geom = col_geom(_f2, _p2)
+    plt.close(_f2)
+fig, PANELS, BOTTOM = build(PLOT_H, geom=_geom)
+K.align_left_ink(fig, PANELS, COLS)
+K.place_letters(fig, PANELS, rows=ROWS)
+
+runs = caption_runs()
+if WITH_CAP:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
+        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
+else:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
+
+assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
+print(f"[{STEM}] axes height {PLOT_H:.1f} mm; panels end at {BOTTOM:.1f} mm; "
+      f"caption {n_lines} lines -> {CAP_BOTTOM:.1f} mm of {PH:.0f} mm")
+
+# ----------------------------------------------------------------------- export
+png, pdf, ppt = (os.path.join(HERE, STEM + ext) for ext in (".png", ".pdf", ".pptx"))
+fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
+fig.savefig(pdf, bbox_inches=None, facecolor="white")
+K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
+              collect_text_records=collect_text_records)
+bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
+       if t.get_text().strip() and t.get_fontname() != "Arial"]
+print("non-Arial text:", bad[:5], "| files:",
+      [os.path.basename(p) for p in (png, pdf, ppt)])
+pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
+    os.path.join(HERE, "figS_oldham_A4_caption_values.csv"), index=False)
+plt.close(fig)

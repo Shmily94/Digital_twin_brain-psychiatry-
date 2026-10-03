@@ -1,0 +1,34 @@
+column,description,unit
+id,subject numeric ID,—
+sub_id,subject string ID,—
+group,High-symptom / HC (from compare_..all2),—
+sex,sex,—
+age_baseline,age at baseline,years
+site,recruitment site (quote-cleaned),—
+headmotion,mean framewise displacement,mm
+cond,baseline = simulated baseline; ampa = AMPA-modulated; gaba = GABA-A-modulated (stacked on AMPA-adjusted model),—
+rep,repetition index within subject x condition x task (1..n),—
+mid_rep_label,raw repetition tag from mid_subject cell,—
+sst_rep_label,raw repetition tag from sst_subject cell,—
+mid_file,source .mat for the MID block,—
+sst_file,source .mat for the SST block,—
+edge1,"SST stop-success edge 1, node pair (86,28) of the 217-region parcellation",Fisher-z FC
+edge2,"SST stop-success edge 2, node pair (128,58) of the 217-region parcellation",Fisher-z FC
+edge3,"SST stop-success edge 3, node pair (124,86) of the 217-region parcellation",Fisher-z FC
+edge4,"SST stop-failure edge 4, node pair (126,64)",Fisher-z FC
+edge5,"SST stop-failure edge 5, node pair (157,121)",Fisher-z FC
+edge6,"SST stop-failure edge 6, node pair (200,170)",Fisher-z FC
+edge7,"MID feedback-hit edge 7, node pair (126,5)",Fisher-z FC
+edge8,"MID feedback-hit edge 8, node pair (16,15)",Fisher-z FC
+edge9,"MID feedback-hit edge 9, node pair (207,15)",Fisher-z FC
+edge10,"MID feedback-hit edge 10, node pair (66,41)",Fisher-z FC
+edge11,"MID feedback-hit edge 11, node pair (213,94)",Fisher-z FC
+edge12,"MID anticipation-hit edge 12, node pair (207,15)",Fisher-z FC
+sst_sum,sum of edges 1-6 (SST block),Fisher-z FC
+mid_sum,sum of edges 7-12 (MID block),Fisher-z FC
+np_sum,sum of all 12 edges = sst_sum + mid_sum,Fisher-z FC
+n_edges_present,count of non-missing edges in the row (12 = complete),—
+{cond}__{q}__rep{r},wide layout: quantity q for condition cond at repetition r,Fisher-z FC
+{cond}__{q}_mean,across-repetition mean = the value used in the manuscript single-value tables (verified max|d| = 0),Fisher-z FC
+{cond}__{q}_std,across-repetition SD (simulation noise),Fisher-z FC
+{cond}__{q}_count,number of repetitions contributing,—

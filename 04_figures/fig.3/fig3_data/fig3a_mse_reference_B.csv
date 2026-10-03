@@ -1,0 +1,10 @@
+simulation scale,data resolution,assimilation scale,n,empirical reference,NP-edge MSE,median
+3m,268-nodes,3m-268,12,B: 268-parcel FC from the voxels the DTB simulates,0.0649 ± 0.0241,0.0583
+10m,268-nodes,3m-268,12,B: 268-parcel FC from the voxels the DTB simulates,0.0718 ± 0.0334,0.0571
+10m,1000-parcellation,10m-1000,12,B: 268-parcel FC from the voxels the DTB simulates,0.0975 ± 0.0772,0.0883
+10m,voxel-wise,10m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.0958 ± 0.0443,0.0837
+10m,voxel-wise,100m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.0498 ± 0.0302,0.0429
+100m,voxel-wise,100m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.0589 ± 0.0311,0.0576
+1b_voxel,voxel-wise,100m-voxel,12,B: 268-parcel FC from the voxels the DTB simulates,0.0655 ± 0.0365,0.0653
+SAR,-,-,12,native Shen-268 regional FC,0.0698 ± 0.0315,0.0639
+rWW,-,-,12,native Shen-268 regional FC,0.1010 ± 0.0321,0.0964

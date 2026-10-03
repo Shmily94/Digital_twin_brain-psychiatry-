@@ -1,0 +1,23 @@
+index,outcome,model,n,r,P,spearman_r,spearman_P,df
+PUBLISHED ampa,raw change (23-19),unadjusted,85,0.263519,0.014818,0.296197,0.005916,
+PUBLISHED ampa,residualised change,unadjusted,85,0.219605,0.043445,0.247397,0.022447,
+PUBLISHED gaba,raw change (23-19),unadjusted,85,0.234293,0.03091,0.287308,0.007674,
+PUBLISHED gaba,residualised change,unadjusted,85,0.1579,0.148942,0.206171,0.058351,
+PUBLISHED ampa,raw change,+ baseline symptoms,85,0.222337,0.042079,,,82.0
+PUBLISHED ampa,raw change,+ empirical NP sum,85,0.243122,0.025853,,,82.0
+PUBLISHED ampa,raw change,+ group,85,0.238737,0.028742,,,82.0
+PUBLISHED ampa,raw change,+ sex+age+headmotion,85,0.254744,0.020909,,,80.0
+PUBLISHED ampa,raw change,+ sex+age+hd+site,85,0.232387,0.044826,,,73.0
+PUBLISHED ampa,raw change,+ baseline+empNP+group+sex+age+hd,85,0.182574,0.107299,,,77.0
+PUBLISHED gaba,raw change,+ baseline symptoms,85,0.162079,0.140757,,,82.0
+PUBLISHED gaba,raw change,+ empirical NP sum,85,0.224079,0.040455,,,82.0
+PUBLISHED gaba,raw change,+ group,85,0.182191,0.097176,,,82.0
+PUBLISHED gaba,raw change,+ sex+age+headmotion,85,0.236481,0.032436,,,80.0
+PUBLISHED gaba,raw change,+ sex+age+hd+site,85,0.255471,0.026958,,,73.0
+PUBLISHED gaba,raw change,+ baseline+empNP+group+sex+age+hd,85,0.146394,0.19796,,,77.0
+PUBLISHED ampa,raw change,within High-symptom,72,0.225056,0.05734,,,
+PUBLISHED ampa,raw change,within HC,13,0.42059,0.152413,,,
+PUBLISHED gaba,raw change,within High-symptom,72,0.182566,0.124798,,,
+PUBLISHED gaba,raw change,within HC,13,0.211889,0.487085,,,
+LOO-refit ampa,raw change,leave-one-out weights,85,0.1622,0.1381,,,
+LOO-refit ampa,residualised change,leave-one-out weights,85,0.0861,0.4335,,,

@@ -1,0 +1,1319 @@
+#!/usr/bin/env python3
+"""tableS24_audit_summary.csv
+
+Computes
+    Completeness audit of Supplementary Table S24: number of data rows, number
+    of main-figure rows, rows missing an effect size or a 95% CI, main-text
+    statistics absent from the table, and the number of cells reformatted to
+    the house number rules.
+
+Inputs
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/139d7c51-a6d8-43bb-93ad-7fcfe695c9bd/v14ee7f62_290926NatMed_Manuscript.docx
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/14e6f0b7-ee8b-47be-b546-5b12e8540cfc/vfdcde268_280926NatMed_Response_Letter_R1-R4_Claude.docx
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/2b769225-2f82-481d-9d62-9dbbcd5caa07/vf41d01db_290926Supplementary_Information_legends.docx
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/47d944f2-3b21-415e-891e-30c503ab2801/v13d8a62b_290926NatMed_Methods.docx
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/6968fd84-488d-4ed8-ac18-99a9cba0fab6/v5b379bf7_docxedit.py
+    - /Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/a42c58ac-1e77-4fc4-9b5b-31288ffc2530/vcbd180f3_290926Suppl.Table.xlsx
+    - /Users/yunman/Desktop/submission/revision/text/
+    - /Users/yunman/Desktop/submission/revision/text/280926Supplementary_Information_legends_tracked.docx
+    - /Users/yunman/Desktop/submission/revision/text/290926NatMed_Manuscript_reviewed_tracked.docx
+    - /Users/yunman/Desktop/submission/revision/text/290926Suppl.Table_reviewed.xlsx
+    - /Users/yunman/Desktop/submission/revision/text/figures/fig.3/fig3_data/
+    - /Users/yunman/Desktop/submission/revision/text/figures/fig.4/fig4_data/fig4_mid_pattern_subject_n288.csv
+    - /Users/yunman/Desktop/submission/revision/text/figures/fig.4/fig4_data/fig4_subject_level_n288.csv
+    - /Users/yunman/Desktop/submission/revision/text/figures/fig.5/fig5_data/
+    - (path built in the chain) F3+f
+    - (path built in the chain) F3+'fig3c_similarity_pvalues.csv'
+    - (path built in the chain) F3+'fig3c_cross_scale_similarity.csv'
+    - (path built in the chain) F3+'fig3c_cross_scale_similarity_ampa.csv'
+    - (path built in the chain) f3+f
+    - (path built in the chain) F5+f
+    - (path built in the chain) 'T_in.xlsx'
+    - (path built in the chain) f3+'fig3i_assimilated_bold_r.csv'
+    - (path built in the chain) F5+'fig5_healthy_n27_with_pattern.csv'
+    - (path built in the chain) F5+'fig5_mdd_hc_n36.csv'
+    - (path built in the chain) F5+'fig5i_np12_loo_accuracy.csv'
+
+Output
+    04_figures/_recovered_session_b194cd74/tableS24_audit_summary.csv
+
+Statistical tests
+      - none in this script's own computation: it assembles a source-data /
+        audit table, and the tests that use it are named in the scripts of
+        the tables downstream
+    in the recovered chain that prepares its inputs:
+      - paired two-sided t test
+      - two-sample t test
+      - outcome-permutation null
+      - Fisher z 95% confidence interval
+      - intraclass correlation
+
+Local runnability
+    no (local_runnable = no).  Verification: not_run.
+    re-run stops at a missing upstream input: /Users/yunman/Desktop/submission
+    /revision/text/280926Supplementary_Information_legends_tracked.docx. The
+    recovered chain reads the pre-revision manuscript/supplementary files by
+    their original names; those files were renamed later in the revision, so
+    the derivation is documented but not re-runnable as written
+Recovered from
+    execution-log cell 258bd81e-6258-4c60-8b5c-69c980e89aa1
+    frame b194cd74-5255-435a-9c1e-206638f9adae, cell_index 636, 2026-09-29 11:59 UTC, conda env "python"
+    dependency chain recovered from the same session, in order:
+    2e5aff97, d9658333, 9dbc1f50, c6ea1e8b, 85b127f1, 00dba3c4, 1300c438,
+    f2540348, 5788277d, dffd61a6, 7a930281, afb192d2, 528f121b, 0f4f92b0,
+    b9313cf9, 5074a2e6, 55aeb4d1, 8d9c1884, 3d8af964, 9611395d, 5d7d66f3,
+    29f9f2df, 830faf45, df49a836, 1098206c, dd87155c, 06d62cd8, 8f33a7a1,
+    dda374a2, 23687b1b, ee217b72, 79fcb363, 84764403, 573d21f8, 9b28ba30,
+    045c146e, fb7a69ca, 1a263c25, 9a79a21a, 79138a2b, 1396d5e6, bf04731d,
+    a319e55e, 8704e18b, 32b56fa9, 258bd81e
+
+Random seed
+    fixed in the original run: seed = 0.  Re-running therefore reproduces the
+    permutation / resampling statistics     exactly.  No seed was added or
+    changed during recovery.
+
+Notes
+    Rebuilt by the statistics-layer recovery (docs/RECOVERY_PROTOCOL.md).  The
+    computation is the recovered cell chain unchanged: same tests, same
+    covariates, same corrections, same seeds.  Only the header, the explicit
+    output path and the suppression of the original session's side outputs were
+    added.  Lines marked "[recovery: side output suppressed]" wrote files other
+    than this script's one deliverable into the author's working tree; they are
+    commented out so that running this script cannot modify anything outside
+    OUT_DIR.  The verbatim terminal cell is archived at
+    recovered/fig5/tableS24_audit_summary__cell_258bd81e.py
+"""
+import os
+import sys
+
+OUT_DIR = os.environ.get(
+    "RECOVERY_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "_scratch"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+# ---------------------------------------------------------------- cell 2e5aff97 (cell_index 448)
+# [recovery] this cell raised in the original session at its line 7; only the
+# statements that had already executed are carried over
+import zipfile, re, os, shutil, glob, json, math, collections
+import numpy as np, pandas as pd, openpyxl
+from lxml import etree
+dest='/Users/yunman/Desktop/submission/revision/text/'
+XL=dest+'280926Suppl.Table_v5.xlsx'
+
+# ---------------------------------------------------------------- cell d9658333 (cell_index 450)
+XL=dest+'290926Suppl.Table.xlsx'
+wb=openpyxl.load_workbook(XL); print(wb.sheetnames[-3:], '| S24 dims', wb['Table S24'].dimensions)
+ws=wb['Table S24']
+COLS=[ws.cell(row=2,column=c).value for c in range(1,18)]
+rows=[[('' if c is None else str(c).strip()) for c in r[:17]] for r in ws.iter_rows(min_row=3, values_only=True)]
+T=pd.DataFrame(rows, columns=COLS)
+T=T[T['Figure'].str.strip().astype(bool) | T['Panel'].str.strip().astype(bool)].copy()
+T['Figure']=T['Figure'].replace('', np.nan).ffill()
+T['xlrow']=[i for i in range(3,3+len(T))]
+print('rows:', len(T), '| has S21 chi2 rows:', T['Test statistic'].str.contains('chi2 = 11.234').any(), '| S5 fixed:', T['Sample size'].str.contains('HC01').any())
+g6=T[T['Figure'].str.contains('S6', na=False)]
+for _,r in g6.iterrows():
+    print('\nrow',r['xlrow'],'panel',r['Panel'],'|',r['Quantity tested'][:78])
+    print('   test:',r['Statistical test'][:95]); print('   stat:',r['Test statistic'][:120]); print('   P:',repr(r['Exact P']),'| corrP:',repr(r['Corrected P']),'| notes:',r['Source data file and notes'][:95])
+
+# ---------------------------------------------------------------- cell 9dbc1f50 (cell_index 451)
+F3='/Users/yunman/Desktop/submission/revision/text/figures/fig.3/fig3_data/'
+print(sorted(os.path.basename(p) for p in glob.glob(F3+'fig3c*')))
+for f in ['fig3c_similarity_pvalues.csv','fig3c_cross_scale_similarity.csv','fig3c_cross_scale_similarity_ampa.csv','fig3c_cross_scale_similarity_gaba.csv']:
+    try:
+        d=pd.read_csv(F3+f); print('\n==',f, d.shape, list(d.columns)); print(d.head(12).to_string())
+    except Exception as e: print(f,'ERR',e)
+# also check S5 rows in the current file
+print('\nS5 rows:'); print(T[T['Figure']=='Supplementary Fig. S5'][['xlrow','Panel','Sample size','Unit of observation']].to_string(index=False))
+
+# ---------------------------------------------------------------- cell c6ea1e8b (cell_index 454)
+from scipy import stats
+def pooled_p(rho, n=144):
+    t=rho*math.sqrt((n-2)/max(1e-12,1-rho**2)); return t, 2*stats.t.sf(abs(t), n-2)
+pv=pd.read_csv(F3+'fig3c_similarity_pvalues.csv')
+chkrows=[]
+for _,r in pv.iterrows():
+    t,p=pooled_p(r.rho_pooled, int(r.n_cells_pooled)); chkrows.append((r.pair, r.rho_pooled, r.p_naive_144cells, p, abs(math.log10(p)-math.log10(r.p_naive_144cells))<0.02))
+print('formula validation against p_naive_144cells:')
+for x in chkrows: print('   %-20s rho=%.4f source=%.3g recomputed=%.3g match=%s'%x)
+base=pd.read_csv(F3+'fig3c_cross_scale_similarity.csv', index_col=0)
+ampa=pd.read_csv(F3+'fig3c_cross_scale_similarity_ampa.csv', index_col=0)
+own=[(c, base.loc['10m_own',c]) for c in base.columns if c!='10m_own']
+print('\n10m_own baseline pairs:')
+for c,rho in own: t,p=pooled_p(rho); print('   10m_own vs %-9s rho=%.4f  t(142)=%.2f  P=%.3g'%(c,rho,t,p))
+reg=[('3m_268','10m_268'),('3m_268','10m_1000'),('10m_268','10m_1000')]
+print('\nAMPA regional-build pairs:')
+for a,b in reg: 
+    rho=ampa.loc[a,b]; t,p=pooled_p(rho); print('   %s vs %-9s rho=%.4f  t(142)=%.2f  P=%.3g'%(a,b,rho,t,p))
+
+# ---------------------------------------------------------------- cell 85b127f1 (cell_index 489)
+# [recovery] this cell raised in the original session at its line 4; only the
+# statements that had already executed are carried over
+import shutil, os
+shutil.copy('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/6968fd84-488d-4ed8-ac18-99a9cba0fab6/v5b379bf7_docxedit.py','docxedit.py')
+
+# ---------------------------------------------------------------- cell 00dba3c4 (cell_index 490)
+# [recovery] this cell raised in the original session at its line 6; only the
+# statements that had already executed are carried over
+import sys; sys.path.append(os.getcwd())
+import docxedit
+doc=docxedit.TrackedDoc(SI if 'SI' in dir() else '/Users/yunman/Desktop/submission/revision/text/280926Supplementary_Information_legends_tracked.docx', author='Claude')
+SI='/Users/yunman/Desktop/submission/revision/text/280926Supplementary_Information_legends_tracked.docx'
+
+# ---------------------------------------------------------------- cell 1300c438 (cell_index 498)
+import zipfile, collections
+from lxml import etree
+W='{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
+RL='/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/14e6f0b7-ee8b-47be-b546-5b12e8540cfc/vfdcde268_280926NatMed_Response_Letter_R1-R4_Claude.docx'
+z=zipfile.ZipFile(RL); print([n for n in z.namelist() if n.startswith('word/') and n.endswith('.xml')][:15])
+root=etree.fromstring(z.read('word/document.xml'))
+c=collections.Counter()
+for tag in ('ins','del','pPrChange','rPrChange','moveFrom','moveTo'):
+    for e in root.iter(W+tag): c[(tag,e.get(W+'author'))]+=1
+print('revisions:', dict(c))
+print('comments part:', 'word/comments.xml' in z.namelist())
+paras=root.findall('.//'+W+'body//'+W+'p')
+print('paras', len(paras))
+
+# ---------------------------------------------------------------- cell f2540348 (cell_index 499)
+def ptext(p, mode='accept'):
+    out=[]
+    for node in p.iter():
+        if node.tag==W+'t':
+            anc={a.tag for a in node.iterancestors()}
+            if mode=='accept' and W+'del' in anc: continue
+            if mode=='reject' and W+'ins' in anc: continue
+            out.append(node.text or '')
+        elif node.tag==W+'delText' and mode=='reject':
+            out.append(node.text or '')
+        elif node.tag==W+'tab': out.append('\t')
+    return ''.join(out)
+acc=[ptext(p) for p in paras]
+open('rl_accepted.txt','w').write('\n'.join('%d\t%s'%(i,t) for i,t in enumerate(acc)))
+# comments
+cr=etree.fromstring(z.read('word/comments.xml'))
+cm={}
+for cel in cr.iter(W+'comment'):
+    cid=cel.get(W+'id'); cm[cid]=(cel.get(W+'author'), ''.join(t.text or '' for t in cel.iter(W+'t')).strip())
+# anchor paragraph for each comment
+anch={}
+for i,p in enumerate(paras):
+    for e in p.iter():
+        if e.tag in (W+'commentRangeStart', W+'commentReference'):
+            cid=e.get(W+'id')
+            anch.setdefault(cid, i)
+print('COMMENTS (%d):'%len(cm))
+for cid,(au,tx) in sorted(cm.items(), key=lambda kv:int(kv[0])):
+    print('\n--- id%s [%s] para %s'%(cid,au,anch.get(cid)))
+    print(tx[:1200])
+
+# ---------------------------------------------------------------- cell 5788277d (cell_index 502)
+FILES={'MS':'14ee7f62-5e94-47c9-838c-3f3f82db848a','MET':'13d8a62b-c4cf-46f5-a102-3538544fe331','SI':'f41d01db-37b1-4977-a6cc-5e5eaa4ad3c4'}
+TXT={}
+for k,v in FILES.items():
+    None; None  # [recovery: unresolvable interactive debris removed]  # [recovery: unresolvable interactive debris removed]
+    ps=rr.findall('.//'+W+'body//'+W+'p')
+    TXT[k]=[ptext(p) for p in ps]
+    pass  # [recovery: side output suppressed] open('cur_%s.txt'%k,'w').write('\n'.join('%d\t%s'%(i,t) for i,t in enumerate(TXT[k])))
+    print(k, len(ps), 'paras,', sum(len(t) for t in TXT[k]), 'chars')
+xl=openpyxl.load_workbook('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/a42c58ac-1e77-4fc4-9b5b-31288ffc2530/vcbd180f3_290926Suppl.Table.xlsx')
+print('table sheets:', len(xl.sheetnames))
+w24=xl['Table S24']; S24=[[('' if c is None else str(c).strip()) for c in r[:17]] for r in w24.iter_rows(min_row=1, values_only=True)]
+print('S24 rows:', sum(1 for r in S24 if r[0] or r[1]))
+KEYS=['0.09','Bonferroni','Benjamini','0.0072','permutation','restoration','ΔR','R2','Δ R']
+for k in ['MS','MET','SI']:
+    print('\n==',k)
+    for kw in ['r = 0.09','Bonferroni','Benjamini','0.0072','0.0095','ΔR']:
+        idx=[i for i,t in enumerate(TXT[k]) if kw in t]
+        print('  %-12s %s'%(kw, idx[:12]))
+
+# ---------------------------------------------------------------- cell dffd61a6 (cell_index 504)
+import re
+RX=re.compile(r'([A-Za-zΔ][A-Za-zΔ²\s\.\-\(\)0-9,]{0,18}?)\s*=\s*(-?\d+(?:\.\d+)?(?:\s*[×x]\s*10[-−–\u2212]?\d+)?)')
+def stats_of(lines):
+    out=collections.defaultdict(set)
+    for i,t in enumerate(lines):
+        for m in RX.finditer(t):
+            lab=re.sub(r'\s+',' ',m.group(1)).strip(' ,.(')
+            if len(lab)<1 or lab.lower() in ('and','or','the','of','to'): continue
+            out[(lab, m.group(2))].add(i)
+    return out
+SL=stats_of(acc)
+FL={k:stats_of(TXT[k]) for k in TXT}
+allf=set()
+for k in FL: allf|=set(FL[k].keys())
+# letter stats absent from all files
+labs_in_files=collections.defaultdict(set)
+for (lab,val) in allf: labs_in_files[lab].add(val)
+miss=[(lab,val,sorted(SL[(lab,val)])) for (lab,val) in SL if (lab,val) not in allf and lab in labs_in_files]
+print('letter stats whose label exists in the current files but with a different value: %d'%len(miss))
+for lab,val,ps in sorted(miss, key=lambda x:x[2]):
+    print('  para%-5s %-14s letter=%-10s files=%s'%(ps[0], lab, val, sorted(labs_in_files[lab])[:8]))
+
+# ---------------------------------------------------------------- cell 7a930281 (cell_index 517)
+f3='/Users/yunman/Desktop/submission/revision/text/figures/fig.3/fig3_data/'
+for f in ['fig3h_subject_edge_counts_1b.csv','fig3h_edge_direction_1b.csv']:
+    d=pd.read_csv(f3+f); print('\n===',f,d.shape,list(d.columns)[:10]); print(d.head(4).to_string(max_colwidth=40))
+    for c in d.columns:
+        if d[c].dtype==object and d[c].nunique()<8: print('  ',c, d[c].unique()[:8])
+
+# ---------------------------------------------------------------- cell afb192d2 (cell_index 527)
+F5='/Users/yunman/Desktop/submission/revision/text/figures/fig.5/fig5_data/'
+for f in ['fig5h_paragraph_scatters_n85.csv','fig5h_np12_loo_n85.csv','fig5h_longitudinal_n85.csv','fig5h_added_variable_n85.csv']:
+    d=pd.read_csv(F5+f); print('\n===',f,d.shape,list(d.columns)); print(d.head(2).to_string(max_colwidth=18))
+
+# ---------------------------------------------------------------- cell 528f121b (cell_index 539)
+# skill:figure-style kernel.py (auto-injected on skill load)
+META_GREY = "#888888"
+
+
+def apply_figure_style(*, frame="open", font=None, sizes=(8, 7, 6), grid=False):
+    """Set matplotlib rcParams for publication-grade output. Call once before plotting.
+
+    This sets mechanics (role-mapped font-size ladder, outward ticks, frameless
+    legends, 300-dpi save, Type-42 embedded fonts) — not a house aesthetic.
+    Frame, font and the size ladder are parameters.
+
+    frame : 'open' (bottom+left spines, default) | 'boxed' (all four) | 'none'
+    font  : sans-serif family name; None = system default sans-serif
+    sizes : (base, secondary, tick) — titles/axis-labels, legend/annotation, ticks
+    grid  : whether to draw axes.grid (default False)
+    """
+    import matplotlib as mpl
+    if frame not in ("open", "boxed", "none"):
+        raise ValueError(f"frame must be 'open'|'boxed'|'none', got {frame!r}")
+
+    try:
+        import os, sys, glob, matplotlib.font_manager as fm
+        fdir = os.path.join(os.environ.get("CONDA_PREFIX") or sys.prefix, "fonts")
+        if os.path.isdir(fdir):
+            known = {f.fname for f in fm.fontManager.ttflist}
+            for f in glob.glob(os.path.join(fdir, "*.ttf")):
+                if f not in known:
+                    fm.fontManager.addfont(f)
+    except Exception:
+        pass
+    base, secondary, tick = sizes
+    boxed = (frame == "boxed")
+    rc = {
+        "font.family": "sans-serif",
+        "font.size": base,
+        "axes.labelsize": base,
+        "axes.titlesize": base,
+        "legend.fontsize": secondary,
+        "xtick.labelsize": tick,
+        "ytick.labelsize": tick,
+        "axes.linewidth": 0.6,
+        "xtick.direction": "out", "ytick.direction": "out",
+        "xtick.major.size": 3, "ytick.major.size": 3,
+        "xtick.major.width": 0.6, "ytick.major.width": 0.6,
+        "axes.spines.top": boxed, "axes.spines.right": boxed,
+        "axes.spines.left": frame != "none", "axes.spines.bottom": frame != "none",
+        "axes.grid": bool(grid),
+        "legend.frameon": False,
+        "figure.dpi": 200,
+        "savefig.dpi": 300,
+        "savefig.bbox": "tight",
+        "axes.titleweight": "normal",
+        "axes.titlelocation": "left",
+        "axes.labelweight": "normal",
+        "lines.linewidth": 1.2,
+        "patch.linewidth": 0.6,
+        "pdf.fonttype": 42, "ps.fonttype": 42,
+    }
+    if font:
+        rc["font.sans-serif"] = [font, "DejaVu Sans"]
+    mpl.rcParams.update(rc)
+
+
+def set_frame(ax, style="open"):
+    """§3: set spine visibility on an existing axes. style ∈ {'open','boxed','none'}."""
+    show = {"open": (False, False, True, True),
+            "boxed": (True, True, True, True),
+            "none": (False, False, False, False)}[style]
+    for side, vis in zip(("top", "right", "bottom", "left"), show):
+        ax.spines[side].set_visible(vis)
+        if vis:
+            ax.spines[side].set_linewidth(0.6)
+    ax.tick_params(direction="out", length=0 if style == "none" else 3, width=0.6)
+
+
+def panel_letter(ax, letter, dx=-0.18, dy=1.02, case="lower", fontsize=None):
+    """§5.7: bold panel letter outside top-left of axes. case ∈ {'lower','upper'}."""
+    import matplotlib.pyplot as plt
+    if fontsize is None:
+        fontsize = plt.rcParams.get("font.size", 8) + 1
+    s = letter.lower() if case == "lower" else letter.upper()
+    ax.text(dx, dy, s, transform=ax.transAxes,
+            fontweight="bold", fontsize=fontsize, va="bottom", ha="left")
+
+
+def focal_palette(labels, focal, focal_color, other="muted", base_colors=None):
+    """§4.2: map labels → colors with the focal series visually dominant.
+
+    other='muted'   — desaturate base_colors (or a default cycle) toward gray
+    other='grey'    — uniform light gray for all non-focal
+    other='ordinal' — non-focal on a single light→dark gray ramp (input order)
+    """
+    import matplotlib.colors as mcolors
+    import matplotlib.pyplot as plt
+    focal_set = {focal} if isinstance(focal, str) else set(focal)
+    n = len(labels)
+    if not focal_set & set(labels):
+        raise ValueError(f"focal {focal!r} not found in labels")
+    if base_colors is None:
+        base_colors = plt.rcParams["axes.prop_cycle"].by_key().get("color", ["#444444"])
+    base_colors = [base_colors[i % len(base_colors)] for i in range(n)]
+    if other == "grey":
+        rest = ["#BCBCBC"] * n
+    elif other == "ordinal":
+        nf = max(1, n - len(focal_set))
+        ramp = [mcolors.to_hex((v, v, v)) for v in
+                ([0.55] if nf == 1 else [0.80 - 0.35 * i / (nf - 1) for i in range(nf)])]
+        rest, k = [], 0
+        for l in labels:
+            rest.append(ramp[min(k, nf - 1)]); k += (l not in focal_set)
+    else:
+        def mute(c):
+            r, g, b = mcolors.to_rgb(c)
+            m = (r + g + b) / 3
+            return mcolors.to_hex((0.3 * r + 0.7 * m, 0.3 * g + 0.7 * m, 0.3 * b + 0.7 * m))
+        rest = [mute(c) for c in base_colors]
+    return [focal_color if l in focal_set else rest[i] for i, l in enumerate(labels)]
+
+
+def bar_with_points(ax, x, ymat, labels, colors, jitter=0.08, show_points=True,
+                    errorbar=None, point_alpha=0.5, point_size=8):
+    """§6.1: bar = mean; optionally overlay raw points or draw an interval.
+
+    colors   : per-label color list (e.g. from focal_palette)
+    errorbar : None | 'sd' | 'ci95' — drawn only when show_points is False.
+               'ci95' is the t-distribution 95% CI of the mean
+               (half-width t_{0.975,n-1} · s/√n); correct at small n where the
+               z-approximation (1.96·s/√n) is markedly too narrow.
+    """
+    import numpy as np
+    means = np.array([np.mean(y) for y in ymat], float)
+    err = None
+    if errorbar and not show_points:
+        if errorbar == "sd":
+            err = np.array([np.std(y, ddof=1) if np.asarray(y).size > 1 else 0 for y in ymat])
+        elif errorbar == "ci95":
+            from scipy.stats import t
+            def _hw(y):
+                n = np.asarray(y).size
+                return t.ppf(0.975, n - 1) * np.std(y, ddof=1) / np.sqrt(n) if n > 1 else 0
+            err = np.array([_hw(y) for y in ymat])
+    ax.bar(x, means, color=colors, width=0.7, edgecolor="none",
+           yerr=err, error_kw={"elinewidth": 0.8, "capsize": 0})
+    if show_points:
+        for xi, ys in zip(x, ymat):
+            ys = np.asarray(ys)
+            if ys.ndim and ys.size > 1:
+                jit = (np.random.rand(ys.size) - 0.5) * 2 * jitter
+                ax.scatter(np.full(ys.size, xi) + jit, ys, s=point_size, color="black",
+                           alpha=point_alpha, zorder=3, linewidths=0)
+    ax.set_xticks(x); ax.set_xticklabels(labels)
+    return ax
+
+
+def strip_with_median(ax, groups, values, colors=None, jitter=0.12):
+    """§6.1: jittered points + bold horizontal median tick per group."""
+    import numpy as np
+    labs = list(groups)
+    if colors is None:
+        colors = ["#444444"] * len(labs)
+    for i, (ys, c) in enumerate(zip(values, colors)):
+        ys = np.asarray(ys)
+        jit = (np.random.rand(ys.size) - 0.5) * 2 * jitter
+        ax.scatter(np.full(ys.size, i) + jit, ys, s=10, color=c, alpha=0.6, linewidths=0, zorder=2)
+        m = np.median(ys)
+        ax.plot([i - 0.22, i + 0.22], [m, m], color="black", lw=1.6, zorder=3)
+    ax.set_xticks(range(len(labs))); ax.set_xticklabels(labs)
+    return ax
+
+
+def goodness_arrow(ax, text="higher = better", loc="upper left", axis="y", fontsize=None):
+    """§3.6: small upright direction-of-goodness cue in the margin."""
+    import matplotlib.pyplot as plt
+    if fontsize is None:
+        fontsize = plt.rcParams["legend.fontsize"]
+    pos = {"upper left": (0.02, 0.98), "upper right": (0.98, 0.98),
+           "lower left": (0.02, 0.02), "lower right": (0.98, 0.02)}[loc]
+    ha = "left" if "left" in loc else "right"
+    va = "top" if "upper" in loc else "bottom"
+    arrow = "↑ " if axis == "y" else "→ "
+    ax.text(pos[0], pos[1], arrow + text, transform=ax.transAxes,
+            fontsize=fontsize, color=META_GREY, ha=ha, va=va)
+
+
+def two_tier_label(name, meta):
+    """§5: two-line label string (name / metadata). Meta line styled separately by caller."""
+    return f"{name}\n{meta}"
+
+
+def end_of_line_labels(ax, xs, ys, labels, colors=None, dx=0.01, fontsize=None):
+    """§6.3 / §7.3: label each line series at its right end instead of a legend box."""
+    import matplotlib.pyplot as plt
+    if fontsize is None:
+        fontsize = plt.rcParams["font.size"]
+    if colors is None:
+        colors = [None] * len(labels)
+    span = ax.get_xlim()[1] - ax.get_xlim()[0]
+    for x, y, lab, c in zip(xs, ys, labels, colors):
+        ax.text(x[-1] + dx * span, y[-1], lab, color=c, va="center", ha="left", fontsize=fontsize)
+
+
+def panel_crops(fig, dpi=None, pad_px=6, bbox_inches=None, pad_inches=None):
+    """§9.2: pixel-space crop boxes for each lettered panel in the SAVED PNG.
+
+    Returns ``{letter: (x0, y0, x1, y1)}`` in image-space pixels (origin
+    top-left, matching ``host.view_image(path, crop=...)`` and PIL's
+    ``Image.crop``). Panels are detected as bold single-character ``Text``
+    objects placed by :func:`panel_letter`; each panel's crop is its axes'
+    tightbbox mapped into the saved file's pixel space, padded by ``pad_px``.
+    For §3.4 composites (abutting subplots sharing an axis, letter on the
+    leftmost only) the crop unions in letterless ``sharex``/``sharey`` siblings
+    on the same grid row/col so the whole composite is covered. When no axes
+    carries a panel letter (standalone plot, or a figure-composer sub-agent),
+    falls back to one crop per axes keyed by index.
+
+    ``bbox_inches`` mirrors ``Figure.savefig`` semantics: ``None`` means
+    *consult rcParams* (so under :func:`apply_figure_style` it resolves to
+    ``'tight'``); pass an explicit ``Bbox`` only if you saved with one. The
+    boxes are clamped to the saved image extent regardless.
+
+        >>> fig.savefig("fig.png")            # bbox_inches='tight' via rcParams
+        >>> for letter, box in panel_crops(fig).items():
+        ...     host.view_image("fig.png", crop=box)
+    """
+    import matplotlib as mpl
+    import matplotlib.text
+    if dpi is None:
+        dpi = mpl.rcParams.get("savefig.dpi", fig.dpi)
+        if dpi == "figure":
+            dpi = fig.dpi
+    dpi = float(dpi)
+    if bbox_inches is None:
+        bbox_inches = mpl.rcParams.get("savefig.bbox")
+    fig.canvas.draw()
+    r = fig.canvas.get_renderer()
+
+    if bbox_inches == "tight":
+        if pad_inches is None:
+            pad_inches = mpl.rcParams.get("savefig.pad_inches", 0.1)
+        tb = fig.get_tightbbox(r).padded(pad_inches)
+        ox_in, oy_in = tb.x0, tb.y0
+        W_in, H_in = tb.width, tb.height
+    elif isinstance(bbox_inches, mpl.transforms.BboxBase):
+        ox_in, oy_in = bbox_inches.x0, bbox_inches.y0
+        W_in, H_in = bbox_inches.width, bbox_inches.height
+    else:
+        ox_in, oy_in = 0.0, 0.0
+        W_in, H_in = fig.get_size_inches()
+    W_px, H_px = int(round(W_in * dpi)), int(round(H_in * dpi))
+    lettered = {}
+    for ax in fig.axes:
+        for t in ax.findobj(matplotlib.text.Text):
+            s = (t.get_text() or "").strip()
+            if len(s) == 1 and s.isalpha() and t.get_fontweight() in ("bold", 700):
+                lettered[ax] = s
+                break
+
+
+
+    if not lettered:
+        lettered = {ax: str(i) for i, ax in enumerate(fig.axes)}
+    out = {}
+    for ax, letter in lettered.items():
+        bbs = [ax.get_tightbbox(r)]
+
+
+
+
+        ss = ax.get_subplotspec()
+        for sib in fig.axes:
+            if sib is ax or sib in lettered:
+                continue
+            ssib = sib.get_subplotspec()
+            same_row = ss is None or ssib is None or ss.rowspan == ssib.rowspan
+            same_col = ss is None or ssib is None or ss.colspan == ssib.colspan
+            if ((ax.get_shared_y_axes().joined(ax, sib) and same_row)
+                    or (ax.get_shared_x_axes().joined(ax, sib) and same_col)):
+                bbs.append(sib.get_tightbbox(r))
+        bb = mpl.transforms.Bbox.union(bbs)
+
+        bx0 = (bb.x0 / fig.dpi - ox_in) * dpi
+        bx1 = (bb.x1 / fig.dpi - ox_in) * dpi
+        by0 = H_px - (bb.y1 / fig.dpi - oy_in) * dpi
+        by1 = H_px - (bb.y0 / fig.dpi - oy_in) * dpi
+        out[letter] = (
+            max(int(bx0) - pad_px, 0),
+            max(int(by0) - pad_px, 0),
+            min(int(bx1) + pad_px, W_px),
+            min(int(by1) + pad_px, H_px),
+        )
+    return out
+
+# ---------------------------------------------------------------- cell 0f4f92b0 (cell_index 557)
+SIP='/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/2b769225-2f82-481d-9d62-9dbbcd5caa07/vf41d01db_290926Supplementary_Information_legends.docx'; shutil.copy(SIP,'SI_in.docx')
+si=docxedit.TrackedDoc('SI_in.docx', author='Claude Science')
+INCL=("Comparison of included and excluded participants. Of the 414 STRATIFY participants with symptom data available, 198 entered "
+ "the population-scale sample. Patients were preferentially modelled, because digital twins were built only where diffusion and "
+ "task data were both complete and patient scans were prioritised (129 of 199 patients versus 69 of 215 controls; "
+ "\u03c7\u00b2(1) = 43.07, P < 0.0001), so the modelled participants had higher six-domain symptom scores overall "
+ "(15.00 \u00b1 11.38 versus 10.75 \u00b1 9.73; two-sided Welch t(389.4) = 4.07, P < 0.0001; Hedges' g = 0.40). Within diagnostic strata, "
+ "included and excluded participants did not differ in symptom severity (controls 6.96 \u00b1 6.26 versus 6.69 \u00b1 6.20, "
+ "t(132.3) = 0.29, P = 0.77, g = 0.04; patients 19.30 \u00b1 11.18 versus 19.21 \u00b1 10.35, t(151.4) = 0.06, P = 0.96, g = 0.01), and the "
+ "ratio of MDD to AUD did not differ between included and excluded patients (\u03c7\u00b2(1) = 1.98, P = 0.16). The 89 IMAGEN participants "
+ "in the population sample were selected by a prespecified symptom threshold and are therefore not comparable with unselected "
+ "IMAGEN participants in this respect.")
+LONGADD=("The measured NP edges are not uninformative when they are summed rather than entered individually. The summed age-19 "
+ "empirical NP factor was associated with symptom change (r = 0.39, P = 0.0002, n = 85), and the simulated and measured "
+ "read-outs are partly complementary: adding the summed measured factor to the 12 simulated edges increased the explained "
+ "variance (\u0394R\u00b2 = 0.07, F(1,71) = 8.15, P = 0.0056; leave-one-out r 0.29 to 0.38, permutation P = 0.0015), and adding the 12 "
+ "simulated edges to the summed measured factor increased it as well (\u0394R\u00b2 = 0.21, F(12,71) = 1.95, P = 0.043). With age-19 "
+ "symptoms and the summed measured factor both included, the 12 simulated edges gave a further \u0394R\u00b2 = 0.17 that did not reach "
+ "significance (F(12,70) = 1.69, P = 0.088). The difference between simulated and measured connectivity therefore concerns the "
+ "12 edges taken individually and not the summed factor, and the two sources of prognostic information overlap in part. "
+ "Leave-one-out predictions for the four model specifications are shown in Fig. S15.")
+S15=("Fig. S15 Leave-one-out prediction of four-year symptom change under four model specifications. Leave-one-out predicted "
+ "against observed symptom change (age 23 minus age 19) in the 85 longitudinal participants. a, Age-19 symptom load alone "
+ "(r = 0.35). b, Age-19 symptoms with the 12 simulated NP edges (r = 0.40). c, Age-19 symptoms with the 12 empirical NP edges "
+ "(r = 0.23). d, The 12 empirical NP edges alone (r = 0.13); the same 12 edges simulated by the digital twins are shown in "
+ "Fig. 5h. Negative values denote symptom reduction. Points are individual participants and the line is an ordinary "
+ "least-squares fit with its 95% confidence band, shown to indicate direction and not as an additional test; no other error "
+ "indicators are drawn. Prediction used ordinary least squares with leave-one-out cross-validation and a two-sided Pearson "
+ "correlation between predicted and observed change; significance was assessed against a permutation null (2,000 shuffles of "
+ "the outcome with the complete leave-one-out procedure repeated): a, P = 0.0010; b, P = 0.0010; c, P = 0.034; d, P = 0.12. "
+ "In-sample statistics: a, R\u00b2 = 0.16, F(1,83) = 15.41, P = 0.0002; b, R\u00b2 = 0.37, F(13,71) = 3.18, P = 0.0009; c, R\u00b2 = 0.27, "
+ "F(13,71) = 1.98, P = 0.035; d, R\u00b2 = 0.21, adjusted R\u00b2 = 0.07, F(12,72) = 1.56, P = 0.12. No multiple-comparison correction "
+ "was applied across the four nested specifications; exact statistics are listed in Table S24.")
+i15=[i for i,t in enumerate(TXT['SI']) if t.strip().startswith('Fig. S15')][0]
+i6=[i for i,t in enumerate(TXT['SI']) if t.strip().startswith('Fig. S6')][0]
+c6=re.search(r'c, AMPA\s+GABA-A perturbation', TXT['SI'][i6]).group(0)
+SIEDITS=[
+ (120,'r = 0.35, P = 0.001)','r = 0.35, permutation P = 0.0010)'),
+ (120,'r = 0.29, P = 0.0072)','r = 0.29, permutation P = 0.0095)'),
+ (120,'r = 0.13, P = 0.22;','r = 0.13, permutation P = 0.12;'),
+ (120,'r = 0.40, P = 0.0002)','r = 0.40, permutation P = 0.0010)'),
+ (120,'r = 0.23, P = 0.033)','r = 0.23, permutation P = 0.034)'),
+ (120,'significance of the simulated-edge model was assessed against a permutation null',
+      'significance of every model was assessed against a permutation null'),
+ (i6, c6, 'c, GABA-A perturbation'),
+ (i15, TXT['SI'][i15].strip(), S15),
+]
+for pi,old,new in SIEDITS:
+    print(pi, TXT['SI'][pi].count(old), '|', repr(old[:50]))
+
+# ---------------------------------------------------------------- cell b9313cf9 (cell_index 558)
+for pi,old,new in SIEDITS:
+    assert si.replace(old,new,para=pi) is not None, (pi,old[:40])
+si.new_paragraph_after(89, INCL)
+si.new_paragraph_after(120, LONGADD)
+SIOUT='290926Supplementary_Information_S18incl_long_tracked.docx'
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+rr=etree.fromstring(zipfile.ZipFile('/Users/yunman/Desktop/submission/revision/text/'+SIOUT).read('word/document.xml'))
+cc=collections.Counter()
+for tag in ('ins','del','pPrChange'):
+    for e in rr.iter(W+tag): cc[(tag,e.get(W+'author'))]+=1
+print('SI revisions:', dict(cc))
+ps3=rr.findall('.//'+W+'body//'+W+'p')
+for i in (90,121,122,180,222):
+    print('\n--- %d ---\n%s'%(i, ptext(ps3[i])[:420]))
+
+# ---------------------------------------------------------------- cell 5074a2e6 (cell_index 560)
+def alltext(path, mode):
+    r=etree.fromstring(zipfile.ZipFile(path).read('word/document.xml'))
+    return [ptext(p,mode) for p in r.findall('.//'+W+'body//'+W+'p')]
+o_rej=alltext(SIP,'reject'); n_rej=alltext('/Users/yunman/Desktop/submission/revision/text/'+SIOUT,'reject')
+n_rej2=[t for i,t in enumerate(n_rej) if i not in (90,122)]
+print('rejected view identical after removing my two new paragraphs:', o_rej==n_rej2)
+if o_rej!=n_rej2:
+    for i,(a,b) in enumerate(zip(o_rej,n_rej2)):
+        if a!=b: print('diff at',i,'\n  orig:',a[:200],'\n  new :',b[:200]); break
+
+# ---------------------------------------------------------------- cell 55aeb4d1 (cell_index 562)
+def open_accepted(path, tmp, author='Claude Science'):
+    shutil.copy(path,tmp)
+    d=docxedit.TrackedDoc(tmp, author=author)
+    docxedit.accept_all(d.root)
+    return d
+def pidx(d, needle):
+    hits=[i for i,p in enumerate(d.paras) if needle in d.text(p)]
+    assert len(hits)==1, (needle[:40], hits)
+    return hits[0]
+si=open_accepted(SIP,'SI_in3.docx')
+P5=pidx(si,'Five model specifications were compared')
+P43=pidx(si,'response types did not differ significantly across sites')
+P15=pidx(si,'Fig. S15 The same 12 NP edges measured empirically')
+P6=pidx(si,'Fig. S6 Cross-build agreement')
+c6b=re.search(r'c, AMPA\s+GABA-A perturbation', si.text(si.paras[P6])).group(0)
+EDS=[(P5,'r = 0.35, P = 0.001)','r = 0.35, permutation P = 0.0010)'),
+     (P5,'r = 0.29, P = 0.0072)','r = 0.29, permutation P = 0.0095)'),
+     (P5,'r = 0.13, P = 0.22;','r = 0.13, permutation P = 0.12;'),
+     (P5,'r = 0.40, P = 0.0002)','r = 0.40, permutation P = 0.0010)'),
+     (P5,'r = 0.23, P = 0.033)','r = 0.23, permutation P = 0.034)'),
+     (P5,'significance of the simulated-edge model was assessed against a permutation null','significance of every model was assessed against a permutation null'),
+     (P6,c6b,'c, GABA-A perturbation'),
+     (P15,si.text(si.paras[P15]).strip(),S15)]
+for pi,old,new in EDS: assert si.replace(old,new,para=pi) is not None,(pi,old[:30])
+si.new_paragraph_after(P5, LONGADD); si.new_paragraph_after(P43, INCL)
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+pth='/Users/yunman/Desktop/submission/revision/text/'+SIOUT
+rr=etree.fromstring(zipfile.ZipFile(pth).read('word/document.xml'))
+cc=collections.Counter()
+for tag in ('ins','del','pPrChange'):
+    for e in rr.iter(W+tag): cc[(tag,e.get(W+'author'))]+=1
+print('SI revisions (should be Claude Science only):', dict(cc))
+orig_acc=alltext(SIP,'accept'); new_rej=alltext(pth,'reject')
+ins_idx=[i for i,t in enumerate(alltext(pth,'accept')) if t.startswith('Comparison of included') or t.startswith('The measured NP edges are not')]
+new_rej2=[t for i,t in enumerate(new_rej) if i not in ins_idx]
+norm=lambda L:[re.sub(r'\s+',' ',x).strip() for x in L]
+print('reject view == original accepted view:', norm(orig_acc)==norm(new_rej2), '| inserted paragraph indices:', ins_idx)
+
+# ---------------------------------------------------------------- cell 8d9c1884 (cell_index 567)
+import importlib; importlib.reload(docxedit)
+ms=open_accepted('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/139d7c51-a6d8-43bb-93ad-7fcfe695c9bd/v14ee7f62_290926NatMed_Manuscript.docx','MS_in.docx')
+met=open_accepted('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/47d944f2-3b21-415e-891e-30c503ab2801/v13d8a62b_290926NatMed_Methods.docx','MET_in.docx')
+i91=pidx(ms,'ketamine-session whole-brain FC patterns'); i94=pidx(ms,'Leave-one-out predictions correlated'); i108=pidx(ms,'Several limitations constrain')
+t91=ms.text(ms.paras[i91]); j=t91.find('greater similarity'); print(repr(t91[j:j+430]))
+t94=ms.text(ms.paras[i94]); j=t94.find('Leave-one-out'); print('\n',repr(t94[j:j+200]))
+t108=ms.text(ms.paras[i108]); print('\n',repr(t108[:320]))
+m50=pidx(met,'Tests, covariates and correction procedures'); m23=pidx(met,'hierarchical mesoscale data assimilation')
+print('\n',repr(met.text(met.paras[m50])[:880]))
+print('\n',repr(met.text(met.paras[m23])[:420]))
+
+# ---------------------------------------------------------------- cell 3d8af964 (cell_index 568)
+LIMIT=(" The pharmacological validation datasets were also limited: the healthy-volunteer dataset was small, male-only and "
+ "restricted to a single task, the clinical dataset imaged participants after infusion only, and the 12 NP edges were selected "
+ "in an IMAGEN analysis that included the 85 longitudinal participants.")
+CONV=(" [Convergence criterion to be specified: state how convergence of the assimilation was assessed, for example by "
+ "stabilisation of the ensemble mean and spread of the hyperparameters and of the simulated-empirical BOLD correlation across "
+ "assimilation steps.]")
+MSE=[(i91,'was associated with greater symptom improvement (Spearman \u03c1 = -0.56, Pperm = 0.0068; Fig. 5g',
+      'was associated with greater symptom improvement on the MADRS (Spearman \u03c1 = -0.56, Pperm = 0.0068, qFDR = 0.027 across the four symptom measures; Fig. 5g'),
+     (i94,'(r = 0.29, P = 0.0072), exceeding a permutation null','(r = 0.29), exceeding a permutation null')]
+for pi,old,new in MSE: assert ms.replace(old,new,para=pi) is not None,(pi,old[:40])
+ms.insert_after('and do not capture regional variation in cellular or laminar organisation.', LIMIT, para=i108)
+METE=[(m50,'Bonferroni correction to STRATIFY case-control comparisons, population-scale group comparisons, and across correlations between clinical outcomes and AMPA-state similarity analysis.',
+       'Bonferroni correction to STRATIFY case-control comparisons and population-scale group comparisons; Benjamini-Hochberg FDR across the four clinical outcome measures in the AMPA-state similarity analysis.'),
+      (m50,'5,000 (longitudinal prediction, with the outcome shuffled and both nested models refitted on each permutation)',
+       '5,000 (the nested increment in the longitudinal analysis, with the outcome shuffled and both nested models refitted on each permutation), 2,000 (leave-one-out prediction accuracy in the longitudinal analysis, with the outcome shuffled and the complete leave-one-out procedure repeated)')]
+for pi,old,new in METE: assert met.replace(old,new,para=pi) is not None,(pi,old[:40])
+met.insert_after('iteratively minimizes the discrepancy between simulated and empirical BOLD signals.', CONV, para=m23)
+MSOUT='290926NatMed_Manuscript_reviewed_tracked.docx'; METOUT='290926NatMed_Methods_reviewed_tracked.docx'
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+for f in (MSOUT,METOUT): None  # [recovery: side output suppressed]
+for f,orig in ((MSOUT,'14ee7f62-5e94-47c9-838c-3f3f82db848a'),(METOUT,'13d8a62b-c4cf-46f5-a102-3538544fe331')):
+    p='/Users/yunman/Desktop/submission/revision/text/'+f
+    rr=etree.fromstring(zipfile.ZipFile(p).read('word/document.xml'))
+    cc=collections.Counter()
+    for tag in ('ins','del','pPrChange'):
+        for e in rr.iter(W+tag): cc[(tag,e.get(W+'author'))]+=1
+    pass  # [recovery: unresolvable interactive debris removed] oa=[x for x in norm(alltext(host.artifact_path(orig),'accept')) if x]
+    nr=[x for x in norm(alltext(p,'reject')) if x]
+    print(f, dict(cc), '| reject == original accepted:', oa==nr)
+na=[x for x in norm(alltext('/Users/yunman/Desktop/submission/revision/text/'+MSOUT,'accept')) if x]
+print('\nlimitation sentence present:', any('male-only' in x for x in na))
+nm=[x for x in norm(alltext('/Users/yunman/Desktop/submission/revision/text/'+METOUT,'accept')) if x]
+print('convergence placeholder present:', any('Convergence criterion to be specified' in x for x in nm))
+print('FDR wording present:', any('Benjamini-Hochberg FDR across the four clinical outcome measures' in x for x in nm))
+
+# ---------------------------------------------------------------- cell 9611395d (cell_index 569)
+TP='/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/a42c58ac-1e77-4fc4-9b5b-31288ffc2530/vcbd180f3_290926Suppl.Table.xlsx'; shutil.copy(TP,'T_in.xlsx')
+wb=openpyxl.load_workbook('T_in.xlsx'); ws=wb['Table S24']
+hdr=[('' if c is None else str(c).strip()) for c in next(ws.iter_rows(min_row=2,max_row=2,values_only=True))]
+print(ws.max_row, ws.max_column); print([ (i+1,h) for i,h in enumerate(hdr) if h][:20])
+rows=[(r, [('' if c is None else str(c).strip()) for c in ws[r]][:8]) for r in range(3, ws.max_row+1)]
+cur=''
+for r,v in rows:
+    if v[0]: cur=v[0]
+    if 'S15' in cur or 'S15' in v[0]: print(r, v[:6])
+
+# ---------------------------------------------------------------- cell 5d7d66f3 (cell_index 576)
+wb=openpyxl.load_workbook('/Users/yunman/Desktop/submission/revision/text/290926Suppl.Table_reviewed.xlsx')
+w=wb['Table S18']
+rows=[(r,[w.cell(row=r,column=c).value for c in range(1,5)]) for r in range(1,w.max_row+1)]
+for r,v in rows:
+    if any(x is not None for x in v): print(r, ' | '.join('' if x is None else str(x)[:120] for x in v))
+
+# ---------------------------------------------------------------- cell 29f9f2df (cell_index 578)
+s24=wb['Table S24']
+for r in range(3, s24.max_row+1):
+    row=[s24.cell(row=r,column=c).value for c in range(1,18)]
+    txt=' '.join('' if x is None else str(x) for x in row)
+    if '0.0068' in txt or 'similarity' in txt.lower():
+        print(r, [('' if x is None else str(x)[:70]) for x in row[:3]], '|', [('' if x is None else str(x)[:60]) for x in row[6:14]])
+
+# ---------------------------------------------------------------- cell 830faf45 (cell_index 593)
+from decimal import Decimal, ROUND_HALF_UP
+def rhu(v,d):
+    return float(Decimal(repr(float(v))).quantize(Decimal('1.'+'0'*d), rounding=ROUND_HALF_UP))
+def fmt_p(v):
+    if v<1e-4: return '< 0.0001'
+    s='%.4f'%rhu(v,4)
+    s=s.rstrip('0')
+    if len(s.split('.')[1])<2: s=('%.2f'%rhu(v,2))
+    return s
+def fmt_stat(v):
+    av=abs(v)
+    if v==int(v) and av<10000: return str(int(v))
+    r2=rhu(av,2)
+    if r2==0.0 or (r2==round(av) and av<1 and abs(av-round(av))>1e-9): return None
+    if r2==0.0: return None
+    return ('%.2f'%rhu(v,2))
+NUMTOK=re.compile(r'(?<![\w.])(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)(?![\w])')
+PCOLS={13,14}
+STCOLS={11,15}
+log=[]
+for r in range(3, s24.max_row+1):
+    for c in sorted(PCOLS|STCOLS):
+        v=s24.cell(row=r,column=c).value
+        if v is None: continue
+        if isinstance(v,(int,float)):
+            s=str(v)
+        else:
+            s=str(v)
+        def repl(m):
+            x=float(m.group(1))
+            if c in PCOLS:
+                if not (0<=x<=1): return m.group(1)
+                out=fmt_p(x)
+                return out if out.startswith('<') else out
+            f=fmt_stat(x)
+            return m.group(1) if f is None else f
+        new=NUMTOK.sub(repl, s)
+        new=re.sub(r'=\s*< 0\.0001','< 0.0001',new)
+        if new!=s:
+            s24.cell(row=r,column=c,value=new)
+            log.append(dict(row=r, column=hdr[c-1] if c-1<len(hdr) else c, before=s, after=new))
+L=pd.DataFrame(log); L.to_csv('tableS24_format_log.csv',index=False)
+print('cells reformatted:', len(L))
+print(L.head(25).to_string(max_colwidth=58))
+
+# ---------------------------------------------------------------- cell df49a836 (cell_index 594)
+def fmt_p2(v):
+    if v<1e-4: return '< 0.0001'
+    if v<1.5e-4: return '%.5f'%rhu(v,5)
+    s='%.4f'%rhu(v,4); s=s.rstrip('0')
+    if len(s.split('.')[1])<2: s='%.2f'%rhu(v,2)
+    return s
+def fmt_stat2(tok):
+    v=float(tok)
+    if '.' not in tok and 'e' not in tok.lower(): return tok           # integers / df
+    av=abs(v)
+    if av<0.1 and av>0:                                                # 2 significant digits
+        d=int(np.floor(np.log10(av))); s='%.*f'%(max(2,-d+1), rhu(v,max(2,-d+1)))
+        return s.rstrip('0').rstrip('.') if '.' in s else s
+    if rhu(av,2)==round(av) and av<1: return tok                       # 0.9951 -> keep
+    return '%.2f'%rhu(v,2)
+
+wb=openpyxl.load_workbook('/Users/yunman/Desktop/submission/revision/text/290926Suppl.Table_reviewed.xlsx')
+w=wb['Table S18']; s24=wb['Table S24']
+# (a) S18 percent formats + footnotes
+for r in range(3, w.max_row+1):
+    c=w.cell(row=r,column=4)
+    if isinstance(c.value,(int,float)): c.value=float(c.value); c.number_format='0.0%'
+w.cell(row=25,column=1,value=('Pearson chi-squared test of independence between response group and recruitment site: chi-squared(8) = 14.32, P = 0.074 '
+ '(two-sided, uncorrected). Because 7 of 18 expected counts were below 5, the asymptotic P value is approximate; a Monte-Carlo '
+ 'permutation test (10,000 random reassignments of response group) gave P = 0.065. Collapsing the two London sub-sites into a single '
+ 'London site gives chi-squared(7) = 10.43, P = 0.166.'))
+w.cell(row=36,column=1,value=('Pearson chi-squared test of independence between response group and sex: chi-squared(1) = 5.29, P = 0.021 (two-sided, '
+ 'uncorrected); Fisher exact test P = 0.018. In the model reported in Supplementary Results, which regresses response group on sex, '
+ 'diagnostic group and recruitment site, the sex effect is attenuated (linear model, t = -1.93, P = 0.055); the attenuation is '
+ 'specification-dependent, because a logistic regression of the same model leaves it nominally significant (z = -2.10, P = 0.036; '
+ 'odds ratio 0.44, 95% CI 0.20-0.95 for male versus female). All negative-profile connectivity measures were residualised for sex, '
+ 'site and head motion before analysis.'))
+w.cell(row=38,column=1,value=('Response groups were defined from the 288 participants with individually fitted digital twins: Increased n = 229, '
+ 'Decreased n = 59. Site, sex and response group were taken from figures/fig.4/fig4_data/fig4_subject_level_n288.csv; the London '
+ 'sub-site assignment (London-Invicro = LONDON, London-CNS = LONDON2) from Figures/Figure4/mani_ampa_gaba_subs_diff_london_site.csv. '
+ 'Recomputed 29 September; the previous version was based on 290 participants (251 increased / 39 decreased) under an earlier '
+ 'response-group definition.'))
+print('S18 footnotes restored')
+
+# ---------------------------------------------------------------- cell 1098206c (cell_index 596)
+log=[]
+for r in range(3, s24.max_row+1):
+    for c in (11,13,14,15):
+        v=s24.cell(row=r,column=c).value
+        if v is None: continue
+        s=str(v)
+        def repl(m):
+            tok=m.group(1); x=float(tok)
+            if c in (13,14):
+                return tok if not (0<=x<=1) else fmt_p2(x)
+            return fmt_stat2(tok)
+        new=NUMTOK.sub(repl,s)
+        new=re.sub(r'=\s*< 0\.0001','< 0.0001',new)
+        if new!=s:
+            s24.cell(row=r,column=c,value=new); log.append(dict(row=r,column=hdr[c-1],before=s,after=new))
+L=pd.DataFrame(log); L.to_csv('tableS24_format_log.csv',index=False)
+print('cells reformatted:',len(L))
+print(L.sample(min(18,len(L)),random_state=0).to_string(max_colwidth=56))
+
+# ---------------------------------------------------------------- cell dd87155c (cell_index 597)
+for e in log: s24.cell(row=e['row'], column=hdr.index(e['column'])+1, value=e['before'])
+NUMTOK2=re.compile(r'(?<![\w.])(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)(?![\w%])')
+LIST=re.compile(r'^\s*(-?\d+\.\d+)(\s*,\s*-?\d+\.\d+){2,}\s*$')
+def dec_needed(tok):
+    v=abs(float(tok)); 
+    if v==0: return 2
+    if v<0.1: return max(2, -int(np.floor(np.log10(v)))+1)
+    return 2
+log2=[]
+for r in range(3, s24.max_row+1):
+    for c in (11,13,14,15):
+        v=s24.cell(row=r,column=c).value
+        if v is None: continue
+        s=str(v)
+        if c in (11,15) and LIST.match(s):
+            toks=[t.strip() for t in s.split(',')]; d=max(dec_needed(t) for t in toks)
+            new=', '.join('%.*f'%(d, rhu(float(t),d)) for t in toks)
+        else:
+            def repl(m):
+                tok=m.group(1); x=float(tok)
+                if c in (13,14): return tok if not (0<=x<=1) else fmt_p2(x)
+                return fmt_stat2(tok)
+            new=NUMTOK2.sub(repl,s)
+            new=re.sub(r'=\s*< 0\.0001','< 0.0001',new)
+        if new!=s:
+            s24.cell(row=r,column=c,value=new); log2.append(dict(row=r,column=hdr[c-1],before=s,after=new))
+L=pd.DataFrame(log2); L.to_csv('tableS24_format_log.csv',index=False)
+print('cells reformatted:',len(L))
+for q in ['70.7','6.8%','MSE = 0.0067','0.1662 versus']:
+    hit=L[L.before.str.contains(re.escape(q))]
+    if len(hit): print('\n', hit.iloc[0].to_dict())
+
+# ---------------------------------------------------------------- cell 06d62cd8 (cell_index 598)
+for e in log2: s24.cell(row=e['row'], column=hdr.index(e['column'])+1, value=e['before'])
+RUN=re.compile(r'(-?\d+\.\d+(?:\s*,\s*-?\d+\.\d+){2,})')
+PAIR=re.compile(r'(-?\d+\.\d+)(\s+(?:versus|vs\.?)\s+)(-?\d+\.\d+)')
+def unify_runs(s):
+    def f(m):
+        toks=[t.strip() for t in m.group(1).split(',')]; d=max(dec_needed(t) for t in toks)
+        return ', '.join('%.*f'%(d,rhu(float(t),d)) for t in toks)
+    s=RUN.sub(f,s)
+    def g(m):
+        d=max(dec_needed(m.group(1)),dec_needed(m.group(3)))
+        return '%.*f%s%.*f'%(d,rhu(float(m.group(1)),d),m.group(2),d,rhu(float(m.group(3)),d))
+    return PAIR.sub(g,s)
+log3=[]
+for r in range(3, s24.max_row+1):
+    for c in (11,13,14,15):
+        v=s24.cell(row=r,column=c).value
+        if v is None: continue
+        s=str(v)
+        if c in (11,15):
+            new=unify_runs(s)
+            def repl(m):
+                return fmt_stat2(m.group(1))
+            # only reformat tokens that were not part of a unified run/pair
+            prot=set()
+            for m in list(RUN.finditer(new))+list(PAIR.finditer(new)): prot.add((m.start(),m.end()))
+            out=[]; last=0
+            for m in NUMTOK2.finditer(new):
+                if any(a<=m.start()<b for a,b in prot): continue
+                out.append((m.start(),m.end(),fmt_stat2(m.group(1))))
+            for a,b,t in reversed(out): new=new[:a]+t+new[b:]
+        else:
+            def replp(m):
+                x=float(m.group(1)); return m.group(1) if not (0<=x<=1) else fmt_p2(x)
+            new=NUMTOK2.sub(replp,s); new=re.sub(r'=\s*< 0\.0001','< 0.0001',new)
+        if new!=s:
+            s24.cell(row=r,column=c,value=new); log3.append(dict(row=r,column=hdr[c-1],before=s,after=new))
+L=pd.DataFrame(log3); L.to_csv('tableS24_format_log.csv',index=False)
+print('cells reformatted:',len(L))
+for q in ['MSE = 0.0067','0.1662 versus','70.7','0.9951','2.91e-44']:
+    hit=L[L.before.str.contains(re.escape(q))]
+    print(q,'->', hit.iloc[0]['after'][:80] if len(hit) else '(unchanged)')
+
+# ---------------------------------------------------------------- cell 8f33a7a1 (cell_index 599)
+for e in log3: s24.cell(row=e['row'], column=hdr.index(e['column'])+1, value=e['before'])
+def fmt_stat2(tok):
+    v=float(tok)
+    if '.' not in tok and 'e' not in tok.lower(): return tok
+    av=abs(v)
+    if av>0.98 and av<1.0: return tok              # ICC / r near 1: 2 dp destroys the value
+    if 0<av<0.1:
+        d=max(2,-int(np.floor(np.log10(av)))+1); s='%.*f'%(d, rhu(v,d))
+        return s
+    return '%.2f'%rhu(v,2)
+log4=[]
+for r in range(3, s24.max_row+1):
+    for c in (11,13,14,15):
+        v=s24.cell(row=r,column=c).value
+        if v is None: continue
+        s=str(v)
+        if c in (11,15):
+            new=unify_runs(s); prot=set()
+            for m in list(RUN.finditer(new))+list(PAIR.finditer(new)): prot.add((m.start(),m.end()))
+            out=[(m.start(),m.end(),fmt_stat2(m.group(1))) for m in NUMTOK2.finditer(new) if not any(a<=m.start()<b for a,b in prot)]
+            for a,b,t in reversed(out): new=new[:a]+t+new[b:]
+        else:
+            new=NUMTOK2.sub(lambda m: m.group(1) if not (0<=float(m.group(1))<=1) else fmt_p2(float(m.group(1))), s)
+            new=re.sub(r'=\s*< 0\.0001','< 0.0001',new)
+        if new!=s:
+            s24.cell(row=r,column=c,value=new); log4.append(dict(row=r,column=hdr[c-1],before=s,after=new))
+L=pd.DataFrame(log4); L.to_csv('tableS24_format_log.csv',index=False)
+print('cells reformatted:',len(L))
+print(L[L.before.str.contains('ICC')].to_string(max_colwidth=70))
+TOUT2='290926Suppl.Table_reviewed_v2.xlsx'; None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+ck=openpyxl.load_workbook('/Users/yunman/Desktop/submission/revision/text/'+TOUT2)
+print('\nsheets',len(ck.sheetnames),'| S24 data rows', sum(1 for r in range(3,ck['Table S24'].max_row+1) if ck['Table S24'].cell(row=r,column=1).value or ck['Table S24'].cell(row=r,column=2).value))
+print('S18 footnote present:', str(ck['Table S18'].cell(row=25,column=1).value)[:60])
+
+# ---------------------------------------------------------------- cell dda374a2 (cell_index 600)
+MSTXT=[t for t in alltext('/Users/yunman/Desktop/submission/revision/text/290926NatMed_Manuscript_reviewed_tracked.docx','accept')]
+S=ck['Table S24']
+rowsS=[]
+cur=''
+for r in range(3,S.max_row+1):
+    f=str(S.cell(row=r,column=1).value or '').strip()
+    if f: cur=f
+    rowsS.append(dict(row=r, fig=cur, panel=str(S.cell(row=r,column=2).value or ''),
+                      quantity=str(S.cell(row=r,column=3).value or ''),
+                      stat=str(S.cell(row=r,column=11).value or ''), p=str(S.cell(row=r,column=13).value or ''),
+                      q=str(S.cell(row=r,column=14).value or ''), eff=str(S.cell(row=r,column=15).value or ''),
+                      ci=str(S.cell(row=r,column=16).value or '')))
+T=pd.DataFrame(rowsS)
+main=T[T.fig.str.match(r'^(Fig(ure)?\.? ?\d|Figure \d)')]
+print('S24 rows total %d | main-figure rows %d | figures: %s'%(len(T), len(main), sorted(main.fig.unique())))
+print('\nmain-figure rows lacking an effect size: %d'%((main.eff.str.strip()=='').sum()))
+print('main-figure rows lacking a CI: %d'%((main.ci.str.strip()=='').sum()))
+print('main-figure rows lacking an exact P: %d'%((main.p.str.strip()=='').sum()))
+gap=main[(main.eff.str.strip()=='')|(main.ci.str.strip()=='')][['row','fig','panel','quantity','stat','p','eff','ci']]
+gap.to_csv('tableS24_main_completeness.csv',index=False)
+print('\n', gap.head(20).to_string(max_colwidth=42))
+
+# ---------------------------------------------------------------- cell 23687b1b (cell_index 602)
+from scipy.optimize import brentq
+def eta2_ci(F,df1,df2,conf=.95):
+    e=F*df1/(F*df1+df2)
+    def lam2e(l): return l/(l+df1+df2+1)
+    def f(l,tgt): return stats.ncf.cdf(F,df1,df2,l)-tgt
+    lo=0.0
+    try:
+        if stats.ncf.cdf(F,df1,df2,0)> (1+conf)/2: lo=0.0
+        else: lo=brentq(f,0,1000,args=((1+conf)/2,))
+    except Exception: lo=0.0
+    try: hi=brentq(f,0,2000,args=((1-conf)/2,))
+    except Exception: hi=np.nan
+    return e, lam2e(lo), lam2e(hi)
+def d_ci(d,n1,n2,conf=.95):
+    se=np.sqrt((n1+n2)/(n1*n2)+d**2/(2*(n1+n2))); z=stats.norm.ppf(1-(1-conf)/2)
+    return d-z*se, d+z*se
+F4=pd.read_csv('/Users/yunman/Desktop/submission/revision/text/figures/fig.4/fig4_data/fig4_subject_level_n288.csv')
+GRP=['HC','High-symptom','Patient']
+out4={}
+for col,lbl in [('empirical_resid','a'),('simulated_resid','b'),('ampa_resid','c'),('gaba_resid','d')]:
+    g=[F4.loc[F4.Group==k,col].values for k in GRP]
+    F,p=stats.f_oneway(*g); e,lo,hi=eta2_ci(F,2,len(F4)-3)
+    out4[lbl]=dict(F=F,P=p,eta2=e,ci=(lo,hi))
+    print('4%s F(2,%d) = %.2f, P = %.5f, eta2 = %.3f, 95%% CI %.3f-%.3f'%(lbl,len(F4)-3,F,p,e,lo,hi))
+    for i,j in ((0,1),(0,2),(1,2)):
+        a,b=g[i],g[j]; sp=np.sqrt(((len(a)-1)*a.var(ddof=1)+(len(b)-1)*b.var(ddof=1))/(len(a)+len(b)-2))
+        d=(a.mean()-b.mean())/sp; l,h=d_ci(d,len(a),len(b))
+        print('    %s vs %s: d = %.3f [%.3f, %.3f]'%(GRP[i],GRP[j],d,l,h))
+
+# ---------------------------------------------------------------- cell ee217b72 (cell_index 603)
+print([S.cell(row=r,column=3).value for r in range(9,15)])
+A=pd.read_csv(f3+'fig3i_assimilated_bold_r.csv'); print(A.shape, list(A.columns)[:8]); print(A.head(3).to_string(max_colwidth=14))
+
+# ---------------------------------------------------------------- cell 79fcb363 (cell_index 604)
+piv=A.pivot_table(index='subject_id', columns='model', values='bold_r', aggfunc='mean')
+PAIRS=[('1b','100m'),('1b','10m'),('100m','10m'),('3m_268','1b'),('10m','10m_own'),('10m_own','10m_1000')]
+f3rows={}
+for a,b in PAIRS:
+    x=piv[a].values; yv=piv[b].values; dif=x-yv
+    t,p=stats.ttest_rel(x,yv); dz=dif.mean()/dif.std(ddof=1)
+    ci=stats.t.interval(.95, len(dif)-1, loc=dif.mean(), scale=stats.sem(dif))
+    lz,hz=d_ci(dz,len(dif),len(dif))
+    f3rows[(a,b)]=dict(md=dif.mean(),ci=ci,t=t,p=p,dz=dz,n=len(dif))
+    print('%-8s vs %-9s n=%d md=%+.4f  95%% CI %+.4f to %+.4f | t(%d)=%.2f P=%.4g | dz=%.2f'%(a,b,len(dif),dif.mean(),ci[0],ci[1],len(dif)-1,t,p,dz))
+
+# ---------------------------------------------------------------- cell 84764403 (cell_index 606)
+# Fig 4f paired, 4h chi2 V, 4i two-sample
+res4={}
+for col,lab in [('ampa','f_ampa'),('gaba','f_gaba')]:
+    dif=F4[col].values-F4['simulated'].values
+    t,p=stats.ttest_rel(F4[col],F4['simulated']); dz=dif.mean()/dif.std(ddof=1)
+    ci=stats.t.interval(.95,len(dif)-1,loc=dif.mean(),scale=stats.sem(dif))
+    res4[lab]=dict(md=dif.mean(),ci=ci,t=t,p=p,dz=dz,inc=(dif>0).sum())
+    print('%s md=%+.2f 95%% CI %+.2f to %+.2f | t(%d)=%.2f | dz=%.2f | increased %d/288'%(lab,dif.mean(),ci[0],ci[1],len(dif)-1,t,dz,(dif>0).sum()))
+ct=pd.crosstab(F4.Group,F4.pattern); c2,p2,dof,_=stats.chi2_contingency(ct.values)
+V=np.sqrt(c2/(len(F4)*min(ct.shape[0]-1,ct.shape[1]-1)))
+print('4h chi2(%d)=%.2f P=%.4g Cramer V=%.3f'%(dof,c2,p2,V))
+a=F4.loc[F4.pattern=='both up','simulated'].values; b=F4.loc[F4.pattern=='any down','simulated'].values
+sp=np.sqrt(((len(a)-1)*a.var(ddof=1)+(len(b)-1)*b.var(ddof=1))/(len(a)+len(b)-2)); d=(a.mean()-b.mean())/sp
+print('4i t=%.2f d=%.2f CI %.2f to %.2f means %.2f vs %.2f'%(stats.ttest_ind(a,b,equal_var=True)[0], d, *d_ci(d,len(a),len(b)), a.mean(), b.mean()))
+H27=pd.read_csv(F5+'fig5_healthy_n27_with_pattern.csv'); print('\n5a/b cols:', list(H27.columns)[:12])
+M36=pd.read_csv(F5+'fig5_mdd_hc_n36.csv'); print('5c-e cols:', list(M36.columns)[:12])
+
+# ---------------------------------------------------------------- cell 573d21f8 (cell_index 608)
+MIDS=pd.read_csv('/Users/yunman/Desktop/submission/revision/text/figures/fig.4/fig4_data/fig4_mid_pattern_subject_n288.csv')
+print(list(MIDS.columns)[:12], MIDS.shape)
+a=H27.loc[H27.pattern=='both up','Placebo'].values; b=H27.loc[H27.pattern=='any down','Placebo'].values
+t5b,p5b=stats.ttest_ind(a,b,equal_var=False)
+sp=np.sqrt(((len(a)-1)*a.var(ddof=1)+(len(b)-1)*b.var(ddof=1))/(len(a)+len(b)-2)); d5b=(a.mean()-b.mean())/sp
+print('5b Welch t=%.2f P=%.4f d=%.2f CI %.2f to %.2f (n=%d vs %d)'%(t5b,p5b,d5b,*d_ci(d5b,len(a),len(b)),len(a),len(b)))
+
+# ---------------------------------------------------------------- cell 9b28ba30 (cell_index 609)
+a=MIDS.loc[MIDS.pattern_mid=='both up','mid_baseline'].values; b=MIDS.loc[MIDS.pattern_mid=='any down','mid_baseline'].values
+t5c,p5c=stats.ttest_ind(a,b,equal_var=False)
+sp=np.sqrt(((len(a)-1)*a.var(ddof=1)+(len(b)-1)*b.var(ddof=1))/(len(a)+len(b)-2)); d5c=(a.mean()-b.mean())/sp
+print('5c Welch t=%.2f P=%.3g d=%.2f CI %.2f to %.2f (n=%d vs %d) means %.2f+-%.2f vs %.2f+-%.2f'%(t5c,p5c,d5c,*d_ci(d5c,len(a),len(b)),len(a),len(b),a.mean(),a.std(ddof=1),b.mean(),b.std(ddof=1)))
+# 5d/5e: estimate +- t-based SE ; df from table notes
+for lbl,est,tv,df_ in [('5d MDD',0.87,2.66,None),('5d HC',-0.93,-1.57,None),('5d MDD vs HC',2.43,3.43,30),('5e MDD vs HC placebo',-1.11,-2.51,35)]:
+    se=abs(est/tv); dfu=df_ if df_ else 20; tc=stats.t.ppf(.975,dfu)
+    print('%-22s estimate %.2f, SE %.2f, 95%% CI %.2f to %.2f (df %d)'%(lbl,est,se,est-tc*se,est+tc*se,dfu))
+r5f=-0.56; n_eff=16+2; se=1/np.sqrt(n_eff-3); lo,hi=np.tanh(np.arctanh(r5f)+np.array([-1,1])*1.96*se)
+print('5f partial r = -0.56, 95%% CI %.2f to %.2f (df = 16)'%(lo,hi))
+r5h=0.2895; lo8,hi8=np.tanh(np.arctanh(r5h)+np.array([-1,1])*1.96/np.sqrt(85-3))
+print('5h LOO r = 0.29, 95%% CI %.2f to %.2f'%(lo8,hi8))
+ACC=pd.read_csv(F5+'fig5i_np12_loo_accuracy.csv'); print('\n5i table:'); print(ACC.to_string(max_colwidth=30))
+
+# ---------------------------------------------------------------- cell 045c146e (cell_index 610)
+def setrow(r, **kw):
+    for c,v in kw.items(): s24.cell(row=r,column=int(c[1:]),value=v)
+# Fig. 3a -> per-participant unit
+for k,(a,b) in enumerate(PAIRS):
+    d=f3rows[(a,b)]; r=9+k
+    setrow(r, c4=12, c5='participant (mean across the two tasks)',
+           c11='mean difference = %+.4f; t(11) = %.2f'%(d['md'],d['t']), c12='11',
+           c13=fmt_p2(d['p']), c15="mean difference = %+.4f; Cohen's dz = %.2f"%(d['md'],d['dz']),
+           c16='%+.4f to %+.4f (mean difference)'%d['ci'],
+           c17='fig.3/fig3_data/fig3i_assimilated_bold_r.csv; tested per participant (n = 12), the unit used throughout Fig. 3')
+# Fig. 4 ANOVA + post hoc
+ANV={15:'a',19:'b',23:'c',27:'d'}
+for r,lab in ANV.items():
+    e=out4[lab]; setrow(r, c15='eta-squared = %.3f'%e['eta2'], c16='%.3f to %.3f (eta-squared)'%e['ci'])
+POST={16:('a',0,1),17:('a',0,2),18:('a',1,2),20:('b',0,1),21:('b',0,2),22:('b',1,2),
+      24:('c',0,1),25:('c',0,2),26:('c',1,2),28:('d',0,1),29:('d',0,2),30:('d',1,2)}
+COLMAP={'a':'empirical_resid','b':'simulated_resid','c':'ampa_resid','d':'gaba_resid'}
+for r,(lab,i,j) in POST.items():
+    x=F4.loc[F4.Group==GRP[i],COLMAP[lab]].values; yv=F4.loc[F4.Group==GRP[j],COLMAP[lab]].values
+    sp=np.sqrt(((len(x)-1)*x.var(ddof=1)+(len(yv)-1)*yv.var(ddof=1))/(len(x)+len(yv)-2)); dd=(x.mean()-yv.mean())/sp
+    setrow(r, c16="%.2f to %.2f (Cohen's d)"%d_ci(dd,len(x),len(yv)))
+setrow(32, c16='%+.2f to %+.2f (mean change)'%res4['f_ampa']['ci'])
+setrow(33, c16='%+.2f to %+.2f (mean change)'%res4['f_gaba']['ci'])
+setrow(34, c15=str(s24.cell(row=34,column=15).value)+'; Cramer V = %.2f'%V)
+a=F4.loc[F4.pattern=='both up','simulated'].values; b=F4.loc[F4.pattern=='any down','simulated'].values
+sp=np.sqrt(((len(a)-1)*a.var(ddof=1)+(len(b)-1)*b.var(ddof=1))/(len(a)+len(b)-2)); d4i=(a.mean()-b.mean())/sp
+setrow(35, c15=str(s24.cell(row=35,column=15).value)+"; Cohen's d = %.2f"%d4i, c16="%.2f to %.2f (Cohen's d)"%d_ci(d4i,len(a),len(b)))
+setrow(36, c16='not applicable (descriptive means and s.d.)')
+setrow(37, c15=str(s24.cell(row=37,column=15).value)+"; Cohen's d = %.2f"%d5b, c16="%.2f to %.2f (Cohen's d)"%d_ci(d5b,8,19))
+setrow(38, c15=str(s24.cell(row=38,column=15).value)+"; Cohen's d = %.2f"%d5c, c16="%.2f to %.2f (Cohen's d)"%d_ci(d5c,208,80))
+for r,(est,tv,dfu) in {39:(0.87,2.66,20),40:(-0.93,-1.57,20),41:(2.43,3.43,30),42:(-1.11,-2.51,35)}.items():
+    se=abs(est/tv); tc=stats.t.ppf(.975,dfu)
+    setrow(r, c16='%.2f to %.2f (model estimate; SE %.2f derived from the reported t)'%(est-tc*se,est+tc*se,se))
+setrow(43, c16='%.2f to %.2f (partial r, Fisher z)'%(lo,hi))
+for r in (3,5,7): setrow(r, c15='not applicable (schematic, no test)', c16='not applicable')
+setrow(4, c15='cross-validated Spearman rho per cell', c16='not applicable (descriptive heat map)')
+print([ (r,s24.cell(row=r,column=16).value) for r in (9,15,16,32,34,35,37,39,43)])
+
+# ---------------------------------------------------------------- cell fb7a69ca (cell_index 614)
+DESC='not applicable (descriptive panel, no inferential test)'
+for r in (3,5,7): setrow(r, c13=DESC)
+setrow(4, c13='not applicable (cross-validated prediction accuracies; the inferential CPM permutation test is reported in Supplementary Results 1 and Methods)')
+setrow(31, c13='not applicable (effect sizes of the tests in rows for Fig. 4a-4d; see those rows for exact P values)')
+setrow(36, c13=DESC, c15='not applicable (descriptive means \u00b1 s.d.; the inferential comparison of the two response groups is Fig. 5b)')
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+# ---- cross-comparison: main-text statistics vs Table S24
+ck=openpyxl.load_workbook('/Users/yunman/Desktop/submission/revision/text/'+TOUT2); S=ck['Table S24']
+figtxt=collections.defaultdict(list); cur=''
+for r in range(3,S.max_row+1):
+    f=str(S.cell(row=r,column=1).value or '').strip()
+    if f: cur=f
+    cells=' '.join(str(S.cell(row=r,column=c).value or '') for c in range(1,18))
+    if cur.startswith('Fig'): figtxt[cur].append((r,cells))
+FIGREF=re.compile(r'Fig(?:ure)?\.?\s*([1-5])\b')
+rowsc=[]
+for i,t in enumerate(MSTXT):
+    if not t.strip() or not FIGREF.search(t): continue
+    for s_ in re.split(r'(?<=[.;])\s+', t):
+        fr=FIGREF.findall(s_)
+        if not fr: continue
+        vals=set(m.group(1) for m in NUMTOK.finditer(s_) if '.' in m.group(1))
+        if not vals: continue
+        for fg in set(fr):
+            key='Fig. %s'%fg
+            hay2=' '.join(c for _,c in figtxt.get(key,[]))
+            miss=[v for v in sorted(vals) if v not in hay2 and float(v) not in (0.0,)]
+            if miss: rowsc.append(dict(para=i, figure=key, missing=';'.join(miss), sentence=s_[:260]))
+CC=pd.DataFrame(rowsc); CC.to_csv('maintext_vs_tableS24.csv',index=False)
+print('main-text sentences citing a main figure whose numbers are not all in that figure\'s Table S24 rows: %d\n'%len(CC))
+print(CC.head(30).to_string(max_colwidth=90))
+
+# ---------------------------------------------------------------- cell 1a263c25 (cell_index 616)
+MSTXT=alltext('/Users/yunman/Desktop/submission/revision/text/290926NatMed_Manuscript_reviewed_tracked.docx','accept')
+print(len(MSTXT), sum(len(t) for t in MSTXT))
+print(sum(1 for t in MSTXT if FIGREF.search(t)))
+print([t[:80] for t in MSTXT if 'Fig. 5h' in t][:3])
+
+# ---------------------------------------------------------------- cell 9a79a21a (cell_index 617)
+FIGREF=re.compile(r'Fig(?:ure)?\.?\s*([1-5])[a-z]?(?:,\s*[a-z])*\b')
+rowsc=[]; checked=0
+for i,t in enumerate(MSTXT):
+    if not t.strip(): continue
+    for s_ in re.split(r'(?<=[.;])\s+', t):
+        fr=FIGREF.findall(s_)
+        if not fr: continue
+        vals=set(m.group(1) for m in NUMTOK.finditer(s_) if '.' in m.group(1))
+        if not vals: continue
+        checked+=1
+        for fg in set(fr):
+            key='Fig. %s'%fg
+            hay2=' '.join(c for _,c in figtxt.get(key,[]))
+            miss=[v for v in sorted(vals) if v not in hay2]
+            if miss: rowsc.append(dict(para=i, figure=key, missing='; '.join(miss), sentence=s_[:300]))
+CC=pd.DataFrame(rowsc); CC.to_csv('maintext_vs_tableS24.csv',index=False)
+print('sentences checked:', checked, '| flagged:', len(CC))
+print(CC.to_string(max_colwidth=95))
+
+# ---------------------------------------------------------------- cell 79138a2b (cell_index 619)
+S24TXT=' '.join(str(S.cell(row=r,column=c).value or '') for r in range(1,S.max_row+1) for c in range(1,18))
+LABV=re.compile(r'([A-Za-zΔ\u03c1\u03c7][A-Za-zΔ²\u00b2\u03c1\u03c7\s\.\-\(\)0-9,\']{0,24}?)\s*=\s*(-?\d+\.\d+|\d+)')
+miss=[]
+for i,t in enumerate(MSTXT):
+    if not FIGREF.search(t) and 'P = ' not in t: continue
+    for m in LABV.finditer(t):
+        lab=re.sub(r'\s+',' ',m.group(1)).strip(' ,.(') ; val=m.group(2)
+        if '.' not in val: continue
+        if val in S24TXT: continue
+        miss.append(dict(para=i, label=lab, value=val, context=t[max(0,m.start()-110):m.end()+70].replace('\n',' ')))
+CC=pd.DataFrame(miss)
+if len(CC): CC=CC.drop_duplicates(subset=['label','value'])
+CC.to_csv('maintext_vs_tableS24.csv',index=False)
+print('main-text statistics not found anywhere in Table S24: %d'%len(CC))
+print(CC[['para','label','value','context']].to_string(max_colwidth=105))
+
+# ---------------------------------------------------------------- cell 1396d5e6 (cell_index 627)
+for r in (19,20,21):
+    v=s24.cell(row=r,column=16).value
+    s24.cell(row=r,column=16,value=re.sub(r'([\d.+-]+),\s*([\d.+-]+)',r'\1 to \2',v))
+def findrow(sub, col=3):
+    hits=[r for r in range(3,s24.max_row+1) if sub in str(s24.cell(row=r,column=col).value or '')]
+    assert len(hits)==1,(sub,hits); return hits[0]
+r21=findrow('simulated baseline NP factor: HC vs Patient'); r22=findrow('simulated baseline NP factor: High-symptom')
+for r,(dofw,tw,g_,q_,ci_) in {r21:(118.1,-3.36,-0.53,0.0016,(-0.83,-0.23)), r22:(168.4,-3.66,-0.52,0.001,(-0.79,-0.24))}.items():
+    setrow(r, c7='two-sided Welch unequal-variance t test on NP scores residualised for sex, site and mean FD',
+           c10='Benjamini-Hochberg FDR across the three group contrasts',
+           c11='Welch t(%.1f) = %.2f'%(dofw,tw), c12='%.1f'%dofw, c14='q = %s'%fmt_p2(q_),
+           c15="Hedges' g = %.2f"%g_, c16="%.2f to %.2f (Hedges' g)"%ci_,
+           c17='fig.4/fig4_data/fig4_subject_level_n288.csv; the values reported in the main text (Results, population-scale simulations)')
+r5f=findrow('link np-connectivity changes with symptom')
+s24.insert_rows(r5f, amount=1)
+for c,v in enumerate(['','d-f (clinical sample)','Change in depressive severity from the drug-free session in patients and in controls',
+   '22 patients, 14 controls','participant','none drawn (descriptive panel)',
+   'two-sided paired t test on the change in depressive severity within each group',
+   'two-sided','paired (same participants)','none (two pre-specified within-group tests)',
+   'patients t = -4.22; controls not significant','21 (patients)','0.0006 (patients); 0.21 (controls)',None,
+   'as reported in the Methods and main text','not reported in the source summary',
+   'clinical pharmacological dataset (ds005917), Methods; the subject-level file for this test is not in the figure data folders, so the values are carried from the Methods'],1):
+    if v!='': s24.cell(row=r5f,column=c,value=v)
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+ck=openpyxl.load_workbook('/Users/yunman/Desktop/submission/revision/text/'+TOUT2); S=ck['Table S24']
+S24TXT=' '.join(str(S.cell(row=r,column=c).value or '') for r in range(1,S.max_row+1) for c in range(1,18))
+miss2=[]
+for i,t in enumerate(MSTXT):
+    for m in LABV.finditer(t):
+        val=m.group(2)
+        if '.' not in val or val in S24TXT: continue
+        miss2.append(dict(para=i,label=re.sub(r'\s+',' ',m.group(1)).strip(' ,.('),value=val,context=t[max(0,m.start()-100):m.end()+60].replace('\n',' ')))
+CC=pd.DataFrame(miss2).drop_duplicates(subset=['label','value'])
+CC.to_csv('maintext_vs_tableS24.csv',index=False)
+print('remaining main-text statistics not in Table S24: %d'%len(CC))
+print(CC.to_string(max_colwidth=100))
+print('\nS24 data rows:', sum(1 for r in range(3,S.max_row+1) if S.cell(row=r,column=1).value or S.cell(row=r,column=2).value))
+
+# ---------------------------------------------------------------- cell bf04731d (cell_index 630)
+# [recovery] this cell raised in the original session at its line 8; only the
+# statements that had already executed are carried over
+ms=open_accepted('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/139d7c51-a6d8-43bb-93ad-7fcfe695c9bd/v14ee7f62_290926NatMed_Manuscript.docx','MS_in2.docx')
+i91=pidx(ms,'ketamine-session whole-brain FC patterns'); i94=pidx(ms,'Leave-one-out predictions correlated'); i108=pidx(ms,'Several limitations constrain')
+i188=pidx(ms,'two-sided Welch t = -14.70') if any('two-sided Welch t = -14.70' in ms.text(p) for p in ms.paras) else None
+i190=pidx(ms,'leave-one-out predicted versus observed four-year symptom change') if any('leave-one-out predicted versus observed four-year symptom change' in ms.text(p) for p in ms.paras) else None
+print(i188,i190)
+t188=ms.text(ms.paras[i188]); j=t188.find('-14.70'); print(repr(t188[max(0,j-220):j+90]))
+
+# ---------------------------------------------------------------- cell a319e55e (cell_index 632)
+MSE2=[(i91,'was associated with greater symptom improvement (Spearman \u03c1 = -0.56, Pperm = 0.0068; Fig. 5g',
+       'was associated with greater symptom improvement on the MADRS (Spearman \u03c1 = -0.56, Pperm = 0.0068, qFDR = 0.027 across the four symptom measures; Fig. 5g'),
+      (i94,'(r = 0.29, P = 0.0072), exceeding a permutation null','(r = 0.29), exceeding a permutation null'),
+      (188,'two-sided Welch t = -14.70, P <0.0001','two-sided Welch t(118.4) = -14.74, P < 0.0001'),
+      (190,'Spearman \u03c1 = -0.56, P = 0.0069; Pperm = 0.0068',
+           'Spearman \u03c1 = -0.56, Pperm = 0.0068, qFDR = 0.027 across the four symptom measures'),
+      (190,'r = 0.29, P = 0.0072; in-sample R\u00b2 = 0.29, F(12,72) = 2.43, P = 0.01',
+           'r = 0.29, permutation P = 0.0095; in-sample R\u00b2 = 0.29, F(12,72) = 2.43, P = 0.0104')]
+for pi,old,new in MSE2:
+    assert ms.replace(old,new,para=pi) is not None,(pi,old[:40])
+ms.insert_after('and do not capture regional variation in cellular or laminar organisation.', LIMIT, para=i108)
+MSOUT2='290926NatMed_Manuscript_reviewed_v2_tracked.docx'; None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+p3='/Users/yunman/Desktop/submission/revision/text/'+MSOUT2
+acc3=alltext(p3,'accept')
+oa=[x for x in norm(alltext('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/139d7c51-a6d8-43bb-93ad-7fcfe695c9bd/v14ee7f62_290926NatMed_Manuscript.docx','accept')) if x]
+nr=[x for x in norm(alltext(p3,'reject')) if x]
+print('reject == user accepted:', oa==nr)
+for kw in ('-14.74','qFDR = 0.027','permutation P = 0.0095','male-only'):
+    print(kw, '->', any(kw in t for t in acc3))
+# final coverage check against the table
+S24TXT=' '.join(str(S.cell(row=r,column=c).value or '') for r in range(1,S.max_row+1) for c in range(1,18))
+miss3=[]
+for i,t in enumerate(acc3):
+    for m in LABV.finditer(t):
+        val=m.group(2)
+        if '.' not in val or val in S24TXT: continue
+        miss3.append((i,re.sub(r'\s+',' ',m.group(1)).strip(' ,.('),val))
+print('\nmain-text statistics still absent from Table S24:', len(set(miss3)), sorted(set((l,v) for _,l,v in miss3)))
+
+# ---------------------------------------------------------------- cell 8704e18b (cell_index 634)
+ms2=docxedit.TrackedDoc(p3, author='Claude Science')
+i=pidx(ms2,'two-sided Welch t(118.4) = -14.74')
+assert ms2.replace('two-sided Welch t(118.4) = -14.74','two-sided Welch t(92.9) = -14.74',para=i) is not None
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+r35=findrow('Simulated baseline NP factor in the both-u')
+setrow(r35, c11='Welch t(92.9) = -14.74', c12='92.9')
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+acc4=alltext('/Users/yunman/Desktop/submission/revision/text/'+MSOUT2,'accept')
+print('legend now:', [t[t.find('two-sided Welch'):t.find('two-sided Welch')+45] for t in acc4 if 'two-sided Welch t(92.9)' in t])
+oa=[x for x in norm(alltext('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/139d7c51-a6d8-43bb-93ad-7fcfe695c9bd/v14ee7f62_290926NatMed_Manuscript.docx','accept')) if x]
+print('reject == user accepted:', oa==[x for x in norm(alltext('/Users/yunman/Desktop/submission/revision/text/'+MSOUT2,'reject')) if x])
+print('S24 rows:', sum(1 for r in range(3,s24.max_row+1) if s24.cell(row=r,column=1).value or s24.cell(row=r,column=2).value))
+
+# ---------------------------------------------------------------- cell 32b56fa9 (cell_index 635)
+ms=open_accepted('/Users/yunman/.claude-science/orgs/226b8dbb-95c8-4e4b-90ab-d5a7406d7ce4/artifacts/proj_d1fb16c901b1/139d7c51-a6d8-43bb-93ad-7fcfe695c9bd/v14ee7f62_290926NatMed_Manuscript.docx','MS_in3.docx')
+i91=pidx(ms,'ketamine-session whole-brain FC patterns'); i94=pidx(ms,'Leave-one-out predictions correlated'); i108=pidx(ms,'Several limitations constrain')
+MSE3=[(i91,'was associated with greater symptom improvement (Spearman \u03c1 = -0.56, Pperm = 0.0068; Fig. 5g',
+       'was associated with greater symptom improvement on the MADRS (Spearman \u03c1 = -0.56, Pperm = 0.0068, qFDR = 0.027 across the four symptom measures; Fig. 5g'),
+      (i94,'(r = 0.29, P = 0.0072), exceeding a permutation null','(r = 0.29), exceeding a permutation null'),
+      (188,'two-sided Welch t = -14.70, P <0.0001','two-sided Welch t(92.9) = -14.74, P < 0.0001'),
+      (190,'Spearman \u03c1 = -0.56, P = 0.0069; Pperm = 0.0068','Spearman \u03c1 = -0.56, Pperm = 0.0068, qFDR = 0.027 across the four symptom measures'),
+      (190,'r = 0.29, P = 0.0072; in-sample R\u00b2 = 0.29, F(12,72) = 2.43, P = 0.01',
+           'r = 0.29, permutation P = 0.0095; in-sample R\u00b2 = 0.29, F(12,72) = 2.43, P = 0.0104')]
+for pi,old,new in MSE3: assert ms.replace(old,new,para=pi) is not None,(pi,old[:40])
+ms.insert_after('and do not capture regional variation in cellular or laminar organisation.', LIMIT, para=i108)
+None; None  # [recovery: side output suppressed]  # [recovery: side output suppressed]
+p3='/Users/yunman/Desktop/submission/revision/text/'+MSOUT2
+print('reject == user accepted:', oa==[x for x in norm(alltext(p3,'reject')) if x])
+acc4=alltext(p3,'accept')
+for kw in ('Welch t(92.9) = -14.74','qFDR = 0.027','permutation P = 0.0095','male-only','P = 0.0104'):
+    print(kw,'->',any(kw in t for t in acc4))
+rr=etree.fromstring(zipfile.ZipFile(p3).read('word/document.xml')); cc=collections.Counter()
+for tag in ('ins','del'):
+    for e in rr.iter(W+tag): cc[(tag,e.get(W+'author'))]+=1
+print('MS revisions:', dict(cc))
+
+# ---------------------------------------------------------------- cell 258bd81e (cell_index 636)
+S24TXT=' '.join(str(s24.cell(row=r,column=c).value or '') for r in range(1,s24.max_row+1) for c in range(1,18))
+miss4=sorted({(re.sub(r'\s+',' ',m.group(1)).strip(' ,.('),m.group(2)) for t in acc4 for m in LABV.finditer(t)
+              if '.' in m.group(2) and m.group(2) not in S24TXT})
+print('main-text statistics absent from Table S24:', len(miss4), miss4)
+summary=pd.DataFrame([dict(item='Table S24 data rows', value=231),
+  dict(item='main-figure rows', value=51+11),
+  dict(item='main-figure rows missing effect size', value=0),
+  dict(item='main-figure rows missing 95% CI', value=0),
+  dict(item='main-text statistics absent from Table S24', value=len(miss4)),
+  dict(item='cells reformatted to the house number rules', value=len(L))])
+summary.to_csv(os.path.join(OUT_DIR, 'tableS24_audit_summary.csv'), index=False)
+print(summary.to_string(index=False)); print(summary.to_string(index=False))

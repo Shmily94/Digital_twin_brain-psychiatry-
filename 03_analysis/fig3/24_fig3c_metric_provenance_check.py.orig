@@ -1,0 +1,158 @@
+"""fig3c_metric_provenance_check.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code cross checks whether pairwise similarity between simulated
+    functional connectivity models (10m, 100m, and 1b voxel population
+    sizes) is consistent depending on which data source and which subject
+    subset are used. For each pair of models it computes Pearson
+    correlations across edges for each subject, then summarizes those per
+    subject correlations into a mean using both a plain average and a
+    Fisher z transformed average, comparing results computed from the new
+    mat file simulation arrays against results computed from an archived
+    wide format CSV of the same simulated edges, and comparing the full 12
+    subject set against the 9 subject subset with complete archive data.
+    One row of the output table represents one specific combination of a
+    model pair, a data source, and a subject subset, reporting the number
+    of subjects used, the two averaged correlation values computed from
+    that combination, and the corresponding similarity value originally
+    reported in the fc_similarity_six_models_new3m reference for that same
+    model pair.
+
+INPUT FILES
+    archive simulation_results_wide_12subs.csv
+    {B}/revision/10m_voxel_population_simulation/simulate_FC_edges.csv
+    {B}/revision/model_scale_consistent/simulation_results_wide_12subs.csv
+    {VX}/new10m_simulated_FC_12subs_with_empirical.mat
+
+OUTPUT FILE
+    fig3c_metric_provenance_check.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3c_metric_provenance_check.csv
+
+STATISTICAL TESTS
+    Pearson correlation
+    Fisher z transform
+
+RUNNABLE ON A LAPTOP
+    conditional on the input files above being present on this machine
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : e42961c2-2a6a-4710-b411-85df8fbcc0bd
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-22 17:10:37 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3c_metric_provenance_check__cell_e42961c2.py
+    candidates found   : 1
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+from scipy import stats
+import numpy as np
+import pandas as pd
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 5233e78b, 816a8f3b)
+import scipy.io as sio, pandas as pd, numpy as np, os
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+NEW=sio.loadmat(f'{VX}/new10m_simulated_FC_12subs_with_empirical.mat', squeeze_me=True)
+sub_ids=[str(s) for s in NEW['subject_ids']]
+sw=pd.read_csv(f'{B}/revision/model_scale_consistent/simulation_results_wide_12subs.csv')
+sw['sid']=sw.sub_id.astype(str).str.replace('sub-0*','',regex=True)
+sw=sw.set_index('sid').loc[sub_ids]
+CSV={m: sw[[f'{m}_baseline_edge{k}' for k in range(1,13)]].values.astype(float) for m in ['10m','100m','1b']}
+B='/Users/yunman/Desktop/submission'
+FD3=f'{B}/revision/text/figures/fig.3/fig3_data'
+import scipy.io as sio, pandas as pd, numpy as np, os
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+NEW=sio.loadmat(f'{VX}/new10m_simulated_FC_12subs_with_empirical.mat', squeeze_me=True)
+ED=pd.read_csv(f'{B}/revision/10m_voxel_population_simulation/simulate_FC_edges.csv')
+CONDMAP={'sst_stop_success':0,'sst_stop_failure':1,'mid_antici_hit':2,'mid_feedback_hit':3}
+def edges_from_mat(a):
+    return np.column_stack([a[i-1,j-1,:,CONDMAP[c]] for i,j,c in zip(ED.roi_i,ED.roi_j,ED.condition)])
+MAT={'10m':edges_from_mat(NEW['simu_fc_10m_100m_params']),'100m':edges_from_mat(NEW['simu_fc_100m']),
+     '1b':edges_from_mat(NEW['simu_fc_1b']),'10m_own':edges_from_mat(NEW['simu_fc_10m_own_params'])}
+ok=~np.isnan(CSV['100m']).any(1) & ~np.isnan(CSV['1b']).any(1) & ~np.isnan(CSV['10m']).any(1)
+
+# ---- computation: recovered from execution-log cell e42961c2
+rows=[]
+for x,y in [('10m','100m'),('10m','1b'),('100m','1b')]:
+    for src,dat in [('new .mat (simu_fc_*)',MAT),('archive simulation_results_wide_12subs.csv',CSV)]:
+        for nlab,mask in [('all 12',np.ones(12,bool)),('9 with complete archive data',ok)]:
+            if src.startswith('archive') and nlab=='all 12': continue
+            r=[stats.pearsonr(dat[x][s],dat[y][s])[0] for s in np.where(mask)[0]]
+            rows.append(dict(pair=f'{x} vs {y}', simulated_source=src, subjects=nlab, n=len(r),
+                             fisher_z_mean=round(float(np.tanh(np.mean(np.arctanh(np.clip(r,-.999,.999))))),4),
+                             plain_mean=round(float(np.mean(r)),4),
+                             value_in_fc_similarity_six_models_new3m=
+                             {'10m vs 100m':0.6497,'10m vs 1b':0.7273,'100m vs 1b':0.8909}[f'{x} vs {y}']))
+CMP=pd.DataFrame(rows)
+CMP.to_csv(f'{FD3}/fig3c_metric_provenance_check.csv', index=False)

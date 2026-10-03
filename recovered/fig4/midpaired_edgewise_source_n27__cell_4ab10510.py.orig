@@ -1,0 +1,23 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/supp_midpaired/data/midpaired_edgewise_source_n27.csv
+#
+# cell id      : 4ab10510-5953-484f-924f-4505fae7b97e
+# frame id     : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp    : 2026-09-22 20:37:24 UTC
+# conda env    : python
+# language     : python
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/27_midpaired_edgewise_source_n27.py
+##############################################################################
+MD='/Users/yunman/Desktop/submission/revision/text/figures/supp_midpaired/data'
+PC.to_csv(f'{MD}/midpaired_placebo_vs_drug_n27.csv', index=False)
+SUBL=pd.DataFrame({'Subject':R27.index,'subgroup':h27.set_index('Subject').loc[R27.index].subgroup.values,
+    **{c:R27[c].values for c in ['Placebo','Ketamine','Midazolam']},
+    **{f'{c}_adj':RA[c].values for c in ['Placebo','Ketamine','Midazolam']},
+    **{f'FD_{c}':hm[c].values for c in ['Placebo','Ketamine','Midazolam']},
+    **{f'{c}_fig5score':P27[c].values for c in ['Placebo','Ketamine','Midazolam']}})
+SUBL.to_csv(f'{MD}/midpaired_subject_level_n27.csv', index=False)
+d3_.to_csv(f'{MD}/midpaired_edgewise_source_n27.csv', index=False)
+print(SUBL.head(3).to_string(index=False)[:400]); print('\nrows:', len(SUBL), '| subgroups:', SUBL.subgroup.value_counts().to_dict())

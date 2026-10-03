@@ -1,0 +1,2 @@
+n_sim,matched_r_with_age19,mean_partial_r,observed_partial_r,frac_partial_significant,mean_abs_r_change,observed_abs_r_change,P_r_change_vs_null
+20000,0.15627528076493952,-0.0013169399431508242,0.22233705660926512,0.05145,0.09504376765238617,0.26351925134540044,0.02295

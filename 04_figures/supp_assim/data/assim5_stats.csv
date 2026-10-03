@@ -1,0 +1,11 @@
+statistic,value
+"ICC(3,1), runs fixed",0.9951
+"ICC(2,1), runs random",0.9942
+mean between-run profile r,0.9958
+min between-run profile r,0.9903
+max between-run profile r,0.9985
+SD between edges (signal),0.1693
+mean SD between runs (noise),0.0123
+signal/noise SD ratio,13.76
+n runs,5.0
+n reward-task edges,6.0

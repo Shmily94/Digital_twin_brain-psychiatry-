@@ -1,0 +1,874 @@
+task,set,shen_id,model_region_index,anat_label,network,n_voxels_112288,n_voxels_113174215
+MID,prior,1,1,OrbFrontal,FPN,52,57
+MID,prior,2,2,OrbFrontal,Limbic,37,38
+MID,prior,3,3,OrbFrontal,DMN,43,43
+MID,prior,4,4,OrbFrontal,FPN,32,31
+MID,prior,5,5,AntPFC,DMN,50,53
+MID,prior,6,6,AntPFC,DMN,60,67
+MID,prior,14,14,FrontEyeFilds,FPN,38,94
+MID,prior,23,23,PrimMotor,Motor,138,131
+MID,prior,36,36,Insula,Limbic,40,40
+MID,prior,82,82,PrimVisual,Visual I,72,74
+MID,prior,83,83,DorsalACC,Limbic,33,39
+MID,prior,84,84,VentCing,Motor,35,34
+MID,prior,93,93,Hippocampus,Sub,45,46
+MID,prior,94,94,Hippocampus,Sub,34,33
+MID,prior,120,99,,Sub,21,18
+MID,prior,121,100,Caudate,Sub,47,48
+MID,prior,122,101,Caudate,Sub,48,49
+MID,prior,123,102,Caudate,Sub,50,52
+MID,prior,124,103,Putamen,Sub,68,59
+MID,prior,125,104,Nacc,Sub,75,71
+MID,prior,126,105,Thalamus,Sub,34,36
+MID,prior,127,106,Thalamus,Sub,28,28
+MID,prior,128,107,Thalamus,Sub,17,17
+MID,prior,134,108,OrbFrontal,DMN,37,36
+MID,prior,135,109,OrbFrontal,Limbic,35,35
+MID,prior,136,110,OrbFrontal,Limbic,23,23
+MID,prior,137,111,OrbFrontal,SMF,67,64
+MID,prior,138,112,AntPFC,DMN,38,38
+MID,prior,140,114,OrbFrontal,SMF,38,37
+MID,prior,141,115,AntPFC,DMN,45,47
+MID,prior,158,132,PrimMotor,Motor,76,76
+MID,prior,169,143,Insula,Limbic,29,24
+MID,prior,215,189,PrimVisual,Visual I,108,103
+MID,prior,216,190,PrimVisual,Visual I,51,52
+MID,prior,217,191,,Sub,9,9
+MID,prior,219,193,DorsalAcc,SMF,55,56
+MID,prior,220,194,VentCing,Limbic,21,21
+MID,prior,221,195,VentCing,Limbic,48,47
+MID,prior,228,202,Amygdala,Sub,37,37
+MID,prior,229,203,Hippocampus,Sub,27,28
+MID,prior,230,204,Hippocampus,Sub,43,42
+MID,prior,231,205,Hippocampus,Sub,52,51
+MID,prior,232,206,Hippocampus,Sub,53,52
+MID,prior,257,210,,Sub,25,27
+MID,prior,258,211,Caudate,Sub,29,29
+MID,prior,259,212,Caudate,Sub,108,107
+MID,prior,260,213,Caudate,Sub,44,51
+MID,prior,261,214,Putamen,Sub,70,71
+MID,prior,262,215,Putamen,Sub,33,31
+MID,prior,263,216,Thalamus,Sub,39,36
+MID,prior,264,217,Thalamus,Sub,28,28
+MID,act_Nmatched,15,15,FrontEyeFilds,Limbic,43,41
+MID,act_Nmatched,20,20,Broca_Triang,Limbic,40,39
+MID,act_Nmatched,21,21,Broca-Operc,FPN,65,64
+MID,act_Nmatched,25,25,PreMot+SuppMot,Motor,40,39
+MID,act_Nmatched,27,27,PreMot+SuppMot,Motor,59,72
+MID,act_Nmatched,28,28,PreMot+SuppMot,Limbic,31,28
+MID,act_Nmatched,29,29,PreMot+SuppMot,Limbic,79,84
+MID,act_Nmatched,31,31,PreMot+SuppMot,FPN,30,34
+MID,act_Nmatched,32,32,PreMot+SuppMot,Limbic,46,36
+MID,act_Nmatched,35,35,Insula,Motor,39,39
+MID,act_Nmatched,42,42,VisMotor,Visual Asso,62,60
+MID,act_Nmatched,68,68,Fusiform,Visual I,60,60
+MID,act_Nmatched,72,72,Visual Assoc,Visual I,62,71
+MID,act_Nmatched,73,73,Visual Assoc,Visual Asso,77,79
+MID,act_Nmatched,75,75,Visual Assoc,Visual I,83,87
+MID,act_Nmatched,77,77,SecVisual,Visual I,65,59
+MID,act_Nmatched,79,79,SecVisual,Visual I,66,64
+MID,act_Nmatched,80,80,SecVisual,Visual I,83,76
+MID,act_Nmatched,82,82,PrimVisual,Visual I,72,74
+MID,act_Nmatched,84,84,VentCing,Motor,35,34
+MID,act_Nmatched,87,87,VenPostCing,Visual I,36,39
+MID,act_Nmatched,89,89,DorsalPCC,Motor,31,33
+MID,act_Nmatched,91,91,DorsalPCC,Limbic,42,40
+MID,act_Nmatched,98,98,SecVisual,Visual I,57,58
+MID,act_Nmatched,124,103,Putamen,Sub,68,59
+MID,act_Nmatched,126,105,Thalamus,Sub,34,36
+MID,act_Nmatched,150,124,FrontEyeFilds,SMF,51,48
+MID,act_Nmatched,155,129,Broca_Triang,Limbic,64,63
+MID,act_Nmatched,157,131,PreMot+SuppMot,FPN,65,71
+MID,act_Nmatched,161,135,PreMot+SuppMot,Motor,40,36
+MID,act_Nmatched,162,136,PreMot+SuppMot,SMF,74,75
+MID,act_Nmatched,165,139,PreMot+SuppMot,SMF,21,53
+MID,act_Nmatched,166,140,PreMot+SuppMot,Motor,36,36
+MID,act_Nmatched,168,142,Insula,Motor,53,53
+MID,act_Nmatched,169,143,Insula,Limbic,29,24
+MID,act_Nmatched,171,145,PrimSensory,Motor,92,105
+MID,act_Nmatched,176,150,VisMotor,Visual I,82,76
+MID,act_Nmatched,177,151,VisMotor,Visual Asso,93,84
+MID,act_Nmatched,179,153,SupramargGyr,Motor,53,71
+MID,act_Nmatched,198,172,Fusiform,Visual I,44,43
+MID,act_Nmatched,205,179,Visual Assoc,Visual I,87,85
+MID,act_Nmatched,207,181,Visual Assoc,Visual I,67,73
+MID,act_Nmatched,208,182,Visual Assoc,Visual I,123,129
+MID,act_Nmatched,211,185,SecVisual,Visual I,80,76
+MID,act_Nmatched,215,189,PrimVisual,Visual I,108,103
+MID,act_Nmatched,216,190,PrimVisual,Visual I,51,52
+MID,act_Nmatched,218,192,PreMot+SuppMot,Motor,42,43
+MID,act_Nmatched,221,195,VentCing,Limbic,48,47
+MID,act_Nmatched,226,200,DorsalPCC,Limbic,56,60
+MID,act_Nmatched,261,214,Putamen,Sub,70,71
+MID,act_Nmatched,262,215,Putamen,Sub,33,31
+MID,act_voxmatched,15,15,FrontEyeFilds,Limbic,43,41
+MID,act_voxmatched,20,20,Broca_Triang,Limbic,40,39
+MID,act_voxmatched,25,25,PreMot+SuppMot,Motor,40,39
+MID,act_voxmatched,27,27,PreMot+SuppMot,Motor,59,72
+MID,act_voxmatched,28,28,PreMot+SuppMot,Limbic,31,28
+MID,act_voxmatched,32,32,PreMot+SuppMot,Limbic,46,36
+MID,act_voxmatched,35,35,Insula,Motor,39,39
+MID,act_voxmatched,42,42,VisMotor,Visual Asso,62,60
+MID,act_voxmatched,68,68,Fusiform,Visual I,60,60
+MID,act_voxmatched,72,72,Visual Assoc,Visual I,62,71
+MID,act_voxmatched,75,75,Visual Assoc,Visual I,83,87
+MID,act_voxmatched,77,77,SecVisual,Visual I,65,59
+MID,act_voxmatched,79,79,SecVisual,Visual I,66,64
+MID,act_voxmatched,80,80,SecVisual,Visual I,83,76
+MID,act_voxmatched,82,82,PrimVisual,Visual I,72,74
+MID,act_voxmatched,87,87,VenPostCing,Visual I,36,39
+MID,act_voxmatched,91,91,DorsalPCC,Limbic,42,40
+MID,act_voxmatched,98,98,SecVisual,Visual I,57,58
+MID,act_voxmatched,124,103,Putamen,Sub,68,59
+MID,act_voxmatched,128,107,Thalamus,Sub,17,17
+MID,act_voxmatched,150,124,FrontEyeFilds,SMF,51,48
+MID,act_voxmatched,155,129,Broca_Triang,Limbic,64,63
+MID,act_voxmatched,157,131,PreMot+SuppMot,FPN,65,71
+MID,act_voxmatched,161,135,PreMot+SuppMot,Motor,40,36
+MID,act_voxmatched,162,136,PreMot+SuppMot,SMF,74,75
+MID,act_voxmatched,165,139,PreMot+SuppMot,SMF,21,53
+MID,act_voxmatched,166,140,PreMot+SuppMot,Motor,36,36
+MID,act_voxmatched,168,142,Insula,Motor,53,53
+MID,act_voxmatched,176,150,VisMotor,Visual I,82,76
+MID,act_voxmatched,177,151,VisMotor,Visual Asso,93,84
+MID,act_voxmatched,179,153,SupramargGyr,Motor,53,71
+MID,act_voxmatched,205,179,Visual Assoc,Visual I,87,85
+MID,act_voxmatched,207,181,Visual Assoc,Visual I,67,73
+MID,act_voxmatched,208,182,Visual Assoc,Visual I,123,129
+MID,act_voxmatched,211,185,SecVisual,Visual I,80,76
+MID,act_voxmatched,215,189,PrimVisual,Visual I,108,103
+MID,act_voxmatched,216,190,PrimVisual,Visual I,51,52
+MID,act_voxmatched,218,192,PreMot+SuppMot,Motor,42,43
+MID,act_voxmatched,261,214,Putamen,Sub,70,71
+MID,act_voxmatched,262,215,Putamen,Sub,33,31
+MID,act_thresh,9,9,AntPFC,FPN,90,97
+MID,act_thresh,11,11,dlPFC,Limbic,57,76
+MID,act_thresh,15,15,FrontEyeFilds,Limbic,43,41
+MID,act_thresh,20,20,Broca_Triang,Limbic,40,39
+MID,act_thresh,21,21,Broca-Operc,FPN,65,64
+MID,act_thresh,25,25,PreMot+SuppMot,Motor,40,39
+MID,act_thresh,26,26,PreMot+SuppMot,Motor,61,65
+MID,act_thresh,27,27,PreMot+SuppMot,Motor,59,72
+MID,act_thresh,28,28,PreMot+SuppMot,Limbic,31,28
+MID,act_thresh,29,29,PreMot+SuppMot,Limbic,79,84
+MID,act_thresh,31,31,PreMot+SuppMot,FPN,30,34
+MID,act_thresh,32,32,PreMot+SuppMot,Limbic,46,36
+MID,act_thresh,33,33,PrimSensory,Motor,138,136
+MID,act_thresh,34,34,Insula,Motor,15,13
+MID,act_thresh,35,35,Insula,Motor,39,39
+MID,act_thresh,38,38,PrimSensory,Motor,66,67
+MID,act_thresh,42,42,VisMotor,Visual Asso,62,60
+MID,act_thresh,43,43,VisMotor,Visual Asso,129,146
+MID,act_thresh,45,45,SupramargGyr,Motor,90,122
+MID,act_thresh,47,47,SupramargGyr,FPN,128,144
+MID,act_thresh,49,49,AngGyrus,DMN,75,84
+MID,act_thresh,50,50,AngGyrus,DMN,68,74
+MID,act_thresh,54,54,MedTempGyrus,SMF,40,39
+MID,act_thresh,65,65,SupTemGyrus,SMF,89,93
+MID,act_thresh,68,68,Fusiform,Visual I,60,60
+MID,act_thresh,72,72,Visual Assoc,Visual I,62,71
+MID,act_thresh,73,73,Visual Assoc,Visual Asso,77,79
+MID,act_thresh,75,75,Visual Assoc,Visual I,83,87
+MID,act_thresh,77,77,SecVisual,Visual I,65,59
+MID,act_thresh,79,79,SecVisual,Visual I,66,64
+MID,act_thresh,80,80,SecVisual,Visual I,83,76
+MID,act_thresh,82,82,PrimVisual,Visual I,72,74
+MID,act_thresh,84,84,VentCing,Motor,35,34
+MID,act_thresh,87,87,VenPostCing,Visual I,36,39
+MID,act_thresh,89,89,DorsalPCC,Motor,31,33
+MID,act_thresh,91,91,DorsalPCC,Limbic,42,40
+MID,act_thresh,98,98,SecVisual,Visual I,57,58
+MID,act_thresh,124,103,Putamen,Sub,68,59
+MID,act_thresh,125,104,Nacc,Sub,75,71
+MID,act_thresh,126,105,Thalamus,Sub,34,36
+MID,act_thresh,128,107,Thalamus,Sub,17,17
+MID,act_thresh,144,118,AntPFC,Limbic,54,63
+MID,act_thresh,150,124,FrontEyeFilds,SMF,51,48
+MID,act_thresh,155,129,Broca_Triang,Limbic,64,63
+MID,act_thresh,157,131,PreMot+SuppMot,FPN,65,71
+MID,act_thresh,158,132,PrimMotor,Motor,76,76
+MID,act_thresh,161,135,PreMot+SuppMot,Motor,40,36
+MID,act_thresh,162,136,PreMot+SuppMot,SMF,74,75
+MID,act_thresh,165,139,PreMot+SuppMot,SMF,21,53
+MID,act_thresh,166,140,PreMot+SuppMot,Motor,36,36
+MID,act_thresh,168,142,Insula,Motor,53,53
+MID,act_thresh,169,143,Insula,Limbic,29,24
+MID,act_thresh,171,145,PrimSensory,Motor,92,105
+MID,act_thresh,175,149,VisMotor,Visual Asso,71,89
+MID,act_thresh,176,150,VisMotor,Visual I,82,76
+MID,act_thresh,177,151,VisMotor,Visual Asso,93,84
+MID,act_thresh,178,152,VisMotor,Limbic,93,110
+MID,act_thresh,179,153,SupramargGyr,Motor,53,71
+MID,act_thresh,181,155,SupramargGyr,Motor,68,78
+MID,act_thresh,184,158,AngGyrus,FPN,130,138
+MID,act_thresh,198,172,Fusiform,Visual I,44,43
+MID,act_thresh,200,174,Fusiform,Visual Asso,40,42
+MID,act_thresh,205,179,Visual Assoc,Visual I,87,85
+MID,act_thresh,207,181,Visual Assoc,Visual I,67,73
+MID,act_thresh,208,182,Visual Assoc,Visual I,123,129
+MID,act_thresh,209,183,Visual Assoc,Visual Asso,66,79
+MID,act_thresh,211,185,SecVisual,Visual I,80,76
+MID,act_thresh,213,187,SecVisual,Visual II,121,121
+MID,act_thresh,215,189,PrimVisual,Visual I,108,103
+MID,act_thresh,216,190,PrimVisual,Visual I,51,52
+MID,act_thresh,218,192,PreMot+SuppMot,Motor,42,43
+MID,act_thresh,221,195,VentCing,Limbic,48,47
+MID,act_thresh,226,200,DorsalPCC,Limbic,56,60
+MID,act_thresh,258,211,Caudate,Sub,29,29
+MID,act_thresh,259,212,Caudate,Sub,108,107
+MID,act_thresh,261,214,Putamen,Sub,70,71
+MID,act_thresh,262,215,Putamen,Sub,33,31
+MID,act_thresh,263,216,Thalamus,Sub,39,36
+MID,act_strict,15,15,FrontEyeFilds,Limbic,43,41
+MID,act_strict,20,20,Broca_Triang,Limbic,40,39
+MID,act_strict,21,21,Broca-Operc,FPN,65,64
+MID,act_strict,25,25,PreMot+SuppMot,Motor,40,39
+MID,act_strict,27,27,PreMot+SuppMot,Motor,59,72
+MID,act_strict,28,28,PreMot+SuppMot,Limbic,31,28
+MID,act_strict,31,31,PreMot+SuppMot,FPN,30,34
+MID,act_strict,32,32,PreMot+SuppMot,Limbic,46,36
+MID,act_strict,35,35,Insula,Motor,39,39
+MID,act_strict,42,42,VisMotor,Visual Asso,62,60
+MID,act_strict,43,43,VisMotor,Visual Asso,129,146
+MID,act_strict,68,68,Fusiform,Visual I,60,60
+MID,act_strict,72,72,Visual Assoc,Visual I,62,71
+MID,act_strict,75,75,Visual Assoc,Visual I,83,87
+MID,act_strict,77,77,SecVisual,Visual I,65,59
+MID,act_strict,79,79,SecVisual,Visual I,66,64
+MID,act_strict,80,80,SecVisual,Visual I,83,76
+MID,act_strict,82,82,PrimVisual,Visual I,72,74
+MID,act_strict,84,84,VentCing,Motor,35,34
+MID,act_strict,91,91,DorsalPCC,Limbic,42,40
+MID,act_strict,124,103,Putamen,Sub,68,59
+MID,act_strict,150,124,FrontEyeFilds,SMF,51,48
+MID,act_strict,155,129,Broca_Triang,Limbic,64,63
+MID,act_strict,157,131,PreMot+SuppMot,FPN,65,71
+MID,act_strict,161,135,PreMot+SuppMot,Motor,40,36
+MID,act_strict,165,139,PreMot+SuppMot,SMF,21,53
+MID,act_strict,166,140,PreMot+SuppMot,Motor,36,36
+MID,act_strict,168,142,Insula,Motor,53,53
+MID,act_strict,171,145,PrimSensory,Motor,92,105
+MID,act_strict,177,151,VisMotor,Visual Asso,93,84
+MID,act_strict,179,153,SupramargGyr,Motor,53,71
+MID,act_strict,184,158,AngGyrus,FPN,130,138
+MID,act_strict,198,172,Fusiform,Visual I,44,43
+MID,act_strict,205,179,Visual Assoc,Visual I,87,85
+MID,act_strict,207,181,Visual Assoc,Visual I,67,73
+MID,act_strict,208,182,Visual Assoc,Visual I,123,129
+MID,act_strict,211,185,SecVisual,Visual I,80,76
+MID,act_strict,215,189,PrimVisual,Visual I,108,103
+MID,act_strict,216,190,PrimVisual,Visual I,51,52
+MID,act_strict,226,200,DorsalPCC,Limbic,56,60
+MID,act_strict,261,214,Putamen,Sub,70,71
+MID,act_strict,262,215,Putamen,Sub,33,31
+MID,act_diff_Nmatched,15,15,FrontEyeFilds,Limbic,43,41
+MID,act_diff_Nmatched,20,20,Broca_Triang,Limbic,40,39
+MID,act_diff_Nmatched,25,25,PreMot+SuppMot,Motor,40,39
+MID,act_diff_Nmatched,26,26,PreMot+SuppMot,Motor,61,65
+MID,act_diff_Nmatched,27,27,PreMot+SuppMot,Motor,59,72
+MID,act_diff_Nmatched,28,28,PreMot+SuppMot,Limbic,31,28
+MID,act_diff_Nmatched,32,32,PreMot+SuppMot,Limbic,46,36
+MID,act_diff_Nmatched,33,33,PrimSensory,Motor,138,136
+MID,act_diff_Nmatched,38,38,PrimSensory,Motor,66,67
+MID,act_diff_Nmatched,41,41,VisMotor,Visual Asso,54,57
+MID,act_diff_Nmatched,44,44,VisMotor,Limbic,81,78
+MID,act_diff_Nmatched,45,45,SupramargGyr,Motor,90,122
+MID,act_diff_Nmatched,67,67,Fusiform,Visual Asso,57,51
+MID,act_diff_Nmatched,72,72,Visual Assoc,Visual I,62,71
+MID,act_diff_Nmatched,73,73,Visual Assoc,Visual Asso,77,79
+MID,act_diff_Nmatched,76,76,SecVisual,Visual II,80,102
+MID,act_diff_Nmatched,78,78,SecVisual,Visual II,106,105
+MID,act_diff_Nmatched,79,79,SecVisual,Visual I,66,64
+MID,act_diff_Nmatched,80,80,SecVisual,Visual I,83,76
+MID,act_diff_Nmatched,81,81,SecVisual,Visual II,96,100
+MID,act_diff_Nmatched,82,82,PrimVisual,Visual I,72,74
+MID,act_diff_Nmatched,89,89,DorsalPCC,Motor,31,33
+MID,act_diff_Nmatched,91,91,DorsalPCC,Limbic,42,40
+MID,act_diff_Nmatched,121,100,Caudate,Sub,47,48
+MID,act_diff_Nmatched,123,102,Caudate,Sub,50,52
+MID,act_diff_Nmatched,124,103,Putamen,Sub,68,59
+MID,act_diff_Nmatched,125,104,Nacc,Sub,75,71
+MID,act_diff_Nmatched,126,105,Thalamus,Sub,34,36
+MID,act_diff_Nmatched,128,107,Thalamus,Sub,17,17
+MID,act_diff_Nmatched,155,129,Broca_Triang,Limbic,64,63
+MID,act_diff_Nmatched,161,135,PreMot+SuppMot,Motor,40,36
+MID,act_diff_Nmatched,162,136,PreMot+SuppMot,SMF,74,75
+MID,act_diff_Nmatched,165,139,PreMot+SuppMot,SMF,21,53
+MID,act_diff_Nmatched,166,140,PreMot+SuppMot,Motor,36,36
+MID,act_diff_Nmatched,167,141,PrimSensory,Motor,64,70
+MID,act_diff_Nmatched,171,145,PrimSensory,Motor,92,105
+MID,act_diff_Nmatched,175,149,VisMotor,Visual Asso,71,89
+MID,act_diff_Nmatched,178,152,VisMotor,Limbic,93,110
+MID,act_diff_Nmatched,179,153,SupramargGyr,Motor,53,71
+MID,act_diff_Nmatched,207,181,Visual Assoc,Visual I,67,73
+MID,act_diff_Nmatched,208,182,Visual Assoc,Visual I,123,129
+MID,act_diff_Nmatched,209,183,Visual Assoc,Visual Asso,66,79
+MID,act_diff_Nmatched,211,185,SecVisual,Visual I,80,76
+MID,act_diff_Nmatched,213,187,SecVisual,Visual II,121,121
+MID,act_diff_Nmatched,214,188,SecVisual,Visual II,114,108
+MID,act_diff_Nmatched,215,189,PrimVisual,Visual I,108,103
+MID,act_diff_Nmatched,258,211,Caudate,Sub,29,29
+MID,act_diff_Nmatched,259,212,Caudate,Sub,108,107
+MID,act_diff_Nmatched,261,214,Putamen,Sub,70,71
+MID,act_diff_Nmatched,262,215,Putamen,Sub,33,31
+MID,act_diff_Nmatched,263,216,Thalamus,Sub,39,36
+MID,hybrid,15,15,FrontEyeFilds,Limbic,43,41
+MID,hybrid,20,20,Broca_Triang,Limbic,40,39
+MID,hybrid,21,21,Broca-Operc,FPN,65,64
+MID,hybrid,23,23,PrimMotor,Motor,138,131
+MID,hybrid,25,25,PreMot+SuppMot,Motor,40,39
+MID,hybrid,27,27,PreMot+SuppMot,Motor,59,72
+MID,hybrid,28,28,PreMot+SuppMot,Limbic,31,28
+MID,hybrid,29,29,PreMot+SuppMot,Limbic,79,84
+MID,hybrid,31,31,PreMot+SuppMot,FPN,30,34
+MID,hybrid,32,32,PreMot+SuppMot,Limbic,46,36
+MID,hybrid,35,35,Insula,Motor,39,39
+MID,hybrid,42,42,VisMotor,Visual Asso,62,60
+MID,hybrid,68,68,Fusiform,Visual I,60,60
+MID,hybrid,72,72,Visual Assoc,Visual I,62,71
+MID,hybrid,73,73,Visual Assoc,Visual Asso,77,79
+MID,hybrid,75,75,Visual Assoc,Visual I,83,87
+MID,hybrid,77,77,SecVisual,Visual I,65,59
+MID,hybrid,79,79,SecVisual,Visual I,66,64
+MID,hybrid,80,80,SecVisual,Visual I,83,76
+MID,hybrid,82,82,PrimVisual,Visual I,72,74
+MID,hybrid,84,84,VentCing,Motor,35,34
+MID,hybrid,87,87,VenPostCing,Visual I,36,39
+MID,hybrid,89,89,DorsalPCC,Motor,31,33
+MID,hybrid,91,91,DorsalPCC,Limbic,42,40
+MID,hybrid,98,98,SecVisual,Visual I,57,58
+MID,hybrid,124,103,Putamen,Sub,68,59
+MID,hybrid,126,105,Thalamus,Sub,34,36
+MID,hybrid,127,106,Thalamus,Sub,28,28
+MID,hybrid,128,107,Thalamus,Sub,17,17
+MID,hybrid,150,124,FrontEyeFilds,SMF,51,48
+MID,hybrid,155,129,Broca_Triang,Limbic,64,63
+MID,hybrid,157,131,PreMot+SuppMot,FPN,65,71
+MID,hybrid,158,132,PrimMotor,Motor,76,76
+MID,hybrid,161,135,PreMot+SuppMot,Motor,40,36
+MID,hybrid,162,136,PreMot+SuppMot,SMF,74,75
+MID,hybrid,165,139,PreMot+SuppMot,SMF,21,53
+MID,hybrid,166,140,PreMot+SuppMot,Motor,36,36
+MID,hybrid,168,142,Insula,Motor,53,53
+MID,hybrid,169,143,Insula,Limbic,29,24
+MID,hybrid,171,145,PrimSensory,Motor,92,105
+MID,hybrid,176,150,VisMotor,Visual I,82,76
+MID,hybrid,177,151,VisMotor,Visual Asso,93,84
+MID,hybrid,179,153,SupramargGyr,Motor,53,71
+MID,hybrid,198,172,Fusiform,Visual I,44,43
+MID,hybrid,205,179,Visual Assoc,Visual I,87,85
+MID,hybrid,207,181,Visual Assoc,Visual I,67,73
+MID,hybrid,208,182,Visual Assoc,Visual I,123,129
+MID,hybrid,211,185,SecVisual,Visual I,80,76
+MID,hybrid,215,189,PrimVisual,Visual I,108,103
+MID,hybrid,216,190,PrimVisual,Visual I,51,52
+MID,hybrid,218,192,PreMot+SuppMot,Motor,42,43
+MID,hybrid,221,195,VentCing,Limbic,48,47
+MID,hybrid,226,200,DorsalPCC,Limbic,56,60
+MID,hybrid,261,214,Putamen,Sub,70,71
+MID,hybrid,262,215,Putamen,Sub,33,31
+MID,hybrid,263,216,Thalamus,Sub,39,36
+MID,hybrid,264,217,Thalamus,Sub,28,28
+MID,holdout_symmetric,7,7,AntPFC,FPN,49,52
+MID,holdout_symmetric,8,8,AntPFC,FPN,40,60
+MID,holdout_symmetric,9,9,AntPFC,FPN,90,97
+MID,holdout_symmetric,10,10,dlPFC,Limbic,84,84
+MID,holdout_symmetric,11,11,dlPFC,Limbic,57,76
+MID,holdout_symmetric,12,12,FrontEyeFilds,SMF,82,90
+MID,holdout_symmetric,13,13,FrontEyeFilds,DMN,68,65
+MID,holdout_symmetric,16,16,ParsOrbitalis,SMF,52,59
+MID,holdout_symmetric,17,17,ParsOrbitalis,FPN,38,38
+MID,holdout_symmetric,18,18,ParsOrbitalis,Limbic,30,29
+MID,holdout_symmetric,19,19,dlPFC,FPN,36,58
+MID,holdout_symmetric,22,22,Broca-Operc,FPN,48,67
+MID,holdout_symmetric,24,24,PreMot+SuppMot,Motor,52,52
+MID,holdout_symmetric,26,26,PreMot+SuppMot,Motor,61,65
+MID,holdout_symmetric,30,30,PreMot+SuppMot,FPN,63,60
+MID,holdout_symmetric,33,33,PrimSensory,Motor,138,136
+MID,holdout_symmetric,34,34,Insula,Motor,15,13
+MID,holdout_symmetric,37,37,Insula,Motor,72,69
+MID,holdout_symmetric,38,38,PrimSensory,Motor,66,67
+MID,holdout_symmetric,39,39,PrimSensory,Motor,95,101
+MID,holdout_symmetric,40,40,PrimSensory,Motor,51,51
+MID,holdout_symmetric,41,41,VisMotor,Visual Asso,54,57
+MID,holdout_symmetric,43,43,VisMotor,Visual Asso,129,146
+MID,holdout_symmetric,44,44,VisMotor,Limbic,81,78
+MID,holdout_symmetric,45,45,SupramargGyr,Motor,90,122
+MID,holdout_symmetric,46,46,SupramargGyr,Motor,80,83
+MID,holdout_symmetric,47,47,SupramargGyr,FPN,128,144
+MID,holdout_symmetric,48,48,AngGyrus,FPN,95,96
+MID,holdout_symmetric,49,49,AngGyrus,DMN,75,84
+MID,holdout_symmetric,50,50,AngGyrus,DMN,68,74
+MID,holdout_symmetric,51,51,Temporalpole,Motor,29,28
+MID,holdout_symmetric,52,52,Temporalpole,SMF,35,33
+MID,holdout_symmetric,53,53,Temporalpole,SMF,63,69
+MID,holdout_symmetric,54,54,MedTempGyrus,SMF,40,39
+MID,holdout_symmetric,55,55,MedTempGyrus,FPN,57,62
+MID,holdout_symmetric,56,56,InfTempGryus,SMF,48,43
+MID,holdout_symmetric,57,57,InfTempGryus,SMF,41,41
+MID,holdout_symmetric,58,58,InfTempGryus,Motor,43,45
+MID,holdout_symmetric,59,59,InfTempGryus,Visual Asso,32,35
+MID,holdout_symmetric,60,60,InfTempGryus,Motor,28,30
+MID,holdout_symmetric,61,61,PrimAuditory,Motor,99,95
+MID,holdout_symmetric,62,62,PrimAuditory,Motor,48,54
+MID,holdout_symmetric,63,63,SupTemGyrus,Motor,86,94
+MID,holdout_symmetric,64,64,SupTemGyrus,SMF,75,81
+MID,holdout_symmetric,65,65,SupTemGyrus,SMF,89,93
+MID,holdout_symmetric,66,66,Fusiform,Visual Asso,47,44
+MID,holdout_symmetric,67,67,Fusiform,Visual Asso,57,51
+MID,holdout_symmetric,69,69,Fusiform,Visual Asso,69,77
+MID,holdout_symmetric,70,70,Fusiform,FPN,84,91
+MID,holdout_symmetric,71,71,Fusiform,Visual Asso,45,45
+MID,holdout_symmetric,74,74,Visual Assoc,Visual Asso,106,96
+MID,holdout_symmetric,76,76,SecVisual,Visual II,80,102
+MID,holdout_symmetric,78,78,SecVisual,Visual II,106,105
+MID,holdout_symmetric,81,81,SecVisual,Visual II,96,100
+MID,holdout_symmetric,85,85,VenPostCing,DMN,37,39
+MID,holdout_symmetric,86,86,VenPostCing,DMN,62,58
+MID,holdout_symmetric,88,88,VenPostCing,Limbic,29,31
+MID,holdout_symmetric,90,90,DorsalPCC,DMN,39,35
+MID,holdout_symmetric,92,92,Amygdala,Motor,42,38
+MID,holdout_symmetric,95,95,ParaHip,DMN,84,83
+MID,holdout_symmetric,96,96,ParaHip,DMN,43,42
+MID,holdout_symmetric,97,97,ParaHip,Sub,28,28
+MID,holdout_symmetric,139,113,AntPFC,FPN,54,47
+MID,holdout_symmetric,142,116,AntPFC,FPN,34,32
+MID,holdout_symmetric,143,117,AntPFC,FPN,32,47
+MID,holdout_symmetric,144,118,AntPFC,Limbic,54,63
+MID,holdout_symmetric,145,119,dlPFC,SMF,60,61
+MID,holdout_symmetric,146,120,dlPFC,Limbic,55,81
+MID,holdout_symmetric,147,121,dlPFC,FPN,33,47
+MID,holdout_symmetric,148,122,FrontEyeFilds,SMF,58,67
+MID,holdout_symmetric,149,123,FrontEyeFilds,SMF,50,70
+MID,holdout_symmetric,151,125,ParsOrbitalis,SMF,60,61
+MID,holdout_symmetric,152,126,ParsOrbitalis,Limbic,27,25
+MID,holdout_symmetric,153,127,ParsOrbitalis,SMF,44,41
+MID,holdout_symmetric,154,128,dlPFC,FPN,34,54
+MID,holdout_symmetric,156,130,Broca-Operc,SMF,34,56
+MID,holdout_symmetric,159,133,PreMot+SuppMot,Motor,43,78
+MID,holdout_symmetric,160,134,PreMot+SuppMot,Motor,23,23
+MID,holdout_symmetric,163,137,PreMot+SuppMot,Motor,74,83
+MID,holdout_symmetric,164,138,PreMot+SuppMot,FPN,103,108
+MID,holdout_symmetric,167,141,PrimSensory,Motor,64,70
+MID,holdout_symmetric,170,144,Insula,Motor,51,51
+MID,holdout_symmetric,172,146,PrimSensory,Motor,49,52
+MID,holdout_symmetric,173,147,PrimSensory,Motor,46,47
+MID,holdout_symmetric,174,148,VisMotor,Motor,97,97
+MID,holdout_symmetric,175,149,VisMotor,Visual Asso,71,89
+MID,holdout_symmetric,178,152,VisMotor,Limbic,93,110
+MID,holdout_symmetric,180,154,SupramargGyr,Motor,34,29
+MID,holdout_symmetric,181,155,SupramargGyr,Motor,68,78
+MID,holdout_symmetric,182,156,AngGyrus,FPN,90,131
+MID,holdout_symmetric,183,157,AngGyrus,SMF,94,110
+MID,holdout_symmetric,184,158,AngGyrus,FPN,130,138
+MID,holdout_symmetric,185,159,Temporalpole,SMF,39,33
+MID,holdout_symmetric,186,160,Temporalpole,SMF,19,19
+MID,holdout_symmetric,187,161,Temporalpole,SMF,22,25
+MID,holdout_symmetric,188,162,Temporalpole,Motor,67,75
+MID,holdout_symmetric,189,163,Temporalpole,Motor,15,12
+MID,holdout_symmetric,190,164,MedTempGyrus,SMF,43,56
+MID,holdout_symmetric,191,165,MedTempGyrus,Motor,90,88
+MID,holdout_symmetric,192,166,MedTempGyrus,SMF,90,110
+MID,holdout_symmetric,193,167,MedTempGyrus,FPN,75,76
+MID,holdout_symmetric,194,168,InfTempGryus,SMF,34,36
+MID,holdout_symmetric,195,169,InfTempGryus,Motor,42,45
+MID,holdout_symmetric,196,170,InfTempGryus,FPN,47,46
+MID,holdout_symmetric,197,171,SupTemGyrus,Motor,66,73
+MID,holdout_symmetric,199,173,Fusiform,FPN,67,68
+MID,holdout_symmetric,200,174,Fusiform,Visual Asso,40,42
+MID,holdout_symmetric,201,175,Fusiform,Visual Asso,32,32
+MID,holdout_symmetric,202,176,ParaHip,DMN,30,33
+MID,holdout_symmetric,203,177,Visual Assoc,DMN,101,111
+MID,holdout_symmetric,204,178,Visual Assoc,Visual Asso,64,63
+MID,holdout_symmetric,206,180,Visual Assoc,Visual Asso,28,50
+MID,holdout_symmetric,209,183,Visual Assoc,Visual Asso,66,79
+MID,holdout_symmetric,210,184,SecVisual,Visual Asso,64,63
+MID,holdout_symmetric,212,186,SecVisual,Visual II,125,103
+MID,holdout_symmetric,213,187,SecVisual,Visual II,121,121
+MID,holdout_symmetric,214,188,SecVisual,Visual II,114,108
+MID,holdout_symmetric,222,196,VenPostCing,DMN,67,59
+MID,holdout_symmetric,223,197,VenPostCing,DMN,33,32
+MID,holdout_symmetric,224,198,VenPostCing,Limbic,35,38
+MID,holdout_symmetric,225,199,DorsalPCC,DMN,56,50
+MID,holdout_symmetric,227,201,AnrRetrolimb,DMN,27,27
+MID,holdout_symmetric,233,207,ParaHipp,DMN,59,60
+MID,holdout_symmetric,234,208,ParaHipp,DMN,45,44
+MID,holdout_symmetric,235,209,ParaHipp,DMN,38,39
+SST,prior,1,1,OrbFrontal,FPN,52,57
+SST,prior,4,4,OrbFrontal,FPN,32,31
+SST,prior,7,7,AntPFC,FPN,49,52
+SST,prior,8,8,AntPFC,FPN,40,60
+SST,prior,9,9,AntPFC,FPN,90,97
+SST,prior,19,19,dlPFC,FPN,36,58
+SST,prior,21,21,Broca-Operc,FPN,65,64
+SST,prior,22,22,Broca-Operc,FPN,48,67
+SST,prior,23,23,PrimMotor,Motor,138,131
+SST,prior,30,30,PreMot+SuppMot,FPN,63,60
+SST,prior,31,31,PreMot+SuppMot,FPN,30,34
+SST,prior,34,34,Insula,Motor,15,13
+SST,prior,35,35,Insula,Motor,39,39
+SST,prior,37,37,Insula,Motor,72,69
+SST,prior,82,82,PrimVisual,Visual I,72,74
+SST,prior,83,83,DorsalACC,Limbic,33,39
+SST,prior,120,99,,Sub,21,18
+SST,prior,121,100,Caudate,Sub,47,48
+SST,prior,122,101,Caudate,Sub,48,49
+SST,prior,123,102,Caudate,Sub,50,52
+SST,prior,124,103,Putamen,Sub,68,59
+SST,prior,126,105,Thalamus,Sub,34,36
+SST,prior,127,106,Thalamus,Sub,28,28
+SST,prior,128,107,Thalamus,Sub,17,17
+SST,prior,139,113,AntPFC,FPN,54,47
+SST,prior,140,114,OrbFrontal,SMF,38,37
+SST,prior,142,116,AntPFC,FPN,34,32
+SST,prior,143,117,AntPFC,FPN,32,47
+SST,prior,147,121,dlPFC,FPN,33,47
+SST,prior,154,128,dlPFC,FPN,34,54
+SST,prior,157,131,PreMot+SuppMot,FPN,65,71
+SST,prior,158,132,PrimMotor,Motor,76,76
+SST,prior,164,138,PreMot+SuppMot,FPN,103,108
+SST,prior,168,142,Insula,Motor,53,53
+SST,prior,170,144,Insula,Motor,51,51
+SST,prior,215,189,PrimVisual,Visual I,108,103
+SST,prior,216,190,PrimVisual,Visual I,51,52
+SST,prior,217,191,,Sub,9,9
+SST,prior,219,193,DorsalAcc,SMF,55,56
+SST,prior,257,210,,Sub,25,27
+SST,prior,258,211,Caudate,Sub,29,29
+SST,prior,259,212,Caudate,Sub,108,107
+SST,prior,260,213,Caudate,Sub,44,51
+SST,prior,261,214,Putamen,Sub,70,71
+SST,prior,262,215,Putamen,Sub,33,31
+SST,prior,263,216,Thalamus,Sub,39,36
+SST,prior,264,217,Thalamus,Sub,28,28
+SST,act_Nmatched,9,9,AntPFC,FPN,90,97
+SST,act_Nmatched,11,11,dlPFC,Limbic,57,76
+SST,act_Nmatched,15,15,FrontEyeFilds,Limbic,43,41
+SST,act_Nmatched,16,16,ParsOrbitalis,SMF,52,59
+SST,act_Nmatched,20,20,Broca_Triang,Limbic,40,39
+SST,act_Nmatched,21,21,Broca-Operc,FPN,65,64
+SST,act_Nmatched,28,28,PreMot+SuppMot,Limbic,31,28
+SST,act_Nmatched,29,29,PreMot+SuppMot,Limbic,79,84
+SST,act_Nmatched,31,31,PreMot+SuppMot,FPN,30,34
+SST,act_Nmatched,32,32,PreMot+SuppMot,Limbic,46,36
+SST,act_Nmatched,34,34,Insula,Motor,15,13
+SST,act_Nmatched,36,36,Insula,Limbic,40,40
+SST,act_Nmatched,43,43,VisMotor,Visual Asso,129,146
+SST,act_Nmatched,45,45,SupramargGyr,Motor,90,122
+SST,act_Nmatched,47,47,SupramargGyr,FPN,128,144
+SST,act_Nmatched,50,50,AngGyrus,DMN,68,74
+SST,act_Nmatched,54,54,MedTempGyrus,SMF,40,39
+SST,act_Nmatched,65,65,SupTemGyrus,SMF,89,93
+SST,act_Nmatched,66,66,Fusiform,Visual Asso,47,44
+SST,act_Nmatched,67,67,Fusiform,Visual Asso,57,51
+SST,act_Nmatched,69,69,Fusiform,Visual Asso,69,77
+SST,act_Nmatched,71,71,Fusiform,Visual Asso,45,45
+SST,act_Nmatched,73,73,Visual Assoc,Visual Asso,77,79
+SST,act_Nmatched,74,74,Visual Assoc,Visual Asso,106,96
+SST,act_Nmatched,76,76,SecVisual,Visual II,80,102
+SST,act_Nmatched,78,78,SecVisual,Visual II,106,105
+SST,act_Nmatched,81,81,SecVisual,Visual II,96,100
+SST,act_Nmatched,144,118,AntPFC,Limbic,54,63
+SST,act_Nmatched,150,124,FrontEyeFilds,SMF,51,48
+SST,act_Nmatched,155,129,Broca_Triang,Limbic,64,63
+SST,act_Nmatched,162,136,PreMot+SuppMot,SMF,74,75
+SST,act_Nmatched,165,139,PreMot+SuppMot,SMF,21,53
+SST,act_Nmatched,166,140,PreMot+SuppMot,Motor,36,36
+SST,act_Nmatched,168,142,Insula,Motor,53,53
+SST,act_Nmatched,169,143,Insula,Limbic,29,24
+SST,act_Nmatched,177,151,VisMotor,Visual Asso,93,84
+SST,act_Nmatched,179,153,SupramargGyr,Motor,53,71
+SST,act_Nmatched,184,158,AngGyrus,FPN,130,138
+SST,act_Nmatched,200,174,Fusiform,Visual Asso,40,42
+SST,act_Nmatched,204,178,Visual Assoc,Visual Asso,64,63
+SST,act_Nmatched,206,180,Visual Assoc,Visual Asso,28,50
+SST,act_Nmatched,209,183,Visual Assoc,Visual Asso,66,79
+SST,act_Nmatched,210,184,SecVisual,Visual Asso,64,63
+SST,act_Nmatched,212,186,SecVisual,Visual II,125,103
+SST,act_Nmatched,213,187,SecVisual,Visual II,121,121
+SST,act_Nmatched,214,188,SecVisual,Visual II,114,108
+SST,act_Nmatched,261,214,Putamen,Sub,70,71
+SST,act_voxmatched,11,11,dlPFC,Limbic,57,76
+SST,act_voxmatched,15,15,FrontEyeFilds,Limbic,43,41
+SST,act_voxmatched,20,20,Broca_Triang,Limbic,40,39
+SST,act_voxmatched,28,28,PreMot+SuppMot,Limbic,31,28
+SST,act_voxmatched,29,29,PreMot+SuppMot,Limbic,79,84
+SST,act_voxmatched,31,31,PreMot+SuppMot,FPN,30,34
+SST,act_voxmatched,32,32,PreMot+SuppMot,Limbic,46,36
+SST,act_voxmatched,36,36,Insula,Limbic,40,40
+SST,act_voxmatched,43,43,VisMotor,Visual Asso,129,146
+SST,act_voxmatched,45,45,SupramargGyr,Motor,90,122
+SST,act_voxmatched,47,47,SupramargGyr,FPN,128,144
+SST,act_voxmatched,50,50,AngGyrus,DMN,68,74
+SST,act_voxmatched,54,54,MedTempGyrus,SMF,40,39
+SST,act_voxmatched,65,65,SupTemGyrus,SMF,89,93
+SST,act_voxmatched,66,66,Fusiform,Visual Asso,47,44
+SST,act_voxmatched,67,67,Fusiform,Visual Asso,57,51
+SST,act_voxmatched,69,69,Fusiform,Visual Asso,69,77
+SST,act_voxmatched,71,71,Fusiform,Visual Asso,45,45
+SST,act_voxmatched,73,73,Visual Assoc,Visual Asso,77,79
+SST,act_voxmatched,74,74,Visual Assoc,Visual Asso,106,96
+SST,act_voxmatched,76,76,SecVisual,Visual II,80,102
+SST,act_voxmatched,78,78,SecVisual,Visual II,106,105
+SST,act_voxmatched,144,118,AntPFC,Limbic,54,63
+SST,act_voxmatched,150,124,FrontEyeFilds,SMF,51,48
+SST,act_voxmatched,155,129,Broca_Triang,Limbic,64,63
+SST,act_voxmatched,166,140,PreMot+SuppMot,Motor,36,36
+SST,act_voxmatched,169,143,Insula,Limbic,29,24
+SST,act_voxmatched,177,151,VisMotor,Visual Asso,93,84
+SST,act_voxmatched,179,153,SupramargGyr,Motor,53,71
+SST,act_voxmatched,184,158,AngGyrus,FPN,130,138
+SST,act_voxmatched,204,178,Visual Assoc,Visual Asso,64,63
+SST,act_voxmatched,206,180,Visual Assoc,Visual Asso,28,50
+SST,act_voxmatched,209,183,Visual Assoc,Visual Asso,66,79
+SST,act_voxmatched,210,184,SecVisual,Visual Asso,64,63
+SST,act_voxmatched,212,186,SecVisual,Visual II,125,103
+SST,act_thresh,9,9,AntPFC,FPN,90,97
+SST,act_thresh,11,11,dlPFC,Limbic,57,76
+SST,act_thresh,15,15,FrontEyeFilds,Limbic,43,41
+SST,act_thresh,16,16,ParsOrbitalis,SMF,52,59
+SST,act_thresh,20,20,Broca_Triang,Limbic,40,39
+SST,act_thresh,21,21,Broca-Operc,FPN,65,64
+SST,act_thresh,28,28,PreMot+SuppMot,Limbic,31,28
+SST,act_thresh,29,29,PreMot+SuppMot,Limbic,79,84
+SST,act_thresh,31,31,PreMot+SuppMot,FPN,30,34
+SST,act_thresh,32,32,PreMot+SuppMot,Limbic,46,36
+SST,act_thresh,34,34,Insula,Motor,15,13
+SST,act_thresh,35,35,Insula,Motor,39,39
+SST,act_thresh,36,36,Insula,Limbic,40,40
+SST,act_thresh,43,43,VisMotor,Visual Asso,129,146
+SST,act_thresh,45,45,SupramargGyr,Motor,90,122
+SST,act_thresh,47,47,SupramargGyr,FPN,128,144
+SST,act_thresh,50,50,AngGyrus,DMN,68,74
+SST,act_thresh,54,54,MedTempGyrus,SMF,40,39
+SST,act_thresh,65,65,SupTemGyrus,SMF,89,93
+SST,act_thresh,66,66,Fusiform,Visual Asso,47,44
+SST,act_thresh,67,67,Fusiform,Visual Asso,57,51
+SST,act_thresh,69,69,Fusiform,Visual Asso,69,77
+SST,act_thresh,71,71,Fusiform,Visual Asso,45,45
+SST,act_thresh,73,73,Visual Assoc,Visual Asso,77,79
+SST,act_thresh,74,74,Visual Assoc,Visual Asso,106,96
+SST,act_thresh,76,76,SecVisual,Visual II,80,102
+SST,act_thresh,78,78,SecVisual,Visual II,106,105
+SST,act_thresh,81,81,SecVisual,Visual II,96,100
+SST,act_thresh,142,116,AntPFC,FPN,34,32
+SST,act_thresh,144,118,AntPFC,Limbic,54,63
+SST,act_thresh,150,124,FrontEyeFilds,SMF,51,48
+SST,act_thresh,155,129,Broca_Triang,Limbic,64,63
+SST,act_thresh,157,131,PreMot+SuppMot,FPN,65,71
+SST,act_thresh,162,136,PreMot+SuppMot,SMF,74,75
+SST,act_thresh,165,139,PreMot+SuppMot,SMF,21,53
+SST,act_thresh,166,140,PreMot+SuppMot,Motor,36,36
+SST,act_thresh,168,142,Insula,Motor,53,53
+SST,act_thresh,169,143,Insula,Limbic,29,24
+SST,act_thresh,177,151,VisMotor,Visual Asso,93,84
+SST,act_thresh,179,153,SupramargGyr,Motor,53,71
+SST,act_thresh,184,158,AngGyrus,FPN,130,138
+SST,act_thresh,200,174,Fusiform,Visual Asso,40,42
+SST,act_thresh,204,178,Visual Assoc,Visual Asso,64,63
+SST,act_thresh,206,180,Visual Assoc,Visual Asso,28,50
+SST,act_thresh,209,183,Visual Assoc,Visual Asso,66,79
+SST,act_thresh,210,184,SecVisual,Visual Asso,64,63
+SST,act_thresh,212,186,SecVisual,Visual II,125,103
+SST,act_thresh,213,187,SecVisual,Visual II,121,121
+SST,act_thresh,214,188,SecVisual,Visual II,114,108
+SST,act_thresh,219,193,DorsalAcc,SMF,55,56
+SST,act_thresh,261,214,Putamen,Sub,70,71
+SST,act_strict,20,20,Broca_Triang,Limbic,40,39
+SST,act_strict,28,28,PreMot+SuppMot,Limbic,31,28
+SST,act_strict,43,43,VisMotor,Visual Asso,129,146
+SST,act_strict,47,47,SupramargGyr,FPN,128,144
+SST,act_strict,66,66,Fusiform,Visual Asso,47,44
+SST,act_strict,74,74,Visual Assoc,Visual Asso,106,96
+SST,act_strict,78,78,SecVisual,Visual II,106,105
+SST,act_strict,150,124,FrontEyeFilds,SMF,51,48
+SST,act_strict,155,129,Broca_Triang,Limbic,64,63
+SST,act_strict,184,158,AngGyrus,FPN,130,138
+SST,act_strict,209,183,Visual Assoc,Visual Asso,66,79
+SST,act_strict,210,184,SecVisual,Visual Asso,64,63
+SST,hybrid,9,9,AntPFC,FPN,90,97
+SST,hybrid,11,11,dlPFC,Limbic,57,76
+SST,hybrid,15,15,FrontEyeFilds,Limbic,43,41
+SST,hybrid,16,16,ParsOrbitalis,SMF,52,59
+SST,hybrid,20,20,Broca_Triang,Limbic,40,39
+SST,hybrid,21,21,Broca-Operc,FPN,65,64
+SST,hybrid,23,23,PrimMotor,Motor,138,131
+SST,hybrid,28,28,PreMot+SuppMot,Limbic,31,28
+SST,hybrid,29,29,PreMot+SuppMot,Limbic,79,84
+SST,hybrid,31,31,PreMot+SuppMot,FPN,30,34
+SST,hybrid,32,32,PreMot+SuppMot,Limbic,46,36
+SST,hybrid,34,34,Insula,Motor,15,13
+SST,hybrid,36,36,Insula,Limbic,40,40
+SST,hybrid,43,43,VisMotor,Visual Asso,129,146
+SST,hybrid,45,45,SupramargGyr,Motor,90,122
+SST,hybrid,47,47,SupramargGyr,FPN,128,144
+SST,hybrid,50,50,AngGyrus,DMN,68,74
+SST,hybrid,54,54,MedTempGyrus,SMF,40,39
+SST,hybrid,65,65,SupTemGyrus,SMF,89,93
+SST,hybrid,66,66,Fusiform,Visual Asso,47,44
+SST,hybrid,67,67,Fusiform,Visual Asso,57,51
+SST,hybrid,69,69,Fusiform,Visual Asso,69,77
+SST,hybrid,71,71,Fusiform,Visual Asso,45,45
+SST,hybrid,73,73,Visual Assoc,Visual Asso,77,79
+SST,hybrid,74,74,Visual Assoc,Visual Asso,106,96
+SST,hybrid,76,76,SecVisual,Visual II,80,102
+SST,hybrid,78,78,SecVisual,Visual II,106,105
+SST,hybrid,81,81,SecVisual,Visual II,96,100
+SST,hybrid,82,82,PrimVisual,Visual I,72,74
+SST,hybrid,126,105,Thalamus,Sub,34,36
+SST,hybrid,127,106,Thalamus,Sub,28,28
+SST,hybrid,128,107,Thalamus,Sub,17,17
+SST,hybrid,144,118,AntPFC,Limbic,54,63
+SST,hybrid,150,124,FrontEyeFilds,SMF,51,48
+SST,hybrid,155,129,Broca_Triang,Limbic,64,63
+SST,hybrid,158,132,PrimMotor,Motor,76,76
+SST,hybrid,162,136,PreMot+SuppMot,SMF,74,75
+SST,hybrid,165,139,PreMot+SuppMot,SMF,21,53
+SST,hybrid,166,140,PreMot+SuppMot,Motor,36,36
+SST,hybrid,168,142,Insula,Motor,53,53
+SST,hybrid,169,143,Insula,Limbic,29,24
+SST,hybrid,177,151,VisMotor,Visual Asso,93,84
+SST,hybrid,179,153,SupramargGyr,Motor,53,71
+SST,hybrid,184,158,AngGyrus,FPN,130,138
+SST,hybrid,200,174,Fusiform,Visual Asso,40,42
+SST,hybrid,204,178,Visual Assoc,Visual Asso,64,63
+SST,hybrid,206,180,Visual Assoc,Visual Asso,28,50
+SST,hybrid,209,183,Visual Assoc,Visual Asso,66,79
+SST,hybrid,210,184,SecVisual,Visual Asso,64,63
+SST,hybrid,212,186,SecVisual,Visual II,125,103
+SST,hybrid,213,187,SecVisual,Visual II,121,121
+SST,hybrid,214,188,SecVisual,Visual II,114,108
+SST,hybrid,215,189,PrimVisual,Visual I,108,103
+SST,hybrid,216,190,PrimVisual,Visual I,51,52
+SST,hybrid,261,214,Putamen,Sub,70,71
+SST,hybrid,263,216,Thalamus,Sub,39,36
+SST,hybrid,264,217,Thalamus,Sub,28,28
+SST,holdout_symmetric,2,2,OrbFrontal,Limbic,37,38
+SST,holdout_symmetric,3,3,OrbFrontal,DMN,43,43
+SST,holdout_symmetric,5,5,AntPFC,DMN,50,53
+SST,holdout_symmetric,6,6,AntPFC,DMN,60,67
+SST,holdout_symmetric,10,10,dlPFC,Limbic,84,84
+SST,holdout_symmetric,12,12,FrontEyeFilds,SMF,82,90
+SST,holdout_symmetric,13,13,FrontEyeFilds,DMN,68,65
+SST,holdout_symmetric,14,14,FrontEyeFilds,FPN,38,94
+SST,holdout_symmetric,17,17,ParsOrbitalis,FPN,38,38
+SST,holdout_symmetric,18,18,ParsOrbitalis,Limbic,30,29
+SST,holdout_symmetric,24,24,PreMot+SuppMot,Motor,52,52
+SST,holdout_symmetric,25,25,PreMot+SuppMot,Motor,40,39
+SST,holdout_symmetric,26,26,PreMot+SuppMot,Motor,61,65
+SST,holdout_symmetric,27,27,PreMot+SuppMot,Motor,59,72
+SST,holdout_symmetric,33,33,PrimSensory,Motor,138,136
+SST,holdout_symmetric,38,38,PrimSensory,Motor,66,67
+SST,holdout_symmetric,39,39,PrimSensory,Motor,95,101
+SST,holdout_symmetric,40,40,PrimSensory,Motor,51,51
+SST,holdout_symmetric,41,41,VisMotor,Visual Asso,54,57
+SST,holdout_symmetric,42,42,VisMotor,Visual Asso,62,60
+SST,holdout_symmetric,44,44,VisMotor,Limbic,81,78
+SST,holdout_symmetric,46,46,SupramargGyr,Motor,80,83
+SST,holdout_symmetric,48,48,AngGyrus,FPN,95,96
+SST,holdout_symmetric,49,49,AngGyrus,DMN,75,84
+SST,holdout_symmetric,51,51,Temporalpole,Motor,29,28
+SST,holdout_symmetric,52,52,Temporalpole,SMF,35,33
+SST,holdout_symmetric,53,53,Temporalpole,SMF,63,69
+SST,holdout_symmetric,55,55,MedTempGyrus,FPN,57,62
+SST,holdout_symmetric,56,56,InfTempGryus,SMF,48,43
+SST,holdout_symmetric,57,57,InfTempGryus,SMF,41,41
+SST,holdout_symmetric,58,58,InfTempGryus,Motor,43,45
+SST,holdout_symmetric,59,59,InfTempGryus,Visual Asso,32,35
+SST,holdout_symmetric,60,60,InfTempGryus,Motor,28,30
+SST,holdout_symmetric,61,61,PrimAuditory,Motor,99,95
+SST,holdout_symmetric,62,62,PrimAuditory,Motor,48,54
+SST,holdout_symmetric,63,63,SupTemGyrus,Motor,86,94
+SST,holdout_symmetric,64,64,SupTemGyrus,SMF,75,81
+SST,holdout_symmetric,68,68,Fusiform,Visual I,60,60
+SST,holdout_symmetric,70,70,Fusiform,FPN,84,91
+SST,holdout_symmetric,72,72,Visual Assoc,Visual I,62,71
+SST,holdout_symmetric,75,75,Visual Assoc,Visual I,83,87
+SST,holdout_symmetric,77,77,SecVisual,Visual I,65,59
+SST,holdout_symmetric,79,79,SecVisual,Visual I,66,64
+SST,holdout_symmetric,80,80,SecVisual,Visual I,83,76
+SST,holdout_symmetric,84,84,VentCing,Motor,35,34
+SST,holdout_symmetric,85,85,VenPostCing,DMN,37,39
+SST,holdout_symmetric,86,86,VenPostCing,DMN,62,58
+SST,holdout_symmetric,87,87,VenPostCing,Visual I,36,39
+SST,holdout_symmetric,88,88,VenPostCing,Limbic,29,31
+SST,holdout_symmetric,89,89,DorsalPCC,Motor,31,33
+SST,holdout_symmetric,90,90,DorsalPCC,DMN,39,35
+SST,holdout_symmetric,91,91,DorsalPCC,Limbic,42,40
+SST,holdout_symmetric,92,92,Amygdala,Motor,42,38
+SST,holdout_symmetric,93,93,Hippocampus,Sub,45,46
+SST,holdout_symmetric,94,94,Hippocampus,Sub,34,33
+SST,holdout_symmetric,95,95,ParaHip,DMN,84,83
+SST,holdout_symmetric,96,96,ParaHip,DMN,43,42
+SST,holdout_symmetric,97,97,ParaHip,Sub,28,28
+SST,holdout_symmetric,98,98,SecVisual,Visual I,57,58
+SST,holdout_symmetric,125,104,Nacc,Sub,75,71
+SST,holdout_symmetric,134,108,OrbFrontal,DMN,37,36
+SST,holdout_symmetric,135,109,OrbFrontal,Limbic,35,35
+SST,holdout_symmetric,136,110,OrbFrontal,Limbic,23,23
+SST,holdout_symmetric,137,111,OrbFrontal,SMF,67,64
+SST,holdout_symmetric,138,112,AntPFC,DMN,38,38
+SST,holdout_symmetric,141,115,AntPFC,DMN,45,47
+SST,holdout_symmetric,145,119,dlPFC,SMF,60,61
+SST,holdout_symmetric,146,120,dlPFC,Limbic,55,81
+SST,holdout_symmetric,148,122,FrontEyeFilds,SMF,58,67
+SST,holdout_symmetric,149,123,FrontEyeFilds,SMF,50,70
+SST,holdout_symmetric,151,125,ParsOrbitalis,SMF,60,61
+SST,holdout_symmetric,152,126,ParsOrbitalis,Limbic,27,25
+SST,holdout_symmetric,153,127,ParsOrbitalis,SMF,44,41
+SST,holdout_symmetric,156,130,Broca-Operc,SMF,34,56
+SST,holdout_symmetric,159,133,PreMot+SuppMot,Motor,43,78
+SST,holdout_symmetric,160,134,PreMot+SuppMot,Motor,23,23
+SST,holdout_symmetric,161,135,PreMot+SuppMot,Motor,40,36
+SST,holdout_symmetric,163,137,PreMot+SuppMot,Motor,74,83
+SST,holdout_symmetric,167,141,PrimSensory,Motor,64,70
+SST,holdout_symmetric,171,145,PrimSensory,Motor,92,105
+SST,holdout_symmetric,172,146,PrimSensory,Motor,49,52
+SST,holdout_symmetric,173,147,PrimSensory,Motor,46,47
+SST,holdout_symmetric,174,148,VisMotor,Motor,97,97
+SST,holdout_symmetric,175,149,VisMotor,Visual Asso,71,89
+SST,holdout_symmetric,176,150,VisMotor,Visual I,82,76
+SST,holdout_symmetric,178,152,VisMotor,Limbic,93,110
+SST,holdout_symmetric,180,154,SupramargGyr,Motor,34,29
+SST,holdout_symmetric,181,155,SupramargGyr,Motor,68,78
+SST,holdout_symmetric,182,156,AngGyrus,FPN,90,131
+SST,holdout_symmetric,183,157,AngGyrus,SMF,94,110
+SST,holdout_symmetric,185,159,Temporalpole,SMF,39,33
+SST,holdout_symmetric,186,160,Temporalpole,SMF,19,19
+SST,holdout_symmetric,187,161,Temporalpole,SMF,22,25
+SST,holdout_symmetric,188,162,Temporalpole,Motor,67,75
+SST,holdout_symmetric,189,163,Temporalpole,Motor,15,12
+SST,holdout_symmetric,190,164,MedTempGyrus,SMF,43,56
+SST,holdout_symmetric,191,165,MedTempGyrus,Motor,90,88
+SST,holdout_symmetric,192,166,MedTempGyrus,SMF,90,110
+SST,holdout_symmetric,193,167,MedTempGyrus,FPN,75,76
+SST,holdout_symmetric,194,168,InfTempGryus,SMF,34,36
+SST,holdout_symmetric,195,169,InfTempGryus,Motor,42,45
+SST,holdout_symmetric,196,170,InfTempGryus,FPN,47,46
+SST,holdout_symmetric,197,171,SupTemGyrus,Motor,66,73
+SST,holdout_symmetric,198,172,Fusiform,Visual I,44,43
+SST,holdout_symmetric,199,173,Fusiform,FPN,67,68
+SST,holdout_symmetric,201,175,Fusiform,Visual Asso,32,32
+SST,holdout_symmetric,202,176,ParaHip,DMN,30,33
+SST,holdout_symmetric,203,177,Visual Assoc,DMN,101,111
+SST,holdout_symmetric,205,179,Visual Assoc,Visual I,87,85
+SST,holdout_symmetric,207,181,Visual Assoc,Visual I,67,73
+SST,holdout_symmetric,208,182,Visual Assoc,Visual I,123,129
+SST,holdout_symmetric,211,185,SecVisual,Visual I,80,76
+SST,holdout_symmetric,218,192,PreMot+SuppMot,Motor,42,43
+SST,holdout_symmetric,220,194,VentCing,Limbic,21,21
+SST,holdout_symmetric,221,195,VentCing,Limbic,48,47
+SST,holdout_symmetric,222,196,VenPostCing,DMN,67,59
+SST,holdout_symmetric,223,197,VenPostCing,DMN,33,32
+SST,holdout_symmetric,224,198,VenPostCing,Limbic,35,38
+SST,holdout_symmetric,225,199,DorsalPCC,DMN,56,50
+SST,holdout_symmetric,226,200,DorsalPCC,Limbic,56,60
+SST,holdout_symmetric,227,201,AnrRetrolimb,DMN,27,27
+SST,holdout_symmetric,228,202,Amygdala,Sub,37,37
+SST,holdout_symmetric,229,203,Hippocampus,Sub,27,28
+SST,holdout_symmetric,230,204,Hippocampus,Sub,43,42
+SST,holdout_symmetric,231,205,Hippocampus,Sub,52,51
+SST,holdout_symmetric,232,206,Hippocampus,Sub,53,52
+SST,holdout_symmetric,233,207,ParaHipp,DMN,59,60
+SST,holdout_symmetric,234,208,ParaHipp,DMN,45,44
+SST,holdout_symmetric,235,209,ParaHipp,DMN,38,39

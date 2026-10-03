@@ -1,0 +1,12 @@
+block,dR2,F_change,df1,df2,P,semipartial_r,R2_without,R2_with,specification,method,comparison,n_covariates,R2_reduced,R2_full
+ampa_index,0.035065,3.89936,1.0,81.0,0.051712,0.187258,0.236534,0.271599,primary,F-change,,,,
+baseline_symptoms,0.069928,7.776169,1.0,81.0,0.006596,-0.264439,0.201671,0.271599,primary,F-change,,,,
+baseline_NP_connectivity,0.073327,8.154114,1.0,81.0,0.005456,0.270789,0.198272,0.271599,primary,F-change,,,,
+ampa_index,0.035065,,1.0,81.0,0.0516,0.187258,0.236534,0.271599,primary,"permutation (10k, index only)",,,,
+ampa_index,0.035065,,1.0,81.0,,,0.000433,0.13553,primary,bootstrap dR2 95% CI (R2_without/with columns hold CI bounds),,,,
+gaba_index,0.021726,2.372518,1.0,81.0,0.127385,0.147397,0.236534,0.258259,primary (GABA substituted),F-change,,,,
+ampa_index,0.041693,4.264373,,82.0,0.042079,,,,,F-change,over baseline symptoms alone,1.0,0.156579,0.198272
+ampa_index,0.050152,5.151377,,82.0,0.025853,,,,,F-change,over baseline connectivity alone,1.0,0.151519,0.201671
+ampa_index,0.035065,3.89936,,81.0,0.051712,,,,,F-change,over baseline symptoms + connectivity,2.0,0.236534,0.271599
+ampa_index,0.036084,3.97839,,78.0,0.049581,,,,,F-change,over 4 symptom bands + connectivity,5.0,0.256463,0.292547
+ampa_index,0.031341,3.094052,,67.0,0.083145,,,,,F-change,over 4 symptom bands + 12 edges,16.0,0.289987,0.321328

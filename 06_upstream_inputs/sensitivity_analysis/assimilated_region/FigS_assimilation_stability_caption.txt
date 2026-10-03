@@ -1,0 +1,22 @@
+Supplementary Figure — Assimilation stability of the simulated NP profile.
+
+Five independent HMDA assimilation runs (ensemble Kalman filter, 30 parallel realisations)
+were performed on the reward-task (MID) BOLD data of one representative healthy control at
+100-million-neuron resolution; each run repeated the full assimilation and forward
+simulation from scratch, so the spread shown includes both EnKF and Ornstein-Uhlenbeck
+forward-noise contributions.
+(a) The six reward-task NP edges, all five runs shown individually (points) with the
+across-run mean (bars). Edge labels e7-e12 follow the numbering of the 12-edge NP profile;
+parcel pairs are in the 217-region model index space (source data table).
+(b) All 10 run pairs x 6 edges plotted against each other; dashed line is identity.
+Between-run agreement ICC(3,1) = 0.995 (95% CI 0.984-0.999);
+ICC(2,1) = 0.994 if runs are treated as random rather than fixed.
+Mean between-run profile correlation r = 0.996 (range 0.990-0.998).
+At the whole-connectome level, agreement across all 23,436 edges was
+ICC(3,1) = 0.9953 (feedback-hit) and 0.9951 (anticipation-hit).
+(c) Standard deviation of NP edge values between edges (biological signal) versus between
+runs within an edge (assimilation + simulation noise), log scale: a 13-fold ratio
+in SD, equivalently 171-fold in variance.
+The six inhibition-task (SST) edges are not shown: the repeated runs cover the reward task
+only, so the reliability estimate is reported for the six reward edges rather than the full
+12-edge profile.

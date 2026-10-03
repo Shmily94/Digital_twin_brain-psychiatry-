@@ -1,0 +1,333 @@
+"""fig3g_delta_np_seven_models.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code assembles simulated neurotransmitter-modulation effects on
+    an NP (network profile) summary metric across multiple brain-
+    simulation models spanning different scales (3m, 10m, 100m, 1b voxels
+    and regional 268/1000 parcellations) plus an SAR/RWW benchmark family,
+    for a set of matched subjects. For each model it computes a delta
+    value as the modulated condition (ampa or gaba drug perturbation)
+    minus a baseline condition, drawing baseline and perturbed sums either
+    from precomputed six-model results, from mat-file simulation outputs
+    (3m and 10m_own), or from wide-format CSVs, then aligns everything to
+    a common subject id list. One row of the output table represents a
+    single subject's delta NP value for one specific model and drug
+    condition, tagged with the model family and the source file or
+    computation path that produced it.
+
+INPUT FILES
+    /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/10m_voxel_population_simulation/np_edges_simulated_baseline_mani.xlsx
+    /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent/edge_definitions.csv
+    /Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent/simulation_results_wide_12subs.csv
+    compare_simu_mani_STRATIFY_IMAGEN_dis_hc_all2.csv
+    np_beha_85subjects_all_quantities.csv
+    simu_real_FC_..._12subs.mat
+    {B}/fig.3/fig3_data/fig3g_delta_np_six_models.csv
+    {B}/revision/10m_voxel_population_simulation/simulate_FC_edges.csv
+    {B}/revision/model_scale_consistent/NP_12edges_10m_1000_10m_268_regional_modu.csv
+    {MN}/NP_12edges_all_subjects_scales_conditions_newflow.csv
+    {P3S}/{sub}/mid_data_mani_ampa.mat
+    {P3S}/{sub}/mid_data_mani_gaba_high.mat
+    {P3S}/{sub}/sst_data_mani_ampa.mat
+    {P3S}/{sub}/sst_data_mani_gaba_high.mat
+    {R3}/Mani_simulated_3m_NP_12edges_and_factor.mat
+    {VX}/new10m_simulated_FC_12subs_with_empirical.mat
+
+OUTPUT FILE
+    fig3g_delta_np_seven_models.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3g_delta_np_seven_models.csv
+
+STATISTICAL TESTS
+    one-sample two-sided t test
+
+RUNNABLE ON A LAPTOP
+    no -- a name inherited from the session could not be recovered; see the NOT RECOVERED block
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 8ce04524-f306-482a-81ab-a1176ee284c3
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-22 20:01:32 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3g_delta_np_seven_models__cell_8ce04524.py
+    candidates found   : 3
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+from scipy import stats
+import h5py
+import numpy as np
+import os
+import pandas as pd
+import scipy.io as sio
+
+# NOTE ON PATHS
+#   NOT substituted: this script reads platform artifact version 4c7ef07f
+#     (np_beha_85subjects_all_quantities.csv, 156284 bytes) through host.artifacts().
+#     The copy shipped at 06_upstream_inputs/benchmark_predict_baseline_np/
+#     np_beha_85subjects_all_quantities.csv is a DIFFERENT version (153442 bytes), so it was not
+#     substituted: doing so would change the numbers.  The script runs only
+#     inside a platform session that can resolve the artifact.
+
+# -------------------------------------------------------------------------
+# NOT RECOVERED.  This script needs the name(s)
+#     cn12, host
+# which the interactive session inherited from a cell that is not present in
+# the execution log (or, for `host`, from the platform session object).  The
+# script therefore cannot run as shipped.  They are used below as:
+#     r85 = host.artifacts(filename='np_beha_85subjects_all_quantities.csv',
+#     M85 = pd.read_csv(host.artifact_path(r85['artifacts'][0]['latest_versi
+#     CIDX={c:i for i,c in enumerate(cn12)}
+# Supply them before running.  Nothing has been invented in their place.
+# -------------------------------------------------------------------------
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 073815a6, 0ae45669, 0f1e9b07, 1deb5307, 1ea35359, 1ff04fbb, 247ecb86, 2a21c367, 2cbadd0f, 35a51eea, 3f599fdc, 43d0a5c6, 5233e78b, 5f6051db, 694432fe, 6db404ff, 6f4147b6, 6f69dd7b, 732cf081, 7956a83d, 83ed4eae, 91bf4255, 98231b7a, 9d69f203, a02c993d, a6def2c4, a7bf2f40, b3e94cc7, b4ceb596, b7317223, b74f5fe0, c0385265, c20074f5)
+F4D = '/Users/yunman/Desktop/submission/Figures/Figure4'
+CM2 = pd.read_csv(os.path.join(F4D,'compare_simu_mani_STRATIFY_IMAGEN_dis_hc_all2.csv'))
+E12 = ['edge%d'%(k+1) for k in range(12)]
+r85 = host.artifacts(filename='np_beha_85subjects_all_quantities.csv', exact=True)
+M85 = pd.read_csv(host.artifact_path(r85['artifacts'][0]['latest_version_id']))
+i85 = M85.id.to_numpy(np.int64)
+ORD = ['ampa_low','ampa','ampa_high','gaba_low','gaba','gaba_high']
+cols += ['simbase_%s'%e for e in E12] + ['simbase_sst_sum','simbase_mid_sum','simbase_np_sum']
+for s_ in ORD:
+    cols += ['mod_%s_%s'%(s_,e) for e in E12] + ['mod_sst_sum__%s'%s_,'mod_mid_sum__%s'%s_,'mod_np_sum__%s'%s_]
+for s_ in ORD:
+    cols += ['dnp_sst_sum__%s'%s_,'dnp_mid_sum__%s'%s_,'dnp_np_sum__%s'%s_]
+OUT = M85[cols].copy()
+A2 = CM2.set_index('ID')
+mA = A2.reindex(i85)
+NEW = OUT.copy()
+NEW['group'] = mA.Group2.to_numpy()
+NEW['timepoint_baseline'] = mA.TIMEPOINT.to_numpy()
+NEW['cohort'] = np.where(mA.Group2.to_numpy()=='High-symptom', 'IMAGEN FU2 high-symptom', 'IMAGEN FU2 control')
+NEW['sex'] = mA.sex.astype(str).to_numpy()
+NEW['site'] = mA.recruitmentSite.astype(str).to_numpy()
+NEW['headmotion'] = mA.headmotion.to_numpy(float)
+NEW['age_baseline'] = mA.Age.to_numpy(float)
+ridx = [c for c in M85.columns if c.startswith('restoration_index')]
+for c in ridx: NEW[c] = M85[c].to_numpy(float)
+order = ['id','sub_id','group','cohort','timepoint_baseline','sex','age_baseline','site','headmotion'] \
+        + [c for c in OUT.columns if c not in ('id','sub_id','group')] + ridx
+NEW = NEW[order]
+s_ = 'ampa'
+d12 = NEW[['mod_%s_%s'%(s_,e) for e in E12]].to_numpy(float) - NEW[['simbase_%s'%e for e in E12]].to_numpy(float)
+B='/Users/yunman/Desktop/submission'
+FD3=f'{B}/revision/text/figures/fig.3/fig3_data'
+import scipy.io as sio, pandas as pd, numpy as np, os
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+NEW=sio.loadmat(f'{VX}/new10m_simulated_FC_12subs_with_empirical.mat', squeeze_me=True)
+sub_ids=[str(s) for s in NEW['subject_ids']]
+import scipy.io as sio, pandas as pd, numpy as np, os
+B='/Users/yunman/Desktop/submission'
+VX=f'{B}/revision/10m_voxel_population_simulation/analysis_results'
+NEW=sio.loadmat(f'{VX}/new10m_simulated_FC_12subs_with_empirical.mat', squeeze_me=True)
+ED=pd.read_csv(f'{B}/revision/10m_voxel_population_simulation/simulate_FC_edges.csv')
+CONDMAP={'sst_stop_success':0,'sst_stop_failure':1,'mid_antici_hit':2,'mid_feedback_hit':3}
+def edges_from_mat(a):
+    return np.column_stack([a[i-1,j-1,:,CONDMAP[c]] for i,j,c in zip(ED.roi_i,ED.roi_j,ED.condition)])
+MAT={'10m':edges_from_mat(NEW['simu_fc_10m_100m_params']),'100m':edges_from_mat(NEW['simu_fc_100m']),
+     '1b':edges_from_mat(NEW['simu_fc_1b']),'10m_own':edges_from_mat(NEW['simu_fc_10m_own_params'])}
+B='/Users/yunman/Desktop/submission'
+MN=f'{B}/revision/model_scale_consistent/manuscript_numbers_newflow'
+sid=[s for s in sub_ids]
+EDC=[f'edge{k}' for k in range(1,13)]
+NF=pd.read_csv(f'{MN}/NP_12edges_all_subjects_scales_conditions_newflow.csv')
+NFB=NF[NF.condition=='baseline']
+REG=pd.read_csv(f'{B}/revision/model_scale_consistent/NP_12edges_10m_1000_10m_268_regional_modu.csv')
+NP3=np.asarray(m3['NP12edges'],float)
+def reps_from_nf(sc):
+    out=[]
+    for r,sub in NFB[NFB.scale==sc].groupby('run_idx'):
+        g=sub.groupby('subID')[EDC].mean(); g.index=[s.replace('sub-','').lstrip('0') for s in g.index]
+        if set(sid)<=set(g.index): out.append(np.array([g.loc[s].values for s in sid]))
+    return np.stack(out,1)
+RB2=REG[REG.condition=='baseline'].copy()
+RB2['rep']=RB2.repeat.astype(str)
+r268=[]
+for r,sub in RB2.groupby('rep'):
+    g=sub.groupby('subject')[EDC].mean(); g.index=[s.replace('sub-','').lstrip('0') for s in g.index]
+    if set(sid)<=set(g.index): r268.append(np.array([g.loc[s].values for s in sid]))
+REPS={'3m_268': NP3, '10m_268': np.stack(r268,1), '10m_1000': reps_from_nf('10m_reg'),
+      '10m': reps_from_nf('10m'), '100m': reps_from_nf('100m'), '1b': reps_from_nf('1b')}
+PROF={k: np.nanmean(v,1) for k,v in REPS.items()}
+PROF['10m_own']=MAT['10m_own']
+FAMILY={**{k:'regional' for k in ['3m_268','10m_268','10m_1000']},
+        **{k:'voxel' for k in ['10m_own','10m','100m','1b']},'SAR':'benchmark','RWW':'benchmark'}
+ED=pd.read_csv('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent/edge_definitions.csv')
+NF='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent/manuscript_numbers_newflow'
+B='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures'
+R3=f'{NF}/3m_model_new_run'
+m3=sio.loadmat(f'{R3}/Mani_simulated_3m_NP_12edges_and_factor.mat')
+XP='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/10m_voxel_population_simulation/np_edges_simulated_baseline_mani.xlsx'
+xo=pd.ExcelFile(XP)
+cn=[str(x[0]) for x in m3['condition_names'][0]]
+sp=xo.parse('simulate_np')
+sp['sid']=sp.id.astype(str)
+g6=pd.read_csv(f'{B}/fig.3/fig3_data/fig3g_delta_np_six_models.csv')
+NPe=m3['NP12edges']
+i_a, i_g, i_b = cn.index('manipu'), cn.index('manipu_gaba'), cn.index('manipu_gaba_baseline')
+sum3=lambda ci: np.nanmean(NPe[:,ci,:,:].sum(2),1)
+b_run, b_std = sum3(i_b), NP3.sum(2).mean(1)
+d3={'ampa_runbase': sum3(i_a)-b_run, 'gaba_runbase': sum3(i_g)-b_run,
+    'ampa_stdbase': sum3(i_a)-b_std, 'gaba_stdbase': sum3(i_g)-b_std}
+ss=sp.set_index('sid').loc[sid]
+own_b, own_a, own_g = ss.baseline_np.values, ss.mani_ampa_np.values, ss.mani_ampa_gaba_np.values
+DL={}
+for m_ in ['10m_268','10m_1000','10m','100m','1b']:
+    for dr in ['ampa','gaba']:
+        v=g6[(g6.model==m_)&(g6.drug==dr)].set_index(g6[(g6.model==m_)&(g6.drug==dr)].sub_id.astype(str)).loc[sid].delta.values
+        DL[(m_,dr)]=v
+DL[('3m_268','ampa')]=d3['ampa_runbase']
+DL[('3m_268','gaba')]=d3['gaba_runbase']
+DL[('10m_own','ampa')]=own_a-own_b
+DL[('10m_own','gaba')]=own_g-own_b
+WD=pd.read_csv('/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent/simulation_results_wide_12subs.csv')
+WD['s']=WD.sub_id.astype(str)
+W2=WD.set_index('s').reindex(sid)
+SM='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/model_scale_consistent'
+P3S=f'{SM}/orignial_3subs_perturb_100m_whole_brain_fc'
+SUB3={'112288':'sub-000000112288','113174215':'sub-000113174215','182136619':'sub-000182136619'}
+SUB3={'112288':'sub-000000112288','113174215':'sub-000113174215','182136619':'sub-000182136619'}
+base100={s: PROF['100m'][sid.index(s)] for s in SUB3}
+def labs(d,key):
+    v=d[key]
+    return v if isinstance(v,list) else [str(x[0]) for x in v[0]]
+def matload(p):
+    try:
+        d=sio.loadmat(p); return {k:v for k,v in d.items() if not k.startswith('__')}, 'v7'
+    except NotImplementedError:
+        f2=h5py.File(p,'r'); out={}
+        for k in f2.keys():
+            if k.startswith('#'): continue
+            a=f2[k]
+            if k.endswith('_subject'):
+                out[k]=[''.join(chr(c) for c in np.array(f2[r]).ravel()) for r in np.array(a).ravel()]
+            else:
+                out[k]=np.array(a).transpose(2,1,0) if a.ndim==3 else np.array(a)
+        return out,'v73'
+def sel_ampa(L,n):
+    if n==5: return list(range(5))
+    hit=[i for i,l in enumerate(L) if '-0.0044-gaba' in l or '-0.0044-0.0015' in l]
+    return hit
+def get3(sub,kind):
+    out=np.full((5,12),np.nan)
+    if kind=='ampa':
+        dS,_=matload(f'{P3S}/{sub}/sst_data_mani_ampa.mat'); dM,_=matload(f'{P3S}/{sub}/mid_data_mani_ampa.mat')
+        nS=dS['sst_stop_suces'].shape[2]; selS=sel_ampa(labs(dS,'sst_subject'),nS)
+        selM=list(range(dM['mid_antici_hit'].shape[2]))[:5]
+    else:
+        dS,_=matload(f'{P3S}/{sub}/sst_data_mani_gaba_high.mat'); dM,_=matload(f'{P3S}/{sub}/mid_data_mani_gaba_high.mat')
+        LS,LM=labs(dS,'sst_subject'),labs(dM,'mid_subject')
+        selS=[i for i,l in enumerate(LS) if l.endswith('gaba-0.0040') or '0.0040' in l.split('-')[-1]]
+        selM=[i for i,l in enumerate(LM) if l.endswith('gaba-0.0040') or '0.0040' in l.split('-')[-1]]
+    FMAP={'SST_stop_success':(dS,'sst_stop_suces',selS),'SST_stop_failure':(dS,'sst_stop_failure',selS),
+          'MID_feed_hit':(dM,'mid_feed_hit',selM),'MID_antici_hit':(dM,'mid_antici_hit',selM)}
+    for ei,r in ED.iterrows():
+        src,fld,sel=FMAP[r.condition]; A=src[fld]
+        for k,idx in enumerate(sel[:5]): out[k,ei]=A[r.i_217-1,r.j_217-1,idx]
+    return np.nanmean(out,0), len(selS), len(selM)
+res={}
+for s,folder in SUB3.items():
+    for dr in ['ampa','gaba']:
+        prof,nS,nM=get3(folder,dr); res[(s,dr)]=prof
+        st=float(g6[(g6.model=='100m')&(g6.drug==dr)&(g6.sub_id.astype(str)==s)].delta.iloc[0])
+        print(f'{s:11s}{dr:6s}{nS:<5d}{nM:<5d}{prof.sum():10.4f}{base100[s].sum():10.4f}{prof.sum()-base100[s].sum():14.4f}{st:10.4f}')
+nf_b=pd.Series({s: PROF['100m'][sid.index(s)].sum() for s in sid})
+nine=[s for s in sid if s not in SUB3]
+sn=[str(x[0]) for x in d12['scale_names'][0]]
+CIDX={c:i for i,c in enumerate(cn12)}
+def edges_from(A4):                      # A4: 217x217x12xcond
+    out=np.zeros((12,12))
+    for ei,r in ED.iterrows():
+        out[:,ei]=A4[r.i_217-1, r.j_217-1, :, CIDX[r.condition]]
+    return out
+BASE12={sn[k]: edges_from(d12['simu_fc'][:,:,:,:,k]) for k in range(6)}
+pert_sum={dr: pd.Series({**{s: float(W2[f'100m_{dr}_np_sum'].loc[s]) for s in nine},
+                         **{s: float(res[(s,dr)].sum()) for s in SUB3}}).reindex(sid) for dr in ['ampa','gaba']}
+FIN={}
+for dr in ['ampa','gaba']:
+    for lab,bs,idx in [('newflow (used in 3a/3c/3d)', nf_b.loc[sid], sid),
+                       ('simu_real_FC_..._12subs.mat', pd.Series(BASE12['100m_voxel'].sum(1),index=sid), sid)]:
+        d_=(pert_sum[dr]-bs).reindex(idx).dropna(); t=stats.ttest_1samp(d_,0)
+        print(f'{dr:6s}{lab:26s}{len(d_):3d}{d_.mean():9.4f}{t.statistic:8.3f}{len(d_)-1:4d}{t.pvalue:10.4f}{int((d_>0).sum()):6d}')
+        if lab.startswith('newflow'): FIN[dr]=d_
+
+# ---- computation: recovered from execution-log cell 8ce04524
+DL[('100m','ampa')]=FIN['ampa'].values
+DL[('100m','gaba')]=FIN['gaba'].values
+SRC={'3m_268':'Mani_simulated_3m_NP_12edges_and_factor.mat (new run; manipu/manipu_gaba minus manipu_gaba_baseline, 5-repeat mean)',
+     '10m_own':'np_edges_simulated_baseline_mani.xlsx sheet simulate_np (single run)',
+     '100m':'perturbed: simulation_results_wide_12subs.csv for 9 twins + orignial_3subs_perturb_100m_whole_brain_fc/ for HC01, MDD, AUD (ampa 0.0044; gaba 0.0040 on ampa 0.0044; 5 repeats); baseline: newflow 100m'}
+pd.DataFrame([dict(model=m_, family=FAMILY[m_], drug=dr, sub_id=int(s), delta=round(float(x),5),
+                   source=SRC.get(m_,'newflow six-model tables; regional builds use the _r style, voxel builds the plain conditions'))
+              for (m_,dr),v in DL.items() for s,x in zip(sid,np.asarray(v,float))]).to_csv(f'{FD3}/fig3g_delta_np_seven_models.csv', index=False)

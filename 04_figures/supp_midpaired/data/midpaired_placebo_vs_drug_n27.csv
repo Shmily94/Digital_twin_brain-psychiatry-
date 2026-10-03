@@ -1,0 +1,9 @@
+measure,comparison,n,placebo_mean,drug_mean,mean_diff,ci95_lo,ci95_hi,n_increased,t,df,p,wilcoxon_p,cohens_dz
+raw summed FC (unadjusted),Placebo vs Ketamine,27,0.6642,0.4654,-0.1987,-0.4426,0.0452,11,-1.675,26,0.10592607020222733,0.1414058655500412,-0.322
+"motion-adjusted (ΔFC ~ ΔFD, intercept)",Placebo vs Ketamine,27,,,-0.2022,-0.4497,0.0452,11,-1.683,25,0.10479390460473953,,
+motion-adjusted (pooled residual),Placebo vs Ketamine,27,0.669,0.4708,-0.1982,-0.4427,0.0463,10,-1.666,26,0.10763388336669465,0.1414058655500412,-0.321
+Fig. 5 score (z within condition),Placebo vs Ketamine,27,0.0,0.0,0.0,,,14,-0.0,26,0.9999999999999999,0.9528931677341461,0.0
+raw summed FC (unadjusted),Placebo vs Midazolam,27,0.6642,0.5343,-0.1299,-0.4648,0.205,10,-0.797,26,0.43248407083972273,0.3607836216688156,-0.153
+"motion-adjusted (ΔFC ~ ΔFD, intercept)",Placebo vs Midazolam,27,,,-0.2479,-0.6192,0.1234,10,-1.375,25,0.181282142627971,,
+motion-adjusted (pooled residual),Placebo vs Midazolam,27,0.669,0.5241,-0.1449,-0.4768,0.187,10,-0.898,26,0.3776548069393953,0.3011907488107681,-0.173
+Fig. 5 score (z within condition),Placebo vs Midazolam,27,0.0,0.0,0.0,,,14,-0.0,26,0.9999999998039697,0.8965883553028107,0.0

@@ -1,0 +1,18 @@
+# ===========================================================================
+# VERBATIM ARCHIVE -- execution-log cell source, exactly as it ran.
+# Nothing has been removed, added or reformatted below the header.
+#
+#   cell id       : 70b24b7e-48f9-4b00-9392-31414c49feae
+#   frame id      : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+#   ran           : 2026-09-22 20:08:10 UTC
+#   conda env     : python
+#   cell kind     : py
+#   produced      : 04_figures/supp_assimregion/data/assimregion_set_summary.csv
+# ===========================================================================
+
+SD='/Users/yunman/Desktop/submission/revision/text/figures/supp_assimregion/data'
+CS.to_csv(f'{SD}/assimregion_set_summary.csv', index=False)
+pd.read_csv(f'{AR}/region_set_overlap_and_accuracy.csv').to_csv(f'{SD}/assimregion_overlap_simulated_sets.csv', index=False)
+pd.read_csv(f'{AR}/activation_vs_meta_accuracy.csv').to_csv(f'{SD}/assimregion_simulation_accuracy.csv', index=False)
+pd.read_csv(f'{AR}/baseline_100M_prior_FC_accuracy_by_class.csv').to_csv(f'{SD}/assimregion_accuracy_by_edge_class.csv', index=False)
+print('copied 4 tables')

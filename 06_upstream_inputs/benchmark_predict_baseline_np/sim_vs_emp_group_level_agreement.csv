@@ -1,0 +1,5 @@
+test,n,statistic,P,eta2
+"omnibus ANOVA, 4 groups, empirical",288,"F(3,284)=6.178",0.0004,0.0612
+"omnibus ANOVA, 4 groups, simulated",288,"F(3,284)=9.684",3e-06,0.0928
+"ANOVA, clinical only (HC/MDD/AUD), empirical",199,"F(2,196)=8.996",0.0002,
+"ANOVA, clinical only (HC/MDD/AUD), simulated",199,"F(2,196)=4.586",0.0113,

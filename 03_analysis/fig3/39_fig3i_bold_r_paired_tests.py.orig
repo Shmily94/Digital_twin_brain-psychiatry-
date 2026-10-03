@@ -1,0 +1,141 @@
+"""fig3i_bold_r_paired_tests.csv | main Fig. 3 (04_figures/fig.3/fig3_main_A4_v2.py)
+
+Recovered statistical-analysis script | reproducibility package | Fig. 3 track.
+
+WHAT THIS SCRIPT COMPUTES
+    This code loads a table of BOLD simulation-model correlation values,
+    keeping only subject rows and columns whose names contain the marker
+    for simulation conditions, renaming those columns to short model-size
+    labels via XLMAP, and coercing the values to numeric. For six
+    predefined pairs of model conditions, it computes the per-subject
+    difference between the two conditions, then runs a paired t-test and a
+    Wilcoxon signed-rank test on the paired values across subjects. One
+    row of the output table corresponds to one such comparison pair,
+    reporting the pair label, the mean of the per-subject differences, the
+    t-test p value, the Wilcoxon p value, and the number of paired
+    subjects used in that comparison.
+
+INPUT FILES
+    /Users/yunman/Desktop/submission/revision/model_scale_consistent/manuscript_numbers_newflow/3m_model_new_run/baseline同化区域BOLD_r总表.xlsx
+
+OUTPUT FILE
+    fig3i_bold_r_paired_tests.csv
+    written to OUT_DIR (default /tmp/recovery_scratch/fig3)
+    reference copy in this package: 04_figures/fig.3/fig3_data/fig3i_bold_r_paired_tests.csv
+
+STATISTICAL TESTS
+    paired two-sided t test
+    Wilcoxon signed-rank test
+
+RUNNABLE ON A LAPTOP
+    conditional on the input files above being present on this machine
+
+SEED
+    not applicable (deterministic computation)
+
+PROVENANCE
+    execution-log cell : 3c7e0c72-9ebb-4721-a3d5-f131cda7ec4f
+    frame              : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+    ran                : 2026-09-22 17:49:04 UTC
+    conda environment  : python
+    verbatim archive   : recovered/fig3/fig3i_bold_r_paired_tests__cell_3c7e0c72.py
+    candidates found   : 1
+
+REORGANISATION APPLIED
+    A header was added; the imports, the input paths and the constants the
+    interactive cell inherited from earlier cells in its session were made
+    explicit; exploratory prints and abandoned branches were dropped; all file
+    writes were redirected to OUT_DIR.  No computation, test, covariate,
+    correction or seed was changed.
+"""
+
+import os
+import sys
+
+# ---------------------------------------------------------------------------
+# Output redirection.  The reference data file lives under 04_figures/, which
+# this package treats as read-only evidence.  Every file write performed below
+# is therefore redirected into OUT_DIR under its own basename.  Set the
+# RECOVERY_OUT_DIR environment variable to choose a different scratch folder.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures")
+sys.path.insert(0, "/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/04_figures/fig_color")
+OUT_DIR = os.environ.get("RECOVERY_OUT_DIR", os.path.join("/tmp", "recovery_scratch", "fig3"))
+os.makedirs(OUT_DIR, exist_ok=True)
+
+
+def _install_write_guard():
+    import pandas as _pd
+
+    def _redirect(p):
+        if isinstance(p, (str, bytes, os.PathLike)):
+            p = os.fspath(p)
+            if os.path.abspath(os.path.dirname(p) or ".") != os.path.abspath(OUT_DIR):
+                return os.path.join(OUT_DIR, os.path.basename(p))
+        return p
+
+    for _cls, _name in ((_pd.DataFrame, "to_csv"), (_pd.Series, "to_csv"),
+                        (_pd.DataFrame, "to_excel"), (_pd.Series, "to_excel")):
+        _orig = getattr(_cls, _name)
+
+        def _w(self, path_or_buf=None, *a, __o=_orig, **k):
+            return __o(self, _redirect(path_or_buf), *a, **k)
+        setattr(_cls, _name, _w)
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        from matplotlib.figure import Figure as _F
+        _sf = _F.savefig
+
+        def _sfw(self, fname, *a, **k):
+            return _sf(self, _redirect(fname), *a, **k)
+        _F.savefig = _sfw
+    except Exception:
+        pass
+    try:
+        import scipy.io as _sio
+        _sm = _sio.savemat
+
+        def _smw(fn, *a, **k):
+            return _sm(_redirect(fn), *a, **k)
+        _sio.savemat = _smw
+    except Exception:
+        pass
+
+
+_install_write_guard()
+
+from scipy import stats
+import pandas as pd
+
+# ---- inputs and constants recovered from earlier cells of the same session
+#      (cells 2303b194, 3d91af14, 5233e78b, c8b0f4ed)
+B='/Users/yunman/Desktop/submission'
+FD3=f'{B}/revision/text/figures/fig.3/fig3_data'
+XL='/Users/yunman/Desktop/submission/revision/model_scale_consistent/manuscript_numbers_newflow/3m_model_new_run/baseline同化区域BOLD_r总表.xlsx'
+xf=pd.ExcelFile(XL)
+raw=xf.parse('总表', header=None)
+hi=raw.index[raw[0].astype(str).str.contains('被试',na=False)][0]
+T=raw.iloc[hi+1:].copy()
+T.columns=[str(x).replace('\n','') for x in raw.iloc[hi]]
+T=T[T['被试'].astype(str).str.startswith('sub-')].reset_index(drop=True)
+BCOL=[c for c in T.columns if '模拟' in c]
+raw=xf.parse('总表', header=None)
+hi=raw.index[raw[0].astype(str).str.contains('被试',na=False)][0]
+T=raw.iloc[hi+1:].copy()
+T.columns=[str(x).replace('\n','') for x in raw.iloc[hi]]
+T=T[T['被试'].astype(str).str.startswith('sub-')].reset_index(drop=True)
+BCOL=[c for c in T.columns if '模拟' in c]
+T[BCOL]=T[BCOL].apply(pd.to_numeric, errors='coerce')
+XLMAP={'3m同化+3m模拟':'3m_268','3m同化+10m268模拟':'10m_268','10m1000同化+模拟':'10m_1000',
+       '10m同化+模拟':'10m_own','100m同化+10m模拟':'10m','100m同化+模拟':'100m','100m同化+1b模拟':'1b'}
+V={XLMAP[c]: T[c].values.astype(float) for c in BCOL}
+
+# ---- computation: recovered from execution-log cell 3c7e0c72
+st=[]
+for a,bq in [('1b','100m'),('1b','10m'),('100m','10m'),('3m_268','1b'),('10m','10m_own'),('10m_own','10m_1000')]:
+    d=V[a]-V[bq]
+    st.append(dict(pair=f'{a} vs {bq}', mean_diff=round(float(d.mean()),5),
+                   t_p=float(stats.ttest_rel(V[a],V[bq]).pvalue),
+                   wilcoxon_p=float(stats.wilcoxon(V[a],V[bq]).pvalue), n_pairs=len(d)))
+pd.DataFrame(st).to_csv(f'{FD3}/fig3i_bold_r_paired_tests.csv', index=False)

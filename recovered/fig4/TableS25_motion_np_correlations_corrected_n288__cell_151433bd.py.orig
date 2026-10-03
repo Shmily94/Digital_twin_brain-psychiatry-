@@ -1,0 +1,53 @@
+# Verbatim archive of the execution-log cell that produced
+#     04_figures/supp_motion/data/TableS25_motion_np_correlations_corrected_n288.csv
+#
+# cell id      : 151433bd-08b5-4bbd-bbc2-df36ad881040
+# frame id     : fe47a03f-2d43-4fe0-a1c3-e0544839d822
+# timestamp    : 2026-09-21 21:50:08 UTC
+# conda env    : python
+# language     : bash
+# exit status  : ok
+#
+# Nothing below this line has been removed, reordered or reformatted.
+# The organised script is 03_analysis/fig4/31_TableS25_motion_np_correlations_corrected_n288.py
+##############################################################################
+FIG=/Users/yunman/Desktop/submission/revision/text/figures
+cd "$FIG/supp_motion" && python - <<'PY'
+p='motion_supp.py'; s=open(p).read()
+s=s.replace("""            lab_('q_{FDR}', r.P_FDR) + '   ' + lab_('P_{bonf}', r.P_Bonferroni),""",
+            """            lab_('P_{bonf}', r.P_Bonferroni),""")
+s=s.replace("""# Corrected simulated baseline (dtb_np_n288_baseline_post.csv) throughout, i.e.
+# the same data as Fig. 4-5.  Both FDR and Bonferroni adjustments over the six
+# outcomes are shown; the earlier Table S25 used the pre-MID-fix simulations.""",
+"""# Corrected simulated baseline (dtb_np_n288_baseline_post.csv) throughout, i.e.
+# the same data as Fig. 4-5.  P values are Bonferroni-adjusted over the six
+# outcomes; the earlier Table S25 used the pre-MID-fix simulations.""")
+s=s.replace("ax.set_xlim(-.20, 1.06)", "ax.set_xlim(-.20, .82)")
+s=s.replace("W, H = 96, 56", "W, H = 84, 56")
+# panel c: Bonferroni over the 12 edges instead of FDR
+s=s.replace("""ax.text(len(PE) - .4, npr.r + .006, f'12-edge sum, $r$ = {npr.r:.3f} ($q$ = {npr.P_FDR:.3f})',
+        ha='right', va='bottom', fontsize=ANNOT_PT, color=C('np12'))""",
+"""ax.text(len(PE) - .4, npr.r + .006,
+        f'12-edge sum, $r$ = {npr.r:.3f} ($P_{{bonf}}$ = {npr.P_Bonferroni:.3f})',
+        ha='right', va='bottom', fontsize=ANNOT_PT, color=C('np12'))""")
+s=s.replace("""ax.text(.03, .03, f'no edge survives FDR\\n(min $q$ = {PE.q_fdr.min():.2f})',
+        transform=ax.transAxes, ha='left', va='bottom', fontsize=ANNOT_PT, color='0.35')""",
+"""PE['p_bonferroni'] = np.minimum(1.0, PE.p * len(PE))
+ax.text(.03, .03, 'no edge survives Bonferroni\\n'
+        f'(12 edges, min $P_{{bonf}}$ = {PE.p_bonferroni.min():.2f})',
+        transform=ax.transAxes, ha='left', va='bottom', fontsize=ANNOT_PT, color='0.35')
+PE.to_csv(f'{D}/motion_per_edge_correlations.csv', index=False)""")
+open(p,'w').write(s)
+PY
+cd "$FIG/supp_motion" && python - <<'PY'
+import pandas as pd, numpy as np
+p='data/TableS25_motion_np_correlations_corrected_n288.csv'
+T=pd.read_csv(p).drop(columns=['P_FDR'])
+T=T[['Measure','n','r','CI95','P_raw','P_Bonferroni','variance_explained',
+     'spearman_rho','P_spearman','source_column']]
+T.to_csv(p, index=False)
+with pd.ExcelWriter('data/TableS25_motion_np_correlations_corrected_n288.xlsx') as w:
+    T.to_excel(w, sheet_name='Table S25 (corrected)', index=False)
+print(T.to_string(index=False))
+PY
+cd "$FIG/supp_motion" && python motion_supp.py 2>&1 | tail -4

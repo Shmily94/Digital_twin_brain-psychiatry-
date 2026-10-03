@@ -1,0 +1,46 @@
+# Verbatim execution-log cell archive - do not edit.
+# data file     : 04_figures/_recovered_session_b194cd74/tableS24_format_log.csv
+# cell id       : 8f33a7a1-e9cf-40fe-8620-d96c66ecd9e5
+# frame id      : b194cd74-5255-435a-9c1e-206638f9adae
+# cell_index    : 599
+# executed at   : 2026-09-29 11:50 UTC
+# language      : python    conda env: python
+# organised as  : 03_analysis/fig5/38_tableS24_format_log.py
+# This is the terminal cell exactly as it ran, with nothing removed and nothing
+# reformatted. It is a fragment of an interactive session and is not standalone;
+# the organised script carries the full dependency chain from the same session.
+# ---------------------------------------------------------------------------
+
+for e in log3: s24.cell(row=e['row'], column=hdr.index(e['column'])+1, value=e['before'])
+def fmt_stat2(tok):
+    v=float(tok)
+    if '.' not in tok and 'e' not in tok.lower(): return tok
+    av=abs(v)
+    if av>0.98 and av<1.0: return tok              # ICC / r near 1: 2 dp destroys the value
+    if 0<av<0.1:
+        d=max(2,-int(np.floor(np.log10(av)))+1); s='%.*f'%(d, rhu(v,d))
+        return s
+    return '%.2f'%rhu(v,2)
+log4=[]
+for r in range(3, s24.max_row+1):
+    for c in (11,13,14,15):
+        v=s24.cell(row=r,column=c).value
+        if v is None: continue
+        s=str(v)
+        if c in (11,15):
+            new=unify_runs(s); prot=set()
+            for m in list(RUN.finditer(new))+list(PAIR.finditer(new)): prot.add((m.start(),m.end()))
+            out=[(m.start(),m.end(),fmt_stat2(m.group(1))) for m in NUMTOK2.finditer(new) if not any(a<=m.start()<b for a,b in prot)]
+            for a,b,t in reversed(out): new=new[:a]+t+new[b:]
+        else:
+            new=NUMTOK2.sub(lambda m: m.group(1) if not (0<=float(m.group(1))<=1) else fmt_p2(float(m.group(1))), s)
+            new=re.sub(r'=\s*< 0\.0001','< 0.0001',new)
+        if new!=s:
+            s24.cell(row=r,column=c,value=new); log4.append(dict(row=r,column=hdr[c-1],before=s,after=new))
+L=pd.DataFrame(log4); L.to_csv('tableS24_format_log.csv',index=False)
+print('cells reformatted:',len(L))
+print(L[L.before.str.contains('ICC')].to_string(max_colwidth=70))
+TOUT2='290926Suppl.Table_reviewed_v2.xlsx'; wb.save(TOUT2); shutil.copy(TOUT2,'/Users/yunman/Desktop/submission/revision/text/'+TOUT2)
+ck=openpyxl.load_workbook('/Users/yunman/Desktop/submission/revision/text/'+TOUT2)
+print('\nsheets',len(ck.sheetnames),'| S24 data rows', sum(1 for r in range(3,ck['Table S24'].max_row+1) if ck['Table S24'].cell(row=r,column=1).value or ck['Table S24'].cell(row=r,column=2).value))
+print('S18 footnote present:', str(ck['Table S18'].cell(row=25,column=1).value)[:60])

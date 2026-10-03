@@ -1,0 +1,269 @@
+shen_id,hemisphere,anat_label,network,MNI_X,MNI_Y,MNI_Z,n_voxels,MID_BIG_WIN_meanT,MID_BIG_WIN_fracT5,MID_BIG_WIN_call,MID_SMALL_WIN_meanT,MID_SMALL_WIN_fracT5,MID_SMALL_WIN_call,MID_BIG_WIN-NO_WIN_meanT,MID_BIG_WIN-NO_WIN_fracT5,MID_BIG_WIN-NO_WIN_call,SST_STOP_SUCCESS_meanT,SST_STOP_SUCCESS_fracT5,SST_STOP_SUCCESS_call
+1,R,OrbFrontal,FPN,13.9,56.8,-16.6,198,-5.101,0.0,deactivated,-5.965,0.0,deactivated,0.465,0.177,ns,-1.622,0.086,ns
+2,R,OrbFrontal,Limbic,9.6,17.8,-19.5,123,-2.374,0.008,ns,-3.733,0.0,ns,3.31,0.244,ns,-1.96,0.0,ns
+3,R,OrbFrontal,DMN,5.1,34.9,-17.4,128,-6.951,0.0,deactivated,-6.458,0.0,deactivated,-1.014,0.0,ns,-6.646,0.0,deactivated
+4,R,OrbFrontal,FPN,15.6,34.1,-22.6,90,-3.887,0.0,ns,-4.773,0.0,ns,2.007,0.022,ns,-0.779,0.0,ns
+5,R,AntPFC,DMN,8.2,45.9,-1.7,222,-4.298,0.0,ns,-5.69,0.0,deactivated,-1.323,0.0,ns,-8.44,0.0,deactivated
+6,R,AntPFC,DMN,14.6,64.7,3.6,211,-4.754,0.024,ns,-5.602,0.0,deactivated,-2.953,0.052,ns,-4.929,0.0,ns
+7,R,AntPFC,FPN,30.5,54.9,-3.5,160,1.164,0.162,ns,-0.303,0.038,ns,3.491,0.25,ns,3.245,0.281,ns
+8,R,AntPFC,FPN,44.6,46.2,-4.9,202,-5.676,0.01,deactivated,-5.136,0.005,deactivated,-2.204,0.059,ns,3.849,0.406,ns
+9,R,AntPFC,FPN,28.9,51.1,18.7,298,8.499,0.658,activated,6.032,0.55,activated,5.495,0.57,activated,6.853,0.641,activated
+10,R,dlPFC,Limbic,8.4,53.3,23.9,281,-5.565,0.075,deactivated,-6.579,0.007,deactivated,-3.829,0.007,ns,-4.327,0.046,ns
+11,R,dlPFC,Limbic,37.6,35.4,31.1,234,9.581,0.654,activated,7.753,0.632,activated,5.394,0.457,activated,8.533,0.748,activated
+12,R,FrontEyeFilds,SMF,14.3,36.9,48.9,308,-5.33,0.058,deactivated,-6.147,0.0,deactivated,-4.51,0.0,ns,-2.62,0.084,ns
+13,R,FrontEyeFilds,DMN,23.9,30.7,36.4,196,1.302,0.235,ns,0.481,0.143,ns,1.328,0.122,ns,-4.997,0.031,ns
+14,R,FrontEyeFilds,FPN,40.7,14.5,48.2,221,2.839,0.294,ns,1.945,0.267,ns,0.986,0.204,ns,4.483,0.412,ns
+15,R,FrontEyeFilds,Limbic,6.7,21.4,31.5,163,17.849,0.957,activated,14.207,0.853,activated,10.076,0.853,activated,10.535,0.785,activated
+16,R,ParsOrbitalis,SMF,53.6,24.8,0.9,278,1.52,0.327,ns,-0.197,0.255,ns,1.638,0.252,ns,5.616,0.424,activated
+17,R,ParsOrbitalis,FPN,33.4,37.3,-16.4,213,-8.198,0.009,deactivated,-8.752,0.005,deactivated,-0.892,0.066,ns,-3.696,0.047,ns
+18,R,ParsOrbitalis,Limbic,26.6,19.6,-21.3,114,-3.129,0.009,ns,-4.452,0.0,ns,1.272,0.132,ns,-1.086,0.044,ns
+19,R,dlPFC,FPN,48.3,35.7,15.1,228,-0.461,0.096,ns,0.084,0.149,ns,0.051,0.048,ns,1.073,0.272,ns
+20,R,Broca_Triang,Limbic,37.0,20.8,5.9,146,22.437,0.959,activated,18.688,0.945,activated,12.54,0.918,activated,18.984,0.952,activated
+21,R,Broca-Operc,FPN,55.4,9.6,22.2,260,12.79,0.838,activated,11.325,0.827,activated,7.902,0.746,activated,7.215,0.608,activated
+22,R,Broca-Operc,FPN,40.0,17.6,29.2,177,5.357,0.475,activated,4.723,0.424,ns,2.084,0.119,ns,0.613,0.079,ns
+23,R,PrimMotor,Motor,57.8,-8.3,27.3,269,-0.969,0.23,ns,-2.91,0.145,ns,2.98,0.294,ns,1.388,0.167,ns
+24,R,PreMot+SuppMot,Motor,6.0,-22.3,65.6,150,5.886,0.52,activated,3.554,0.367,ns,7.437,0.647,activated,0.037,0.04,ns
+25,R,PreMot+SuppMot,Motor,7.0,-8.1,52.9,129,22.555,0.984,activated,18.791,0.977,activated,17.129,0.992,activated,3.243,0.31,ns
+26,R,PreMot+SuppMot,Motor,26.3,-12.9,66.2,221,9.866,0.837,activated,6.1,0.62,activated,14.753,0.946,activated,-0.523,0.109,ns
+27,R,PreMot+SuppMot,Motor,49.2,-4.5,48.1,185,20.417,0.984,activated,16.654,0.93,activated,14.372,0.995,activated,3.848,0.443,ns
+28,R,PreMot+SuppMot,Limbic,6.1,14.0,48.7,140,25.258,0.986,activated,21.635,0.957,activated,13.856,0.786,activated,14.718,0.943,activated
+29,R,PreMot+SuppMot,Limbic,13.7,6.3,65.4,275,14.407,0.847,activated,10.77,0.749,activated,9.728,0.724,activated,9.72,0.916,activated
+30,R,PreMot+SuppMot,FPN,25.2,12.4,49.4,176,3.24,0.375,ns,2.374,0.307,ns,3.188,0.341,ns,-0.727,0.188,ns
+31,R,PreMot+SuppMot,FPN,39.7,3.4,34.0,123,13.107,0.846,activated,12.094,0.837,activated,5.884,0.577,activated,9.095,0.748,activated
+32,R,PreMot+SuppMot,Limbic,32.0,-5.4,52.1,128,20.998,1.0,activated,16.802,1.0,activated,16.088,1.0,activated,9.865,0.773,activated
+33,R,PrimSensory,Motor,42.0,-23.4,53.4,261,13.391,0.904,activated,9.331,0.774,activated,17.193,0.973,activated,-5.332,0.011,deactivated
+34,R,Insula,Motor,41.8,5.0,-7.6,135,7.948,0.511,activated,6.301,0.422,activated,5.281,0.489,activated,5.74,0.385,activated
+35,R,Insula,Motor,41.4,3.5,7.2,125,15.398,0.952,activated,13.158,0.928,activated,8.586,0.84,activated,5.167,0.432,activated
+36,R,Insula,Limbic,37.5,21.1,-10.1,151,8.124,0.603,activated,4.944,0.503,ns,3.915,0.45,ns,11.103,0.695,activated
+37,R,Insula,Motor,38.3,-12.5,-1.1,180,5.535,0.528,activated,3.713,0.45,ns,6.203,0.594,activated,-4.171,0.0,ns
+38,R,PrimSensory,Motor,32.4,-39.2,49.6,183,11.593,0.885,activated,8.224,0.743,activated,12.488,0.918,activated,4.261,0.426,ns
+39,R,PrimSensory,Motor,20.0,-33.2,69.8,239,1.629,0.318,ns,-1.23,0.172,ns,8.359,0.883,activated,-7.752,0.0,deactivated
+40,R,PrimSensory,Motor,43.3,-10.8,13.9,160,2.16,0.238,ns,1.142,0.169,ns,1.792,0.231,ns,-5.21,0.0,deactivated
+41,R,VisMotor,Visual Asso,25.2,-52.4,68.1,237,1.782,0.236,ns,-0.797,0.122,ns,10.072,0.827,activated,-0.337,0.228,ns
+42,R,VisMotor,Visual Asso,14.8,-68.4,34.9,169,18.062,0.923,activated,13.981,0.846,activated,9.373,0.864,activated,0.184,0.254,ns
+43,R,VisMotor,Visual Asso,31.6,-60.8,49.2,437,12.184,0.84,activated,10.953,0.838,activated,8.366,0.721,activated,12.767,0.952,activated
+44,R,VisMotor,Limbic,7.5,-57.3,61.8,290,6.353,0.6,activated,3.39,0.5,ns,9.9,0.872,activated,-2.718,0.124,ns
+45,R,SupramargGyr,Motor,52.8,-27.2,40.9,345,10.929,0.904,activated,8.163,0.777,activated,12.213,0.951,activated,8.633,0.739,activated
+46,R,SupramargGyr,Motor,58.0,-29.3,19.5,277,5.623,0.552,activated,2.83,0.332,ns,7.433,0.726,activated,0.409,0.361,ns
+47,R,SupramargGyr,FPN,54.2,-45.2,36.9,345,10.416,0.858,activated,7.854,0.751,activated,4.411,0.409,ns,15.185,0.991,activated
+48,R,AngGyrus,FPN,47.8,-61.6,34.7,287,-3.004,0.063,ns,-3.228,0.042,ns,-6.758,0.0,deactivated,0.94,0.293,ns
+49,R,AngGyrus,DMN,41.4,-75.3,28.0,225,9.984,0.724,activated,9.023,0.72,activated,4.97,0.524,ns,-0.468,0.231,ns
+50,R,AngGyrus,DMN,48.9,-58.1,14.4,223,9.027,0.722,activated,8.113,0.695,activated,2.671,0.314,ns,9.16,0.632,activated
+51,R,Temporalpole,Motor,27.2,11.6,-39.2,119,-2.996,0.0,ns,-3.06,0.0,ns,0.801,0.0,ns,-0.934,0.0,ns
+52,R,Temporalpole,SMF,40.0,18.9,-34.2,154,-3.6,0.0,ns,-3.626,0.0,ns,-0.276,0.0,ns,-2.461,0.0,ns
+53,R,Temporalpole,SMF,52.8,10.9,-21.8,253,-0.022,0.059,ns,-0.148,0.028,ns,0.668,0.028,ns,-3.452,0.004,ns
+54,R,MedTempGyrus,SMF,50.0,-33.8,-0.7,101,7.011,0.683,activated,5.042,0.554,activated,2.696,0.129,ns,8.765,0.802,activated
+55,R,MedTempGyrus,FPN,61.3,-22.9,-22.4,212,-4.451,0.0,ns,-4.76,0.0,ns,-2.543,0.0,ns,-0.136,0.0,ns
+56,R,InfTempGryus,SMF,54.5,-7.7,-31.5,143,-2.767,0.0,ns,-3.422,0.0,ns,-3.639,0.0,ns,1.892,0.196,ns
+57,R,InfTempGryus,SMF,46.8,4.0,-39.8,144,-1.625,0.0,ns,-2.484,0.0,ns,-0.593,0.0,ns,2.794,0.285,ns
+58,R,InfTempGryus,Motor,40.3,-11.3,-35.8,128,0.731,0.0,ns,-0.124,0.0,ns,0.892,0.0,ns,0.267,0.031,ns
+59,R,InfTempGryus,Visual Asso,43.4,-26.5,-24.6,110,-1.17,0.018,ns,-1.854,0.0,ns,0.314,0.009,ns,-0.726,0.0,ns
+60,R,InfTempGryus,Motor,31.5,0.7,-44.4,119,-1.697,0.0,ns,-2.636,0.0,ns,0.958,0.0,ns,-1.279,0.0,ns
+61,R,PrimAuditory,Motor,59.2,-3.4,2.7,311,0.674,0.203,ns,-1.399,0.125,ns,5.96,0.547,activated,-5.352,0.064,deactivated
+62,R,PrimAuditory,Motor,39.9,-25.6,14.4,144,4.589,0.472,ns,3.047,0.354,ns,4.798,0.5,ns,-9.877,0.007,deactivated
+63,R,SupTemGyrus,Motor,61.8,-23.8,-2.8,249,1.391,0.229,ns,-0.407,0.141,ns,1.198,0.064,ns,0.898,0.225,ns
+64,R,SupTemGyrus,SMF,56.5,-8.5,-14.3,226,-1.89,0.049,ns,-2.505,0.031,ns,-0.421,0.022,ns,-7.898,0.004,deactivated
+65,R,SupTemGyrus,SMF,59.3,-43.8,8.5,285,9.158,0.723,activated,7.852,0.674,activated,2.264,0.221,ns,9.874,0.8,activated
+66,R,Fusiform,Visual Asso,46.5,-59.9,-14.8,122,-3.071,0.148,ns,-4.777,0.049,ns,7.319,0.73,activated,12.087,0.82,activated
+67,R,Fusiform,Visual Asso,36.4,-69.1,-17.5,187,-0.432,0.326,ns,-3.849,0.209,ns,14.844,0.957,activated,9.964,0.92,activated
+68,R,Fusiform,Visual I,25.2,-44.6,-12.2,183,18.778,0.962,activated,17.251,0.951,activated,7.965,0.716,activated,-3.395,0.027,ns
+69,R,Fusiform,Visual Asso,55.2,-56.3,-4.8,208,4.396,0.486,ns,2.813,0.346,ns,7.092,0.721,activated,10.006,0.702,activated
+70,R,Fusiform,FPN,60.8,-43.3,-17.6,299,-4.803,0.007,ns,-4.667,0.003,ns,-0.616,0.017,ns,0.317,0.02,ns
+71,R,Fusiform,Visual Asso,41.6,-45.7,-22.6,189,6.986,0.683,activated,4.577,0.571,ns,8.723,0.767,activated,8.122,0.767,activated
+72,R,Visual Assoc,Visual I,21.0,-63.7,-9.0,189,24.965,1.0,activated,22.882,0.995,activated,12.029,1.0,activated,0.746,0.185,ns
+73,R,Visual Assoc,Visual Asso,30.1,-82.9,20.5,187,13.279,0.84,activated,10.477,0.759,activated,12.124,0.973,activated,9.625,0.807,activated
+74,R,Visual Assoc,Visual Asso,45.1,-74.3,2.6,238,3.28,0.429,ns,1.083,0.378,ns,7.546,0.828,activated,23.274,0.996,activated
+75,R,Visual Assoc,Visual I,18.9,-81.8,41.5,254,17.091,0.906,activated,14.665,0.89,activated,9.434,0.878,activated,3.297,0.339,ns
+76,R,SecVisual,Visual II,17.9,-83.4,-11.3,224,4.717,0.554,ns,2.406,0.5,ns,18.82,0.996,activated,9.349,0.754,activated
+77,R,SecVisual,Visual I,7.7,-75.0,25.0,147,23.917,0.959,activated,21.726,0.959,activated,8.767,0.796,activated,-5.338,0.0,deactivated
+78,R,SecVisual,Visual II,23.7,-96.0,6.5,214,-15.308,0.192,deactivated,-17.937,0.154,deactivated,14.853,0.986,activated,14.002,0.902,activated
+79,R,SecVisual,Visual I,7.0,-75.7,-2.8,130,29.654,1.0,activated,27.516,1.0,activated,14.677,1.0,activated,-2.133,0.138,ns
+80,R,SecVisual,Visual I,7.8,-88.6,11.9,169,31.218,1.0,activated,28.513,1.0,activated,18.38,1.0,activated,-2.943,0.148,ns
+81,R,SecVisual,Visual II,31.2,-91.8,-10.8,204,-30.548,0.0,deactivated,-32.301,0.0,deactivated,11.598,0.828,activated,6.79,0.539,activated
+82,R,PrimVisual,Visual I,14.6,-68.3,8.3,194,26.972,0.985,activated,24.613,0.985,activated,13.056,0.912,activated,-2.26,0.057,ns
+83,R,DorsalACC,Limbic,7.8,34.7,17.1,163,3.462,0.387,ns,0.793,0.233,ns,2.374,0.239,ns,1.027,0.288,ns
+84,R,VentCing,Motor,5.3,-1.0,35.6,100,13.714,0.88,activated,10.925,0.8,activated,9.103,0.73,activated,1.684,0.16,ns
+85,R,VenPostCing,DMN,5.1,-38.9,27.0,114,0.702,0.228,ns,-1.141,0.123,ns,1.376,0.246,ns,-4.551,0.096,ns
+86,R,VenPostCing,DMN,12.3,-57.2,18.1,174,3.316,0.385,ns,3.075,0.345,ns,0.692,0.264,ns,-15.274,0.0,deactivated
+87,R,VenPostCing,Visual I,28.4,-53.8,7.1,85,13.678,0.765,activated,13.266,0.765,activated,2.116,0.329,ns,-2.228,0.035,ns
+88,R,VenPostCing,Limbic,7.0,-18.8,29.8,68,3.116,0.441,ns,0.754,0.265,ns,1.134,0.265,ns,3.941,0.485,ns
+89,R,DorsalPCC,Motor,7.8,-23.1,44.9,119,14.349,0.882,activated,10.01,0.79,activated,10.831,0.891,activated,-3.5,0.0,ns
+90,R,DorsalPCC,DMN,6.2,-57.4,38.2,174,-2.526,0.195,ns,-2.989,0.144,ns,-2.773,0.161,ns,-7.886,0.034,deactivated
+91,R,DorsalPCC,Limbic,8.3,-39.9,48.1,144,14.624,0.917,activated,11.113,0.854,activated,10.407,0.882,activated,-9.365,0.0,deactivated
+92,R,Amygdala,Motor,31.2,3.7,-21.6,134,-0.046,0.104,ns,-0.301,0.075,ns,1.497,0.082,ns,-1.049,0.0,ns
+93,R,Hippocampus,Sub,28.8,-36.9,0.0,95,1.073,0.274,ns,0.554,0.253,ns,1.268,0.063,ns,-0.427,0.253,ns
+94,R,Hippocampus,Sub,35.6,-14.7,-18.4,91,-2.301,0.044,ns,-2.401,0.022,ns,1.978,0.077,ns,-3.442,0.0,ns
+95,R,ParaHip,DMN,28.0,-28.4,-13.7,169,4.867,0.497,ns,4.328,0.444,ns,3.123,0.178,ns,-3.956,0.03,ns
+96,R,ParaHip,DMN,29.3,-19.6,-26.3,110,-0.543,0.018,ns,-1.019,0.009,ns,0.367,0.0,ns,-5.313,0.0,deactivated
+97,R,ParaHip,Sub,24.6,-2.6,-30.7,107,-3.44,0.0,ns,-3.753,0.0,ns,0.732,0.009,ns,-1.726,0.0,ns
+98,R,SecVisual,Visual I,14.6,-46.1,2.8,177,12.975,0.678,activated,12.588,0.684,activated,2.138,0.271,ns,-3.314,0.051,ns
+99,R,BrainStem,Cerebellum,19.3,-7.7,-14.8,182,4.329,0.451,ns,4.263,0.418,ns,3.043,0.352,ns,-2.938,0.0,ns
+100,R,Cerebellum,Visual II,32.2,-78.5,-40.4,202,-5.994,0.03,deactivated,-6.731,0.01,deactivated,2.949,0.248,ns,-2.801,0.01,ns
+101,R,Cerebellum,Cerebellum,6.1,-50.7,-12.3,167,11.973,0.868,activated,10.17,0.85,activated,8.596,0.826,activated,2.466,0.186,ns
+102,R,Cerebellum,Visual II,39.1,-74.9,-29.7,274,-7.38,0.047,deactivated,-8.963,0.011,deactivated,5.427,0.464,activated,-0.326,0.12,ns
+103,R,Cerebellum,Cerebellum,13.7,-40.1,-25.4,135,6.178,0.644,activated,4.974,0.519,ns,6.011,0.659,activated,1.192,0.022,ns
+104,R,Cerebellum,Cerebellum,23.5,-35.9,-43.0,63,-3.429,0.0,ns,-4.56,0.0,ns,3.138,0.413,ns,-5.207,0.0,deactivated
+105,R,Cerebellum,Cerebellum,6.9,-67.9,-37.8,100,9.754,0.91,activated,8.043,0.75,activated,6.875,0.71,activated,0.484,0.0,ns
+106,R,Cerebellum,Cerebellum,7.1,-69.0,-20.9,125,14.348,1.0,activated,11.795,0.984,activated,11.476,1.0,activated,1.301,0.056,ns
+107,R,Cerebellum,Cerebellum,46.0,-46.5,-42.4,187,3.031,0.332,ns,0.717,0.198,ns,5.825,0.583,activated,0.838,0.118,ns
+108,R,Cerebellum,Cerebellum,16.2,-47.2,-52.3,121,-1.51,0.116,ns,-2.2,0.091,ns,1.128,0.248,ns,-4.828,0.0,ns
+109,R,Cerebellum,Motor,23.4,-59.3,-52.1,161,7.337,0.683,activated,4.362,0.441,ns,8.464,0.845,activated,0.57,0.075,ns
+110,R,Cerebellum,Limbic,21.1,-54.8,-23.8,157,12.019,0.943,activated,8.627,0.841,activated,12.657,0.981,activated,-0.144,0.013,ns
+111,R,Cerebellum,FPN,11.7,-84.1,-34.6,199,-1.54,0.216,ns,-2.785,0.166,ns,4.709,0.503,ns,-2.738,0.01,ns
+112,R,Cerebellum,FPN,19.6,-73.5,-50.0,180,8.217,0.711,activated,5.605,0.544,activated,7.861,0.772,activated,0.982,0.117,ns
+113,R,Cerebellum,Cerebellum,36.7,-57.1,-32.8,162,11.107,0.759,activated,8.029,0.617,activated,10.224,0.858,activated,8.47,0.765,activated
+114,R,Cerebellum,Cerebellum,23.0,-71.8,-29.1,175,2.681,0.326,ns,0.402,0.246,ns,7.587,0.766,activated,1.525,0.154,ns
+115,R,Cerebellum,DMN,7.6,-56.7,-50.8,106,1.55,0.302,ns,0.961,0.217,ns,0.008,0.17,ns,-2.876,0.0,ns
+116,R,Cerebellum,FPN,41.9,-64.0,-49.2,280,0.245,0.204,ns,-1.87,0.111,ns,4.503,0.45,ns,-0.274,0.057,ns
+117,R,Cerebellum,Cerebellum,7.1,-53.7,-34.4,99,6.776,0.667,activated,6.396,0.646,activated,2.098,0.212,ns,-0.539,0.03,ns
+118,R,Cerebellum,Cerebellum,33.8,-47.2,-53.9,138,2.006,0.261,ns,-0.506,0.13,ns,6.643,0.623,activated,0.303,0.13,ns
+119,R,Cerebellum,Limbic,30.4,-36.4,-31.1,139,5.649,0.511,activated,3.337,0.367,ns,8.07,0.763,activated,-0.293,0.094,ns
+120,R,,Sub,21.2,-36.4,22.6,61,3.678,0.393,ns,2.803,0.361,ns,0.154,0.016,ns,-1.604,0.0,ns
+121,R,Caudate,Sub,12.7,12.9,11.5,139,5.875,0.583,activated,2.064,0.468,ns,10.629,0.755,activated,0.912,0.338,ns
+122,R,Caudate,Sub,13.7,-4.2,20.9,89,1.189,0.517,ns,-1.286,0.303,ns,6.453,0.64,activated,-0.679,0.258,ns
+123,R,Caudate,Sub,12.6,20.2,-0.7,125,8.066,0.616,activated,3.338,0.456,ns,14.321,0.928,activated,-0.247,0.208,ns
+124,R,Putamen,Sub,26.6,6.3,0.1,145,19.259,1.0,activated,15.803,1.0,activated,14.279,1.0,activated,4.482,0.393,ns
+125,R,Nacc,Sub,14.0,8.3,-9.5,193,11.467,0.715,activated,8.135,0.617,activated,11.379,0.767,activated,-0.706,0.016,ns
+126,R,Thalamus,Sub,10.5,-26.8,-2.2,136,13.178,0.875,activated,10.047,0.779,activated,11.588,0.801,activated,4.008,0.441,ns
+127,R,Thalamus,Sub,12.3,-27.7,13.5,111,2.283,0.351,ns,0.625,0.279,ns,4.102,0.414,ns,-0.198,0.225,ns
+128,R,Thalamus,Sub,5.5,-9.7,5.2,130,11.504,0.869,activated,7.965,0.654,activated,11.915,0.9,activated,2.412,0.338,ns
+129,R,BrainStem,Cerebellum,4.7,-37.2,-53.0,69,-6.56,0.072,deactivated,-4.799,0.072,ns,-3.901,0.029,ns,-4.055,0.0,ns
+130,R,BrainStem,Cerebellum,9.7,-18.7,-30.7,95,-1.517,0.011,ns,-1.126,0.0,ns,-0.822,0.0,ns,-0.084,0.0,ns
+131,R,BrainStem,Cerebellum,6.0,-22.2,-42.3,44,-4.537,0.0,ns,-3.249,0.0,ns,-2.584,0.0,ns,-2.82,0.0,ns
+132,R,BrainStem,Cerebellum,6.3,-24.9,-17.5,111,9.612,0.838,activated,7.177,0.757,activated,10.012,0.838,activated,2.592,0.054,ns
+133,R,BrainStem,Cerebellum,7.5,-34.2,-37.3,90,6.033,0.678,activated,4.994,0.467,ns,3.64,0.356,ns,2.541,0.156,ns
+134,L,OrbFrontal,DMN,-5.4,29.1,-10.1,121,-6.538,0.0,deactivated,-6.063,0.0,deactivated,-0.816,0.066,ns,-6.972,0.0,deactivated
+135,L,OrbFrontal,Limbic,-18.2,19.0,-21.0,113,-1.326,0.044,ns,-3.469,0.018,ns,4.043,0.248,ns,-0.289,0.0,ns
+136,L,OrbFrontal,Limbic,-5.8,18.2,-21.6,74,-2.477,0.0,ns,-3.326,0.0,ns,1.602,0.027,ns,-1.924,0.0,ns
+137,L,OrbFrontal,SMF,-8.2,39.7,-21.4,185,-6.065,0.0,deactivated,-6.497,0.0,deactivated,0.219,0.027,ns,-4.387,0.0,ns
+138,L,AntPFC,DMN,-6.9,48.3,-5.7,169,-8.386,0.0,deactivated,-8.177,0.0,deactivated,-2.844,0.0,ns,-10.605,0.0,deactivated
+139,L,AntPFC,FPN,-18.2,57.0,-14.3,205,-1.797,0.088,ns,-2.937,0.015,ns,1.509,0.185,ns,2.035,0.263,ns
+140,L,OrbFrontal,SMF,-6.0,48.1,11.7,222,-4.411,0.027,ns,-6.11,0.0,deactivated,-2.759,0.005,ns,-4.594,0.0,ns
+141,L,AntPFC,DMN,-11.7,65.1,4.2,206,-5.91,0.034,deactivated,-5.836,0.0,deactivated,-3.523,0.029,ns,-5.994,0.0,deactivated
+142,L,AntPFC,FPN,-29.2,54.3,2.5,146,6.121,0.623,activated,4.238,0.425,ns,4.378,0.39,ns,5.341,0.5,activated
+143,L,AntPFC,FPN,-42.7,47.3,-6.9,162,-4.257,0.006,ns,-2.987,0.019,ns,-4.034,0.0,ns,3.577,0.37,ns
+144,L,AntPFC,Limbic,-28.8,50.1,21.7,232,12.818,0.802,activated,9.884,0.741,activated,7.047,0.659,activated,8.689,0.793,activated
+145,L,dlPFC,SMF,-10.1,55.7,30.2,211,-9.407,0.005,deactivated,-9.249,0.0,deactivated,-5.477,0.0,deactivated,-4.856,0.0,ns
+146,L,dlPFC,Limbic,-27.3,34.1,36.4,280,7.117,0.582,activated,4.756,0.479,ns,4.593,0.45,ns,-0.932,0.268,ns
+147,L,dlPFC,FPN,-46.1,28.2,26.8,271,4.719,0.446,ns,5.267,0.498,activated,0.241,0.114,ns,1.012,0.292,ns
+148,L,FrontEyeFilds,SMF,-11.2,34.3,51.5,319,-6.243,0.006,deactivated,-6.764,0.0,deactivated,-4.303,0.0,ns,-3.489,0.025,ns
+149,L,FrontEyeFilds,SMF,-39.3,17.2,46.7,252,-0.463,0.111,ns,-1.151,0.087,ns,-1.829,0.008,ns,0.681,0.079,ns
+150,L,FrontEyeFilds,SMF,-5.0,17.7,46.1,182,19.616,0.874,activated,16.448,0.841,activated,9.031,0.626,activated,12.631,0.89,activated
+151,L,ParsOrbitalis,SMF,-46.2,28.2,-7.1,228,-7.074,0.127,deactivated,-7.589,0.075,deactivated,-1.9,0.132,ns,-1.188,0.167,ns
+152,L,ParsOrbitalis,Limbic,-28.4,36.0,-15.6,145,-6.279,0.034,deactivated,-7.035,0.0,deactivated,0.299,0.103,ns,-5.986,0.021,deactivated
+153,L,ParsOrbitalis,SMF,-32.0,20.5,-16.0,141,1.467,0.333,ns,-0.46,0.262,ns,1.128,0.22,ns,4.814,0.404,ns
+154,L,dlPFC,FPN,-43.0,42.0,11.0,226,4.877,0.482,ns,4.983,0.522,ns,1.162,0.168,ns,1.752,0.31,ns
+155,L,Broca_Triang,Limbic,-32.5,22.1,5.8,172,21.036,0.953,activated,16.857,0.919,activated,11.875,0.901,activated,17.276,0.924,activated
+156,L,Broca-Operc,SMF,-53.1,18.4,10.6,248,0.734,0.315,ns,0.058,0.27,ns,0.294,0.214,ns,1.5,0.331,ns
+157,L,PreMot+SuppMot,FPN,-46.2,7.9,28.6,245,14.761,0.906,activated,14.349,0.906,activated,4.586,0.396,ns,5.21,0.518,activated
+158,L,PrimMotor,Motor,-41.6,-14.7,44.8,184,11.686,0.75,activated,8.003,0.679,activated,9.722,0.804,activated,-2.59,0.071,ns
+159,L,PreMot+SuppMot,Motor,-58.1,-5.6,27.2,190,0.357,0.253,ns,-1.077,0.168,ns,2.601,0.247,ns,2.548,0.111,ns
+160,L,PreMot+SuppMot,Motor,-16.2,-19.2,69.5,60,8.249,0.817,activated,4.801,0.567,ns,9.502,0.933,activated,-2.117,0.0,ns
+161,L,PreMot+SuppMot,Motor,-6.5,-4.3,47.6,168,23.42,0.94,activated,19.455,0.893,activated,14.897,0.94,activated,4.656,0.399,ns
+162,L,PreMot+SuppMot,SMF,-9.1,0.4,66.5,270,16.736,0.841,activated,12.738,0.759,activated,12.515,0.852,activated,7.495,0.719,activated
+163,L,PreMot+SuppMot,Motor,-57.0,-3.4,6.8,269,5.963,0.431,activated,3.497,0.357,ns,7.509,0.74,activated,0.071,0.193,ns
+164,L,PreMot+SuppMot,FPN,-23.2,10.7,53.6,283,5.643,0.512,activated,4.03,0.445,ns,4.452,0.445,ns,-0.211,0.286,ns
+165,L,PreMot+SuppMot,SMF,-45.8,-0.4,49.3,203,17.638,0.897,activated,15.105,0.867,activated,10.115,0.847,activated,7.822,0.788,activated
+166,L,PreMot+SuppMot,Motor,-27.6,-9.1,55.9,117,20.966,0.991,activated,16.511,0.974,activated,15.005,1.0,activated,11.275,0.769,activated
+167,L,PrimSensory,Motor,-35.9,-23.3,65.6,266,7.617,0.662,activated,3.265,0.338,ns,12.402,0.898,activated,-2.395,0.094,ns
+168,L,Insula,Motor,-39.1,1.7,9.5,145,18.101,0.966,activated,15.587,0.945,activated,7.821,0.793,activated,6.803,0.628,activated
+169,L,Insula,Limbic,-38.7,8.1,-4.8,145,13.301,0.779,activated,10.87,0.738,activated,6.012,0.628,activated,10.496,0.641,activated
+170,L,Insula,Motor,-37.7,-12.9,-1.4,181,6.203,0.575,activated,4.628,0.448,ns,5.528,0.525,activated,-2.565,0.0,ns
+171,L,PrimSensory,Motor,-50.6,-23.8,41.4,252,14.214,0.885,activated,10.441,0.806,activated,12.371,0.921,activated,2.85,0.302,ns
+172,L,PrimSensory,Motor,-23.5,-31.6,63.6,120,6.825,0.708,activated,2.979,0.442,ns,9.788,0.992,activated,-9.322,0.0,deactivated
+173,L,PrimSensory,Motor,-41.2,-15.6,14.5,133,2.445,0.316,ns,1.076,0.218,ns,1.267,0.15,ns,-4.753,0.008,ns
+174,L,VisMotor,Motor,-7.4,-34.1,67.5,254,1.312,0.315,ns,-0.769,0.138,ns,6.595,0.72,activated,-2.593,0.004,ns
+175,L,VisMotor,Visual Asso,-25.4,-54.7,64.0,372,8.834,0.632,activated,5.899,0.522,activated,10.698,0.858,activated,2.155,0.401,ns
+176,L,VisMotor,Visual I,-9.5,-71.0,31.9,237,14.655,0.789,activated,11.537,0.717,activated,6.535,0.667,activated,-5.411,0.059,deactivated
+177,L,VisMotor,Visual Asso,-28.4,-62.3,40.4,292,15.643,0.908,activated,14.583,0.911,activated,8.866,0.784,activated,9.136,0.726,activated
+178,L,VisMotor,Limbic,-9.8,-66.3,55.1,307,12.922,0.85,activated,9.292,0.746,activated,12.077,0.964,activated,1.174,0.296,ns
+179,L,SupramargGyr,Motor,-35.7,-39.3,47.7,226,17.31,0.978,activated,13.553,0.938,activated,12.893,0.991,activated,8.891,0.668,activated
+180,L,SupramargGyr,Motor,-42.2,-31.2,15.9,162,5.69,0.562,activated,4.016,0.438,ns,4.22,0.321,ns,-6.613,0.068,deactivated
+181,L,SupramargGyr,Motor,-59.5,-25.9,21.9,262,9.42,0.718,activated,6.461,0.588,activated,9.316,0.916,activated,2.702,0.416,ns
+182,L,AngGyrus,FPN,-42.0,-65.6,41.7,280,-1.27,0.225,ns,-1.513,0.189,ns,-3.565,0.043,ns,2.677,0.439,ns
+183,L,AngGyrus,SMF,-51.4,-56.3,20.5,274,3.493,0.5,ns,2.566,0.445,ns,-0.229,0.124,ns,4.474,0.493,ns
+184,L,AngGyrus,FPN,-53.4,-43.5,38.8,372,12.943,0.981,activated,10.188,0.903,activated,6.707,0.634,activated,11.804,0.992,activated
+185,L,Temporalpole,SMF,-38.0,6.1,-37.9,109,-3.226,0.0,ns,-3.83,0.0,ns,0.817,0.0,ns,0.348,0.0,ns
+186,L,Temporalpole,SMF,-34.6,18.6,-32.2,145,-2.642,0.0,ns,-2.879,0.0,ns,0.938,0.0,ns,-1.473,0.0,ns
+187,L,Temporalpole,SMF,-49.5,11.1,-30.6,101,-5.651,0.0,deactivated,-5.038,0.0,deactivated,-1.78,0.0,ns,-3.9,0.0,ns
+188,L,Temporalpole,Motor,-49.7,6.4,-15.2,219,1.167,0.1,ns,0.758,0.068,ns,2.397,0.1,ns,-3.706,0.023,ns
+189,L,Temporalpole,Motor,-22.9,9.0,-38.8,92,-0.846,0.0,ns,-1.705,0.0,ns,1.758,0.0,ns,-0.883,0.0,ns
+190,L,MedTempGyrus,SMF,-57.6,-6.4,-22.7,150,-6.121,0.0,deactivated,-5.631,0.0,deactivated,-3.801,0.0,ns,-4.788,0.0,ns
+191,L,MedTempGyrus,Motor,-59.0,-30.0,3.5,236,-0.839,0.0,ns,-1.654,0.0,ns,0.939,0.165,ns,-2.63,0.004,ns
+192,L,MedTempGyrus,SMF,-57.8,-47.5,5.2,277,2.962,0.365,ns,2.282,0.289,ns,0.899,0.09,ns,2.736,0.278,ns
+193,L,MedTempGyrus,FPN,-59.8,-27.4,-18.1,228,-3.042,0.0,ns,-3.617,0.0,ns,-1.944,0.0,ns,0.285,0.018,ns
+194,L,InfTempGryus,SMF,-49.3,-4.7,-37.4,106,-3.113,0.0,ns,-4.125,0.0,ns,-1.56,0.0,ns,0.699,0.038,ns
+195,L,InfTempGryus,Motor,-37.8,-13.2,-29.3,97,-1.392,0.0,ns,-1.799,0.0,ns,1.186,0.01,ns,-2.81,0.0,ns
+196,L,InfTempGryus,FPN,-51.8,-18.2,-28.8,92,-2.721,0.0,ns,-2.673,0.0,ns,-2.745,0.0,ns,-0.26,0.011,ns
+197,L,SupTemGyrus,Motor,-57.0,-14.5,-6.9,233,-1.604,0.0,ns,-1.765,0.0,ns,0.205,0.034,ns,-4.767,0.0,ns
+198,L,Fusiform,Visual I,-26.7,-42.7,-16.1,151,12.972,0.874,activated,11.713,0.868,activated,6.951,0.583,activated,-8.151,0.007,deactivated
+199,L,Fusiform,FPN,-60.3,-50.0,-14.0,316,-2.497,0.0,ns,-2.209,0.0,ns,-0.942,0.006,ns,-3.166,0.0,ns
+200,L,Fusiform,Visual Asso,-42.6,-52.1,-17.4,137,7.198,0.73,activated,5.643,0.635,activated,5.633,0.628,activated,5.869,0.628,activated
+201,L,Fusiform,Visual Asso,-46.7,-40.0,-24.3,153,0.389,0.176,ns,-1.017,0.098,ns,2.953,0.183,ns,-0.04,0.059,ns
+202,L,ParaHip,DMN,-30.0,-5.8,-40.9,105,0.167,0.029,ns,-1.229,0.01,ns,2.286,0.076,ns,-1.324,0.0,ns
+203,L,Visual Assoc,DMN,-41.2,-75.4,22.8,276,5.005,0.54,activated,4.336,0.507,ns,2.347,0.359,ns,-4.495,0.21,ns
+204,L,Visual Assoc,Visual Asso,-31.6,-87.2,12.5,172,7.969,0.657,activated,4.708,0.576,ns,9.663,0.907,activated,12.318,0.779,activated
+205,L,Visual Assoc,Visual I,-17.0,-50.7,0.8,185,16.376,0.8,activated,16.012,0.811,activated,3.334,0.416,ns,-3.349,0.043,ns
+206,L,Visual Assoc,Visual Asso,-43.2,-70.4,-13.8,167,-2.553,0.222,ns,-5.03,0.138,deactivated,7.339,0.743,activated,9.837,0.796,activated
+207,L,Visual Assoc,Visual I,-25.9,-63.1,-12.3,228,17.857,0.956,activated,14.823,0.868,activated,12.222,0.947,activated,0.731,0.25,ns
+208,L,Visual Assoc,Visual I,-16.8,-84.9,33.0,373,20.32,0.96,activated,17.712,0.957,activated,9.884,0.901,activated,0.572,0.265,ns
+209,L,Visual Assoc,Visual Asso,-48.3,-67.4,1.1,226,8.59,0.819,activated,6.257,0.668,activated,9.942,0.956,activated,15.856,0.819,activated
+210,L,SecVisual,Visual Asso,-36.0,-84.2,-3.9,172,-10.308,0.047,deactivated,-13.566,0.017,deactivated,8.868,0.843,activated,20.931,0.953,activated
+211,L,SecVisual,Visual I,-8.9,-70.7,-1.7,169,30.59,1.0,activated,28.397,1.0,activated,13.925,1.0,activated,-5.933,0.0,deactivated
+212,L,SecVisual,Visual II,-10.8,-98.1,7.6,264,6.817,0.564,activated,3.645,0.496,ns,9.632,0.818,activated,10.13,0.712,activated
+213,L,SecVisual,Visual II,-14.7,-84.0,-13.1,291,8.377,0.574,activated,5.435,0.519,activated,13.191,0.986,activated,6.968,0.612,activated
+214,L,SecVisual,Visual II,-22.3,-96.6,-10.1,196,-34.605,0.0,deactivated,-37.355,0.0,deactivated,12.97,0.918,activated,6.696,0.571,activated
+215,L,PrimVisual,Visual I,-6.0,-81.2,12.2,248,31.465,1.0,activated,28.483,1.0,activated,17.496,0.984,activated,-4.724,0.0,ns
+216,L,PrimVisual,Visual I,-22.1,-66.7,7.4,134,16.274,0.813,activated,15.029,0.821,activated,7.362,0.672,activated,-1.395,0.007,ns
+217,L,,Sub,-23.6,-41.3,19.9,91,1.075,0.264,ns,0.723,0.198,ns,0.859,0.0,ns,-0.36,0.0,ns
+218,L,PreMot+SuppMot,Motor,-7.8,-22.4,46.0,151,14.81,0.874,activated,10.68,0.788,activated,9.631,0.815,activated,-3.474,0.0,ns
+219,L,DorsalAcc,SMF,-6.0,34.1,26.3,236,7.716,0.589,activated,4.422,0.403,ns,4.135,0.381,ns,5.454,0.551,activated
+220,L,VentCing,Limbic,-3.8,-5.0,32.6,61,5.525,0.672,activated,3.669,0.475,ns,3.273,0.295,ns,2.236,0.23,ns
+221,L,VentCing,Limbic,-5.1,13.2,28.7,144,13.454,0.743,activated,11.334,0.694,activated,7.356,0.701,activated,3.926,0.431,ns
+222,L,VenPostCing,DMN,-8.6,-58.8,17.6,206,-3.908,0.189,ns,-2.579,0.204,ns,-3.278,0.034,ns,-16.13,0.0,deactivated
+223,L,VenPostCing,DMN,-5.0,-36.0,32.0,110,2.237,0.373,ns,0.108,0.209,ns,2.062,0.336,ns,-3.426,0.182,ns
+224,L,VenPostCing,Limbic,-7.4,-18.2,30.0,104,-1.489,0.25,ns,-2.831,0.154,ns,-0.888,0.173,ns,1.215,0.279,ns
+225,L,DorsalPCC,DMN,-6.5,-53.9,37.4,196,-7.236,0.041,deactivated,-6.71,0.015,deactivated,-5.767,0.015,deactivated,-9.588,0.0,deactivated
+226,L,DorsalPCC,Limbic,-8.8,-42.6,50.1,180,13.691,0.889,activated,10.363,0.828,activated,9.334,0.878,activated,-9.715,0.0,deactivated
+227,L,AnrRetrolimb,DMN,-7.5,-42.1,13.3,68,-0.053,0.235,ns,-0.395,0.147,ns,0.777,0.147,ns,-1.713,0.059,ns
+228,L,Amygdala,Sub,-26.8,2.4,-18.7,154,4.712,0.39,ns,3.986,0.338,ns,4.43,0.305,ns,-0.408,0.006,ns
+229,L,Hippocampus,Sub,-21.5,-36.9,5.7,87,-1.052,0.184,ns,-1.69,0.103,ns,1.603,0.172,ns,-0.784,0.034,ns
+230,L,Hippocampus,Sub,-32.1,-40.2,-4.0,88,-1.055,0.159,ns,-1.057,0.17,ns,1.658,0.0,ns,-3.847,0.023,ns
+231,L,Hippocampus,Sub,-22.7,-12.8,-17.4,185,1.597,0.243,ns,2.028,0.222,ns,1.847,0.2,ns,-4.033,0.0,ns
+232,L,Hippocampus,Sub,-35.7,-24.8,-14.9,102,-2.708,0.0,ns,-3.52,0.0,ns,2.582,0.039,ns,-4.833,0.0,ns
+233,L,ParaHipp,DMN,-20.7,-30.8,-11.1,130,3.63,0.323,ns,2.883,0.223,ns,2.757,0.192,ns,-2.117,0.031,ns
+234,L,ParaHipp,DMN,-30.5,-23.9,-26.6,117,0.351,0.017,ns,-0.156,0.009,ns,0.671,0.0,ns,-5.337,0.0,deactivated
+235,L,ParaHipp,DMN,-21.4,-4.1,-29.4,123,-2.931,0.0,ns,-3.065,0.0,ns,0.804,0.0,ns,-1.917,0.0,ns
+236,L,Cerebellum,Cerebellum,-6.5,-66.2,-37.7,129,9.795,0.876,activated,8.396,0.752,activated,6.197,0.589,activated,-0.484,0.008,ns
+237,L,Cerebellum,Cerebellum,-8.7,-50.6,-39.6,103,5.683,0.544,activated,5.036,0.476,activated,2.047,0.146,ns,-1.249,0.049,ns
+238,L,Cerebellum,Cerebellum,-37.0,-52.9,-31.1,161,14.654,0.95,activated,11.204,0.882,activated,12.794,0.975,activated,8.572,0.876,activated
+239,L,Cerebellum,DMN,-8.7,-55.2,-52.1,100,3.446,0.4,ns,2.69,0.34,ns,2.149,0.31,ns,-2.714,0.0,ns
+240,L,Cerebellum,Visual Asso,-21.2,-70.0,-48.9,157,9.604,0.866,activated,6.968,0.771,activated,9.887,0.955,activated,3.237,0.299,ns
+241,L,Cerebellum,Visual II,-40.3,-74.2,-29.1,306,-7.248,0.062,deactivated,-8.989,0.039,deactivated,5.057,0.444,activated,-0.074,0.16,ns
+242,L,Cerebellum,FPN,-30.2,-80.2,-40.3,199,-7.394,0.015,deactivated,-8.181,0.015,deactivated,2.038,0.206,ns,-3.5,0.0,ns
+243,L,Cerebellum,Cerebellum,-19.3,-46.4,-53.2,105,-1.692,0.086,ns,-3.152,0.057,ns,4.174,0.505,ns,-5.033,0.0,deactivated
+244,L,Cerebellum,Limbic,-6.5,-50.2,-11.4,217,13.289,0.885,activated,11.458,0.866,activated,8.82,0.806,activated,1.551,0.226,ns
+245,L,Cerebellum,Limbic,-27.8,-36.0,-30.9,120,5.439,0.558,activated,3.093,0.375,ns,7.283,0.708,activated,-1.224,0.058,ns
+246,L,Cerebellum,FPN,-42.6,-63.7,-46.3,232,-1.677,0.116,ns,-3.15,0.056,ns,3.17,0.267,ns,0.285,0.073,ns
+247,L,Cerebellum,FPN,-10.3,-81.7,-32.3,208,1.22,0.303,ns,-0.379,0.264,ns,7.139,0.755,activated,-2.007,0.019,ns
+248,L,Cerebellum,Cerebellum,-8.0,-68.4,-19.9,189,14.582,0.989,activated,12.348,0.968,activated,12.686,1.0,activated,0.728,0.0,ns
+249,L,Cerebellum,Cerebellum,-34.6,-50.3,-54.0,152,2.286,0.342,ns,0.127,0.164,ns,6.171,0.566,activated,0.701,0.099,ns
+250,L,Cerebellum,Cerebellum,-22.7,-57.9,-48.8,116,5.962,0.569,activated,3.444,0.336,ns,8.929,0.828,activated,0.855,0.052,ns
+251,L,Cerebellum,Limbic,-10.3,-37.7,-25.1,140,6.448,0.671,activated,4.94,0.471,ns,6.235,0.65,activated,0.825,0.007,ns
+252,L,Cerebellum,Cerebellum,-46.4,-46.8,-42.9,168,2.067,0.214,ns,0.336,0.077,ns,4.066,0.417,ns,0.905,0.06,ns
+253,L,Cerebellum,Cerebellum,-26.3,-69.5,-30.6,200,2.919,0.335,ns,1.178,0.245,ns,7.401,0.675,activated,4.589,0.405,ns
+254,L,Cerebellum,Cerebellum,-21.2,-53.4,-23.6,130,13.846,1.0,activated,10.798,0.938,activated,15.413,1.0,activated,-0.653,0.046,ns
+255,L,Cerebellum,Cerebellum,-6.6,-54.7,-26.3,104,8.527,0.808,activated,7.779,0.808,activated,5.752,0.635,activated,1.157,0.0,ns
+256,L,Cerebellum,Cerebellum,-24.3,-37.8,-44.3,66,-1.189,0.015,ns,-2.729,0.0,ns,5.092,0.576,activated,-4.245,0.0,ns
+257,L,,Sub,-10.8,23.9,9.6,62,-12.238,0.0,deactivated,-12.552,0.0,deactivated,0.944,0.194,ns,-6.088,0.0,deactivated
+258,L,Caudate,Sub,-12.5,11.6,8.7,126,12.516,0.849,activated,7.607,0.659,activated,14.966,1.0,activated,4.72,0.5,ns
+259,L,Caudate,Sub,-10.4,10.9,-8.1,248,9.402,0.633,activated,5.796,0.524,activated,11.504,0.782,activated,-1.245,0.06,ns
+260,L,Caudate,Sub,-14.6,-3.5,21.1,94,-1.206,0.351,ns,-3.216,0.223,ns,5.035,0.543,activated,1.102,0.277,ns
+261,L,Putamen,Sub,-24.8,5.6,-0.1,145,21.178,1.0,activated,17.514,1.0,activated,14.187,1.0,activated,5.923,0.69,activated
+262,L,Putamen,Sub,-9.6,-25.4,-1.4,127,14.665,0.953,activated,11.168,0.858,activated,12.846,0.976,activated,3.711,0.323,ns
+263,L,Thalamus,Sub,-4.9,-10.3,5.8,187,9.953,0.765,activated,6.516,0.594,activated,10.239,0.834,activated,2.042,0.31,ns
+264,L,Thalamus,Sub,-11.6,-25.6,14.8,117,5.245,0.444,activated,3.155,0.393,ns,6.832,0.615,activated,1.426,0.239,ns
+265,L,BrainStem,BrainStem,-5.0,-21.5,-15.8,158,9.982,0.867,activated,7.305,0.785,activated,9.352,0.842,activated,1.567,0.07,ns
+266,L,BrainStem,Cerebellum,-4.5,-38.0,-53.1,114,-7.751,0.053,deactivated,-6.082,0.053,deactivated,-4.46,0.026,ns,-4.816,0.0,ns
+267,L,BrainStem,Cerebellum,-7.2,-33.0,-39.4,111,3.657,0.532,ns,3.175,0.468,ns,1.523,0.234,ns,0.99,0.108,ns
+268,L,BrainStem,Cerebellum,-6.1,-18.9,-36.8,109,-1.297,0.028,ns,-0.787,0.009,ns,-1.055,0.0,ns,-0.952,0.0,ns

@@ -1,0 +1,4 @@
+panel,printed_w_mm,printed_h_mm,png_px,dpi,source
+figS_cond_a,78,54,1061x872,346,conductance_grid_summary_n288.csv
+figS_cond_b,74,54,1197x944,411,conductance_responder_by_group_n288.csv
+figS_cond_c,52,54,768x826,375,conductance_subject_level_n288.csv

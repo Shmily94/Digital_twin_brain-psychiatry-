@@ -1,0 +1,5 @@
+quantity,comparison,r,max_abs_diff,note
+baseline_np,n288 vs NPall/W6,1.0,0.0,identical
+ampa,n288 vs NPall/W6,0.346912,3.063,n288 STALE: built on a pre-correction baseline
+gaba,n288 vs NPall/W6,0.862315,3.063,n288 STALE: built on a pre-correction baseline
+all six settings,n288 minus W6 offset,1.0,3.063,offset identical across settings (pairwise r = 1.000)

@@ -1,0 +1,238 @@
+"""oldham_tests  -  Oldham (mean-versus-change) analysis of eight pre/post series
+
+Computes
+    Oldham (mean-versus-change) analysis of eight pre/post series: the DTB model
+    under AMPA and GABA-A, the healthy pharmacological sample (raw and
+    residualised, ketamine and midazolam), and the clinical ketamine sample (all
+    participants and the MDD subgroup).
+
+Inputs
+    04_figures/fig.4/fig4_data  (staged read-only into the scratch mirror)
+    04_figures/fig.5/fig5_data/fig5_healthy_n27.csv  (staged read-only into the scratch mirror)
+    04_figures/fig.5/fig5_data/fig5_mdd_hc_n36.csv  (staged read-only into the scratch mirror)
+    04_figures/supp_oldham  (staged read-only into the scratch mirror)
+    06_upstream_inputs/whole_brain_fc_compare  (fallback: /Users/yunman/Desktop/submission/revision/whole_brain_fc_compare)
+
+Output
+    $FIG4_OUT/figures/supp_oldham/data/oldham_tests.csv  (default $FIG4_OUT = 03_analysis/fig4/_scratch)
+    reference copy: 04_figures/supp_oldham/data/oldham_tests.csv
+
+Statistical tests
+    Oldham's method: Pearson correlation of the within-subject change on the
+    mean of pre and post, with a Fisher-z 95% CI and a t statistic; the naive
+    baseline-versus-change correlation for comparison; OLS of post on pre with
+    the slope tested against 1; and the post/pre variance ratio.
+
+Cohort
+    DTB n = 288; healthy pharmacology n = 27; clinical ketamine n = 36 (MDD
+    subgroup n = 22).
+
+Runs on a laptop
+    yes - seconds on a laptop.
+
+seed
+    no random component
+
+Rebuilt from execution-log cell
+    22e9867c-f442-442a-b25e-d2ee46ade4d5 (frame fe47a03f-2d43-4fe0-a1c3-e0544839d822, 2026-09-22 21:01:19 UTC, conda env python, exit ok)
+    verbatim archive: recovered/fig4/oldham_tests__cell_22e9867c.py
+
+Note
+    Six of the eight Oldham series reproduce exactly (max relative difference
+    0). The two clinical-ketamine series do not: the script's input
+    04_figures/fig.5/fig5_data/fig5_mdd_hc_n36.csv has been rewritten since this
+    table was produced (cells 040b58f5 on 2026-09-23 and ac41e707 on 2026-09-25,
+    both after 22e9867c). Its FC_p2 column now has mean -0.0844 / s.d. 1.3354,
+    whereas the shipped table implies mean 0.0000 / s.d. 1.4380. Re-run values
+    for clinical_ket: oldham_r 0.0573 vs 0.1161 shipped, oldham_p 0.740 vs
+    0.500; largest relative discrepancy 0.509 (oldham_t). For clinical_ket_mdd:
+    oldham_r 0.2373 vs 0.2711, largest relative discrepancy 3.01
+    (slope_post_on_pre).
+"""
+# --- paths (added when the cell was reorganised; the analysis below is verbatim)
+import os as _os, shutil as _shutil, sys as _sys
+_sys.dont_write_bytecode = True   # never leave caches in the read-only figure tree
+
+PKG      = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", ".."))
+FIGREF   = _os.path.join(PKG, "04_figures")        # reference figure tree: READ ONLY
+UPSTREAM = _os.path.join(PKG, "06_upstream_inputs")
+AUTHOR_REV = "/Users/yunman/Desktop/submission/revision"          # author's working tree
+AUTHOR_SUB = "/Users/yunman/Desktop/submission"
+OUTROOT  = _os.path.abspath(_os.environ.get("FIG4_OUT", _os.path.join(PKG, "03_analysis", "fig4", "_scratch")))
+FIGROOT  = _os.path.join(OUTROOT, "figures")       # every write of this script lands here
+
+
+def _figpath(rel):
+    """Path inside the scratch mirror of the figure tree; data inputs are copied
+    in from the read-only reference on first use, so nothing writes into
+    04_figures."""
+    dst = _os.path.join(FIGROOT, rel)
+    src = _os.path.join(FIGREF, rel)
+    if _os.path.isdir(src):
+        for root, _dirs, files in _os.walk(src):
+            for f in files:
+                if _os.path.splitext(f)[1].lower() in (".csv", ".xlsx", ".xls", ".mat", ".json", ".txt", ".tsv"):
+                    s = _os.path.join(root, f)
+                    d = _os.path.join(dst, _os.path.relpath(s, src))
+                    _os.makedirs(_os.path.dirname(d), exist_ok=True)
+                    if not _os.path.exists(d):
+                        _shutil.copyfile(s, d)
+        _os.makedirs(dst, exist_ok=True)
+    else:
+        _os.makedirs(_os.path.dirname(dst) or dst, exist_ok=True)
+        if _os.path.exists(src) and not _os.path.exists(dst):
+            _shutil.copyfile(src, dst)
+    return dst
+
+
+def _upstream(rel):
+    """Upstream analysis input: the package copy if it has been shipped, else the
+    author's working tree (the path recorded in the header)."""
+    for base in (UPSTREAM, AUTHOR_REV):
+        p = _os.path.join(base, rel)
+        if _os.path.exists(p):
+            return p
+    raise FileNotFoundError("upstream input not available: " + rel)
+
+
+def _sub(rel):
+    """Input that sits outside revision/ in the author's tree."""
+    p = _os.path.join(AUTHOR_SUB, rel)
+    if not _os.path.exists(p):
+        raise FileNotFoundError("input not available: " + p)
+    return p
+
+
+ARTIFACT_INPUTS = {
+    "025c7b13-ece7-4589-af4e-8c4e6f87d905": "empirical_simul_np_fcs_300subs/np_residualized_290subs.csv",
+    "24326e31-3946-449a-b811-adc1579b5e98": "baseline_predict_change/dtb_np_n288_baseline_post.csv",
+    "3825bfc5-ca4c-4fe5-8041-681d3930ebd1": "corr_hd_np/increased_responder_proportions_n288_corrected.csv",
+    "7eddba98-b1cd-403d-ab4f-a8bc7c93eaff": "benchmark_predict_baseline_np/empirical_np_edges_288subjects.csv",
+    "c39c8ccc-6410-47df-a102-00903507ebcd": "empirical_simul_np_fcs_300subs/np_all_subs_3m_wide_corrected.csv",
+    "c4723113-4cde-4ada-aa70-10d3e8a1a900": ""
+}
+
+
+def _art(vid):
+    """Resolve an input the original cell read through the platform artifact
+    store to its file in this package or in the author's tree."""
+    rel = ARTIFACT_INPUTS.get(vid)
+    if rel:
+        for base in (UPSTREAM, AUTHOR_REV):
+            p = _os.path.join(base, rel)
+            if _os.path.exists(p):
+                return p
+    try:                                    # inside the analysis platform only
+        return host.artifact_path(vid)      # noqa: F821
+    except Exception:
+        raise FileNotFoundError("artifact input not available: %s (%s)" % (vid, rel))
+
+
+_os.makedirs(FIGROOT, exist_ok=True)
+
+
+def _byname(fn):
+    """An input the original cell looked up by filename in the platform artifact
+    store; resolve it by name under the package or the author's tree."""
+    for base in (UPSTREAM, AUTHOR_REV):
+        for root, _d, files in _os.walk(base):
+            if fn in files:
+                return _os.path.join(root, fn)
+    raise FileNotFoundError("upstream input not available: " + fn)
+
+
+class _Prefix(str):
+    """A directory prefix the original cell built by string concatenation.
+    Adding a relative path resolves it against the package copy first, then the
+    author's working tree."""
+
+    def __new__(cls, rel):
+        o = str.__new__(cls, _os.path.join(AUTHOR_REV, rel) + _os.sep)
+        o._rel = rel
+        return o
+
+    def __add__(self, rest):
+        for base in (UPSTREAM, AUTHOR_REV):
+            p = _os.path.join(base, self._rel, str(rest).lstrip("/"))
+            if _os.path.exists(p):
+                return p
+        return _os.path.join(AUTHOR_REV, self._rel, str(rest).lstrip("/"))
+
+# --- write guard: this script must never write outside its scratch directory --
+def _assert_out(path):
+    p = _os.path.abspath(path)
+    root = _os.path.abspath(OUTROOT)
+    if not (p == root or p.startswith(root + _os.sep)):
+        raise RuntimeError("refusing to write outside $FIG4_OUT: " + p)
+    _os.makedirs(_os.path.dirname(p), exist_ok=True)
+    return p
+
+
+import pandas as _pd_guard
+import matplotlib.figure as _mplfig
+
+def _wrap_writer(fn):
+    def w(self, path_or_buf=None, *a, **k):
+        if isinstance(path_or_buf, str):
+            path_or_buf = _assert_out(path_or_buf)
+        return fn(self, path_or_buf, *a, **k)
+    return w
+
+_pd_guard.DataFrame.to_csv = _wrap_writer(_pd_guard.DataFrame.to_csv)
+_pd_guard.Series.to_csv = _wrap_writer(_pd_guard.Series.to_csv)
+_pd_guard.DataFrame.to_excel = _wrap_writer(_pd_guard.DataFrame.to_excel)
+_orig_xlw = _pd_guard.ExcelWriter
+def _ExcelWriter(path, *a, **k):
+    return _orig_xlw(_assert_out(path) if isinstance(path, str) else path, *a, **k)
+_pd_guard.ExcelWriter = _ExcelWriter
+_orig_savefig = _mplfig.Figure.savefig
+def _savefig(self, fname, *a, **k):
+    return _orig_savefig(self, _assert_out(fname) if isinstance(fname, str) else fname, *a, **k)
+_mplfig.Figure.savefig = _savefig
+
+
+# --- recovered analysis (verbatim; only paths and imports were made explicit)
+# imports hoisted to the top when the cells were merged
+import scipy.io as sio, pandas as pd, numpy as np, os
+from scipy import stats
+import statsmodels.api as sm
+WB=_upstream('whole_brain_fc_compare')
+SM3=f'{WB}/pharma_data/summed_MID_FCs_3conditions.csv'
+d3_=pd.read_csv(SM3); print(d3_.shape, d3_.columns.tolist()); print(d3_.head(4).to_string(index=False))
+R27=d3_.pivot(index='Subject', columns='Condition', values='raw_score')
+F4=_figpath('fig.4/fig4_data')
+S4=pd.read_csv(f'{F4}/fig4_subject_level_n288.csv'); print('n288 cols:', S4.columns.tolist()[:20], S4.shape)
+H27=pd.read_csv(_figpath('fig.5/fig5_data/fig5_healthy_n27.csv'))
+M36=pd.read_csv(_figpath('fig.5/fig5_data/fig5_mdd_hc_n36.csv'))
+def oldham(pre,post,label,dataset,drug,n_note=''):
+    pre=np.asarray(pre,float); post=np.asarray(post,float); n=len(pre)
+    m=(pre+post)/2; d=post-pre
+    r,p=stats.pearsonr(m,d); t=r*np.sqrt(n-2)/np.sqrt(1-r**2)
+    rn,pn=stats.pearsonr(pre,d)
+    sl=sm.OLS(post,sm.add_constant(pre)).fit()
+    b=sl.params[1]; seb=sl.bse[1]; t1=(b-1)/seb; p1=2*stats.t.sf(abs(t1),n-2)
+    ci=sl.conf_int()[1]
+    z=np.arctanh(r); lo,hi=np.tanh([z-1.96/np.sqrt(n-3), z+1.96/np.sqrt(n-3)])
+    return dict(dataset=dataset,contrast=label,drug_or_perturbation=drug,n=n,
+        pre_mean=round(pre.mean(),4),post_mean=round(post.mean(),4),
+        pre_sd=round(pre.std(ddof=1),4),post_sd=round(post.std(ddof=1),4),
+        variance_ratio_post_pre=round(post.var(ddof=1)/pre.var(ddof=1),4),
+        oldham_r=round(r,4),oldham_ci95_lo=round(lo,4),oldham_ci95_hi=round(hi,4),
+        oldham_t=round(t,4),df=n-2,oldham_p=float(p),
+        naive_baseline_change_r=round(rn,4),naive_p=float(pn),
+        slope_post_on_pre=round(b,4),slope_ci95_lo=round(ci[0],4),slope_ci95_hi=round(ci[1],4),
+        slope_vs1_t=round(t1,4),slope_vs1_p=float(p1),note=n_note)
+M22=M36[M36.group=='MDD']
+OL=pd.DataFrame([
+ oldham(S4.simulated,S4.gaba,'baseline \u2192 GABA-A','DTB model (IMAGEN, n = 288)','GABA-A up-regulation'),
+ oldham(S4.simulated,S4.ampa,'baseline \u2192 AMPA','DTB model (IMAGEN, n = 288)','AMPA up-regulation','reference contrast'),
+ oldham(R27.Placebo,R27.Midazolam,'placebo \u2192 midazolam','Healthy pharmacology (n = 27)','midazolam (GABA-A)','raw summed FC, 6 MID edges'),
+ oldham(R27.Placebo,R27.Ketamine,'placebo \u2192 ketamine','Healthy pharmacology (n = 27)','ketamine (NMDA/AMPA)','raw summed FC, 6 MID edges'),
+ oldham(H27.Placebo,H27.Midazolam,'placebo \u2192 midazolam','Healthy pharmacology (n = 27)','midazolam (GABA-A)','head-motion-residualised (Fig. 5 score)'),
+ oldham(H27.Placebo,H27.Ketamine,'placebo \u2192 ketamine','Healthy pharmacology (n = 27)','ketamine (NMDA/AMPA)','head-motion-residualised (Fig. 5 score)'),
+ oldham(M36.FC_p2,M36.FC_d2,'placebo (p2) \u2192 ketamine (d2)','Clinical ketamine (MDD + HC, n = 36)','ketamine (NMDA/AMPA)','all participants'),
+ oldham(M22.FC_p2,M22.FC_d2,'placebo (p2) \u2192 ketamine (d2)','Clinical ketamine (MDD only, n = 22)','ketamine (NMDA/AMPA)','MDD subgroup'),
+])
+OD=_figpath('supp_oldham')
+keys=['model_gaba','model_ampa','healthy_mid','healthy_ket','healthy_mid_resid','healthy_ket_resid','clinical_ket','clinical_ket_mdd']
+OL.insert(0,'series',keys); OL.to_csv(f'{OD}/data/oldham_tests.csv',index=False)

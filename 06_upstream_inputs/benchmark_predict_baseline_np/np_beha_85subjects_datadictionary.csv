@@ -1,0 +1,17 @@
+column,meaning,note
+id / sub_id / group,subject identifier and cohort,from np_all_subs_3m_wide_corrected.csv
+beha19_item1..4 / beha19_sum,age-19 symptom items and their sum,C_beha_data columns 3-6
+beha23_item1..4 / beha23_sum,age-23 symptom items and their sum,"C_fu3_beha_data columns 3-6, row 64 dropped"
+beha_change_raw,beha23_sum - beha19_sum,negative = improvement
+beha_change_resi,change residualised on age-19 sum,the manuscript outcome
+"emp_edge1..12, emp_*_sum",EMPIRICAL task FC on the 12 NP edges,"ID-matched from empirical_np (287 rows, no duplicate ids); reproduces the published emp sum to 5e-9"
+"simbase_edge1..12, simbase_*_sum","SIMULATED baseline NP (DTB, unperturbed)",matches the n288 canonical baseline to 5e-9
+mod_<setting>_edge1..12,MODULATED NP per edge at that setting,central ampa/gaba from wide table; 4 flanking from simulate_FC_new.mat
+mod_np_sum__<setting>,12-edge sum of modulated NP,also sst/mid subtotals
+dnp_np_sum__<setting>,modulated minus simulated baseline,also sst/mid subtotals
+restoration_index__<setting>,12-edge dNP projected on stored manuscript coefficients,CORRECTED MID
+restoration_index_scalar__<setting>,"sum(dNP) x b1, b1 = -2.765",single-predictor calibration
+restoration_index_*_PUBLISHED,the index values in the manuscript .mat,PRE-correction MID; r = 0.75 vs corrected
+settings,ampa_low/ampa/ampa_high = 0.0040/0.0044/0.0048; gaba_low/gaba/gaba_high = 0.0035/0.0040/0.0045,conductance in the condition strings
+RESOLVED: empirical NP had two versions,"np_all_subs_3m_wide_corrected.csv disagreed with the .mat for exactly 3 HC subjects (53120454, 70910152, 72155879); the other 82 agreed to 5e-10",ID-matched re-extraction confirms the .mat values; the 3 wide-table rows match no subject in empirical_np. Table now uses the ID-matched values throughout.
+behaviour extraction verified,"age-19 and age-23 items re-extracted by ID from beha_data (286) and fu3_beha_data (1315), independent of any row-drop","85/85 matched, all four items at both ages differ by exactly 0 — the time points are correct"

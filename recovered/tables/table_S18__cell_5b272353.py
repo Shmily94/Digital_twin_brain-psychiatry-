@@ -1,0 +1,51 @@
+# Verbatim archive of an interactive execution-log cell. Nothing removed, nothing reformatted.
+# table            : table_S18
+# cell id          : 5b272353-db32-4118-a80a-5fc774848769
+# frame id         : b194cd74-5255-435a-9c1e-206638f9adae
+# timestamp        : 2026-09-29 10:23:15 UTC (epoch-ms 1790677395196)
+# conda env        : python
+# produced         : writes the shipped Table S18a and S18b blocks, percentages and legends into the workbook
+# ----------------------------------------------------------------------------
+
+
+SRC='/Users/yunman/Desktop/submission/revision/Code/reproducibility_package/06_upstream_inputs/text/290926Suppl.Table_v2.xlsx'
+wb=openpyxl.load_workbook(SRC); ws=wb['Table S18']
+for rng_ in list(ws.merged_cells.ranges): ws.unmerge_cells(str(rng_))
+ws.delete_rows(1, ws.max_row)
+from openpyxl.styles import Font
+B=Font(bold=True)
+r=1
+def put(row, vals, bold=False, fmt=None):
+    for j,v in enumerate(vals,1):
+        c=ws.cell(row=row, column=j, value=v)
+        if bold: c.font=B
+        if fmt and isinstance(v,float): c.number_format=fmt
+nI,nD=229,59
+put(r,['Table S18a. Frequencies for recruitment site between response groups following virtual modulation (n = 288).'],bold=True); r+=1
+put(r,['Group','Site','Frequency','Percent'],bold=True); r+=1
+for grp,n in (('Increased',nI),('Decreased',nD)):
+    first=True
+    for s_ in ORD:
+        f=int(ct.loc[grp,s_])
+        put(r,[grp if first else '', s_, f, f/n], fmt='0.0%'); r+=1; first=False
+    put(r,['','Missing',0,0.0], fmt='0.0%'); r+=1
+    put(r,['','Total',n,1.0], fmt='0.0%'); r+=1
+put(r,['Pearson chi-squared test of independence between response group and recruitment site: chi-squared(8) = 14.32, P = 0.074 (two-sided, uncorrected). Because 7 of 18 expected counts were below 5, the asymptotic P value is approximate; a Monte-Carlo permutation test (10,000 random reassignments of response group) gave P = 0.065. Collapsing the two London sub-sites into a single London site gives chi-squared(7) = 10.43, P = 0.166.']); r+=2
+put(r,['Table S18b. Frequencies for sex between response groups following virtual modulation (n = 288).'],bold=True); r+=1
+put(r,['Group','Sex','Frequency','Percent'],bold=True); r+=1
+for grp,n in (('Increased',nI),('Decreased',nD)):
+    first=True
+    for sx in ['F','M']:
+        f=int(sex_ct.loc[grp,sx]); put(r,[grp if first else '', sx, f, f/n], fmt='0.0%'); r+=1; first=False
+    put(r,['','Missing',0,0.0], fmt='0.0%'); r+=1
+    put(r,['','Total',n,1.0], fmt='0.0%'); r+=1
+put(r,['Pearson chi-squared test of independence between response group and sex: chi-squared(1) = 5.29, P = 0.021 (two-sided, uncorrected); Fisher exact test P = 0.018. The association persists after adjustment for diagnostic group (logistic regression of response group on sex and diagnostic group: z = -2.24, P = 0.025).']); r+=2
+put(r,['Response groups were defined from the 288 participants with individually fitted digital twins: Increased (negative-profile connectivity increased under both AMPA and GABA-A modulation) n = 229; Decreased (a decrease under either modulation) n = 59. Site, sex and response group were taken from figures/fig.4/fig4_data/fig4_subject_level_n288.csv; the London sub-site assignment (London-Invicro / London-CNS) was taken from the IMAGEN recruitment-site record in Figures/Figure4/mani_ampa_gaba_subs_diff_london_site.csv. Recomputed 29 September. The previous version of this table was based on 290 participants (251 increased / 39 decreased) under an earlier response-group definition.'])
+for col,w in zip('ABCD',(12,18,12,10)): ws.column_dimensions[col].width=w
+OUT='290926Suppl.Table_v4.xlsx'; wb.save(OUT); shutil.copy(OUT, dest+OUT)
+ck=openpyxl.load_workbook(dest+OUT)
+w=ck['Table S18']
+for row in w.iter_rows(min_row=1,max_row=w.max_row,values_only=True):
+    v=[('' if x is None else (('%.1f%%'%(x*100)) if isinstance(x,float) else str(x))) for x in row[:4]]
+    if any(s.strip() for s in v): print(' | '.join(v)[:200])
+print('\nsheets',len(ck.sheetnames),'| S24 rows', sum(1 for rr in ck['Table S24'].iter_rows(min_row=3,values_only=True) if (rr[0] or rr[1])))

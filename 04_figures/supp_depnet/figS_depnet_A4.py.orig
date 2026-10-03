@@ -1,0 +1,437 @@
+"""Supplementary depression-network figure, assembled as ONE A4 page.
+
+The four panels of depnet_supp.py, rebuilt from the same data and the same
+drawing grammar (supp_kit.boxes) under the frozen rules of figA4_kit:
+
+  a  summed depression-network FC, HC vs MDD, in each of the four conditions
+  b  per-edge adjusted effect size across the 27 edges
+  c  adjusted HC - MDD difference across the four conditions, with 95% CIs
+  d  paired comparison of the simulated baseline against each perturbation
+
+Layout: three rows (a / b / c d).  a and b span the page -- b is the edge-level
+decomposition of a's empirical contrast and follows it directly -- and c and d
+share row 3.  Every panel reserves a letter gutter, a, b and c start their ink
+on one line
+(K.align_left_ink) so their letters line up, and panel titles are dropped --
+panels carry symbols only and every exact statistic lives in the caption,
+computed here at render time and dumped to figS_depnet_A4_caption_values.csv.
+
+Group tests are the GLMs of depnet_supp.py / compare_dep_network_unified.py
+(condition ~ MDD + sex + site + head motion, df = 136), which reproduce the SI
+text exactly; a and c display adjusted values (residual + that condition's own
+mean) so the covariates are removed without moving a condition off its scale.
+
+    python figS_depnet_A4.py [--no-caption]
+"""
+import os, sys
+import numpy as np
+import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
+from scipy import stats
+import statsmodels.formula.api as smf
+
+FIGDIR = "/Users/yunman/Desktop/submission/revision/text/figures"
+HERE = os.path.join(FIGDIR, "supp_depnet")
+sys.path.insert(0, os.path.join(FIGDIR, "fig_color"))
+sys.path.insert(0, FIGDIR)
+from np_dtb_style import apply_np_style, panel, C, LW, enforce
+from fig_export import collect_text_records
+from supp_kit import boxes, fill, pt_edge
+import figA4_kit as K
+from figA4_kit import TICK_PT, ANNOT_PT, LABEL_PT, CAP_PT, PW, PH, ML, MR, MT
+
+D = os.path.join(HERE, "depnet_data")
+DPI = 400
+WITH_CAP = "--no-caption" not in sys.argv
+STEM = "figS_depnet_A4" if WITH_CAP else "figS_depnet_A4_nocaption"
+SUPP_NO = "S6"                      # the existing depression-network legend
+apply_np_style()
+K.apply_page_style()
+
+# ------------------------------------------------------------------- the data
+T = pd.read_csv(os.path.join(D, "depnet_subject_level_n141.csv"))
+E = pd.read_csv(os.path.join(D, "depnet_edge_source_data.csv"))
+assert len(T) == 141 and set(T.group) == {"HC", "MDD"} and len(E) == 27
+T["MDD"] = (T.group == "MDD").astype(int)
+
+CONDS = [("empirical", "Empirical", C("baseline"), True),
+         ("simulated", "Simulated baseline", C("baseline"), False),
+         ("ampa", "After AMPA", C("ampa"), False),
+         ("gaba", "After GABA-A", C("gaba"), False)]
+GRP = ["HC", "MDD"]
+GCOL = {"HC": C("hc"), "MDD": C("mdd")}
+S = {}                              # every caption number, dumped to CSV
+
+for k, _, _, _ in CONDS:            # adjusted values (see the docstring)
+    T[k + "_a"] = (smf.ols(f"{k} ~ sex + site + headmotion", data=T).fit().resid
+                   + T[k].mean())
+
+# ---- group statistics: the GLM the SI quotes -------------------------------
+G = []
+for k, lab, _, _ in CONDS:
+    m = smf.ols(f"{k} ~ MDD + sex + site + headmotion", data=T).fit()
+    hc = T.loc[T.group == "HC", k].values
+    md = T.loc[T.group == "MDD", k].values
+    n1, n2 = len(hc), len(md)
+    sp = np.sqrt(((n1 - 1) * hc.var(ddof=1) + (n2 - 1) * md.var(ddof=1))
+                 / (n1 + n2 - 2))
+    d_ = (hc.mean() - md.mean()) / sp
+    se = np.sqrt((n1 + n2) / (n1 * n2) + d_ ** 2 / (2 * (n1 + n2)))
+    ci = m.conf_int().loc["MDD"]
+    G.append(dict(key=k, condition=lab, n_hc=n1, n_mdd=n2,
+                  hc_mean=float(hc.mean()), hc_sd=float(hc.std(ddof=1)),
+                  mdd_mean=float(md.mean()), mdd_sd=float(md.std(ddof=1)),
+                  diff=-float(m.params["MDD"]),
+                  ci_lo=-float(ci[1]), ci_hi=-float(ci[0]),
+                  t=float(m.tvalues["MDD"]), df=int(m.df_resid),
+                  p=float(m.pvalues["MDD"]), d=float(d_),
+                  d_lo=float(d_ - 1.96 * se), d_hi=float(d_ + 1.96 * se)))
+G = pd.DataFrame(G)
+S["group"] = G.round(4).to_dict("records")
+
+# ---- paired statistics: baseline against each perturbation -----------------
+PC = [("simulated", "Baseline", C("baseline")), ("ampa", "+AMPA", C("ampa")),
+      ("gaba", "+GABA-A", C("gaba"))]
+PR = []
+for k, lab, _ in PC[1:]:
+    dif = T[k].values - T["simulated"].values
+    t_raw, p_raw = stats.ttest_rel(T[k].values, T["simulated"].values)
+    adj = smf.ols("dif ~ sex + site + headmotion",
+                  data=T.assign(dif=dif)).fit()
+    PR.append(dict(key=k, label=lab, n=len(dif), mean=float(dif.mean()),
+                   sd=float(dif.std(ddof=1)), n_up=int((dif > 0).sum()),
+                   pct_up=100 * float((dif > 0).mean()),
+                   t_raw=float(t_raw), df_raw=len(dif) - 1, p_raw=float(p_raw),
+                   t=float(adj.tvalues["Intercept"]), df=int(adj.df_resid),
+                   p=float(adj.pvalues["Intercept"])))
+PR = pd.DataFrame(PR)
+S["paired"] = PR.round(4).to_dict("records")
+
+# ---- per-edge effect sizes -------------------------------------------------
+# the source file's own d_ column is unadjusted AND signed MDD - HC, while its
+# t_/p_ come from the covariate GLM; the plotted effect size is converted from
+# the GLM t and oriented HC - MDD so one convention holds across the figure
+E = E.assign(d_adj=(-E.t_Empirical * np.sqrt(1 / 69 + 1 / 72)))
+E2 = E.sort_values("d_adj").reset_index(drop=True)
+SIG = (E2.p_Empirical < .05).values
+S["edges"] = dict(n=len(E2), n_sig_emp=int(SIG.sum()),
+                  n_sig_sim=int((E.p_Simulated < .05).sum()),
+                  d_min=round(float(E2.d_adj.min()), 3),
+                  d_max=round(float(E2.d_adj.max()), 3),
+                  n_overlap_np=int(E.overlap_NP.sum()))
+
+# --------------------------------------------------------------- the grammar
+CAT_PT = LABEL_PT                   # category names are read as axis labels
+S_PT = 3.6                          # 141 points per box
+
+
+def mark(p):
+    return ("***" if p < .001 else "**" if p < .01 else "*" if p < .05
+            else "n.s.")
+
+
+def bracket(ax, i, j, y, dy, p):
+    ax.plot([i, i, j, j], [y, y + dy, y + dy, y], color="black", lw=LW,
+            clip_on=False, zorder=5)
+    ax.text((i + j) / 2, y + dy * 1.15, mark(p), ha="center", va="bottom",
+            fontsize=ANNOT_PT, clip_on=False, zorder=5)
+
+
+def p_a(axs):
+    """Four conditions side by side; each keeps its own y scale."""
+    for ax, (k, lab, _, _) in zip(axs, CONDS):
+        vals = [T.loc[T.group == g, k + "_a"].values for g in GRP]
+        boxes(ax, [0, 1], vals, [GCOL[g] for g in GRP], width=.55,
+              jitter=.16, seed=1, s=S_PT)
+        ax.set_xticks([0, 1]); ax.set_xticklabels(GRP, fontsize=CAT_PT)
+        ax.set_xlim(-.62, 1.62)
+        lo = min(v.min() for v in vals); hi = max(v.max() for v in vals)
+        rng = hi - lo
+        bracket(ax, 0, 1, hi + .05 * rng, .035 * rng,
+                float(G.loc[G.key == k, "p"].iloc[0]))
+        ax.set_ylim(lo - .05 * rng, hi + .24 * rng)
+        ax.set_title(lab, fontsize=ANNOT_PT, pad=2)
+    axs[0].set_ylabel("Depression-network FC")
+
+
+def p_ci(ax):
+    """Adjusted HC - MDD difference with 95% CI, one point per condition."""
+    ax.axhline(0, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
+    ax.plot(range(len(CONDS)), G["diff"], color="0.6", lw=LW, zorder=1)
+    for i, (k, lab, col, open_) in enumerate(CONDS):
+        g0 = G.iloc[i]
+        ax.vlines(i, g0.ci_lo, g0.ci_hi, color=col, lw=LW * 1.6, zorder=2)
+        for yy in (g0.ci_lo, g0.ci_hi):
+            ax.plot([i - .12, i + .12], [yy] * 2, color=col, lw=LW, zorder=2)
+        ax.scatter([i], [g0["diff"]], s=14, zorder=4, linewidth=LW,
+                   facecolor="white" if open_ else col, edgecolor=col)
+        ax.text(i, g0.ci_hi + .05, mark(g0.p), ha="center", va="bottom",
+                fontsize=ANNOT_PT)
+    ax.set_xticks(range(len(CONDS)))
+    ax.set_xticklabels([l.replace(" ", "\n") for _, l, _, _ in CONDS],
+                       fontsize=TICK_PT)          # two lines: one line of
+    ax.set_xlim(-.5, len(CONDS) - .5)             # these names is 15 mm wide
+    ax.set_ylim(min(G.ci_lo) - .15, max(G.ci_hi) + .40)
+    ax.set_ylabel("Adjusted HC \u2212 MDD difference")
+    h = [Line2D([], [], marker="o", linestyle="none", markersize=3.2,
+                markerfacecolor=f, markeredgecolor=C("baseline"),
+                markeredgewidth=LW) for f in ("white", C("baseline"))]
+    ax.legend(h, ["Empirical", "Simulated"], loc="lower left",
+              fontsize=ANNOT_PT, handletextpad=.4, borderaxespad=.2,
+              frameon=False)
+
+
+def p_paired(ax):
+    """Paired: the simulated baseline against each perturbation."""
+    vals = [T[k + "_a"].values for k, _, _ in PC]
+    bp = boxes(ax, [0, 1, 2], vals, [c for _, _, c in PC], width=.55,
+               jitter=.16, seed=2, s=S_PT)
+    for j, (_, _, col) in enumerate(PC):
+        bp["boxes"][j].set_facecolor(fill(col))
+    lo = min(v.min() for v in vals); hi = max(v.max() for v in vals)
+    rng = hi - lo
+    for j, r in enumerate(PR.itertuples()):
+        bracket(ax, 0, j + 1, hi + (.05 + .17 * j) * rng, .035 * rng, r.p)
+    ax.set_ylim(lo - .05 * rng, hi + .41 * rng)
+    ax.set_xticks(range(3))
+    ax.set_xticklabels([l for _, l, _ in PC], fontsize=CAT_PT)
+    ax.set_xlim(-.62, 2.62)
+    ax.set_ylabel("Depression-network FC")
+
+
+def p_edges(ax):
+    """27 edges, sorted by their adjusted effect size."""
+    x = np.arange(len(E2))
+    col = C("mdd")
+    ax.axhline(0, color="0.6", lw=LW, ls=(0, (2.6, 1.7)), zorder=1)
+    ax.scatter(x[SIG], E2.d_adj[SIG], s=10, facecolor=col, edgecolor=col,
+               linewidth=LW, zorder=3)
+    ax.scatter(x[~SIG], E2.d_adj[~SIG], s=10, facecolor="white",
+               edgecolor=col, linewidth=LW, zorder=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels([f"E{int(e)}" for e in E2.edge], fontsize=TICK_PT,
+                       rotation=90)
+    ax.set_xlim(-.7, len(E2) - .3)
+    ax.set_ylabel("Adjusted Cohen's $d$\n(HC \u2212 MDD)")
+    lo, hi = float(E2.d_adj.min()), float(E2.d_adj.max())
+    ax.set_ylim(lo - .08 * (hi - lo), hi + .30 * (hi - lo))
+    h = [Line2D([], [], marker="o", linestyle="none", markersize=3.2,
+                markerfacecolor=f, markeredgecolor=col, markeredgewidth=LW)
+         for f in (col, "white")]
+    ax.legend(h, ["$P$ < 0.05", "n.s."], loc="upper left", ncol=2,
+              fontsize=ANNOT_PT, handletextpad=.4, columnspacing=1.0,
+              borderaxespad=.2, frameon=False)
+
+
+# --------------------------------------------------------------- page geometry
+GUT = K.LETTER_W + K.LETTER_PADX    # gutter that holds the panel letter
+GAP, MB, LETTER_BAND = K.GAP, K.MB, K.LETTER_BAND
+GAPX = 8.5                          # visible gap between c and d
+SUB_GAP, SUB_TICK = 2.5, 5.0        # between a's sub-axes / their y ticks
+LAB_A, LAB_B, LAB_C, LAB_D = 12.5, 15.0, 20.0, 15.0
+COL_C = 92.0                        # slot of c; d takes the rest of the row
+H1, H2, H3 = 38.0, 30.0, 44.0       # axes height per row
+XB1, XB2, XB3 = 10.0, 7.5, 11.5     # x label block per row
+W = PW - ML - MR
+ROWS = ["a", "b", "cd"]
+
+
+def row3_geom(fig, panels):
+    """One solve for row 3: the visible gap between c's and d's ink equals
+    GAPX and the two frames share the remaining width 4:3, i.e. in proportion
+    to the number of categories each has to label (c four, d three)."""
+    rend = fig.canvas.get_renderer()
+    mm = lambda px: px / fig.dpi * 25.4
+    by = {q["ch"]: q for q in panels}
+    L, R = [], []
+    for ch in ("c", "d"):
+        ax = by[ch]["axes"][0]
+        bb, pos = ax.get_tightbbox(rend), ax.get_position()
+        L.append(max(pos.x0 * PW - mm(bb.x0), 0.0))
+        R.append(max(mm(bb.x1) - (pos.x0 + pos.width) * PW, 0.0))
+    free = W - GAPX - sum(L) - sum(R) - 2 * GUT
+    wc = free * 4 / 7
+    return (GUT + L[0], wc, GUT + L[1], free - wc, R[0])
+
+
+def build(shift=None, geom=None):
+    shift = shift or {}
+    f = plt.figure(figsize=panel(PW, PH))
+    out = []
+    # row 1 -- a, four sub-axes across the page
+    top = MT + LETTER_BAND + shift.get("a", 0.0)
+    wa = (W - GUT - LAB_A - 3 * (SUB_GAP + SUB_TICK)) / 4
+    axs = [K.axes_mm(f, ML + GUT + LAB_A + i * (wa + SUB_GAP + SUB_TICK),
+                     top, wa, H1) for i in range(4)]
+    p_a(axs)
+    out.append(dict(ch="a", x=ML, axes=axs,
+                    txt=K.letter(f, ML, top - 1.2, "a")))
+    # row 2 -- b, the 27 edges across the page, directly under a
+    top2 = MT + LETTER_BAND + H1 + XB1 + GAP + LETTER_BAND
+    ax_b = K.axes_mm(f, ML + GUT + LAB_B, top2 + shift.get("b", 0.0),
+                     W - GUT - LAB_B, H2)
+    p_edges(ax_b)
+    out.append(dict(ch="b", x=ML, axes=[ax_b],
+                    txt=K.letter(f, ML, top2 - 1.2, "b")))
+    # row 3 -- c and d
+    top3 = top2 + H2 + XB2 + GAP + LETTER_BAND
+    lc, wc, ld, wd, rc = (geom if geom else
+                          (GUT + LAB_C, COL_C - GUT - LAB_C, GUT + LAB_D,
+                           W - COL_C - GAPX - GUT - LAB_D, 0.0))
+    xc, xd = ML, ML + lc + wc + rc + GAPX
+    ax_c = K.axes_mm(f, xc + lc, top3 + shift.get("c", 0.0), wc, H3)
+    ax_d = K.axes_mm(f, xd + ld, top3 + shift.get("d", 0.0), wd, H3)
+    p_ci(ax_c); p_paired(ax_d)
+    out.append(dict(ch="c", x=xc, axes=[ax_c],
+                    txt=K.letter(f, xc, top3 - 1.2, "c")))
+    out.append(dict(ch="d", x=xd, axes=[ax_d],
+                    txt=K.letter(f, xd, top3 - 1.2, "d")))
+    enforce(f)
+    return f, out, top3 + max(shift.get(c_, 0.0) for c_ in "cd") + H3 + XB3
+
+
+# ------------------------------------------------------------------- caption
+CAP_TITLE = (f"Supplementary Fig. {SUPP_NO} | A depression-specific network: "
+             f"the AMPA perturbation abolishes the diagnostic difference, "
+             f"the GABA-A perturbation does not.")
+
+
+def pf(p):
+    return (f"P = {p:.3g}" if p >= 1e-3 else
+            f"P = {p:.2g}" if p >= 1e-4 else f"P = {p:.1e}")
+
+
+def gline(k, what):
+    g = G.loc[G.key == k].iloc[0]
+    return (f"{what} {g.hc_mean:.2f} +/- {g.hc_sd:.2f} in controls versus "
+            f"{g.mdd_mean:.2f} +/- {g.mdd_sd:.2f} in MDD, adjusted difference "
+            f"{g['diff']:.2f} (95% CI {g.ci_lo:.2f} to {g.ci_hi:.2f}, "
+            f"t = {g.t:.2f}, df = {g.df:d}, {pf(g.p)}, unadjusted Cohen's "
+            f"d = {g.d:.2f})")
+
+
+def caption_runs():
+    e = S["edges"]
+    pa, pg = PR.iloc[0], PR.iloc[1]
+    cap = [
+        ("", f"The depression-specific network is the set of "
+             f"{e['n']} edges selected against the diagnosis in the "
+             f"population-scale simulation subsample (SI Results 5); every "
+             f"panel is computed in that same sample, "
+             f"n = {int(G.n_hc[0]) + int(G.n_mdd[0])} "
+             f"(healthy controls n = {int(G.n_hc[0])}, MDD "
+             f"n = {int(G.n_mdd[0])}), and the measure is the summed "
+             f"connectivity of those {e['n']} edges. The network was defined "
+             f"here, so a and b are descriptive of that selection rather than "
+             f"an independent test of it; what is tested is whether a "
+             f"perturbation of the digital twins moves the measure and "
+             f"whether it removes the group difference. Four conditions are "
+             f"compared throughout: the empirical connectivity, the simulated "
+             f"baseline of the twins, and the twins after the AMPA and after "
+             f"the GABA-A perturbation (GABA-A is applied on top of AMPA, as "
+             f"everywhere else in this work). Group tests are linear models "
+             f"of the condition on diagnosis with sex, recruitment site and "
+             f"mean head motion as covariates (df = {int(G.df[0])}), "
+             f"uncorrected across the four pre-specified conditions; a and c "
+             f"display adjusted values, i.e. the residual of those covariates "
+             f"plus that condition's own mean, so the covariates are removed "
+             f"without moving a condition off its real scale. Box plots show "
+             f"the median, 25th-75th percentiles and 1.5 x IQR whiskers with "
+             f"every subject overplotted. *P < 0.05, **P < 0.01, "
+             f"***P < 0.001; n.s., not significant. "),
+        ("a", f", depression-network connectivity by diagnosis in each "
+              f"condition, each on its own scale: "
+              f"{gline('empirical', 'empirically')}; "
+              f"{gline('simulated', 'in the simulated baseline')}; "
+              f"{gline('ampa', 'after AMPA')}; "
+              f"{gline('gaba', 'after GABA-A')}. The diagnostic difference "
+              f"survives in the simulated baseline, is abolished after AMPA "
+              f"and remains after GABA-A. "),
+        ("b", f", the {e['n']} edges of the network sorted by their adjusted "
+              f"effect size, oriented controls minus MDD and converted from "
+              f"the covariate model's t so that one convention holds across "
+              f"the figure (range {e['d_min']:.2f} to {e['d_max']:.2f}). "
+              f"Filled symbols mark the {e['n_sig_emp']} edges with an "
+              f"uncorrected P < 0.05 empirically; {e['n_sig_sim']} of the "
+              f"{e['n']} reach the same threshold in the simulated baseline. "
+              f"{e['n_overlap_np']} of these edges are shared with the "
+              f"NP-factor profile of Fig. 2. This panel resolves the empirical contrast of a edge by edge. Per-edge values are in "
+              f"depnet_edge_source_data.csv and carry no correction across "
+              f"edges. "),
+        ("c", f", the same four contrasts as adjusted differences with their "
+              f"95% confidence intervals; open symbol, empirical; filled "
+              f"symbols, simulated. The interval excludes zero in every "
+              f"condition except after AMPA, where it spans "
+              f"{G.loc[G.key == 'ampa', 'ci_lo'].iloc[0]:.2f} to "
+              f"{G.loc[G.key == 'ampa', 'ci_hi'].iloc[0]:.2f}. The tests are "
+              f"those of a and are not repeated. "),
+        ("d", f", the within-subject effect of each perturbation on the same "
+              f"measure, all {int(pa.n)} subjects pooled across diagnosis. "
+              f"AMPA raises it by {pa['mean']:+.2f} +/- {pa.sd:.2f} "
+              f"({int(pa.n_up)}/{int(pa.n)} subjects, {pa.pct_up:.1f}%, "
+              f"increase), paired t = {pa.t_raw:.2f}, df = {int(pa.df_raw)}, "
+              f"{pf(pa.p_raw)}; with the same covariates t = {pa.t:.2f}, "
+              f"df = {int(pa.df)}, {pf(pa.p)}. GABA-A raises it by "
+              f"{pg['mean']:+.2f} +/- {pg.sd:.2f} ({int(pg.n_up)}/"
+              f"{int(pg.n)}, {pg.pct_up:.1f}%), paired t = {pg.t_raw:.2f}, "
+              f"df = {int(pg.df_raw)}, {pf(pg.p_raw)}; adjusted "
+              f"t = {pg.t:.2f}, df = {int(pg.df)}, {pf(pg.p)}. Both "
+              f"perturbations therefore raise depression-network "
+              f"connectivity, but only AMPA removes the diagnostic "
+              f"difference. "),
+    ]
+    runs = [(CAP_TITLE + " ", True)]
+    for lab, seg in cap:
+        if lab:
+            runs.append((lab + ",", True))
+            seg = seg[1:] if seg.startswith(",") else seg
+        runs.append((seg, False))
+    return runs
+
+
+# pass 1 -- row-2 geometry, content overhang per panel, caption height
+_f0, _p0, _ = build()
+_geom = row3_geom(_f0, _p0)
+plt.close(_f0)
+for _ in range(3):                          # the tick labels shift a little
+    _f0, _p0, _ = build(geom=_geom)         # when the axes width changes
+    _geom = row3_geom(_f0, _p0)
+    _over = K.overhangs(_f0, _p0)
+    _runs0 = caption_runs()
+    _l0 = (K._wrap(_f0, _runs0, PW - ML - MR, CAP_PT,
+                   _f0.canvas.get_renderer())[0] if WITH_CAP else [])
+    plt.close(_f0)
+
+fig, PANELS, BOTTOM = build(_over, geom=_geom)
+K.align_left_ink(fig, PANELS, [["a", "b", "c"]])
+K.place_letters(fig, PANELS, rows=[["a"], ["b"], ["c", "d"]])
+
+runs = caption_runs()
+if WITH_CAP:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = K.draw_caption(
+        fig, runs, ML, BOTTOM + K.CAP_GAP, PW - ML - MR)
+else:
+    cap_objs, cap_rect, n_lines, CAP_BOTTOM = [], None, 0, BOTTOM
+
+assert CAP_BOTTOM <= PH - 0.5, f"content overruns A4: {CAP_BOTTOM:.1f} mm"
+print(f"[{STEM}] rows {H1:.0f}/{H2:.0f}/{H3:.0f} mm; panels end at "
+      f"{BOTTOM:.1f} mm; caption {n_lines} lines -> {CAP_BOTTOM:.1f} mm "
+      f"of {PH:.0f} mm")
+
+# ----------------------------------------------------------------------- export
+png, pdf, ppt = (os.path.join(HERE, STEM + ext)
+                 for ext in (".png", ".pdf", ".pptx"))
+fig.savefig(png, dpi=DPI, bbox_inches=None, facecolor="white")
+fig.savefig(pdf, bbox_inches=None, facecolor="white")
+K.export_pptx(fig, ppt, cap_objs, runs, cap_rect, dpi=DPI,
+              collect_text_records=collect_text_records)
+bad = [t.get_text() for t in fig.findobj(matplotlib.text.Text)
+       if t.get_text().strip() and t.get_fontname() != "Arial"]
+print("non-Arial text:", bad[:5], "| files:",
+      [os.path.basename(p) for p in (png, pdf, ppt)])
+pd.DataFrame([{"key": k, "value": str(v)} for k, v in S.items()]).to_csv(
+    os.path.join(HERE, "figS_depnet_A4_caption_values.csv"), index=False)
+plt.close(fig)

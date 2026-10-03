@@ -1,0 +1,24 @@
+panel,quantity,contrast,unit,n,df,estimate,ci,stat,p
+3i,assimilated-region BOLD r,3M/268 vs 100M voxel,participant x task,24,23,+0.0174,0.0131 to 0.0216,t = 8.015,4.16e-08
+3i,assimilated-region BOLD r,3M/268 vs 10M voxel own hyper,participant x task,24,23,+0.1391,0.1178 to 0.1605,t = 12.785,6.18e-12
+3i,assimilated-region BOLD r,3M/268 vs 10M/1000,participant x task,24,23,+0.2273,0.2107 to 0.2440,t = 26.697,8.23e-19
+3i,assimilated-region BOLD r,100M voxel vs 10M voxel own hyper,participant x task,24,23,+0.1217,0.1022 to 0.1413,t = 12.198,1.59e-11
+3i,assimilated-region BOLD r,100M voxel vs 10M/1000,participant x task,24,23,+0.2100,0.1946 to 0.2253,t = 26.854,7.22e-19
+3i,assimilated-region BOLD r,3M/268 vs 10M/268,participant x task,24,23,-0.0002 (0.02% of r; reliably detected but negligible),-0.00028 to -0.00012,t = -4.764,8.4e-05
+3a,NP-edge MSE,100M-hyper voxel family vs regional family,participant,12,11,-0.0103,,t = -0.967,0.355
+3a,NP-edge MSE,100M-hyper voxel family vs benchmarks,participant,12,11,-0.0118,,t = -0.873,0.401
+3a,NP-edge MSE,100M-hyper voxel family vs 10M voxel own hyper,participant,12,11,-0.0378,,t = -2.117,0.0579
+3a,NP-edge MSE,100M-hyper voxel family vs 10M/1000,participant,12,11,-0.0394,,t = -1.702,0.117
+3d,run-to-run s.d. of summed NP,s.d. vs log10 simulated neurons,build,6,4,rho = -0.820,,Spearman,0.0458
+3d,run-to-run s.d. of summed NP,1B vs 100M,participant,12,11,-0.1618,,t = -3.634,0.00393
+3d,run-to-run s.d. of summed NP,1B vs 3M/268,participant,12,11,-0.2477,,t = -3.921,0.00239
+3c,cross-build NP similarity,within 100M-hyper voxel family (3 pairs),participant x edge,144,142,mean rho = 0.903,0.869 to 0.933,t = 25.0,8.149999999999998e-54
+3c,cross-build NP similarity,within 3M-hyper regional family (1 pair),participant x edge,144,142,rho = 0.891,,t = 23.4,1.13e-50
+3c,cross-build NP similarity,across the two families (6 pairs),participant x edge,144,142,mean rho = 0.472,0.433 to 0.525,t = 6.4,2.32e-09
+3c,cross-build NP similarity,3M/268 vs 1B,participant x edge,144,142,rho = 0.525,,t = 7.3,1.47e-11
+3b,whole-brain FC similarity,10M voxel (100M hyper) vs 3M/268,participant,12,11,+0.2649,"+0.2411, +0.2888",t = 24.424,6.21e-11
+3b,whole-brain FC similarity,10M/268 vs 3M/268,participant,12,11,+0.0007 (no detectable difference),"-0.0040, +0.0053",t = 0.313,0.76
+3b,whole-brain FC similarity,10M/1000 vs 3M/268,participant,12,11,+0.1487,"+0.1187, +0.1787",t = 10.905,3.09e-07
+3b,whole-brain FC similarity,3M/268 vs SAR,participant,12,11,+0.1143,"+0.0888, +0.1397",t = 9.891,8.24e-07
+3b,whole-brain FC similarity,3M/268 vs rWW,participant,12,11,+0.1999,"+0.1727, +0.2272",t = 16.143,5.25e-09
+3b,whole-brain FC similarity,10M voxel (100M hyper) vs 10M/1000,participant,12,11,+0.1162,"+0.0731, +0.1594",t = 5.928,9.9e-05
