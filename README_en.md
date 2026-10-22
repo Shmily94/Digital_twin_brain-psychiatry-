@@ -15,17 +15,6 @@ The reference is the submitted material, not any intermediate draft:
 Copies are in `04_figures/_final_deliverables/` and serve as the reference of
 record: every comparison in this package is made against them.
 
-## Two invariants
-
-1. **Everything here is a copy.** Building this package modified, moved and
-   deleted nothing in the author's working tree. `MANIFEST.csv` records the
-   source path, size and SHA256 of all 1,190 files so the claim is checkable.
-   One breach occurred during verification and was repaired;
-   `VERIFICATION_REPORT.md` section 5 documents it in full.
-2. **`04_figures/` is read-only.** Its data files are the reference that
-   verification compares against. Scripts that re-run write to a scratch
-   directory.
-
 ## Layout
 
 ```
