@@ -166,27 +166,6 @@ the original run (seed 0 for the Fig. 5h increment nulls at 5,000 permutations,
 7 for the sign-flip nulls, 2 for the fingerprint nulls) and reproduce their
 permutation statistics exactly.
 
-### What reproduces
-
-| verification | n |
-|---|---|
-| re-ran, output equals the packaged file | 176 |
-| inputs absent from the package | 74 |
-| partially reproduced | 14 |
-| re-ran, output differs | 10 |
-
-The 74 unreproducible rows sit on population-scale simulation output (3 M to
-1 B neurons, GPU cluster) that is far too large to ship; each names the upstream
-file it needs. That is the intended boundary of this package: **figures and
-statistics reproduce on a laptop, simulations require comparable cluster
-hardware.**
-
-The 10 mismatches are findings about the submitted material rather than defects
-of the recovery — four Fig. 3 tables were edited in place after generation, and
-the Extended Data Fig. 2 Oldham tables are stale with respect to an input that
-was later rewritten. All ten are itemised in `VERIFICATION_REPORT.md` section 4
-and the consequential ones in `OPEN_QUESTIONS.md`.
-
 ### End-to-end result
 
 Re-run inside the package from packaged data:
@@ -198,9 +177,3 @@ Re-run inside the package from packaged data:
   six differ only in the resampling step (RMS 3.5–4.2 of 255), with identical
   source renders and therefore identical plotted values.
 
-## Before submitting
-
-Read `OPEN_QUESTIONS.md`. Items 1–4 affect numbers in the submitted material:
-a stale input behind two Extended Data Fig. 2 values, a supplementary table
-whose numbers disagree with the analysis, a legend that understates a
-sparse-cell count, and a table that cannot be rebuilt in one command.
