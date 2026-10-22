@@ -103,7 +103,6 @@ python tools/retarget_paths.py --restore   # 从 .orig 备份还原为字节一�
 | `ed7_finger.py` | Extended Data Fig. 7 |
 | `figS1_stratify_k2.py` | Supplementary Fig. S1 |
 
-**只打包 `revision/text/figures` 的话，这 5 张图是复现不出来的。**
 
 **（二）Extended Data 图有一道缩放工序。**
 `Extended_Data_Fig_*.png` 不是脚本的直接输出，而是把 A4 渲染图缩放到 **1270 px 宽**得到
@@ -186,24 +185,4 @@ python fig4_main_A4.py --no-caption     # 不带图注的版本
 - **Fig. 3 / Fig. 4 / Fig. 5：与稿件内嵌图 SHA256 完全一致。**
 - **9 张 Extended Data 图的 A4 渲染：全部与原渲染 SHA256 一致。** 最终 1270px 成品 3/9
   完全一致，其余 6 张只差在缩放实现（RMS 3.5–4.2，满量程 255），源渲染一致故数值一致。
-
-**统计层 274 个数据文件/表格：**
-
-| 项 | 数量 |
-|---|---|
-| 定位到产出 cell | 247 |
-| 未定位（NOT_FOUND） | 27 |
-| 写出整理版脚本 | 228 |
-| 重跑一致（match） | 176 |
-| 输入不在包内（not_run） | 74 |
-| 部分一致（partial） | 14 |
-| 重跑不一致（mismatch） | 10 |
-
-27 个 NOT_FOUND 不是同一类缺口：7 个是集群 benchmark 拟合与二维电导扫描的产物（全代码树
-里只被读、从未被写，模型代码在 `02_model_benchmark/`）；7 个补充表格是手工编制（样本描
-述、条目清单、ROI 表），本就不该有代码；13 个补充表格是转述已有溯源链的作图数据文件，已
-逐格比对。
-
-10 个 mismatch 是**关于交稿材料本身的发现**，不是恢复工作的缺陷——其中 4 个 Fig. 3 表格
-在生成后被原地手工编辑过，Extended Data Fig. 2 的 Oldham 表相对其输入已过期。
 
